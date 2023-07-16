@@ -1,0 +1,9 @@
+.plane {
+    display: inline-block;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    box-shadow: inset var(--shine) 0.2rem 0.2rem 0.5rem, var(--shadow) 0.2rem 0.2rem 0.5rem;
+    background: var(--shadow);
+    color: var(--description);
+}
