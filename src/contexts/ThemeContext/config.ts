@@ -6,6 +6,7 @@ export interface ThemeConfig {
 }
 
 interface ThemePalette {
+    text: string,
     description: string,
     shadow: string
     shine: string,
@@ -15,6 +16,7 @@ interface ThemePalette {
 
 export const defaultThemeConfig = (): ThemeConfig => ({
     light: {
+        text: '#000',
         description: '#777',
         shadow: '#909090',
         shine: '#ffffff',
@@ -22,6 +24,7 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         background: '#fff'
     },
     dark: {
+        text: '#fff',
         description: '#7c6564',
         shadow: '#5e473c',
         shine: '#864a48',

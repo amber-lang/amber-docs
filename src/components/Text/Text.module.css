@@ -1,0 +1,16 @@
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.body {
+    color: var(--text);
+}
+
+.caption {
+    font-size: 0.75rem;
+    max-width: 100%;
+    color: var(--border);
+}
