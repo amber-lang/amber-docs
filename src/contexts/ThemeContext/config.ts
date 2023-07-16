@@ -16,15 +16,15 @@ interface ThemePalette {
 export const defaultThemeConfig = (): ThemeConfig => ({
     light: {
         description: '#777',
-        shadow: '#90909022',
-        shine: '#ffffff88',
+        shadow: '#909090',
+        shine: '#ffffff',
         border: '#ccc',
         background: '#fff'
     },
     dark: {
         description: '#7c6564',
-        shadow: '#00000022',
-        shine: '#573432',
+        shadow: '#5e473c',
+        shine: '#864a48',
         border: '#6b4a3e',
         background: '#191513'
     }

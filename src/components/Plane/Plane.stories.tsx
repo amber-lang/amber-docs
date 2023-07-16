@@ -10,8 +10,7 @@ export const Default = () => <Plane>Lorem ipsum</Plane>
 
 export const Nested = () => (
     <Plane>
-        Title
-        <br />
+        <p>This is a title</p>
         <Plane>Lorem ipsum</Plane>
     </Plane>
 )

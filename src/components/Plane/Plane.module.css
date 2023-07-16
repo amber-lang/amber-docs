@@ -1,9 +1,11 @@
 .plane {
+    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 85%);
+    --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
     display: inline-block;
     padding: 1rem;
     border: 1px solid var(--border);
     border-radius: 0.75rem;
-    box-shadow: inset var(--shine) 0.2rem 0.2rem 0.5rem, var(--shadow) 0.2rem 0.2rem 0.5rem;
-    background: var(--shadow);
+    box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem, color-mix(in srgb, var(--plane-shadow), transparent 20%) 0.2rem 0.2rem 0.5rem;
+    background: var(--plane-shadow);
     color: var(--description);
 }
