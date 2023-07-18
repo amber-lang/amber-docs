@@ -5,13 +5,15 @@ type FontType = 'title' | 'body' | 'caption'
 
 interface Props {
     children: React.ReactNode,
-    font?: FontType
+    font?: FontType,
+    block?: boolean
 }
 
-export default function Text({ children, font = 'body' }: Props) {
+export default function Text({ children, font = 'body', block }: Props) {
+    const display = block ? 'block' : 'inline'
     return (
-        <span className={style[font]}>
+        <div className={style[font]} style={{ display }}>
             {children}
-        </span>
+        </div>
     )
 }

@@ -1,0 +1,4 @@
+# Use 4 spaces as tab
+set tabstop=4
+set shiftwidth=4
+set expandtab

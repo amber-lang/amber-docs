@@ -2,7 +2,7 @@ import { Meta } from '@storybook/react'
 import Plane from './Plane'
 
 export default {
-    title: 'Plane',
+    title: 'Atoms/Plane',
     component: Plane,
 } as Meta
 
