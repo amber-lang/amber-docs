@@ -2,16 +2,14 @@ import { Meta } from '@storybook/react'
 import Text from './Text'
 
 export default {
-    title: 'Text',
+    title: 'Atoms/Text',
     component: Text
 } as Meta
 
 export const Default = () => (
     <>
-        <Text font='title'>Title</Text>
-        <br />
-        <Text font='body'>Body</Text>
-        <br />
-        <Text font='caption'>Caption</Text>
+        <Text font='title' block>Title</Text>
+        <Text font='body' block>Body</Text>
+        <Text font='caption' block>Caption</Text>
     </>
 )

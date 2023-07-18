@@ -1,0 +1,13 @@
+.spacer {
+    height: 1rem;
+}
+
+.links a {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+}
+
+.links a:last-child {
+    margin-bottom: 0;
+}
