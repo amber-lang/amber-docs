@@ -1,10 +1,10 @@
 import fs from 'fs'
 
-export default function Post() {
+export default function Post({ params }) {
   const a = fs.readdirSync('docs')
   return (
     <div>
-      THIS IS HOMEPAGE
+      {params.slug.join('/')}
       <br/>
       {a.join(', ')}
     </div>
