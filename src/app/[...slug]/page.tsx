@@ -1,12 +1,18 @@
-import fs from 'fs'
+import { getTableOfContents } from '@/utils/docs'
 
-export default function Post({ params }) {
-  const a = fs.readdirSync('docs')
+interface Props {
+  params: {
+    slug: string[]
+  }
+}
+
+export default async function Post({ params }: Props) {
+  const toc = getTableOfContents()
   return (
     <div>
       {params.slug.join('/')}
       <br/>
-      {a.join(', ')}
+      {toc.join(', ')}
     </div>
   )
 }
