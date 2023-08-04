@@ -4,6 +4,7 @@
     // Use single quotes instead of double quotes
     "quotes": ["error", "single"],
     // Disallow semicolons
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "@next/next/no-img-element": "off"
   }
 }

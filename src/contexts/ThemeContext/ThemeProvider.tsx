@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { ThemeContext } from './useTheme'
 import { ThemeMode, ThemeConfig, defaultThemeConfig } from './config'
-import CssVariableStyles from './CssVariableStyles'
+import dynamic from 'next/dynamic'
+
+const CssVariableStyles = dynamic(() => import('./CssVariableStyles'), { ssr: false })
 
 interface Props {
     children: React.ReactNode,

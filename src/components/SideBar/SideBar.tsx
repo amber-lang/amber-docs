@@ -28,7 +28,7 @@ export default function SideBar({}: Props) {
             <Island label="Table of contents">
                 <div className={style.links}>
                     {topics.map(({ path, title }) => (
-                        <a href={path}><Text block>{title}</Text></a>
+                        <a href={path} key={path}><Text block>{title}</Text></a>
                     ))}
                 </div>
             </Island>
