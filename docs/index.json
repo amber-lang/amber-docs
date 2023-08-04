@@ -1,10 +1,10 @@
 {
   "docs": [
     {
-      "path": "getting_started.md",
+      "path": "getting_started",
       "title": "Getting Started"
     }, {
-      "path": "basic_syntax.md",
+      "path": "basic_syntax",
       "title": "Basic Syntax"
     }
   ]
