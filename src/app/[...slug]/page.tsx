@@ -1,5 +1,5 @@
-import { getTableOfContents } from '@/utils/docs'
 import { getDoc } from '@/utils/files'
+import Markdown from '@/components/Markdown/Markdown'
 
 interface Props {
   params: {
@@ -18,9 +18,7 @@ export default async function Post({ params }: Props) {
   )
   return (
     <div>
-      {params.slug.join('/')}
-      <br/>
-      {doc}
+      <Markdown content={doc} />
     </div>
   )
 }

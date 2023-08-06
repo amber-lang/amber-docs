@@ -32,4 +32,3 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         background: '#191513'
     }
 })
-
