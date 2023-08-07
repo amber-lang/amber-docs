@@ -21,7 +21,8 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         shadow: '#909090',
         shine: '#ffffff',
         border: '#ccc',
-        background: '#fff'
+        background: '#fff',
+        ...codeTheme.light
     },
     dark: {
         text: '#fff',
@@ -29,6 +30,38 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         shadow: '#5e473c',
         shine: '#864a48',
         border: '#6b4a3e',
-        background: '#191513'
+        background: '#191513',
+        ...codeTheme.dark
     }
 })
+
+const codeTheme = {
+    light: {
+        codeKeyword: '#ca5ee9',
+        codeNumber: '#d78e48',
+        codeString: '#5daf23',
+        codeCommand: '#05997b',
+        codeInterp: '#c678dd',
+        codeMeta: '#222',
+        codeOperator: '#6fb4c0',
+        codeVariable: '#d63d45',
+        codeFunction: '#1778fc',
+        codeBackground: '#f6f8fa',
+        codeForeground: '#383a42',
+        codeSnippet: '#d00b0b'
+    },
+    dark: {
+        codeKeyword: '#c678dd',
+        codeNumber: '#d19a66',
+        codeString: '#98c379',
+        codeCommand: '#30af95',
+        codeInterp: '#c678dd',
+        codeMeta: '#222',
+        codeOperator: '#6fb4c0',
+        codeVariable: '#d17277',
+        codeFunction: '#589fff',
+        codeBackground: '#282c34',
+        codeForeground: '#abb2bf',
+        codeSnippet: '#e46767'
+    }
+}
