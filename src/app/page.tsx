@@ -1,12 +1,18 @@
-import fs from 'fs'
+'use client'
+
+import { useDocument } from "@/contexts/DocumentContext"
+import { useEffect } from "react"
 
 export default function Post() {
-  const a = fs.readdirSync('docs')
+  const { setDocument } = useDocument()
+
+  useEffect(() => {
+    setDocument('')
+  }, [])
+
   return (
-    <div>
-      THIS IS HOMEPAGE
-      <br/>
-      {a.join(', ')}
-    </div>
+    <>
+      Welcome to Home Page
+    </>
   )
 }
