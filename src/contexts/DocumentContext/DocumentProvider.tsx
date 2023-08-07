@@ -1,6 +1,6 @@
 'use client'
 
-import useDocument, { DocumentModel, DocumentContext } from "./useDocument"
+import useDocument, { DocumentModel, DocumentContext } from './useDocument'
 import React, { useEffect, useState } from 'react'
 
 interface Props {
