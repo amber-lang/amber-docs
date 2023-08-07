@@ -60,7 +60,7 @@ const codeTheme = {
         codeOperator: '#6fb4c0',
         codeVariable: '#d17277',
         codeFunction: '#589fff',
-        codeBackground: '#282c34',
+        codeBackground: '#2C2321',
         codeForeground: '#abb2bf',
         codeSnippet: '#e46767'
     }
