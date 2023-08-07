@@ -4,7 +4,7 @@ This is some basic syntax for the language.
 
 ## Variables
 
-Variables are declared with the `var` keyword.
+Variables are declared with the `let` keyword.
 
 ```ab
 let x = 42
@@ -18,7 +18,10 @@ main {
     x = 38
     x = [1.2, 323, 3]
     x = 'Hello World'
-    $mkdir test$?
+    'This is an interpolation {24 + 12 + 'nested {456} interpolation!'}'
+    $mkdir {name} test$?
+    read()
+    read(a + 12)
 }
 ```
 

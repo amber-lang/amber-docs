@@ -14,7 +14,7 @@ export default function Island({ children, label }: Props) {
             <div className={style['island-caption']}>
                 <Text font='caption'>{label}</Text>
             </div>
-            <Plane>
+            <Plane isBlock>
                 {children}
             </Plane>
         </div>

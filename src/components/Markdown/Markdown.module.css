@@ -1,3 +1,8 @@
+.markdown {
+    margin: 0 auto;
+    width: 50rem;
+}
+
 .markdown h1 {
     margin-bottom: 1.25rem;
     margin-top: 3rem;
@@ -16,4 +21,24 @@
 .markdown h3 {
     margin-top: 1.5rem;
     margin-bottom: 0.25rem;
+}
+
+.inline {
+    background-color: var(--code-background);
+    color: var(--code-snippet);
+    padding: 0.125rem;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.block {
+    padding: 1rem;
+    padding-right: 2rem;
+    display: block;
+    color: var(--code-foreground);
+    background-color: var(--code-background);
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

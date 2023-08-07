@@ -24,11 +24,11 @@ nav {
 main {
   flex: 1;
   display: flex;
-  padding: 0.5rem;
 }
 
 .left {
-  width: 20rem;
+  width: 16rem;
+  margin: 0 2rem;
 }
 
 .right {
@@ -46,4 +46,40 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.hljs-keyword {
+  color: var(--code-keyword);
+}
+
+.hljs-number {
+  color: var(--code-number);
+}
+
+.hljs-string {
+  color: var(--code-string);
+}
+
+.hljs-command {
+  color: var(--code-command);
+}
+
+.hljs-interp {
+  color: var(--code-interp);
+}
+
+.hljs-meta {
+  color: var(--code-meta);
+}
+
+.hljs-operator {
+  color: var(--code-operator);
+}
+
+.hljs-variable {
+  color: var(--code-variable);
+}
+
+.hljs-function {
+  color: var(--code-function);
 }

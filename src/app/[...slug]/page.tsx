@@ -2,7 +2,7 @@
 
 import Markdown from '@/components/Markdown/Markdown'
 import { useDocument } from '@/contexts/DocumentContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Props {
   params: {
@@ -12,11 +12,13 @@ interface Props {
 
 export default function Post({ params }: Props) {
   const { content, setDocument } = useDocument()
+  const [init, setInit] = useState(false)
 
   const fetchDocuments = async () => {
     const res = await fetch(`/api/doc?file=${params.slug.join('/')}`)
     const file = await res.json()
     setDocument(file.doc)
+    setInit(true)
   }
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function Post({ params }: Props) {
   }, [params.slug])
 
   
-  if (!content) return (
+  if (!content && init) return (
     <div>
       {params.slug.join('/')}
       <br/>

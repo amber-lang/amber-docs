@@ -14,13 +14,19 @@ export default function SideBar({}: Props) {
     const topics = getTableOfContents()
     const { headers } = useDocument()
 
+    const getHeaderLink = (header: string) => {
+        return ['#', header.toLowerCase().replace(/[^\w]+/g, '-')].join('')
+    }
+
     return (
         <div>
             {headers.length > 0 && (
                 <Island label="On this page">
                     <div className={style.links}>
                         {headers.map(header => (
-                            <Link href={`#${header}`} key={header}><Text block>{header}</Text></Link>
+                            <Link href={getHeaderLink(header)} key={header}>
+                                <Text block>{header}</Text>
+                            </Link>
                         ))}
                     </div>
                 </Island>

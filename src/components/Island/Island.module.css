@@ -4,3 +4,8 @@
     display: block;
     padding-left: 0.5rem;
 }
+
+.island {
+    display: flex;
+    padding: 0.5rem;
+}
