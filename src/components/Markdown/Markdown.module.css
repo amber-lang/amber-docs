@@ -1,0 +1,19 @@
+.markdown h1 {
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+}
+
+/* First element should not have any margin to avoid having an inconsistent gap above */
+.markdown > *:first-child {
+    margin-top: 0rem;
+}
+
+.markdown h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.markdown h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+}

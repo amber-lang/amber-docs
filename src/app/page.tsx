@@ -1,9 +1,18 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import { Plane } from '@/components/Plane'
-import { ThemeProvider } from '@/contexts/ThemeContext'
-import { Island } from '@/components/Island'
+'use client'
 
-export default function Home() {
-  return (null)
+import { useDocument } from '@/contexts/DocumentContext'
+import { useEffect } from 'react'
+
+export default function Post() {
+  const { setDocument } = useDocument()
+
+  useEffect(() => {
+    setDocument('')
+  }, [])
+
+  return (
+    <>
+      Welcome to Home Page
+    </>
+  )
 }

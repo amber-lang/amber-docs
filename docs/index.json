@@ -1,0 +1,11 @@
+{
+  "docs": [
+    {
+      "path": "getting_started",
+      "title": "Getting Started"
+    }, {
+      "path": "basic_syntax",
+      "title": "Basic Syntax"
+    }
+  ]
+}
