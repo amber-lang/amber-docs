@@ -9,8 +9,8 @@ hljs.registerAliases(['ab'], { languageName: 'amber' })
 // You can override the default renderer to customize the output
 class MarkdownRenderer extends Renderer {
     heading(text: string, level: number, raw: string): string {
-        const id = raw.toLowerCase().replace(/[^\w]+/g, '-');
-        return `<h${level} id="${id}">${text}</h${level}>`;
+        const id = raw.toLowerCase().replace(/[^\w]+/g, '-')
+        return `<h${level} id="${id}">${text}</h${level}>`
     }
 
     codespan(text: string): string {
@@ -19,20 +19,20 @@ class MarkdownRenderer extends Renderer {
 
     code(code: string, lang: string, escaped: boolean) {
         if (this.options.highlight) {
-            const out = this.options.highlight(code, lang);
+            const out = this.options.highlight(code, lang)
             if (out != null && out !== code) {
-                escaped = true;
-                code = out;
+                escaped = true
+                code = out
             }
         }
-        const escapedCode = (escaped ? code : this.options.escape?.(code, true));
+        const escapedCode = (escaped ? code : this.options.escape?.(code, true))
 
         if (!lang) {
-            return `\n<pre><code class="${style.block}">${escapedCode}\n</code></pre>\n`;
+            return `\n<pre><code class="${style.block}">${escapedCode}\n</code></pre>\n`
         }
 
-        const className = this.options.langPrefix ?? '' + this.options.escape?.(lang, true);
-        return `\n<pre><code class="${style.block} ${className}">${escapedCode}\n</code></pre>\n`;
+        const className = this.options.langPrefix ?? '' + this.options.escape?.(lang, true)
+        return `\n<pre><code class="${style.block} ${className}">${escapedCode}\n</code></pre>\n`
     }
 }
 
