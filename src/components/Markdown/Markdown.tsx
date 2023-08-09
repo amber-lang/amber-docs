@@ -10,14 +10,23 @@ hljs.registerAliases(['ab'], { languageName: 'amber' })
 class MarkdownRenderer extends Renderer {
     heading(text: string, level: number, raw: string): string {
         const id = raw.toLowerCase().replace(/[^\w]+/g, '-');
-        return `<h${level} id="${id}">${text}</h${level}>`;
+        return `
+            <div class="${style.container}">
+                <div
+                    onclick="navigator.clipboard.writeText(window.location.href.split('#')[0] + '#${id}');"
+                    class="${style['side-action']} ${style.link}"
+                ></div>
+                <h${level} class="${style.heading}" id="${id}">${text}</h${level}>
+            </div>
+        `;
     }
 
     codespan(text: string): string {
         return `<code class="${style.inline}">${text}</code>`
     }
 
-    code(code: string, lang: string, escaped: boolean) {
+    code(rawCode: string, lang: string, escaped: boolean) {
+        let code = rawCode.trim();
         if (this.options.highlight) {
             const out = this.options.highlight(code, lang);
             if (out != null && out !== code) {
@@ -26,13 +35,17 @@ class MarkdownRenderer extends Renderer {
             }
         }
         const escapedCode = (escaped ? code : this.options.escape?.(code, true));
-
-        if (!lang) {
-            return `\n<pre><code class="${style.block}">${escapedCode}\n</code></pre>\n`;
-        }
-
-        const className = this.options.langPrefix ?? '' + this.options.escape?.(lang, true);
-        return `\n<pre><code class="${style.block} ${className}">${escapedCode}\n</code></pre>\n`;
+        return `
+            <div class="${style.container}">
+                <div
+                    onclick="navigator.clipboard.writeText(\`${
+                        rawCode.replaceAll(/\\/g, '\\\\').replaceAll(/\`/g, '\\\`')
+                    }\`);"
+                    class="${style['side-action']} ${style.copy}"
+                ></div>
+                <pre><code class="${style.block}">${escapedCode}\n</code></pre>
+            </div>
+        `;
     }
 }
 
