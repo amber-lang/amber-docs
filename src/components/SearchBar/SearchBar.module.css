@@ -1,0 +1,13 @@
+.search-bar {
+    font-family: Inter;
+    font-size: 1rem;
+    display: block;
+    background: none;
+    color: var(--description);
+    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 50%);
+    --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
+    padding: 1rem;
+    border: 0.05rem solid var(--border);
+    border-radius: 2rem;
+    box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
+}

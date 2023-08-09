@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 import { DocumentProvider } from '@/contexts/DocumentContext'
 import SideBar from '@/components/SideBar/SideBar'
 import Link from 'next/link'
+import SearchBar from '@/components/SearchBar/SearchBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           <DocumentProvider>
             <nav>
               <Link href="/">Home</Link>
+              <SearchBar />
             </nav>
             <main>
               <div className='left'>
