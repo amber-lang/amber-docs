@@ -6,6 +6,7 @@
 .markdown h1 {
     margin-bottom: 1.25rem;
     margin-top: 3rem;
+    vertical-align: middle;
 }
 
 /* First element should not have any margin to avoid having an inconsistent gap above */
@@ -16,11 +17,44 @@
 .markdown h2 {
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
+    vertical-align: middle;
 }
 
 .markdown h3 {
     margin-top: 1.5rem;
     margin-bottom: 0.25rem;
+    vertical-align: middle;
+}
+
+.side-action {
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out;
+    width: 1.5rem;
+    height: 100%;
+    display: inline-block;
+    position: absolute;
+    left: -3rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.side-action.link {
+    mask-image: url('/link.svg');
+}
+
+.side-action.copy {
+    mask-image: url('/copy.svg');
+}
+
+.container:hover .side-action {
+    background-color: var(--description);
+}
+
+.container {
+    position: relative;
 }
 
 .inline {
