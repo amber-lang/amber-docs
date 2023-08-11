@@ -8,12 +8,12 @@ interface Props {
 }
 
 export default function DocumentProvider({ children }: Props) {
-    const [document, setDocument] = useState<DocumentModel>({ headers: [], content: '' })
+    const [document, setDocument] = useState<DocumentModel>({ headers: [], content: '', path: '' })
     
-    const handleSetDocument = (content: string) => {
+    const handleSetDocument = (path: string, content: string) => {
         const rawHeaders = content.split('\n').filter(line => line.startsWith('#'))
         const headers = rawHeaders.map(header => header.trimStart().replace(/^#+/, '').trim())
-        setDocument({ headers, content })
+        setDocument({ headers, content, path })
     }
 
     return (

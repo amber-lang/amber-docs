@@ -1,8 +1,3 @@
-.markdown {
-    margin: 0 auto;
-    width: 50rem;
-}
-
 .markdown h1 {
     margin-bottom: 1.25rem;
     margin-top: 3rem;
@@ -10,8 +5,14 @@
 }
 
 /* First element should not have any margin to avoid having an inconsistent gap above */
-.markdown > *:first-child {
+.markdown > *:first-child, .markdown > *:first-child > * {
     margin-top: 0rem;
+}
+
+.markdown p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    vertical-align: middle;
 }
 
 .markdown h2 {

@@ -7,7 +7,7 @@ export default function Post() {
   const { setDocument } = useDocument()
 
   useEffect(() => {
-    setDocument('')
+    setDocument('/', '')
   }, [])
 
   return (
