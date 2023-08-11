@@ -6,6 +6,7 @@ import { DocumentProvider } from '@/contexts/DocumentContext'
 import SideBar from '@/components/SideBar/SideBar'
 import Link from 'next/link'
 import SearchBar from '@/components/SearchBar/SearchBar'
+import Icon from '@/components/Icon/Icon'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             <nav>
               <Link href="/">Home</Link>
               <SearchBar />
+              <Icon src={'/marble.svg'} wdth={''} hght={''} />
             </nav>
             <main>
               <div className='left'>
