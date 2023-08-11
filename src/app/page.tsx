@@ -11,7 +11,7 @@ export default function Post() {
   const [toc] = getTableOfContents()
 
   useEffect(() => {
-    setDocument('')
+    setDocument('/', '')
   }, [])
 
   return (

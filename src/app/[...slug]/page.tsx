@@ -1,8 +1,10 @@
 'use client'
 
+import ChapterNavigation from '@/components/ChapterNavigation/ChapterNavigation'
 import Markdown from '@/components/Markdown/Markdown'
 import { useDocument } from '@/contexts/DocumentContext'
 import { useEffect, useState } from 'react'
+import style from './page.module.css'
 
 interface Props {
   params: {
@@ -15,9 +17,10 @@ export default function Post({ params }: Props) {
   const [init, setInit] = useState(false)
 
   const fetchDocuments = async () => {
-    const res = await fetch(`/api/doc?file=${params.slug.join('/')}`)
+    const path = params.slug.join('/')
+    const res = await fetch(`/api/doc?file=${path}`)
     const file = await res.json()
-    setDocument(file.doc)
+    setDocument(path, file.doc)
     setInit(true)
   }
 
@@ -34,8 +37,9 @@ export default function Post({ params }: Props) {
     </div>
   )
   return (
-    <>
+    <div className={style.main}>
       <Markdown content={content} />
-    </>
+      <ChapterNavigation />
+    </div>
   )
 }
