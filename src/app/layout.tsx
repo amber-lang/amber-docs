@@ -7,6 +7,7 @@ import SideBar from '@/components/SideBar/SideBar'
 import Link from 'next/link'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import Icon from '@/components/Icon/Icon'
+import Button from '@/components/Button/Button'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,13 +32,15 @@ export default function RootLayout({
             <nav>
               <Link href="/">Home</Link>
               <SearchBar />
-              <Icon src={'/marble.svg'} wdth={''} hght={''} />
+              <Button>
+              <Icon src='/marble.svg' size='2rem'/>
+              </Button>
             </nav>
             <main>
               <div className='left'>
                   <SideBar />
               </div>
-              <div className='right'>
+              <div className='right'> 
                   {children}
               </div>
             </main>

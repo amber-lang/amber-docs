@@ -6,4 +6,4 @@ export default {
     component: Icon,
 } as Meta
 
-export const Default = () => <Icon src={''} wdth={''} hght={''} />
+export const Default = () => <Icon src={''} size={''} />

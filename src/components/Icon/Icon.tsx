@@ -2,16 +2,13 @@ import style from './Icon.module.css'
 
 interface Props {
     src: string
-    wdth: string
-    hght: string
+    size: string
 }
 
-export default function Icon({ src, wdth, hght }: Props) {
+export default function Icon({ src, size }: Props) {
     return (
-        <div style={{ maskImage: `url(${src})`, width: wdth, height: hght }} className={style.icon}>
-            <button type='button'>
+        <div style={{ maskImage: `url(${src})`, width: size, height: size }} className={style.icon}>
 
-            </button>
         </div>
     )
 }

@@ -1,14 +1,12 @@
 .icon {
     width: 2rem;
     height: 2rem;
-    /* color: var(--description); */
-    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 80%);
-    --plane-shine: color-mix(in srgb, var(--shine), transparent 80%);
-    padding: 0.25rem;
-    border: 0.05rem solid var(--border);
-    border-radius: 2rem;
-    box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
-    background-color: var(--text);
+    background-color: var(--description);
     mask-repeat: no-repeat;
     mask-position: center;
 }
+
+/* .button {
+    color: var(--description);
+    margin: 1rem;
+} */
