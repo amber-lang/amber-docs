@@ -28,7 +28,7 @@ export default function RootLayout({
         <ThemeProvider>
         <nav>
               <div className='nav-left'>
-                <Link href="/" className='link'>
+                <Link href="https://marble.software/" className='link'>
                   <img src="internal/amber.svg" alt="amber" className='logo'/>
                   <span className='title'>
                     Amber
