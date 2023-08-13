@@ -1,0 +1,47 @@
+.part.left {
+    text-align: left;
+}
+
+.part.center {
+    text-align: center;
+}
+
+.part.right {
+    text-align: right;
+}
+
+.page-indicator {
+    line-height: 2rem;
+}
+
+.part {
+    display: inline-block;
+    flex: 1;
+    height: 2rem;
+    margin-top: 3rem;
+}
+
+.part * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon {
+    display: inline-block;
+    mask-image: url('/right-arrow-next.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: var(--text);
+    width: 2rem;
+    height: 2rem;
+}
+
+.icon.reverse {
+    transform: rotate(180deg);
+}
+
+.container {
+    margin: 2rem auto;
+    display: flex;
+}

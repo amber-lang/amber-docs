@@ -5,10 +5,11 @@ import React, { createContext } from 'react'
 export interface DocumentModel {
     headers: string[],
     content: string,
+    path: string,
 }
 
 export interface DocumentActions {
-    setDocument: (content: string) => void,
+    setDocument: (path: string, content: string) => void,
 }
 
 // Create context based on the os preference
