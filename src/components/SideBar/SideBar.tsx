@@ -6,13 +6,13 @@ import { Text } from '@/components/Text'
 import style from './SideBar.module.css'
 import { getTableOfContents } from '@/utils/docs'
 import Link from 'next/link'
-import { useDocument } from '@/contexts/DocumentContext/index'
 
-interface Props {}
+interface Props {
+    headers: string[]
+}
 
-export default function SideBar({}: Props) {
+export default function SideBar({ headers }: Props) {
     const topics = getTableOfContents()
-    const { headers } = useDocument()
 
     const getHeaderLink = (header: string) => {
         return ['#', header.toLowerCase().replace(/[^\w]+/g, '-')].join('')

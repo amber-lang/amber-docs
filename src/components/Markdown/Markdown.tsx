@@ -9,7 +9,7 @@ hljs.registerAliases(['ab'], { languageName: 'amber' })
 // You can override the default renderer to customize the output
 class MarkdownRenderer extends Renderer {
     heading(text: string, level: number, raw: string): string {
-        const id = raw.toLowerCase().replace(/[^\w]+/g, '-');
+        const id = raw.toLowerCase().replace(/[^\w]+/g, '-')
         return `
             <div class="${style.container}">
                 <div
@@ -18,7 +18,7 @@ class MarkdownRenderer extends Renderer {
                 ></div>
                 <h${level} class="${style.heading}" id="${id}">${text}</h${level}>
             </div>
-        `;
+        `
     }
 
     codespan(text: string): string {
@@ -26,15 +26,15 @@ class MarkdownRenderer extends Renderer {
     }
 
     code(rawCode: string, lang: string, escaped: boolean) {
-        let code = rawCode.trim();
+        let code = rawCode.trim()
         if (this.options.highlight) {
-            const out = this.options.highlight(code, lang);
+            const out = this.options.highlight(code, lang)
             if (out != null && out !== code) {
-                escaped = true;
-                code = out;
+                escaped = true
+                code = out
             }
         }
-        const escapedCode = (escaped ? code : this.options.escape?.(code, true));
+        const escapedCode = (escaped ? code : this.options.escape?.(code, true))
         return `
             <div class="${style.container}">
                 <div
@@ -45,7 +45,7 @@ class MarkdownRenderer extends Renderer {
                 ></div>
                 <pre><code class="${style.block}">${escapedCode}\n</code></pre>
             </div>
-        `;
+        `
     }
 }
 

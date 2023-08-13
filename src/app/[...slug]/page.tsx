@@ -1,11 +1,9 @@
-'use client'
-
 import ChapterNavigation from '@/components/ChapterNavigation/ChapterNavigation'
 import Markdown from '@/components/Markdown/Markdown'
-import { useDocument } from '@/contexts/DocumentContext'
-import { useEffect, useState } from 'react'
+import SideBar from '@/components/SideBar/SideBar'
 import style from './page.module.css'
 import NotFound from '../not-found'
+import { getDoc } from '@/utils/files'
 
 interface Props {
   params: {
@@ -13,29 +11,29 @@ interface Props {
   }
 }
 
-export default function Post({ params }: Props) {
-  const { content, setDocument } = useDocument()
-  const [init, setInit] = useState(false)
+const getDocument = async (path: string) => {
+  const content = await getDoc(path)
+  if (!content) return null
+  const rawHeaders = content.split('\n').filter(line => line.startsWith('#'))
+  const headers = rawHeaders.map(header => header.trimStart().replace(/^#+/, '').trim())
+  return { content, headers, path }
+}
 
-  const fetchDocuments = async () => {
-    const path = params.slug.join('/')
-    const res = await fetch(`/api/doc?file=${path}`)
-    const file = await res.json()
-    if (file.doc) setDocument(path, file.doc)
-    setInit(true)
-  }
-
-  useEffect(() => {
-    fetchDocuments()
-  }, [params.slug])
-
-  if (!content && init) return <NotFound />
-  if (!init) return null
+export default async function Post({ params }: Props) {
+  const doc = await getDocument(params.slug.join('/'))
+  if (!doc) return <NotFound />
 
   return (
-    <div className={style.main}>
-      <Markdown content={content} />
-      <ChapterNavigation />
-    </div>
+    <>
+      <div className='left'>
+        <SideBar headers={doc.headers} />
+      </div>
+      <div className='right'>
+        <div className={style.main}>
+          <Markdown content={doc.content} />
+          <ChapterNavigation path={doc.path} />
+        </div>
+      </div>
+    </>
   )
 }

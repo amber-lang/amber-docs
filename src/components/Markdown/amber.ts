@@ -1,23 +1,23 @@
-import { HLJSApi } from "highlight.js"
+import { HLJSApi } from 'highlight.js'
 
-export default (hljs: HLJSApi) => {
+const amber = (hljs: HLJSApi) => {
     const interpolation = {
-        className: "interp",
+        className: 'interp',
         begin: /\{/,
         end: /}/,
         contains: []
     }
     const string = {
-        scope: "string",
-        begin: "'",
-        end: "'",
+        scope: 'string',
+        begin: '\'',
+        end: '\'',
         contains: [
             hljs.BACKSLASH_ESCAPE,
             interpolation
         ]
     }
     const command = {
-        scope: "command",
+        scope: 'command',
         begin: /\$/,
         end: /\$/,
         contains: [
@@ -26,19 +26,19 @@ export default (hljs: HLJSApi) => {
         ]
     }
     const operator = {
-        scope: "operator",
+        scope: 'operator',
         match: /[-+*/%<>=!&|?]/
     }
     const keywords = {
-        scope: "keyword",
+        scope: 'keyword',
         match: /\b(to|error|status|if|loop|in|silent|return|fun|else|break|continue|and|or|not|let|sh|main)\b/
     }
     const fun = {
-        scope: "function",
+        scope: 'function',
         match: /\b([a-zA-Z0-9_]+)\b(?=\()/
     }
     const variable = {
-        scope: "variable",
+        scope: 'variable',
         match: /[a-zA-Z0-9_]+/
     }
     const all = [
@@ -56,11 +56,13 @@ export default (hljs: HLJSApi) => {
         begin: /\{/,
         end: /\}/,
         contains: [
-            "self"
+            'self'
         ].concat(all as any) as any
-    }]) as any;
+    }]) as any
     return ({
         case_insensitive: false,
         contains: all
     })
 }
+
+export default amber
