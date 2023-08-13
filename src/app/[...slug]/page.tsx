@@ -3,6 +3,11 @@
 import Markdown from '@/components/Markdown/Markdown'
 import { useDocument } from '@/contexts/DocumentContext'
 import { useEffect, useState } from 'react'
+<<<<<<< Updated upstream
+=======
+import style from './page.module.css'
+import NotFound from '../not-found'
+>>>>>>> Stashed changes
 
 interface Props {
   params: {
@@ -17,7 +22,11 @@ export default function Post({ params }: Props) {
   const fetchDocuments = async () => {
     const res = await fetch(`/api/doc?file=${params.slug.join('/')}`)
     const file = await res.json()
+<<<<<<< Updated upstream
     setDocument(file.doc)
+=======
+    if (file.doc) setDocument(path, file.doc)
+>>>>>>> Stashed changes
     setInit(true)
   }
 
@@ -25,14 +34,8 @@ export default function Post({ params }: Props) {
     fetchDocuments()
   }, [params.slug])
 
-  
-  if (!content && init) return (
-    <div>
-      {params.slug.join('/')}
-      <br/>
-      Not found
-    </div>
-  )
+  if (!content && init) return <NotFound />
+
   return (
     <>
       <Markdown content={content} />

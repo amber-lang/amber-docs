@@ -1,0 +1,29 @@
+.not-found {
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.not-found h2 {
+    margin-bottom: 1.5rem;
+}
+
+.not-found img {
+    width: 100%;
+    max-width: 40rem;
+    margin-bottom: 2rem;
+}
+
+.outer {
+    margin-left: 0.5ch;
+    background: -webkit-linear-gradient(45deg, var(--text), color-mix(in srgb, #7291ff, var(--text) 20%), color-mix(in srgb, #ff6d2e, var(--text) 20%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+}
