@@ -11,4 +11,5 @@
     border: 0.05rem solid var(--border);
     border-radius: 2rem;
     box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
+    outline: none;
 }

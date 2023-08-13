@@ -2,8 +2,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
-import { DocumentProvider } from '@/contexts/DocumentContext'
-import SideBar from '@/components/SideBar/SideBar'
 import Link from 'next/link'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import Icon from '@/components/Icon/Icon'
@@ -24,38 +22,37 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel='icon' href='/favicon.png'/>
+        <link rel='icon' href='/internal/favicon.png'/>
       </head>
       <body className={inter.className}>
         <ThemeProvider>
-          <DocumentProvider>
-            <nav>
-              <Link href="/" className='link'>
-                <Icon src='/amber-mono.svg' size='2rem'/>
-                Amber
-              </Link>
-              <SearchBar />
-              <Button>
-              <Icon src='/marble.svg' size='2rem'/>
-              </Button>
-
-              <Button>
-              <Icon src='/moon.svg' size='2rem'/>
-              </Button>
-
-              <Button>
-              <Icon src='/side-bar.svg' size='2rem'/>
-              </Button>
-            </nav>
-            <main>
-              <div className='left'>
-                  <SideBar />
+        <nav>
+              <div className='nav-left'>
+                <Link href="/" className='link'>
+                  <img src="internal/amber.svg" alt="amber" className='logo'/>
+                  <span className='title'>
+                    Amber
+                  </span>
+                </Link>
               </div>
-              <div className='right'> 
-                  {children}
+                <SearchBar/>
+              <div className='nav-right'>
+                <Button>
+                <Icon src='internal/side-bar.svg' size='2rem'/>
+                </Button>
+
+                <Button>
+                <Icon src='internal/moon.svg' size='2rem'/>
+                </Button>
+
+                <Button>
+                <Icon src='internal/marble.svg' size='2rem'/>
+                </Button>
               </div>
-            </main>
-          </DocumentProvider>
+        </nav>
+              <main>
+                {children}
+              </main>
         </ThemeProvider>
       </body>
     </html>

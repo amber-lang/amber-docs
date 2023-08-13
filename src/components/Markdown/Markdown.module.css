@@ -1,26 +1,61 @@
-.markdown {
-    margin: 0 auto;
-    width: 50rem;
-}
-
 .markdown h1 {
     margin-bottom: 1.25rem;
     margin-top: 3rem;
+    vertical-align: middle;
 }
 
 /* First element should not have any margin to avoid having an inconsistent gap above */
-.markdown > *:first-child {
+.markdown > *:first-child, .markdown > *:first-child > * {
     margin-top: 0rem;
+}
+
+.markdown p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    vertical-align: middle;
 }
 
 .markdown h2 {
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
+    vertical-align: middle;
 }
 
 .markdown h3 {
     margin-top: 1.5rem;
     margin-bottom: 0.25rem;
+    vertical-align: middle;
+}
+
+.side-action {
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    background-color: transparent;
+    transition: background-color 0.1s ease-in-out;
+    width: 1.5rem;
+    height: 100%;
+    display: inline-block;
+    position: absolute;
+    left: -3rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.side-action.link {
+    mask-image: url('/internal/link.svg');
+}
+
+.side-action.copy {
+    mask-image: url('/internal/copy.svg');
+}
+
+.container:hover .side-action {
+    background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
+}
+
+.container {
+    position: relative;
 }
 
 .inline {

@@ -10,10 +10,7 @@ interface Props {
 export default function Button({ children }: Props) {
     return (
         <button className={style.button}>
-            <Plane>
                 {children}
-            </Plane>
         </button>
     )
 }
-///  <Plane style={{ borderRadius: '1rem'}}>
