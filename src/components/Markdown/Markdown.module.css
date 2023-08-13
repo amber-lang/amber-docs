@@ -32,7 +32,7 @@
     mask-size: contain;
     mask-position: center;
     background-color: transparent;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
     width: 1.5rem;
     height: 100%;
     display: inline-block;
@@ -43,15 +43,15 @@
 }
 
 .side-action.link {
-    mask-image: url('/link.svg');
+    mask-image: url('/internal/link.svg');
 }
 
 .side-action.copy {
-    mask-image: url('/copy.svg');
+    mask-image: url('/internal/copy.svg');
 }
 
 .container:hover .side-action {
-    background-color: var(--description);
+    background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
 }
 
 .container {

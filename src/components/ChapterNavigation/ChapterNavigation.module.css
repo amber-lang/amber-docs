@@ -28,7 +28,7 @@
 
 .icon {
     display: inline-block;
-    mask-image: url('/right-arrow-next.svg');
+    mask-image: url('/internal/right-arrow-next.svg');
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
