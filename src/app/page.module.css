@@ -9,7 +9,7 @@
 
 .jumbotron {
     /* This should be configurable */    
-    mask-image: url('/amber-docs.svg');
+    mask-image: url('/internal/amber-docs.svg');
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
