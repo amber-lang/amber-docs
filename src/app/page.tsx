@@ -1,18 +1,9 @@
-'use client'
-
-import { useDocument } from '@/contexts/DocumentContext'
-import { useEffect } from 'react'
 import style from './page.module.css'
 import { getTableOfContents } from '@/utils/docs'
 import Link from 'next/link'
 
 export default function Post() {
-  const { setDocument } = useDocument()
   const [toc] = getTableOfContents()
-
-  useEffect(() => {
-    setDocument('/', '')
-  }, [])
 
   return (
     <>

@@ -3,20 +3,18 @@
 import React from 'react'
 import style from './ChapterNavigation.module.css'
 import { Text } from '../Text'
-import { useDocument } from '@/contexts/DocumentContext'
 import { getTableOfContents } from '@/utils/docs'
 import Link from 'next/link'
 
-interface Props {}
+interface Props {
+    path: string
+}
 
-export default function ChapterNavigation({}: Props) {
+export default function ChapterNavigation({ path }: Props) {
     const toc = getTableOfContents()
-    const { path } = useDocument()
-
     const index = toc.findIndex(item => item.path === path)
     const prev = toc[index - 1]
     const next = toc[index + 1]
-
     return (
         <div className={style.container}>
             <div className={`${style.part} ${style.left}`}>

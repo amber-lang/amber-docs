@@ -27,3 +27,12 @@
     text-fill-color: transparent;
     -webkit-text-fill-color: transparent;
 }
+
+.big-link {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 2rem auto;
+    border: 1px solid var(--text);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
