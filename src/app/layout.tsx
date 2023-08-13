@@ -3,6 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import Link from 'next/link'
+import SearchBar from '@/components/SearchBar/SearchBar'
+import Icon from '@/components/Icon/Icon'
+import Button from '@/components/Button/Button'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,12 +26,33 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider>
-          <nav>
-            <Link href="/">Home</Link>
-          </nav>
-          <main>
-            {children}
-          </main>
+        <nav>
+              <div className='nav-left'>
+                <Link href="/" className='link'>
+                  <img src="internal/amber.svg" alt="amber" className='logo'/>
+                  <span className='title'>
+                    Amber
+                  </span>
+                </Link>
+              </div>
+                <SearchBar/>
+              <div className='nav-right'>
+                <Button>
+                <Icon src='internal/side-bar.svg' size='2rem'/>
+                </Button>
+
+                <Button>
+                <Icon src='internal/moon.svg' size='2rem'/>
+                </Button>
+
+                <Button>
+                <Icon src='internal/marble.svg' size='2rem'/>
+                </Button>
+              </div>
+        </nav>
+              <main>
+                {children}
+              </main>
         </ThemeProvider>
       </body>
     </html>

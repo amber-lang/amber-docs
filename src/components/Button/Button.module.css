@@ -1,0 +1,21 @@
+.button {
+    appearance: none;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 85%);
+    --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    background: var(--plane-shadow);
+    color: var(--description);
+    box-shadow: inset var(--plane-shine) 0.1rem 0.1rem 0.1rem, var(--plane-shadow) 0.1rem 0.1rem 0.1rem;
+
+}
+.button:hover {
+    background-color: color-mix(in srgb, var(--background), transparent 85%);
+    border-radius: 2rem;
+}
