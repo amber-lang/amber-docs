@@ -5,6 +5,7 @@ import Markdown from '@/components/Markdown/Markdown'
 import { useDocument } from '@/contexts/DocumentContext'
 import { useEffect, useState } from 'react'
 import style from './page.module.css'
+import NotFound from '../not-found'
 
 interface Props {
   params: {
@@ -20,7 +21,7 @@ export default function Post({ params }: Props) {
     const path = params.slug.join('/')
     const res = await fetch(`/api/doc?file=${path}`)
     const file = await res.json()
-    setDocument(path, file.doc)
+    if (file.doc) setDocument(path, file.doc)
     setInit(true)
   }
 
@@ -28,14 +29,9 @@ export default function Post({ params }: Props) {
     fetchDocuments()
   }, [params.slug])
 
-  
-  if (!content && init) return (
-    <div>
-      {params.slug.join('/')}
-      <br/>
-      Not found
-    </div>
-  )
+  if (!content && init) return <NotFound />
+  if (!init) return null
+
   return (
     <div className={style.main}>
       <Markdown content={content} />
