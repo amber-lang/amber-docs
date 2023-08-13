@@ -30,10 +30,21 @@ export default function RootLayout({
         <ThemeProvider>
           <DocumentProvider>
             <nav>
-              <Link href="/">Home</Link>
+              <Link href="/" className='link'>
+                <Icon src='/amber-mono.svg' size='2rem'/>
+                Amber
+              </Link>
               <SearchBar />
               <Button>
               <Icon src='/marble.svg' size='2rem'/>
+              </Button>
+
+              <Button>
+              <Icon src='/moon.svg' size='2rem'/>
+              </Button>
+
+              <Button>
+              <Icon src='/side-bar.svg' size='2rem'/>
               </Button>
             </nav>
             <main>

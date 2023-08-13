@@ -1,5 +1,7 @@
+import React from 'react'
 import {Plane} from '@/components/Plane'
 import style from './Button.module.css'
+
 interface Props {
     children: React.ReactNode
 }
@@ -14,3 +16,4 @@ export default function Button({ children }: Props) {
         </button>
     )
 }
+///  <Plane style={{ borderRadius: '1rem'}}>
