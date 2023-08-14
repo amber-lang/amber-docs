@@ -28,12 +28,15 @@ export default function RootLayout({
         <ThemeProvider>
         <nav>
               <div className='nav-left'>
-                <Link href="https://marble.software/" className='link'>
+              <Link href="https://marble.software/" className='link'>
                   <img src="internal/amber.svg" alt="amber" className='logo'/>
-                  <span className='title'>
-                    Amber
-                  </span>
                 </Link>
+              <span className='title'>
+                <Link href="/">
+                  Amber
+                </Link>
+              </span>
+
               </div>
                 <SearchBar/>
               <div className='nav-right'>
