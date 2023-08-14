@@ -40,13 +40,13 @@ export default function RootLayout({
                 <SearchBar/>
               <div className='nav-right'>
                 <Button>
-                <Icon src='internal/side-bar.svg' size='2rem'/>
+                  <Icon src='internal/side-bar.svg' size='2rem'/>
                 </Button>
                 <Button>
-                <Icon src='internal/moon.svg' size='2rem'/>
+                  <Icon src='internal/moon.svg' size='2rem'/>
                 </Button>
                 <Button>
-                <Icon src='internal/marble.svg' size='2rem'/>
+                  <Icon src='internal/marble.svg' size='2rem'/>
                 </Button>
               </div>
         </nav>
