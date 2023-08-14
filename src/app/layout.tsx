@@ -36,18 +36,15 @@ export default function RootLayout({
                   Amber
                 </Link>
               </span>
-
               </div>
                 <SearchBar/>
               <div className='nav-right'>
                 <Button>
                 <Icon src='internal/side-bar.svg' size='2rem'/>
                 </Button>
-
                 <Button>
                 <Icon src='internal/moon.svg' size='2rem'/>
                 </Button>
-
                 <Button>
                 <Icon src='internal/marble.svg' size='2rem'/>
                 </Button>
