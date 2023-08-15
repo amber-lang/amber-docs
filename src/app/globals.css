@@ -18,49 +18,9 @@ body {
   font-family: 'Inter', 'Roboto', sans-serif;
 }
 
-nav {
-  height: 5rem;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  height: 2rem;
-  vertical-align: middle;
-
-}
-
-.title {
-  line-height: 2rem;
-  vertical-align: middle;
-  margin-left: 0.75rem
-}
-
-.link {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
 main {
   flex: 1;
   display: flex;
-}
-
-.nav-left {
-  width: 16rem;
-  margin: 0 2rem;
-}
-
-.nav-right {
-  
-  padding: 2rem;
-  
-} 
-
-.nav-right > * {
-  margin-right: 0.5rem;
 }
 
 a {

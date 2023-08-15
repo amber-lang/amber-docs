@@ -6,4 +6,4 @@ export default {
     component: SideBar,
 } as Meta
 
-export const Default = () => <SideBar />
+export const Default = () => <SideBar headers={[]} />
