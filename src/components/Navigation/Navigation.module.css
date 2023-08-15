@@ -22,17 +22,17 @@
     vertical-align: middle;
 }
 
-.nav-left {
+.left {
     width: 16rem;
     margin: 0 2rem;
     font-weight: bold;
     font-size: 1.5rem;
 }
   
-.nav-right {
+.right {
     padding: 2rem;
 }
   
-.nav-right > * {
+.right > * {
     margin-right: 0.5rem;
 }
