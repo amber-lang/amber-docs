@@ -1,0 +1,38 @@
+.nav {
+    height: 5rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    line-height: 2rem;
+    vertical-align: middle;
+    margin-left: 0.75rem
+}
+  
+.link {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.logo {
+    height: 2rem;
+    vertical-align: middle;
+}
+
+.nav-left {
+    width: 16rem;
+    margin: 0 2rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+  
+.nav-right {
+    padding: 2rem;
+}
+  
+.nav-right > * {
+    margin-right: 0.5rem;
+}
