@@ -28,6 +28,17 @@ a {
   text-decoration: none;
 }
 
+.left {
+  width: 16rem;
+  margin: 0 2rem;
+}
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
