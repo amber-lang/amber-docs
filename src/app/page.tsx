@@ -2,6 +2,7 @@ import style from './page.module.css'
 import { getTableOfContents } from '@/utils/docs'
 import SideBar from '@/components/SideBar/SideBar'
 import Link from 'next/link'
+import SearchBar from '@/components/SearchBar/SearchBar'
 
 export default function Post() {
   const [toc] = getTableOfContents()
@@ -18,6 +19,7 @@ export default function Post() {
             <span className={style.bold}>Amber</span>
             <span className={style.light}>Docs</span>
           </div>
+          <SearchBar variant='title' />
           <Link href={toc.path} className={style['big-link']}>
             {toc.title}
           </Link>

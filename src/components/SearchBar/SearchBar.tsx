@@ -1,10 +1,16 @@
 import style from './SearchBar.module.css'
 
+type Variant = 'body' | 'title'
 
-export default function SearchBar() {
+interface Props {
+    variant?: Variant,
+    placeholder?: string
+}
+
+export default function SearchBar({ variant = 'body', placeholder = 'Search' }: Props) {
     return (
-        <div>
-            <input type="text" placeholder="Search" className={style['search-bar']}/>
+        <div className={style[variant]}>
+            <input type="text" placeholder={placeholder} />
         </div>
     )
 }

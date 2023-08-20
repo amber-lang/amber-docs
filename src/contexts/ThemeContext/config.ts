@@ -22,7 +22,8 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         shine: '#ffffff',
         border: '#ccc',
         background: '#fff',
-        ...codeTheme.light
+        ...codeTheme.light,
+        ...constants
     },
     dark: {
         text: '#fff',
@@ -31,9 +32,15 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         shine: '#864a48',
         border: '#6b4a3e',
         background: '#191513',
-        ...codeTheme.dark
+        ...codeTheme.dark,
+        ...constants
     }
 })
+
+const constants = {
+    accentGradientLeft: '#FF9E00',
+    accentGradientRight: '#FF0000'
+}
 
 const codeTheme = {
     light: {

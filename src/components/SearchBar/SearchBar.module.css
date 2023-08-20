@@ -1,4 +1,4 @@
-.search-bar {
+.body input {
     font-size: 1rem;
     display: block;
     background: none;
@@ -11,4 +11,62 @@
     border-radius: 2rem;
     box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
     outline: none;
+}
+
+.title input {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    padding: 0.80rem;
+    border-radius: 2rem;
+    outline: none;
+    font-size: 1rem;
+    background: color-mix(in srgb, var(--background), transparent 50%);
+    border: var(--border) solid 1px;
+}
+
+.title {
+    position: relative;
+}
+
+.title::before {
+    content: '';
+    display: inline-block;
+    width: 300px;
+    height: 2.5rem;
+    border-radius: inherit;
+    background: linear-gradient(
+        45deg,
+        var(--accent-gradient-left),
+        var(--accent-gradient-right)
+    );
+    filter: blur(70px);
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    z-index: -1;
+    border-radius: 2rem;
+    opacity: 70%;
+    transform: translate(-50%);
+}
+
+.title::after {
+    content: '';
+    display: inline-block;
+    width: 300px;
+    height: 2.5rem;
+    border-radius: inherit;
+    background: linear-gradient(
+        45deg,
+        var(--accent-gradient-left),
+        var(--accent-gradient-right)
+    );
+    filter: blur(20px);
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    z-index: -1;
+    border-radius: 2rem;
+    opacity: 30%;
+    transform: translate(-50%);
 }
