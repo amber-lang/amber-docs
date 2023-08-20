@@ -39,7 +39,8 @@ export const defaultThemeConfig = (): ThemeConfig => ({
 
 const constants = {
     accentGradientLeft: '#FF9E00',
-    accentGradientRight: '#FF0000'
+    accentGradientRight: '#FF0000',
+    accent: '#d35859'
 }
 
 const codeTheme = {

@@ -18,6 +18,10 @@ body {
   font-family: 'Inter', 'Roboto', sans-serif;
 }
 
+::selection {
+  background-color: color-mix(in srgb, var(--text), transparent 85%);
+}
+
 main {
   flex: 1;
   display: flex;

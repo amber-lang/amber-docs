@@ -12,14 +12,12 @@ export default function Navigation() {
     return <>
             <div className={style.nav}>
                 <div className={style.left}>
-                    <Link href="https://marble.software/" className={style.link}>
+                    <Link href="/">
                         <img src="internal/amber.svg" alt="amber" className={style.logo} />
-                    </Link>
-                    <span className={style.title}>
-                        <Link href="/">
+                        <span className={style.title}> 
                             Amber
-                        </Link>
-                    </span>
+                        </span>
+                    </Link>
                 </div>
                 {pathname !== '/' && <SearchBar />}
                 <div className={style.right}>
@@ -30,7 +28,9 @@ export default function Navigation() {
                         <Icon src='internal/moon.svg' size='2rem' />
                     </Button>
                     <Button>
-                        <Icon src='internal/marble.svg' size='2rem' />
+                        <a href="https://marble.software/">
+                            <Icon src='internal/marble.svg' size='2rem' />
+                        </a>
                     </Button>
                 </div>
             </div>
