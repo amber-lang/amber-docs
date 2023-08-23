@@ -13,6 +13,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     vertical-align: middle;
+    line-height: 1.5rem;
 }
 
 .markdown h2 {
@@ -29,17 +30,17 @@
 
 .side-action {
     mask-repeat: no-repeat;
-    mask-size: contain;
-    mask-position: center;
+    mask-size: 1.5rem 1.5rem;
+    mask-position: left center;
     background-color: transparent;
     transition: background-color 0.1s ease-in-out;
-    width: 1.5rem;
+    width: 3rem;
     height: 100%;
     display: inline-block;
     position: absolute;
     left: -3rem;
-    margin-right: 0.5rem;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .side-action.link {
@@ -52,6 +53,10 @@
 
 .container:hover .side-action {
     background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
+}
+
+.container:hover .side-action:hover {
+    background-color: color-mix(in srgb, var(--text), transparent 20%);
 }
 
 .container {
