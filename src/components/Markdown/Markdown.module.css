@@ -50,6 +50,10 @@
     mask-image: url('/internal/copy.svg');
 }
 
+.side-action:active {
+    mask-image: url('/internal/checkmark.svg');
+}
+
 .container:hover .side-action {
     background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
 }
