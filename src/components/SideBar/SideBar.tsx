@@ -19,7 +19,7 @@ export default function SideBar({ headers }: Props) {
     }
 
     return (
-        <div>
+        <div className={style.container}>
             {headers.length > 0 && (
                 <Island label="On this page">
                     <div className={style.links}>

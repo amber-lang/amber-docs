@@ -1,24 +1,45 @@
-.body input {
-    font-size: 1rem;
-    display: block;
-    background: none;
-    color: var(--description);
-    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 80%);
-    --plane-shine: color-mix(in srgb, var(--shine), transparent 80%);
-    padding: 0.25rem;
-    padding-left: 1rem;
-    border: 0.05rem solid var(--border);
+.base {
+    position: relative;
+    width: 100%;
+}
+
+.base input {
+    display: inline-block;
     border-radius: 2rem;
-    box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
+    width: 300px;
+    position: relative;
+    z-index: 3;
+}
+
+.body input {
+    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 85%);
+    --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
+    font-size: 1rem;
+    background: var(--plane-shadow);
+    color: var(--description);
+    box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem, var(--plane-shadow) 0.2rem 0.2rem 0.5rem;
+    padding: 0.5rem;
+    padding-left: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
     outline: none;
     color: var(--text);
     caret-color: var(--border);
+    transition: padding 0.3s ease-in-out 0.2s, width 0.3s ease-in-out;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: padding, width;
+}
+
+.body input:focus {
+    width: 400px;
+    padding: 0.7rem;
+    padding-left: 1rem;
 }
 
 .title input {
-    display: block;
+    position: relative;
+    z-index: 3;
     margin: 0 auto;
-    width: 300px;
     padding: 0.80rem;
     border-radius: 2rem;
     outline: none;
@@ -26,6 +47,13 @@
     background: color-mix(in srgb, var(--background), transparent 50%);
     border: var(--border) solid 1px;
     caret-color: var(--accent);
+    transition: padding 0.3s ease-in-out 0.2s, width 0.3s ease-in-out;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: padding, width;
+}
+
+.title input:focus {
+    width: 400px;
 }
 
 .title input::selection {
@@ -39,7 +67,7 @@
 .title::before {
     content: '';
     display: inline-block;
-    width: 300px;
+    width: 400px;
     height: 2.5rem;
     border-radius: inherit;
     background: linear-gradient(
@@ -51,10 +79,11 @@
     position: absolute;
     top: 10px;
     left: 50%;
-    z-index: -1;
+    z-index: 2;
     border-radius: 2rem;
     opacity: 70%;
     transform: translate(-50%);
+    will-change: filter;
 }
 
 .title::after {
@@ -72,8 +101,56 @@
     position: absolute;
     top: 10px;
     left: 50%;
-    z-index: -1;
+    z-index: 2;
     border-radius: 2rem;
     opacity: 30%;
     transform: translate(-50%);
+    will-change: filter;
+    /* Transition */
+    transition: width 0.3s ease-in-out;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: width;
+}
+
+.title:has(input:focus)::after {
+    width: 400px;
+}
+
+.options {
+    --plane-shadow: color-mix(in srgb, var(--shadow), transparent 85%);
+    --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
+    display: block;
+    transform: translateX(-50%) translateY(-1rem) scale(0.3, 0.9);
+    opacity: 0;
+    left: 50%;
+    width: 400px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    will-change: backdrop-filter;
+    background: var(--plane-shadow);
+    box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem, var(--plane-shadow) 0.2rem 0.2rem 0.5rem;
+    border: var(--border) solid 1px;
+    border-radius: 0.75rem;
+    z-index: 1;
+    transition: opacity 0.1s ease-in-out, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.options.show {
+    display: block;
+    transform: translateX(-50%) translateY(0.5rem) scale(1);
+    opacity: 1;
+    backdrop-filter: blur(20px);
+}
+
+.option {
+    width: 400px;
+    padding: 0.5rem;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: color-mix(in srgb, var(--shadow), transparent 55%);
 }

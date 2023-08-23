@@ -19,7 +19,9 @@ export default function Navigation() {
                         </span>
                     </Link>
                 </div>
-                {pathname !== '/' && <SearchBar />}
+                <div className={style.center}>
+                    {pathname !== '/' && <SearchBar />}
+                </div>
                 <div className={style.right}>
                     <Button>
                         <Icon src='internal/side-bar.svg' size='2rem' />

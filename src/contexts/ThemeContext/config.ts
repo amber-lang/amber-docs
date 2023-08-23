@@ -29,7 +29,7 @@ export const defaultThemeConfig = (): ThemeConfig => ({
         text: '#fff',
         description: '#7c6564',
         shadow: '#5e473c',
-        shine: '#864a48',
+        shine: '#552f2d',
         border: '#6b4a3e',
         background: '#191513',
         ...codeTheme.dark,

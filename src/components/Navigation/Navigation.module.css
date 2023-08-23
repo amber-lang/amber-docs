@@ -1,9 +1,15 @@
 .nav {
-    height: 5rem;
+    --color: color-mix(in srgb, var(--background), transparent 20%);
+    position: fixed;
+    height: 4rem;
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--color);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px var(--background);
+    z-index: 100;
 }
 
 .title {
@@ -18,14 +24,20 @@
 }
 
 .left {
-    width: 16rem;
+    width: 20rem;
     margin: 0 2rem;
     font-weight: bold;
     font-size: 1.5rem;
 }
   
 .right {
-    padding: 2rem;
+    padding-right: 2rem;
+    width: 10rem;
+}
+
+.center {
+    flex: 1;
+    text-align: center;
 }
   
 .right > * {
