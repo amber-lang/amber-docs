@@ -23,7 +23,7 @@ export default function SearchBar({ variant = 'body', placeholder = 'Search' }: 
     const [isInputFocused, setIsInputFocused] = useState(false)
     const debouncedQuery = useDebounce(query, 500)
     const { result } = useSearchResult(debouncedQuery)
-    const showResults = result?.length > 0 && isInputFocused;
+    const showResults = result?.length > 0 && isInputFocused
     
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value)

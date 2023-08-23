@@ -1,3 +1,5 @@
+/* Base styles */
+
 .base {
     position: relative;
     width: 100%;
@@ -8,26 +10,29 @@
     border-radius: 2rem;
     width: 300px;
     position: relative;
+    font-size: 1rem;
     z-index: 3;
+    border-radius: 2rem;
+    outline: none;
+    /* Transition */
+    transition: padding 0.3s ease-in-out 0.2s, width 0.3s ease-in-out;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: padding, width;
 }
+
+/* The search bar in the "body" variant */
 
 .body input {
     --plane-shadow: color-mix(in srgb, var(--shadow), transparent 85%);
     --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
-    font-size: 1rem;
+    border: 1px solid var(--border);
     background: var(--plane-shadow);
     color: var(--description);
     box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem, var(--plane-shadow) 0.2rem 0.2rem 0.5rem;
     padding: 0.5rem;
     padding-left: 0.8rem;
-    border: 1px solid var(--border);
-    border-radius: 2rem;
-    outline: none;
     color: var(--text);
     caret-color: var(--border);
-    transition: padding 0.3s ease-in-out 0.2s, width 0.3s ease-in-out;
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: padding, width;
 }
 
 .body input:focus {
@@ -36,20 +41,15 @@
     padding-left: 1rem;
 }
 
+/* The search bar in the "title" variant */
+
 .title input {
     position: relative;
-    z-index: 3;
     margin: 0 auto;
     padding: 0.80rem;
-    border-radius: 2rem;
-    outline: none;
-    font-size: 1rem;
     background: color-mix(in srgb, var(--background), transparent 50%);
     border: var(--border) solid 1px;
     caret-color: var(--accent);
-    transition: padding 0.3s ease-in-out 0.2s, width 0.3s ease-in-out;
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: padding, width;
 }
 
 .title input:focus {
@@ -63,6 +63,8 @@
 .title {
     position: relative;
 }
+
+/* The halo effect */
 
 .title::before {
     content: '';
@@ -115,6 +117,8 @@
 .title:has(input:focus)::after {
     width: 400px;
 }
+
+/* The options selection menu */
 
 .options {
     --plane-shadow: color-mix(in srgb, var(--shadow), transparent 85%);
