@@ -19,7 +19,9 @@ export default function Post() {
             <span className={style.bold}>Amber</span>
             <span className={style.light}>Docs</span>
           </div>
-          <SearchBar variant='title' />
+          <div className={style.search}>
+            <SearchBar variant='title' />
+          </div>
           <Link href={toc.path} className={style['big-link']}>
             {toc.title}
           </Link>

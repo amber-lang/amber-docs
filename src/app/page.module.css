@@ -48,3 +48,7 @@
 .big-link:hover {
     opacity: 1;
 }
+
+.search {
+    width: 450px;
+}
