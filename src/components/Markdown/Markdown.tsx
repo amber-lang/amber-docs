@@ -13,7 +13,11 @@ class MarkdownRenderer extends Renderer {
         return `
             <div class="${style.container}">
                 <div
-                    onclick="navigator.clipboard.writeText(window.location.href.split('#')[0] + '#${id}');"
+                    onclick="
+                        navigator.clipboard.writeText(window.location.href.split('#')[0] + '#${id}');
+                        this.classList.add('${style.checked}');
+                        setTimeout(() => this.classList.remove('${style.checked}'), 1000);
+                    "
                     class="${style['side-action']} ${style.link}"
                 ></div>
                 <h${level} class="${style.heading}" id="${id}">${text}</h${level}>
@@ -38,9 +42,13 @@ class MarkdownRenderer extends Renderer {
         return `
             <div class="${style.container}">
                 <div
-                    onclick="navigator.clipboard.writeText(\`${
-                        rawCode.replaceAll(/\\/g, '\\\\').replaceAll(/\`/g, '\\\`')
-                    }\`);"
+                    onclick="
+                        navigator.clipboard.writeText(\`${
+                            rawCode.replaceAll(/\\/g, '\\\\').replaceAll(/\`/g, '\\\`')
+                        }\`);
+                        this.classList.add('${style.checked}');
+                        setTimeout(() => this.classList.remove('${style.checked}'), 1000);
+                    "
                     class="${style['side-action']} ${style.copy}"
                 ></div>
                 <pre><code class="${style.block}">${escapedCode}\n</code></pre>

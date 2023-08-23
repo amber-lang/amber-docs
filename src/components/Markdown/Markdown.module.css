@@ -51,8 +51,9 @@
     mask-image: url('/internal/copy.svg');
 }
 
-.side-action:active {
-    mask-image: url('/internal/checkmark.svg');
+.checked {
+    mask-image: url('/internal/checkmark.svg') !important;
+    background-color: var(--text);
 }
 
 .container:hover .side-action {
