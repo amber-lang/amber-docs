@@ -31,8 +31,10 @@
 .side-action {
     mask-repeat: no-repeat;
     mask-size: 1.5rem 1.5rem;
+    will-change: mask-size, mask-position, background-color;
     mask-position: left center;
     background-color: transparent;
+    opacity: 0;
     transition: background-color 0.1s ease-in-out;
     width: 3rem;
     height: 100%;
@@ -51,13 +53,37 @@
     mask-image: url('/internal/copy.svg');
 }
 
+@keyframes fade {
+    0% {
+        mask-size: 0rem 0rem;
+        mask-position: 0.75rem center;
+        opacity: 1;
+    }
+    20% {
+        mask-size: 1.8rem 1.8rem;
+        mask-position: -0.2rem center;
+    }
+    30% {
+        mask-size: 1.5rem 1.5rem;
+        mask-position: 0rem center;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 .checked {
     mask-image: url('/internal/checkmark.svg') !important;
     background-color: var(--text);
+    animation: fade 1s ease-in-out 0s 1 normal forwards running;
 }
 
 .container:hover .side-action {
     background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
+    opacity: 1;
 }
 
 .container:hover .side-action:hover {
