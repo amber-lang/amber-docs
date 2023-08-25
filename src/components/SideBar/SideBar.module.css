@@ -26,6 +26,11 @@
     height: 1rem;
 }
 
+.fixed .links {
+    max-height: calc(40vh - 64px);
+    overflow-y: scroll;
+}
+
 .links a {
     display: block;
     margin-bottom: 0.5rem;
