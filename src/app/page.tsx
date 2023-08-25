@@ -3,6 +3,8 @@ import { getTableOfContents } from '@/utils/docs'
 import SideBar from '@/components/SideBar/SideBar'
 import Link from 'next/link'
 import SearchBar from '@/components/SearchBar/SearchBar'
+import Sheet from '@/components/Sheet/Sheet'
+import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
 
 export default function Post() {
   const [toc] = getTableOfContents()
@@ -10,7 +12,7 @@ export default function Post() {
   return (
     <>
       <div className='left'>
-        <SideBar headers={[]} />
+        <SideBar headers={[]} isFixed />
       </div>
       <div className='right'>
         <div className={style.container}>
@@ -27,6 +29,10 @@ export default function Post() {
           </Link>
         </div>
       </div>
+      <Sheet>
+        <SideBar headers={[]} />
+        <SettingsGrid />
+      </Sheet>
     </>
   )
 }

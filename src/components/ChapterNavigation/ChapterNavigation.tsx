@@ -31,7 +31,7 @@ export default function ChapterNavigation({ path }: Props) {
             <div className={`${style.part} ${style.right}`}>
                 {next && (
                     <>
-                        <Text><Link href={next.path}>{next.title}</Link></Text>
+                        <Text><Link href={next.path}><span className={style.text}>{next.title}</span></Link></Text>
                         <div className={style.icon}></div>
                     </>
                 )}

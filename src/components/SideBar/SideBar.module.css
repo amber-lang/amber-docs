@@ -1,5 +1,25 @@
 .container {
+    width: 300px;
+    transition: transform 300ms;
+}
+
+.fixed {
+    width: 0;
+    margin: 0 2rem;
+    transition: width 300ms;
+}
+
+.fixed .container {
     position: fixed;
+    transform: translate(-150%, 0);
+}
+
+.fixed.open .container {
+    transform: translate(0, 0);
+}
+
+.fixed.open {
+    width: 300px;
 }
 
 .spacer {

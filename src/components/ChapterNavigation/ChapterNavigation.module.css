@@ -1,5 +1,6 @@
 .part.left {
     text-align: left;
+    margin-right: auto;
 }
 
 .part.center {
@@ -8,6 +9,7 @@
 
 .part.right {
     text-align: right;
+    margin-left: auto;
 }
 
 .page-indicator {
@@ -24,6 +26,13 @@
 .part * {
     display: inline-block;
     vertical-align: middle;
+}
+
+.part .text {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .icon {
@@ -44,4 +53,32 @@
 .container {
     margin: 2rem auto;
     display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        font-size: 0.8rem;
+    }
+
+    .page-indicator {
+        line-height: 1.5rem;
+    }
+
+    .part {
+        height: 1.5rem;
+        text-overflow: ellipsis;
+    }
+
+    .center {
+        display: none;
+    }
+
+    .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .part .text {
+        width: 100px;
+    }    
 }

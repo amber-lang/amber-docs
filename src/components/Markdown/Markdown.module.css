@@ -53,6 +53,10 @@
     mask-image: url('/internal/copy.svg');
 }
 
+.markdown {
+    color: var(--text);
+}
+
 @keyframes fade {
     0% {
         mask-size: 0rem 0rem;
@@ -81,17 +85,9 @@
     animation: fade 1s ease-in-out 0s 1 normal forwards running;
 }
 
-.container:hover .side-action {
-    background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
-    opacity: 1;
-}
-
-.container:hover .side-action:hover {
-    background-color: color-mix(in srgb, var(--text), transparent 20%);
-}
-
 .container {
     position: relative;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .inline {
@@ -103,13 +99,35 @@
     margin-bottom: 1rem;
 }
 
-.block {
+.container pre {
     padding: 1rem;
     padding-right: 2rem;
-    display: block;
-    color: var(--code-foreground);
     background-color: var(--code-background);
     border-radius: 0.75rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+.block {
+    display: block;
+    color: var(--code-foreground);
+    overflow-x: scroll;
+}
+
+@media screen and (hover: hover) {
+    .container:hover .side-action {
+        background-color: color-mix(in srgb, var(--code-background), var(--text) 20%);
+        opacity: 1;
+    }
+    
+    .container:hover .side-action:hover {
+        background-color: color-mix(in srgb, var(--text), transparent 20%);
+    }    
+}
+
+@media screen and (hover: none) {
+    .container .side-action {
+        left: -50px;
+        background-color: var(--text);
+    }
 }

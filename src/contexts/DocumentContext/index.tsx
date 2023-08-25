@@ -1,2 +1,2 @@
-export { default as useDocument } from './useDocument'
-export { default as DocumentProvider } from './DocumentProvider'
+export { default as useDocument } from './useSidebar'
+export { default as DocumentProvider } from './SidebarProvider'

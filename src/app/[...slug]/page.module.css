@@ -1,5 +1,31 @@
 .main {
   margin: 0 auto;
-  width: 50rem;
+  width: 1000px;
+}
+
+
+.search {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1920px) {
+  .main {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main {
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .main {
+    width: 80vw;
+  }
 }
 

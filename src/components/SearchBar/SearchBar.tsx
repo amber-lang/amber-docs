@@ -15,7 +15,7 @@ interface Props {
 
 function useSearchResult(query: string) {
     const { data } = useSWR(query ? `/api/search?q=${query}` : null, (url) => fetch(url).then(res => res.json()))
-    return { result: data?.results ?? [] }
+    return { result: data?.results.slice(0, 3) ?? [] }
 }
 
 export default function SearchBar({ variant = 'body', placeholder = 'Search' }: Props) {

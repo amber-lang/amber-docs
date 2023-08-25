@@ -52,3 +52,23 @@
 .search {
     width: 450px;
 }
+
+@media screen and (max-width: 1000px) {
+    .jumbotron {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .title {
+        font-size: 3rem;
+    }
+
+    .search {
+        width: 350px;
+    }
+
+    .big-link {
+        margin-top: 3rem;
+        padding: 0.6rem;
+    }
+}

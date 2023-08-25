@@ -30,14 +30,23 @@ export default function ThemeProvider({ children, mode, theme }: Props) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
             setThemeMode(event.matches ? 'dark' : 'light')
         })
+        document.head.insertAdjacentHTML('beforeend', `<meta name="theme-color" content="${globalTheme[mode ?? osTheme].background}">`)
     }, [])
+
+    const handleSetThemeMode = (value: ThemeMode) => {
+        const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
+        if (themeColorMetaTag) {
+            themeColorMetaTag.setAttribute('content', globalTheme[value].background)
+        }
+        setThemeMode(value)
+    }
 
     return (
         <ThemeContext.Provider
             value={{
                 theme: theme ?? defaultThemeConfig(),
                 mode: themeMode,
-                setThemeMode: (value: ThemeMode) => setThemeMode(value)
+                setThemeMode: handleSetThemeMode
             }}
         >
             <CssVariableStyles theme={globalTheme} mode={themeMode} />

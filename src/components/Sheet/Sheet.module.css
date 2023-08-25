@@ -1,0 +1,39 @@
+.sheet {
+    --sheet: color-mix(in srgb, var(--shadow), var(--background) 85%);
+    /* --description: var(--text); */
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: color-mix(in srgb, var(--sheet), transparent 50%);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    touch-action: none;
+    backdrop-filter: blur(20px);
+    will-change: backdrop-filter;
+}
+
+@media screen and (min-width: 1000px) {
+    .sheet {
+        display: none;
+    }
+}
+ 
+.handle {
+    width: 75px;
+    height: 7px;
+    background: var(--border);
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.content {
+    height: 100%;
+    margin: 40px 20px 0 20px;
+}
+  
+.sheet-style {
+    padding: 10px;
+}

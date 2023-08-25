@@ -16,6 +16,7 @@ body {
   font-size: medium;
   background-color: var(--background);
   font-family: 'Inter', 'Roboto', sans-serif;
+  transition: background-color 0.5s ease;
 }
 
 ::selection {
@@ -33,14 +34,21 @@ a {
   text-decoration: none;
 }
 
-.left {
-  width: 16rem;
-  margin: 0 2rem;
+@media screen and (max-width: 1000px) {
+  body {
+    margin-bottom: 40px;    
+  }
+
+  .left {
+      display: none;
+  }
 }
+
 .right {
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin: 0 2rem;
 }
 
 

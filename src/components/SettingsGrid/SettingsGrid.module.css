@@ -1,0 +1,12 @@
+.button {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.buttons {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+}

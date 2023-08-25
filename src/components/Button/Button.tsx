@@ -1,15 +1,15 @@
 import React from 'react'
-import {Plane} from '@/components/Plane'
 import style from './Button.module.css'
 
 interface Props {
-    children: React.ReactNode
+    children: React.ReactNode,
+    onClick?: () => void
 }
 
 
-export default function Button({ children }: Props) {
+export default function Button({ children, onClick }: Props) {
     return (
-        <button className={style.button}>
+        <button className={style.button} onClick={onClick}>
                 {children}
         </button>
     )

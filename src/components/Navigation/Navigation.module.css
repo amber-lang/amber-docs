@@ -8,8 +8,8 @@
     align-items: center;
     background-color: var(--color);
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px var(--background);
     z-index: 100;
+    transition: background-color 0.5s ease;
 }
 
 .title {
@@ -32,7 +32,8 @@
   
 .right {
     padding-right: 2rem;
-    width: 10rem;
+    width: 20rem;
+    text-align: right;
 }
 
 .center {
@@ -42,4 +43,14 @@
   
 .right > * {
     margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .right {
+        display: none;
+    }
+
+    .center {
+        display: none;
+    }
 }

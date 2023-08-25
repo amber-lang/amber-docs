@@ -12,5 +12,5 @@
 .caption {
     font-size: 0.75rem;
     max-width: 100%;
-    color: var(--border);
+    color: var(--description);
 }
