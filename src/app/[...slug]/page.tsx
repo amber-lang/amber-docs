@@ -42,21 +42,23 @@ export default async function Post({ params }: Props) {
         <div className={style.main}>
           <Breadcrumbs path={[docDesc!]} />
           {docDesc.index === 0 && (
-            <Card>
-              <Text block font='title'>
-                Swipe to copy
-              </Text>
-              <div className={style.info}>
-                <div>
-                  <div className={style.icon}></div>
+            <div className={style['no-hover']}>
+              <Card>
+                <Text block font='title'>
+                  Swipe to copy
+                </Text>
+                <div className={style.info}>
+                  <div>
+                    <div className={style.icon}></div>
+                  </div>
+                  <div>
+                    <Text block font='body'>
+                      You can swipe heading to copy link or swipe codeblock to copy it's contents.
+                    </Text>
+                  </div>
                 </div>
-                <div>
-                  <Text block font='body'>
-                    You can swipe heading to copy link or swipe codeblock to copy it's contents.
-                  </Text>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
           )}
           <Markdown content={doc.content} />
           <ChapterNavigation path={doc.path} />
