@@ -5,5 +5,6 @@ export function getTableOfContents() {
 }
 
 export function getDocDescriptor(path: string) {
-  return config.docs.find((doc) => doc.path === path)
+  const index = config.docs.findIndex((doc) => doc.path === path)
+  return { index, ...config.docs[index] }
 }
