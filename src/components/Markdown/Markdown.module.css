@@ -28,6 +28,11 @@
     vertical-align: middle;
 }
 
+.markdown img {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+}
+
 .side-action {
     mask-repeat: no-repeat;
     mask-size: 1.5rem 1.5rem;
