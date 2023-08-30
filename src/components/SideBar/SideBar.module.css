@@ -26,6 +26,107 @@
     height: 1rem;
 }
 
+.indent {
+    position: relative;
+    --curve: 5px;
+}
+
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.indent[relation="child"]::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 5px;
+    background: linear-gradient(transparent, var(--border));
+    position: absolute;
+    left: -15px;
+    top: calc(2px - 5px);
+}
+
+.indent[relation="child"]::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-bottom-left-radius: var(--curve);
+    position: absolute;
+    left: -15px;
+    top: 2px;
+}
+
+.indent[relation="sibling"]::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: calc(calc(1rem * var(--distance)) + 1rem + 3px);
+    background: linear-gradient(transparent, var(--border) 20px);
+    position: absolute;
+    left: -15px;
+    top: calc(-1rem - 3px);
+}
+
+.indent[relation="sibling"]::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 12px;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-bottom-left-radius: var(--curve);
+    position: absolute;
+    left: -15px;
+    top: -2px;
+}
+
+.indent[relation="detached"]::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: calc(calc(20px * var(--distance)) + 1rem + 3px + calc(8px * var(--distance)));
+    background: linear-gradient(transparent, var(--border) 20px);
+    position: absolute;
+    left: -15px;
+    top: calc(calc(-20px * var(--distance)) - 1rem - 3px - calc(8px * var(--distance)));
+}
+
+.indent[relation="detached"]::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 12px;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-bottom-left-radius: var(--curve);
+    position: absolute;
+    left: -15px;
+    top: -2px;
+}
+
+@media screen and (hover: hover) {
+    .indent {
+        color: color-mix(in srgb, var(--description), var(--text) 20%);
+    }
+
+    .indent:hover {
+        color: var(--text);
+    }
+}
+
+.indent[indent="1"] {
+    margin-left: 1rem;
+}
+
+.indent[indent="2"] {
+    margin-left: 2rem;
+}
+
 .fixed .links {
     max-height: calc(40vh - 64px);
     overflow-y: scroll;

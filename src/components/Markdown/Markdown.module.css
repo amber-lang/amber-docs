@@ -31,6 +31,7 @@
 .markdown img {
     border: 1px solid var(--border);
     border-radius: 0.5rem;
+    width: 100%;
 }
 
 .side-action {

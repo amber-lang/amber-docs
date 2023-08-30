@@ -8,9 +8,9 @@ import SearchBar from '@/components/SearchBar/SearchBar'
 import Sheet from '@/components/Sheet/Sheet'
 import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, useHelper, OrbitControls } from '@react-three/drei'
-import { MutableRefObject, Suspense, useRef } from 'react'
-import { Mesh, PointLightHelper } from 'three'
+import { useGLTF } from '@react-three/drei'
+import { Suspense, useRef } from 'react'
+import { Mesh } from 'three'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'  
 
 

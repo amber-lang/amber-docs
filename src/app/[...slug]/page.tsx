@@ -24,7 +24,7 @@ const getDocument = async (path: string) => {
   const content = await getDoc(path)
   if (!content) return null
   const rawHeaders = content.split('\n').filter(line => line.startsWith('#'))
-  const headers = rawHeaders.map(header => header.trimStart().replace(/^#+/, '').trim())
+  const headers = rawHeaders.map(header => header.trim())
   return { content, headers, path }
 }
 
