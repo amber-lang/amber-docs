@@ -47,9 +47,7 @@ class MarkdownRenderer extends Renderer {
             <div class="${style.container}">
                 <div
                     onclick="
-                        navigator.clipboard.writeText(\`${
-                            rawCode.replaceAll(/\\/g, '\\\\').replaceAll(/\`/g, '\\\`')
-                        }\`);
+                        navigator.clipboard.writeText(this.parentElement.children[1].innerText.trim());
                         this.classList.add('${style.checked}');
                         setTimeout(() => this.classList.remove('${style.checked}'), 1000);
                     "

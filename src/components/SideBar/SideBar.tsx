@@ -62,7 +62,7 @@ export default function SideBar({ headers, isFixed = false }: Props) {
     const { isOpen } = useSidebar()
     const formattedHeaders = getHeaders(headers)
 
-    const getHeaderLink = (header: string) => {
+    const getHeaderLink = (header: string) => {        
         return ['#', header.toLowerCase().replace(/[^\w]+/g, '-')].join('')
     }
 
@@ -72,8 +72,8 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                 {headers.length > 0 && (
                     <Island label="On this page">
                         <div className={style.links}>
-                            {formattedHeaders.map(({ level, title, relation, distance }) => (
-                                <Link href={getHeaderLink(title)} key={title}>
+                            {formattedHeaders.map(({ level, title, relation, distance }, index) => (
+                                <Link href={getHeaderLink(title)} key={title + index}>
                                     <Text block>
                                         <div
                                             className={style.indent}
@@ -95,14 +95,14 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                     <div className={style.links}>
                         {topics.map(({ path, title, docs }) => (
                                 <React.Fragment key={path}>
-                                    <Link href={path} key={path}>
+                                    <Link href={`/${path}`} key={path}>
                                         <Text block>
                                             <div className={style.indent}>{title}</div>
                                         </Text>
                                     </Link>
                                     {docs && docs.map(({ path, title }, index) => (
                                         <React.Fragment key={path}>
-                                            <Link href={path}>
+                                            <Link href={`/${path}`}>
                                                 <Text block>
                                                     <div
                                                         className={style.indent}

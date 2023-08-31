@@ -148,7 +148,7 @@
     box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
     border: var(--border) solid 1px;
     border-radius: 0.75rem;
-    z-index: 1;
+    z-index: 50;
     transition: opacity 0.1s ease-in-out, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -166,7 +166,12 @@
     cursor: pointer;
 }
 
-.option:hover {
+.option.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.option:not(.disabled):hover {
     background: color-mix(in srgb, var(--shadow), transparent 55%);
 }
 

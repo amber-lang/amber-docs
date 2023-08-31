@@ -1,12 +1,12 @@
 import { getDoc } from '@/utils/files'
-import { getTableOfContents } from '@/utils/docs'
+import { getFlatTableOfContents, getTableOfContents } from '@/utils/docs'
 
 export default class Search {
     private toc: ReturnType<typeof getTableOfContents>
     private docs: string[] = []
 
     constructor() {
-        this.toc = getTableOfContents()
+        this.toc = Array.from(getFlatTableOfContents())
     }
 
     async index() {

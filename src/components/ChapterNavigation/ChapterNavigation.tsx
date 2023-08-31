@@ -3,16 +3,15 @@
 import React from 'react'
 import style from './ChapterNavigation.module.css'
 import { Text } from '../Text'
-import { getTableOfContents } from '@/utils/docs'
+import { getFlatTableOfContents } from '@/utils/docs'
 import Link from 'next/link'
 
 interface Props {
-    path: string
+    index: number
 }
 
-export default function ChapterNavigation({ path }: Props) {
-    const toc = getTableOfContents()
-    const index = toc.findIndex(item => item.path === path)
+export default function ChapterNavigation({ index }: Props) {
+    const toc = Array.from(getFlatTableOfContents())
     const prev = toc[index - 1]
     const next = toc[index + 1]
     return (
@@ -21,7 +20,7 @@ export default function ChapterNavigation({ path }: Props) {
                 {prev && (
                     <>
                         <div className={`${style.reverse} ${style.icon}`}></div>
-                        <Text><Link href={prev.path}>{prev.title}</Link></Text>
+                        <Text><Link href={`/${prev.path}`}>{prev.title}</Link></Text>
                     </>
                 )}
             </div>
@@ -31,7 +30,7 @@ export default function ChapterNavigation({ path }: Props) {
             <div className={`${style.part} ${style.right}`}>
                 {next && (
                     <>
-                        <Text><Link href={next.path}><span className={style.text}>{next.title}</span></Link></Text>
+                        <Text><Link href={`/${next.path}`}><span className={style.text}>{next.title}</span></Link></Text>
                         <div className={style.icon}></div>
                     </>
                 )}

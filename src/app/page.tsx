@@ -18,12 +18,12 @@ function Scene() {
   const amberModel = useGLTF('/internal/amber.glb')
   const light = useRef(null)
   const amberRef = useRef(null)
-  let frame = 0;
+  let frame = 0
 
   useFrame(() => {
     const amber: Mesh = amberRef.current!
     amber.rotation.y -= 0.01
-    frame++;
+    frame++
     amber.position.y = Math.sin(frame / 50) / 8
     if (frame < 100) {
       // Increase scale logarithmically based on frame

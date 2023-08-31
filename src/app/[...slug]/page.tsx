@@ -47,7 +47,7 @@ export default async function Post({ params }: Props) {
             />
           </div>
           <Markdown content={doc.content} />
-          <ChapterNavigation path={doc.path} />
+          <ChapterNavigation index={docDesc.index} />
         </div>
       </div>
       <Sheet>

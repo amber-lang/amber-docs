@@ -1,23 +1,20 @@
 {
   "docs": [
     {
-      "path": "getting_started",
+      "path": "getting_started/getting_started",
       "title": "Getting Started",
       "docs": [
         {
-          "path": "other_article",
+          "path": "getting_started/installation",
           "title": "Installation"
         }, {
-          "path": "other_article",
-          "title": "Configuration"
+          "path": "getting_started/usage",
+          "title": "Usage"
         }
       ]
     }, {
       "path": "basic_syntax",
       "title": "Basic Syntax"
-    }, {
-      "path": "other_article",
-      "title": "Other Article"
     }
   ]
 }

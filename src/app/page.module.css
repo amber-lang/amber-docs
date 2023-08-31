@@ -1,9 +1,9 @@
 .container {
+    text-align: center;
     margin: 0 auto;
     position: absolute;
     left: 50%;
     top: 50%;
-    text-align: center;
     transform: translate(-50%, -50%);
 }
 

@@ -34,7 +34,7 @@ export default function ThemeProvider({ children, mode, theme }: Props) {
     }, [])
 
     const handleSetThemeMode = (value: ThemeMode) => {
-        const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
+        const themeColorMetaTag = document.querySelector('meta[name="theme-color"]')
         if (themeColorMetaTag) {
             themeColorMetaTag.setAttribute('content', globalTheme[value].background)
         }

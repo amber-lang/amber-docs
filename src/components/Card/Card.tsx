@@ -1,4 +1,4 @@
-import style from './Card.module.css';
+import style from './Card.module.css'
 
 interface Props {
     children: React.ReactNode

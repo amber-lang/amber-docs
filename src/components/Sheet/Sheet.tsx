@@ -1,21 +1,21 @@
 'use client'
 
-import style from './Sheet.module.css';
-import { useEffect, useRef } from 'react';
+import style from './Sheet.module.css'
+import { useEffect, useRef } from 'react'
 
 interface Props {
     children: React.ReactNode
 }
 
 export default function Sheet({ children }: Props) {
-    const sheetRef = useRef(null);
-    const contentRef = useRef(null);
-    const handleRef = useRef(null);
+    const sheetRef = useRef(null)
+    const contentRef = useRef(null)
+    const handleRef = useRef(null)
 
     useEffect(() => {
-        const sheet: HTMLDivElement = sheetRef.current!;
-        const content: HTMLDivElement = contentRef.current!;
-        const handle: HTMLDivElement = handleRef.current!;
+        const sheet: HTMLDivElement = sheetRef.current!
+        const content: HTMLDivElement = contentRef.current!
+        const handle: HTMLDivElement = handleRef.current!
         const MAX = window.innerHeight - 150
         const MARGIN = 50
         let trigger = false
@@ -96,7 +96,7 @@ export default function Sheet({ children }: Props) {
             content.style.height = `${height - MARGIN}px`
             lastMoves = [e.y, ...lastMoves.slice(0,2)]
         })
-    }, []);
+    }, [])
 
     return (
         <div className={style.sheet} ref={sheetRef}>

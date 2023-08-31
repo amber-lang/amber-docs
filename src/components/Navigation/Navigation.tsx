@@ -27,7 +27,7 @@ export default function Navigation() {
             <div className={style.nav}>
                 <div className={style.left}>
                     <Link href="/">
-                        <img src="internal/amber.svg" alt="amber" className={style.logo} />
+                        <img src="/internal/amber.svg" alt="amber" className={style.logo} />
                         <span className={style.title}> 
                             <Text>Amber</Text>
                         </span>
@@ -38,14 +38,14 @@ export default function Navigation() {
                 </div>
                 <div className={style.right}>
                     <Button onClick={toggleSideBar}>
-                        <Icon src='internal/side-bar.svg' size='2rem' />
+                        <Icon src='/internal/side-bar.svg' size='2rem' />
                     </Button>
                     <Button onClick={toggleDarkMode}>
-                        <Icon src='internal/moon.svg' size='2rem' />
+                        <Icon src='/internal/moon.svg' size='2rem' />
                     </Button>
                     <Button>
                         <a href="https://marble.software/">
-                            <Icon src='internal/marble.svg' size='2rem' />
+                            <Icon src='/internal/marble.svg' size='2rem' />
                         </a>
                     </Button>
                 </div>
