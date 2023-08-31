@@ -9,10 +9,7 @@ import SearchBar from '@/components/SearchBar/SearchBar'
 import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
 import { getDocDescriptor } from '@/utils/docs'
-import useSidebar from '@/contexts/DocumentContext/useSidebar'
-import Card from '@/components/Card/Card'
-import Icon from '@/components/Icon/Icon'
-import { Text } from '@/components/Text'
+import InfoCard from '@/components/InfoCard/InfoCard'
 
 interface Props {
   params: {
@@ -41,25 +38,14 @@ export default async function Post({ params }: Props) {
       <div className='right'>
         <div className={style.main}>
           <Breadcrumbs path={[docDesc!]} />
-          {docDesc.index === 0 && (
-            <div className={style['no-hover']}>
-              <Card>
-                <Text block font='title'>
-                  Swipe to copy
-                </Text>
-                <div className={style.info}>
-                  <div>
-                    <div className={style.icon}></div>
-                  </div>
-                  <div>
-                    <Text block font='body'>
-                      You can swipe heading to copy link or swipe codeblock to copy it's contents.
-                    </Text>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          )}
+          <div className={style['no-hover']}>
+            <InfoCard
+              id='swipe-to-copy'
+              title='Swipe to copy'
+              content="You can swipe heading to copy link or swipe codeblock to copy it's contents."
+              icon='/internal/swipe-to-copy.svg'
+            />
+          </div>
           <Markdown content={doc.content} />
           <ChapterNavigation path={doc.path} />
         </div>

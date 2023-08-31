@@ -11,32 +11,6 @@
   margin-bottom: 1rem;
 }
 
-.info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-.info .icon {
-  mask-image: url('/internal/swipe-to-copy.svg');
-  mask-size: 105px 50px;
-  width: 105px;
-  height: 50px;
-  background-color: var(--text);
-  mask-repeat: no-repeat;
-  mask-position: center;
-  margin-top: -13px;
-  margin-left: -10px;
-}
-
-.info > div:last-child {
-  flex: 1;
-  margin-left: 1rem;
-  font-size: 0.75rem;
-}
-
 .no-hover {
   display: none;
 }

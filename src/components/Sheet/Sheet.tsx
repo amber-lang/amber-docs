@@ -9,12 +9,15 @@ interface Props {
 
 export default function Sheet({ children }: Props) {
     const sheetRef = useRef(null);
+    const contentRef = useRef(null);
     const handleRef = useRef(null);
 
     useEffect(() => {
         const sheet: HTMLDivElement = sheetRef.current!;
+        const content: HTMLDivElement = contentRef.current!;
         const handle: HTMLDivElement = handleRef.current!;
         const MAX = window.innerHeight - 150
+        const MARGIN = 50
         let trigger = false
         let initialHeight = 0
         let sheetHeight = 0
@@ -45,6 +48,7 @@ export default function Sheet({ children }: Props) {
         const setUp = () => {
             sheet.style.transitionDuration = '200ms'
             sheet.style.height = `${MAX}px`
+            content.style.height = `${MAX - MARGIN}px`
             setTimeout(() => {
                 sheet.style.transitionDuration = 'unset'
             }, 100)
@@ -53,6 +57,7 @@ export default function Sheet({ children }: Props) {
         const setDown = () => {
             sheet.style.transitionDuration = '200ms'
             sheet.style.height = '40px'
+            content.style.height = '0px'
             setTimeout(() => {
                 sheet.style.transitionDuration = 'unset'
             }, 100)
@@ -87,7 +92,8 @@ export default function Sheet({ children }: Props) {
             if (!trigger) return
             const height = getHeight(e)
             if (height < 40 || height > MAX) return
-            sheet.style.height = `${height}px` 
+            sheet.style.height = `${height}px`
+            content.style.height = `${height - MARGIN}px`
             lastMoves = [e.y, ...lastMoves.slice(0,2)]
         })
     }, []);
@@ -96,7 +102,7 @@ export default function Sheet({ children }: Props) {
         <div className={style.sheet} ref={sheetRef}>
             <div className={style['sheet-style']}>
                 <div className={style.handle} ref={handleRef}></div>
-                <div className={style.content}>
+                <div className={style.content} ref={contentRef}>
                     {children}
                 </div>
             </div>

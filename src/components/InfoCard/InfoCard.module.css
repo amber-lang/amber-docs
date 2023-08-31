@@ -1,0 +1,68 @@
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .info .icon {
+    mask-image: url('/internal/swipe-to-copy.svg');
+    mask-size: 105px 50px;
+    width: 105px;
+    height: 50px;
+    background-color: var(--text);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    margin-top: -13px;
+    margin-left: -10px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--background) 40%, var(--border));
+  }
+  
+  .close:hover {
+    background-color: color-mix(in srgb, var(--background) 10%, var(--border));
+  }
+  
+  .close::after {
+    content: '';
+    display: block;
+    background-color: var(--description);
+    mask-image: url('/internal/cross.svg');
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .info > div:last-child {
+    flex: 1;
+    margin-left: 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .card {
+    position: relative;
+  }
+
+@media screen and (max-width: 1000px) {
+    .close {
+      width: 25px;
+      height: 25px;
+      padding: 6px;
+      margin: 15px;
+    }
+}
+  

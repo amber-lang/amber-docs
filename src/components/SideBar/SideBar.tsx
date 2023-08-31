@@ -75,7 +75,11 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                             {formattedHeaders.map(({ level, title, relation, distance }) => (
                                 <Link href={getHeaderLink(title)} key={title}>
                                     <Text block>
-                                        <div className={style.indent} {...{ indent: level, relation }} style={{ '--distance': distance.toString()} as any}>
+                                        <div
+                                            className={style.indent}
+                                            style={{ '--distance': distance.toString()} as any}
+                                            {...{ indent: level, relation }}
+                                        >
                                             <div className={style.text}>
                                                 {title}
                                             </div>
@@ -89,9 +93,31 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                 <div className={style.spacer}/>
                 <Island label="Table of contents">
                     <div className={style.links}>
-                        {topics.map(({ path, title }) => (
-                            <Link href={path} key={path}><Text block>{title}</Text></Link>
-                        ))}
+                        {topics.map(({ path, title, docs }) => (
+                                <React.Fragment key={path}>
+                                    <Link href={path} key={path}>
+                                        <Text block>
+                                            <div className={style.indent}>{title}</div>
+                                        </Text>
+                                    </Link>
+                                    {docs && docs.map(({ path, title }, index) => (
+                                        <React.Fragment key={path}>
+                                            <Link href={path}>
+                                                <Text block>
+                                                    <div
+                                                        className={style.indent}
+                                                        style={{ '--distance': '0' } as any}
+                                                        {...{ indent: 1, relation: index === 0 ? 'child' : 'sibling' }}
+                                                    >
+                                                        {title}
+                                                    </div>
+                                                </Text>
+                                            </Link>
+                                        </React.Fragment>
+                                    ))}
+                                </React.Fragment>
+                            )
+                        )}
                     </div>
                 </Island>
             </div>

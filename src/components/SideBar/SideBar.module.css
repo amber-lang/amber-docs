@@ -37,7 +37,7 @@
     white-space: nowrap;
 }
 
-.indent[relation="child"]::before {
+.indent[relation="child"]:not([indent="0"])::before {
     content: "";
     display: block;
     width: 1px;
@@ -48,7 +48,7 @@
     top: calc(2px - 5px);
 }
 
-.indent[relation="child"]::after {
+.indent[relation="child"]:not([indent="0"])::after {
     content: "";
     display: block;
     width: 8px;
@@ -61,7 +61,7 @@
     top: 2px;
 }
 
-.indent[relation="sibling"]::before {
+.indent[relation="sibling"]:not([indent="0"])::before {
     content: "";
     display: block;
     width: 1px;
@@ -72,7 +72,7 @@
     top: calc(-1rem - 3px);
 }
 
-.indent[relation="sibling"]::after {
+.indent[relation="sibling"]:not([indent="0"])::after {
     content: "";
     display: block;
     width: 10px;
@@ -85,7 +85,7 @@
     top: -2px;
 }
 
-.indent[relation="detached"]::before {
+.indent[relation="detached"]:not([indent="0"])::before {
     content: "";
     display: block;
     width: 1px;
@@ -96,7 +96,7 @@
     top: calc(calc(-20px * var(--distance)) - 1rem - 3px - calc(8px * var(--distance)));
 }
 
-.indent[relation="detached"]::after {
+.indent[relation="detached"]:not([indent="0"])::after {
     content: "";
     display: block;
     width: 10px;

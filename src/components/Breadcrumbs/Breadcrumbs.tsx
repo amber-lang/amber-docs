@@ -1,3 +1,4 @@
+import React from 'react'
 import { Text } from '@/components/Text'
 import Link from 'next/link'
 import style from './Breadcrumbs.module.css'
@@ -17,10 +18,10 @@ export default function Breadcrumbs({ path }: Props) {
             <Text font='caption'>
                 <Link href='/'>Amber</Link>
                 {path.map(({ path, title }) => (
-                    <>
+                    <React.Fragment key={path}>
                         <span className={style.separator}>/</span>
                         <Link href={path}>{title}</Link>
-                    </>
+                    </React.Fragment>
                 ))}
             </Text>
         </div>
