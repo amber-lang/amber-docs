@@ -22,6 +22,7 @@ class MarkdownRenderer extends Renderer {
                         this.classList.add('${style.checked}');
                         setTimeout(() => this.classList.remove('${style.checked}'), 1000);
                     "
+                    id="${id}"
                     class="${style['side-action']} ${style.link}"
                 ></div>
                 <h${level} id="${id}">${text}</h${level}>

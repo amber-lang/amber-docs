@@ -45,6 +45,13 @@ export default function setSwipeToCopy(blocks: HTMLDivElement[]) {
             if (!trigger) return
             trigger = false
             if (e.x - position < MAX - THRESHOLD) return moveBack()
+            const id = sideAction.getAttribute('id')
+            // This is a workaround for a bug in Safari where the clipboard API doesn't work without a user gesture on iOS
+            if (id) {
+                navigator.clipboard.writeText(window.location.href.split('#')[0] + `#${sideAction.getAttribute('id')}`);
+            } else {
+                navigator.clipboard.writeText(block.innerText);
+            }
             sideAction.click()
             setTimeout(() => {
                 moveBack()
