@@ -1,7 +1,8 @@
 import { promises as fs } from 'fs'
+import path from 'path'
 
-export async function getDoc(path: string) {
-  const PATH = `./docs/${path}.md`
+export async function getDoc(givenPath: string) {
+  const PATH = path.join(process.cwd(), 'docs', `${givenPath}.md`)  
   try { await fs.access(PATH) } catch {
     return null
   }
