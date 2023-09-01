@@ -2,7 +2,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: var(--text);
 }
 
 html,
@@ -18,6 +17,7 @@ body {
   background-color: var(--background);
   font-family: 'Inter', 'Roboto', sans-serif;
   transition: background-color 0.5s ease;
+  color: var(--text);
 }
 
 ::selection {
