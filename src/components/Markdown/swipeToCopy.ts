@@ -1,9 +1,9 @@
 const MAX = 50
 const THRESHOLD = 10
 
-function copyToClipboard(text: string) {
+async function copyToClipboard(text: string) {
     try {
-        navigator.clipboard.writeText(text)
+        await navigator.clipboard.writeText(text)
     } catch {
         console.error('Clipboard API is not supported in this browser')
         const textarea = document.createElement('textarea')
