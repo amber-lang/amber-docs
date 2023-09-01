@@ -5,15 +5,31 @@ function copyToClipboard(text: string) {
     try {
         navigator.clipboard.writeText(text)
     } catch {
-        const textarea = document.createElement('textarea')
-        textarea.value = text
-        textarea.style.position = 'fixed'
-        textarea.style.left = '-999999px'
-        textarea.style.top = '-999999px'
-        document.body.appendChild(textarea)
-        textarea.select()
-        document.execCommand('copy')
-        document.body.removeChild(textarea)
+        console.error('Clipboard API is not supported in this browser');
+        const textarea = document.createElement('textarea');
+        try {
+            textarea.setAttribute('readonly', 'true');
+            textarea.setAttribute('contenteditable', 'true');
+            textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+        
+            const range = document.createRange();
+            range.selectNodeContents(textarea);
+        
+            const sel = window.getSelection();
+            sel?.removeAllRanges();
+            sel?.addRange(range);
+        
+            textarea.setSelectionRange(0, textarea.value.length);
+            document.execCommand('copy');
+          } catch (err) {
+            console.error(err);
+          } finally {
+            document.body.removeChild(textarea);
+          }
     }
 }
 
