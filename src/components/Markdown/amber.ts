@@ -9,8 +9,8 @@ const amber = (hljs: HLJSApi) => {
     }
     const string = {
         scope: 'string',
-        begin: '\'',
-        end: '\'',
+        begin: '"',
+        end: '"',
         contains: [
             hljs.BACKSLASH_ESCAPE,
             interpolation
