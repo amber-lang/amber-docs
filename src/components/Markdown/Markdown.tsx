@@ -6,6 +6,7 @@ import hljs, { LanguageFn } from 'highlight.js'
 import amber from './amber'
 import { useEffect } from 'react'
 import setSwipeToCopy from './swipeToCopy'
+import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
@@ -60,7 +61,8 @@ class MarkdownRenderer extends Renderer {
     }
 }
 
-function initializeHighlighter() {
+function initializeMarked() {
+    Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
     Marked.setOptions({
         renderer: new MarkdownRenderer(),
         highlight(code, lang) {
@@ -70,7 +72,7 @@ function initializeHighlighter() {
     })
 }
 
-initializeHighlighter()
+initializeMarked()
 
 export default function Markdown({ content }: { content: string }) {
     useEffect(() => {

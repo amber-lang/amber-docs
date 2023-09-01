@@ -3,14 +3,6 @@ import copy from 'copy-to-clipboard'
 const MAX = 50
 const THRESHOLD = 10
 
-async function copyToClipboard(text: string) {
-    try {
-        await navigator.clipboard.writeText(text)
-    } catch {
-        copy(text)
-    }
-}
-
 export default function setSwipeToCopy(blocks: HTMLDivElement[]) {
     for (const block of blocks) {
         const sideAction = block.children[0] as HTMLDivElement
@@ -57,11 +49,8 @@ export default function setSwipeToCopy(blocks: HTMLDivElement[]) {
             if (e.x - position < MAX - THRESHOLD) return moveBack()
             const id = sideAction.getAttribute('id')
             // This is a workaround for a bug in Safari where the clipboard API doesn't work without a user gesture on iOS
-            if (id) {
-                copyToClipboard(window.location.href.split('#')[0] + `#${id}`)
-            } else {
-                copyToClipboard(block.innerText)
-            }
+            if (id) copy(window.location.href.split('#')[0] + `#${id}`)
+            else copy(block.innerText)
             sideAction.click()
             setTimeout(() => {
                 moveBack()

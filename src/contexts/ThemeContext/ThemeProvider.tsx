@@ -27,6 +27,14 @@ export default function ThemeProvider({ children, mode, theme }: Props) {
     }, [mode])
 
     useEffect(() => {
+        if (themeMode === 'dark') {
+            document.documentElement.setAttribute('mode', 'dark')
+        } else {
+            document.documentElement.setAttribute('mode', 'light')
+        }
+    }, [themeMode])
+
+    useEffect(() => {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
             setThemeMode(event.matches ? 'dark' : 'light')
         })

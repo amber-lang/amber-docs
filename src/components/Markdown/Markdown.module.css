@@ -29,9 +29,31 @@
 }
 
 .markdown img {
+    display: block;
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     width: 100%;
+    margin: 0.75rem 0;
+}
+
+.light-dark img:last-child {
+    display: none;
+}
+
+html[mode="dark"] .markdown .light-dark img:first-child {
+    display: none;
+}
+
+html[mode="dark"] .markdown .light-dark img:last-child {
+    display: block;
+}
+
+html[mode="light"] .markdown .light-dark img:first-child {
+    display: block;
+}
+
+html[mode="light"] .markdown .light-dark img:last-child {
+    display: none;
 }
 
 .markdown ul, .markdown ol {
