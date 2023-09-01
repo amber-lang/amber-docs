@@ -1,7 +1,7 @@
 'use client'
 
-import { useTheme } from '@/contexts/ThemeContext';
-import NextTopLoader from 'nextjs-toploader';
+import { useTheme } from '@/contexts/ThemeContext'
+import NextTopLoader from 'nextjs-toploader'
 
 export default function TopLoader() {
     const { theme, mode } = useTheme()
