@@ -8,6 +8,7 @@ async function copyToClipboard(text: string) {
         console.error('Clipboard API is not supported in this browser')
         const textarea = document.createElement('textarea')
         try {
+            console.info('Using fallback copy method')
             textarea.setAttribute('readonly', 'true')
             textarea.setAttribute('contenteditable', 'true')
             textarea.style.position = 'fixed' // prevent scroll from jumping to the bottom when focus is set.
@@ -25,6 +26,7 @@ async function copyToClipboard(text: string) {
         
             textarea.setSelectionRange(0, textarea.value.length)
             document.execCommand('copy')
+            console.info('Fallback copy successful')
           } catch (err) {
             console.error(err)
           } finally {
