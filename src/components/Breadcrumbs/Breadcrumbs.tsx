@@ -20,7 +20,7 @@ export default function Breadcrumbs({ path }: Props) {
                 {path.map(({ path, title }) => (
                     <React.Fragment key={path}>
                         <span className={style.separator}>/</span>
-                        <Link href={path}>{title}</Link>
+                        <Link href={`/${path}`}>{title}</Link>
                     </React.Fragment>
                 ))}
             </Text>

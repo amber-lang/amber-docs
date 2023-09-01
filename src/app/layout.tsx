@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import Navigation from '@/components/Navigation/Navigation'
 import SidebarProvider from '@/contexts/DocumentContext/SidebarProvider'
+import TopLoader from '@/components/TopLoader/TopLoader'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,11 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel='icon' href='/internal/favicon.png'/>
+        <meta name='view-transition' content='same-origin'/>
       </head>
       <body className={inter.className}>
         <ThemeProvider>
           <SidebarProvider>
-            <Navigation/>
+            <Navigation />
+            <TopLoader />
             <main>
               {children}
             </main>

@@ -26,6 +26,7 @@
     "eslint-config-next": "13.4.12",
     "highlight.js": "^11.8.0",
     "next": "13.4.12",
+    "nextjs-toploader": "^1.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^2.2.1",

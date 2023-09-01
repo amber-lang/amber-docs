@@ -5,38 +5,6 @@ export interface ThemeConfig {
     dark: ThemePalette
 }
 
-interface ThemePalette {
-    text: string,
-    description: string,
-    shadow: string
-    shine: string,
-    border: string,
-    background: string
-}
-
-export const defaultThemeConfig = (): ThemeConfig => ({
-    light: {
-        text: '#000',
-        description: '#777',
-        shadow: '#909090',
-        shine: '#ffffff',
-        border: '#ccc',
-        background: '#fff',
-        ...codeTheme.light,
-        ...constants
-    },
-    dark: {
-        text: '#fff',
-        description: '#7c6564',
-        shadow: '#5e473c',
-        shine: '#552f2d',
-        border: '#6b4a3e',
-        background: '#191513',
-        ...codeTheme.dark,
-        ...constants
-    }
-})
-
 const constants = {
     accentGradientLeft: '#FF9E00',
     accentGradientRight: '#FF0000',
@@ -74,3 +42,30 @@ const codeTheme = {
         codeSnippet: '#e46767'
     }
 }
+
+const theme = {
+    light: {
+        text: '#000',
+        description: '#777',
+        shadow: '#909090',
+        shine: '#ffffff',
+        border: '#ccc',
+        background: '#fff',
+        ...codeTheme.light,
+        ...constants
+    },
+    dark: {
+        text: '#fff',
+        description: '#7c6564',
+        shadow: '#5e473c',
+        shine: '#552f2d',
+        border: '#6b4a3e',
+        background: '#191513',
+        ...codeTheme.dark,
+        ...constants
+    }
+}
+
+type ThemePalette = typeof theme.light & typeof theme.dark
+
+export const defaultThemeConfig = (): ThemeConfig => ({ ...theme })
