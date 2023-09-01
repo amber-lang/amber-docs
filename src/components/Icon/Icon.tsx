@@ -12,11 +12,11 @@ export default function Icon({ src, size, color }: Props) {
             style={{
                 maskImage: `url(${src})`,
                 // Remove this when chrome catches up safari and firefox
-                '-webkit-mask-image': `url(${src})`,
+                WebkitMaskImage: `url(${src})`,
                 width: size,
                 height: size,
                 backgroundColor: color
-            } as any}
+            }}
             className={style.icon}
         />
     )

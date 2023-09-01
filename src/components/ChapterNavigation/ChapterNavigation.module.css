@@ -55,6 +55,12 @@
     display: flex;
 }
 
+@media screen and (max-width: 1200px) {
+    .part .text {
+        width: 150px;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .container {
         font-size: 0.8rem;

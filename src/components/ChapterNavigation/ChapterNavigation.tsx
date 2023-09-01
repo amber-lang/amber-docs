@@ -20,7 +20,13 @@ export default function ChapterNavigation({ index }: Props) {
                 {prev && (
                     <>
                         <div className={`${style.reverse} ${style.icon}`}></div>
-                        <Text><Link href={`/${prev.path}`}>{prev.title}</Link></Text>
+                        <Text>
+                            <Link href={`/${prev.path}`}>
+                                <span className={style.text}>
+                                    {prev.title}
+                                </span>
+                            </Link>
+                        </Text>
                     </>
                 )}
             </div>
@@ -30,7 +36,13 @@ export default function ChapterNavigation({ index }: Props) {
             <div className={`${style.part} ${style.right}`}>
                 {next && (
                     <>
-                        <Text><Link href={`/${next.path}`}><span className={style.text}>{next.title}</span></Link></Text>
+                        <Text>
+                            <Link href={`/${next.path}`}>
+                                <span className={style.text}>
+                                    {next.title}
+                                </span>
+                            </Link>
+                        </Text>
                         <div className={style.icon}></div>
                     </>
                 )}
