@@ -1,3 +1,5 @@
+import copy from 'copy-to-clipboard'
+
 const MAX = 50
 const THRESHOLD = 10
 
@@ -5,33 +7,7 @@ async function copyToClipboard(text: string) {
     try {
         await navigator.clipboard.writeText(text)
     } catch {
-        console.error('Clipboard API is not supported in this browser')
-        const textarea = document.createElement('textarea')
-        try {
-            console.info('Using fallback copy method')
-            textarea.setAttribute('readonly', 'true')
-            textarea.setAttribute('contenteditable', 'true')
-            textarea.style.position = 'fixed' // prevent scroll from jumping to the bottom when focus is set.
-            textarea.value = text
-            document.body.appendChild(textarea)
-            textarea.focus()
-            textarea.select()
-        
-            const range = document.createRange()
-            range.selectNodeContents(textarea)
-        
-            const sel = window.getSelection()
-            sel?.removeAllRanges()
-            sel?.addRange(range)
-        
-            textarea.setSelectionRange(0, textarea.value.length)
-            document.execCommand('copy')
-            console.info('Fallback copy successful')
-          } catch (err) {
-            console.error(err)
-          } finally {
-            document.body.removeChild(textarea)
-          }
+        copy(text)
     }
 }
 
