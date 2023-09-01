@@ -14,6 +14,7 @@
 
 .page-indicator {
     line-height: 2rem;
+    padding-top: 0.2rem;
 }
 
 .part {
@@ -44,6 +45,7 @@
     background-color: var(--text);
     width: 2rem;
     height: 2rem;
+    margin-top: 0.4rem;
 }
 
 .icon.reverse {
