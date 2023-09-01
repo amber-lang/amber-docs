@@ -25,6 +25,7 @@ const codeTheme = {
         codeFunction: '#1778fc',
         codeBackground: '#f6f8fa',
         codeForeground: '#383a42',
+        codeComment: '#7d91a4',
         codeSnippet: '#d00b0b'
     },
     dark: {
@@ -39,6 +40,7 @@ const codeTheme = {
         codeFunction: '#589fff',
         codeBackground: '#2C2321',
         codeForeground: '#abb2bf',
+        codeComment: '#9c7c6c',
         codeSnippet: '#e46767'
     }
 }

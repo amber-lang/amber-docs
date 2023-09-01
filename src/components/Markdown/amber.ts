@@ -31,7 +31,7 @@ const amber = (hljs: HLJSApi) => {
     }
     const keywords = {
         scope: 'keyword',
-        match: /\b(to|error|status|if|loop|in|silent|return|fun|else|break|continue|and|or|not|let|sh|main)\b/
+        match: /\b(to|error|status|if|echo|loop|in|silent|return|fun|else|break|continue|and|or|not|let|sh|main)\b/
     }
     const fun = {
         scope: 'function',
@@ -43,6 +43,7 @@ const amber = (hljs: HLJSApi) => {
     }
     const all = [
         hljs.C_LINE_COMMENT_MODE,
+        hljs.C_BLOCK_COMMENT_MODE,
         hljs.C_BLOCK_COMMENT_MODE,
         hljs.C_NUMBER_MODE,
         string,

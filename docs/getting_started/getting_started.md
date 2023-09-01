@@ -2,6 +2,11 @@
 
 Welcome to the documentation of Amber the programming language! 🎉
 
+Here is a minimal hello world example:
+```ab
+echo "Hello world!"
+```
+
 ## What is Amber?
 
 Amber is a programming language compiled into Bash Script. It was designed with a modern syntax, safety features, type safety and practical functionalities that Bash could not offer. The subsequent section will demonstrate how Amber embodies these characteristics.

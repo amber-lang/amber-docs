@@ -109,3 +109,7 @@ a {
 .hljs-function {
   color: var(--code-function);
 }
+
+.hljs-comment {
+  color: var(--code-comment);
+}
