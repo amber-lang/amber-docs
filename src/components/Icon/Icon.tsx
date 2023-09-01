@@ -8,7 +8,16 @@ interface Props {
 
 export default function Icon({ src, size, color }: Props) {
     return (
-        <div style={{ maskImage: `url(${src})`, width: size, height: size, backgroundColor: color }} className={style.icon}>
-        </div>
+        <div
+            style={{
+                maskImage: `url(${src})`,
+                // Remove this when chrome catches up safari and firefox
+                '-webkit-mask-image': `url(${src})`,
+                width: size,
+                height: size,
+                backgroundColor: color
+            } as any}
+            className={style.icon}
+        />
     )
 }

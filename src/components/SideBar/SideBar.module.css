@@ -129,7 +129,7 @@
 
 .fixed .links {
     max-height: calc(40vh - 64px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .links a {
