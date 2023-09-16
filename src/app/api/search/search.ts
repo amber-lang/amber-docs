@@ -1,8 +1,8 @@
 import { getDoc } from '@/utils/files'
-import { getFlatTableOfContents, getTableOfContents } from '@/utils/docs'
+import { getFlatTableOfContents, FlatDoc } from '@/utils/docs'
 
 export default class Search {
-    private toc: ReturnType<typeof getTableOfContents>
+    private toc: FlatDoc[] = []
     private docs: string[] = []
 
     constructor() {
