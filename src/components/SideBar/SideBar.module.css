@@ -1,5 +1,6 @@
 .container {
     width: 300px;
+    margin: 0 auto;
     transition: transform 300ms;
 }
 
@@ -129,8 +130,17 @@
     margin-left: 2rem;
 }
 
-.fixed .links {
-    max-height: calc(40vh - 64px);
+.fixed .links.page {
+    max-height: calc(40vh - 100px);
+    overflow-y: auto;
+}
+
+.fixed .links:not(.page) {
+    overflow-y: auto;
+}
+
+.fixed .links.toc:not(.page) {
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
 }
 

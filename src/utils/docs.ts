@@ -4,9 +4,11 @@ export function getTableOfContents() {
   return config.docs
 }
 
-export function* getFlatTableOfContents() {
+export type FlatDoc = { path: string, title: string };
+
+export function* getFlatTableOfContents(): Generator<FlatDoc, undefined, undefined> {
   for (const doc of config.docs) {
-    yield doc
+    yield doc as FlatDoc
     if (doc.docs) {
       yield* doc.docs
     }

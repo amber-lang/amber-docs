@@ -78,8 +78,10 @@ export default function Post() {
         </div>
       </div>
       <Sheet>
-        <SideBar headers={[]} />
-        <SettingsGrid />
+        <div className={style.sheet}>
+          <SideBar headers={[]} />
+          <SettingsGrid />
+        </div>
       </Sheet>
     </>
   )

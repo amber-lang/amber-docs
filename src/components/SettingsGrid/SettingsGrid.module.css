@@ -6,7 +6,7 @@
 }
 
 .buttons {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    width: 300px;
     display: block;
+    margin: 1rem auto;
 }

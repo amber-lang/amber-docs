@@ -24,7 +24,6 @@ export default function complexImageParser(execArr?: string[]): string {
     if (!execArr) return ''
     const options = JSON.parse(`{${execArr[2]}}`)
     const styles = getStyles(options)
-    console.log(styles)
     
     if (execArr[4]) {
         return `<div class="${[style.container, style['light-dark']].join(' ')}">

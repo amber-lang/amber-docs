@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Island } from '@/components/Island'
 import { Text } from '@/components/Text'
 import style from './SideBar.module.css'
@@ -61,17 +61,32 @@ export default function SideBar({ headers, isFixed = false }: Props) {
     const topics = getTableOfContents()
     const { isOpen } = useSidebar()
     const formattedHeaders = getHeaders(headers)
+    const onPageRef = React.useRef<HTMLDivElement>(null)
+    const tocRef = React.useRef<HTMLDivElement>(null)
 
     const getHeaderLink = (header: string) => {        
         return ['#', header.toLowerCase().replace(/[^\w]+/g, '-')].join('')
     }
+
+    useEffect(() => {
+        if (onPageRef.current && tocRef.current && isFixed) {
+            const height = onPageRef.current.clientHeight
+            addEventListener('resize', () => {
+                if (tocRef.current) {
+                    tocRef.current.style.height = `calc(100vh - ${height + 250}px)`
+                }
+            })
+            tocRef.current.style.height = `calc(100vh - ${height + 250}px)`
+        }
+    }, [])
+
 
     return (
         <div className={`${isFixed && style.fixed} ${isOpen && style.open}`}>
             <div className={`${style.container}`}>
                 {headers.length > 0 && (
                     <Island label="On this page">
-                        <div className={style.links}>
+                        <div className={[style.links, style.page].join(' ')} ref={onPageRef}>
                             {formattedHeaders.map(({ level, title, relation, distance }, index) => (
                                 <Link href={getHeaderLink(title)} key={title + index}>
                                     <Text block>
@@ -92,7 +107,7 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                 )}
                 <div className={style.spacer}/>
                 <Island label="Table of contents">
-                    <div className={style.links}>
+                    <div className={[style.links, !headers.length && style.toc].join(' ')} ref={tocRef}>
                         {topics.map(({ path, title, docs }) => (
                                 <React.Fragment key={path}>
                                     <Link href={`/${path}`} key={path}>

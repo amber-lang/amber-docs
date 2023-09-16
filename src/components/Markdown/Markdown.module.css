@@ -153,10 +153,6 @@ html[mode="light"] .markdown .light-dark img:last-child {
     transition: background-color 0.5s ease;
 }
 
-.container pre {
-  container-type: inline-size;
-}
-
 .block {
     display: block;
     color: var(--code-foreground);
