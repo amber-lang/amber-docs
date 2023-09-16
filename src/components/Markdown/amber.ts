@@ -31,7 +31,11 @@ const amber = (hljs: HLJSApi) => {
     }
     const keywords = {
         scope: 'keyword',
-        match: /\b(to|error|status|if|echo|loop|in|silent|return|fun|else|break|continue|and|or|not|let|sh|main)\b/
+        match: /\b(to|error|status|if|echo|loop|in|silent|return|fun|else|break|continue|and|or|not|let|sh|main|failed|fail|unsafe|then|pub|import|from|as|nameof|is)\b/
+    }
+    const type = {
+        scope: 'type',
+        match: /[A-Z][a-zA-Z0-9_]+/
     }
     const fun = {
         scope: 'function',
@@ -41,17 +45,33 @@ const amber = (hljs: HLJSApi) => {
         scope: 'variable',
         match: /[a-zA-Z0-9_]+/
     }
+    const range = {
+        scope: 'number',
+        match: /\.?\.\=?/
+    }
+    const constant = {
+        scope: 'number',
+        match: /\b(false|true|null)\b/
+    }
+    const compilerFlag = {
+        scope: 'comment',
+        match: /\#\[.*\]/
+    }
     const all = [
         hljs.C_LINE_COMMENT_MODE,
         hljs.C_BLOCK_COMMENT_MODE,
         hljs.C_BLOCK_COMMENT_MODE,
         hljs.C_NUMBER_MODE,
         string,
+        range,
         command,
         operator,
+        constant,
         keywords,
+        compilerFlag,
+        type,
         fun,
-        variable,
+        variable
     ]
     interpolation.contains = all.concat([{
         begin: /\{/,

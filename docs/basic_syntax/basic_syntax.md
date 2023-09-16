@@ -4,7 +4,8 @@
 
 Since Amber was designed based on the ECMA script syntax some of the following parts of programming language may be familiar.
 
-Here is a code that displays some features of Amber
+Here is a code snippet that illustrates certain features of Amber. We will provide detailed explanations for each of these features and cover additional content in the forthcoming chapters.
+
 ```ab
 // Define variables
 let name = "John"

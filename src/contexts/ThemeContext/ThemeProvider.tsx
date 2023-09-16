@@ -39,7 +39,6 @@ export default function ThemeProvider({ children, mode, theme }: Props) {
             setThemeMode(event.matches ? 'dark' : 'light')
         })
         document.head.insertAdjacentHTML('beforeend', `<meta name="theme-color" content="${globalTheme[mode ?? osTheme].background}">`)
-        document.documentElement.setAttribute('browser', (window as any).chrome ? 'chrome' : 'other')
     }, [])
 
     const handleSetThemeMode = (value: ThemeMode) => {

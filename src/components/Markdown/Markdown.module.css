@@ -36,6 +36,11 @@
     margin: 0.75rem 0;
 }
 
+.markdown a {
+    text-decoration: underline;
+    color: var(--accent);
+}
+
 .light-dark img:last-child {
     display: none;
 }
@@ -135,6 +140,7 @@ html[mode="light"] .markdown .light-dark img:last-child {
     border-radius: 0.25rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    transition: background-color 0.5s ease;
 }
 
 .container pre {
@@ -144,6 +150,11 @@ html[mode="light"] .markdown .light-dark img:last-child {
     border-radius: 0.75rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    transition: background-color 0.5s ease;
+}
+
+.container pre {
+  container-type: inline-size;
 }
 
 .block {

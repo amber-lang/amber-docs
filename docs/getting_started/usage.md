@@ -2,6 +2,11 @@
 
 Amber CLI can be used as a runtime or as a compiler.
 
+## Syntax Highlighting
+You can install syntax highlighting for Visual Studio Code. You can find it in Visual Studio Code extension store under the name **Amber Language**.
+
+Or you can download it here in [the Visual Studio Marketplace website](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language).
+
 ## Running
 
 For example the following line will simply execute `file.ab` as a script file. Amber code will be compiled to BashScript and then executed all in one go.

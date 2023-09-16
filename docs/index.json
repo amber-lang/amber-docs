@@ -12,9 +12,70 @@
           "title": "Usage"
         }
       ]
-    }, {
-      "path": "basic_syntax",
-      "title": "Basic Syntax"
+    }, 
+    {
+      "path": "basic_syntax/basic_syntax",
+      "title": "Basic Syntax",
+      "docs": [
+        {
+          "path": "basic_syntax/data_types",
+          "title": "Data Types"
+        },
+        {
+          "path": "basic_syntax/expressions",
+          "title": "Expressions"
+        },
+        {
+          "path": "basic_syntax/variables",
+          "title": "Variables"
+        },
+        {
+          "path": "basic_syntax/conditions",
+          "title": "Conditions"
+        },
+        {
+          "path": "basic_syntax/commands",
+          "title": "Commands"
+        },
+        {
+          "path": "basic_syntax/arrays",
+          "title": "Arrays"
+        },
+        {
+          "path": "basic_syntax/loops",
+          "title": "Loops"
+        },
+        {
+          "path": "basic_syntax/functions",
+          "title": "Functions"
+        },
+        {
+          "path": "basic_syntax/importing",
+          "title": "Importing"
+        }
+      ]
+    },
+    {
+      "path": "advanced_syntax/advanced_syntax",
+      "title": "Advanced Syntax",
+      "docs": [
+        {
+          "path": "advanced_syntax/as_cast",
+          "title": "As Cast"
+        },
+        {
+          "path": "advanced_syntax/nameof",
+          "title": "Nameof"
+        },
+        {
+          "path": "advanced_syntax/type_condition",
+          "title": "Type Condition"
+        },
+        {
+          "path": "advanced_syntax/compiler_flags",
+          "title": "Compiler Flags"
+        }
+      ]
     }
   ]
 }

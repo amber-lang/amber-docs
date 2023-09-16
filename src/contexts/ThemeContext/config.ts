@@ -21,16 +21,17 @@ const codeTheme = {
         codeInterp: '#c678dd',
         codeMeta: '#222',
         codeOperator: '#6fb4c0',
-        codeVariable: '#d63d45',
+        codeVariable: '#f1646b',
         codeFunction: '#1778fc',
         codeBackground: '#f6f8fa',
         codeForeground: '#383a42',
         codeComment: '#7d91a4',
+        codeType: '#dd9e1e',
         codeSnippet: '#d00b0b'
     },
     dark: {
         codeKeyword: '#c678dd',
-        codeNumber: '#d19a66',
+        codeNumber: '#c99c6e',
         codeString: '#98c379',
         codeCommand: '#30af95',
         codeInterp: '#c678dd',
@@ -41,6 +42,7 @@ const codeTheme = {
         codeBackground: '#2C2321',
         codeForeground: '#abb2bf',
         codeComment: '#9c7c6c',
+        codeType: '#dfc184',
         codeSnippet: '#e46767'
     }
 }
@@ -69,5 +71,4 @@ const theme = {
 }
 
 type ThemePalette = typeof theme.light & typeof theme.dark
-
 export const defaultThemeConfig = (): ThemeConfig => ({ ...theme })

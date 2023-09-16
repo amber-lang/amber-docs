@@ -24,20 +24,19 @@ body {
   background-color: color-mix(in srgb, var(--text), transparent 85%);
 }
 
-html[browser="chrome"] *::-webkit-scrollbar {
-  width: 8px;
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
  
-html[browser="chrome"] *::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: transparent;
 }
  
-html[browser="chrome"] *::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: var(--border);
 }
-
-
 
 main {
   flex: 1;
@@ -112,4 +111,8 @@ a {
 
 .hljs-comment {
   color: var(--code-comment);
+}
+
+.hljs-type {
+  color: var(--code-type);
 }

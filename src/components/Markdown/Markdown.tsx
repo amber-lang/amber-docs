@@ -55,7 +55,7 @@ class MarkdownRenderer extends Renderer {
                     "
                     class="${style['side-action']} ${style.copy}"
                 ></div>
-                <pre><code class="${style.block}">${escapedCode}\n</code></pre>
+                <pre><code class="${style.block}">${escapedCode}</code></pre>
             </div>
         `
     }
