@@ -76,7 +76,6 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                 if (!tocRef.current || !onPageRef.current) return
                 const height = onPageRef.current.clientHeight
                 tocRef.current.style.height = `calc(100vh - ${height + 250}px)`
-                console.log(tocRef.current.clientHeight, tocHeight);
                 if (tocHeight < tocRef.current.clientHeight) {
                     tocRef.current.style.height = `${tocHeight}px`
                 }
