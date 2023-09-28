@@ -83,5 +83,19 @@ let result = safeDivision(15, 0) failed {
 // 1
 ```
 
+## Variable references `ref`
 
+You have the ability to accept variables passed by reference. To  do this you can use the `ref` keyword.
 
+```ab
+fun push(ref array, value) {
+	array += [value]
+}
+
+let groceries = ["apples", "bananas"]
+push(groceries, "oranges")
+echo groceries
+// Outputs: apples bananas oranges
+```
+
+The behavior of this keyword is pretty similar to `&` in other C-like programming languages.
