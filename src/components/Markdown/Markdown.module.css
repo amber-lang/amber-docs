@@ -147,6 +147,7 @@ html[mode="light"] .markdown .light-dark img:last-child {
     padding: 1rem;
     padding-right: 2rem;
     background-color: var(--code-background);
+    line-height: 1.3rem;
     border-radius: 0.75rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
