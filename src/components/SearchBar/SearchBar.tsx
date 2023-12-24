@@ -18,7 +18,7 @@ function useSearchResult(query: string) {
     return { result: data?.results.slice(0, 3) ?? [], isLoading: !error && !data, error }
 }
 
-export default function SearchBar({ variant = 'body', placeholder = 'Search' }: Props) {
+export default function SearchBar({ variant = 'body', placeholder = 'Search documentation' }: Props) {
     const [query, setQuery] = useState('')
     const [isInputFocused, setIsInputFocused] = useState(false)
     const debouncedQuery = useDebounce(query, 500)
