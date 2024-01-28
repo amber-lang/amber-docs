@@ -1,9 +1,8 @@
-# Official documentation of Amber
-
-<div align="center">
-    <img src="https://amber-docs.vercel.app/internal/amber.svg" alt="amber logo" width="250" />
+<div align="center"> 
+ <img src="https://amber-docs.vercel.app/internal/amber.svg" alt="amberlogo" height="25" width="25" />
 </div>
 
+<div style="text-align: center;"> <h1> Official documentation of Amber </h1> </div>
 
 ## What is Amber?
 
@@ -16,3 +15,7 @@ This documentation serves as a comprehensive guide to understanding and utilizin
 Explore the sections [here](https://amber.marble.software/) to delve into Amber's syntax, safety measures, and practical functionalities, and discover how it can enhance your scripting workflow. If you have any questions or need assistance, feel free to reach out for support.
 
 Happy scripting with Amber!
+
+<div align="center"> 
+ <img src="https://amber-docs.vercel.app/internal/amber.svg" alt="amberlogo" height="25" width="25" />
+</div>
