@@ -9,6 +9,7 @@ import style from './Navigation.module.css'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import { useTheme } from '@/contexts/ThemeContext'
 import { Text } from '@/components/Text'
+import Image from 'next/image'
 
 export default function Navigation() {
     const pathname = usePathname()
@@ -27,9 +28,11 @@ export default function Navigation() {
             <div className={style.nav}>
                 <div className={style.left}>
                     <Link href="/">
-                        <img src="/internal/amber.svg" alt="amber" className={style.logo} />
-                        <span className={style.title}> 
-                            <Text>Amber</Text>
+                        <div className={style.logo}>
+                            <Image src="/internal/amber.svg" alt="amber" fill />
+                        </div>
+                        <span className={style.title}>
+                            <Text>amber</Text>
                         </span>
                     </Link>
                 </div>

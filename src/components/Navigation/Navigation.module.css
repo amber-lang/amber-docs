@@ -1,7 +1,7 @@
 .nav {
     --color: color-mix(in srgb, var(--background), transparent 20%);
     position: fixed;
-    height: 4rem;
+    height: 4.5rem;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -13,14 +13,22 @@
 }
 
 .title {
+    font-family: "Cal Sans";
+    font-size: 2rem;
     line-height: 2rem;
     vertical-align: middle;
-    margin-left: 0.75rem
+    margin-left: 0.75rem;
+    position: relative;
+    top: -3px;
 }
 
 .logo {
-    height: 2rem;
+    height: 3rem;
+    width: 3rem;
     vertical-align: middle;
+    object-fit: cover;
+    position: relative;
+    display: inline-block;
 }
 
 .left {
@@ -29,7 +37,7 @@
     font-weight: bold;
     font-size: 1.5rem;
 }
-  
+
 .right {
     padding-right: 2rem;
     width: 20rem;
@@ -40,7 +48,7 @@
     flex: 1;
     text-align: center;
 }
-  
+
 .right > * {
     margin-right: 0.5rem;
 }
