@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   title: 'Amber Docs',
   description: 'Documentation for Amber programming language',
   openGraph: {
-    title: 'Amber The Programming Language',
-    siteName: 'Welcome to Amber',
+    title: 'Amber Docs',
+    siteName: 'Documentation for Amber programming language',
     type: 'website',
     images: [
       {
