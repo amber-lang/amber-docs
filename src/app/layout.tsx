@@ -10,10 +10,10 @@ import TopLoader from '@/components/TopLoader/TopLoader'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Amber Docs',
+  title: 'Amber Documentation',
   description: 'Documentation for Amber programming language',
   openGraph: {
-    title: 'Amber Docs',
+    title: 'Amber Documentation',
     siteName: 'Documentation for Amber programming language',
     type: 'website',
     images: [

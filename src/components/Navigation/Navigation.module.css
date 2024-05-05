@@ -54,6 +54,19 @@
 }
 
 @media screen and (max-width: 1000px) {
+    .nav {
+        height: 4rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
     .right {
         display: none;
     }
