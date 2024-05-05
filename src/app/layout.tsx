@@ -12,6 +12,16 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Amber Docs',
   description: 'Documentation for Amber programming language',
+  openGraph: {
+    title: 'Amber The Programming Language',
+    siteName: 'Welcome to Amber',
+    type: 'website',
+    images: [
+      {
+          url: 'https://docs.amber-lang.com/og.jpeg'
+      }
+    ]
+  }
 }
 
 export default function RootLayout({
