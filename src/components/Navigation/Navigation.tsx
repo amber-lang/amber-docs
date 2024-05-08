@@ -31,9 +31,9 @@ export default function Navigation() {
                         <div className={style.logo}>
                             <Image src="/internal/amber.svg" alt="amber" fill />
                         </div>
-                        <span className={style.title}>
-                            <Text>amber</Text>
-                        </span>
+                        <div className={style.title}>
+                            amber
+                        </div>
                     </Link>
                 </div>
                 <div className={style.center}>

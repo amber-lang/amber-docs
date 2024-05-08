@@ -3,9 +3,9 @@
     position: fixed;
     height: 4.5rem;
     display: flex;
+    align-items: center;
     width: 100%;
     justify-content: space-between;
-    align-items: center;
     background-color: var(--color);
     backdrop-filter: blur(10px);
     z-index: 100;
@@ -13,13 +13,14 @@
 }
 
 .title {
+    display: inline-block;
     font-family: "Cal Sans";
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: 1.75rem;
+    line-height: 3rem;
     vertical-align: middle;
-    margin-left: 0.75rem;
+    margin-left: 0.5rem;
     position: relative;
-    top: -3px;
+    letter-spacing: 1px;
 }
 
 .logo {
@@ -32,6 +33,8 @@
 }
 
 .left {
+    display: flex;
+    align-items: center;
     width: 20rem;
     margin: 0 2rem;
     font-weight: bold;
