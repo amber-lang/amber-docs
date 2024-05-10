@@ -17,7 +17,7 @@ sudo curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/set
 
 ## Windows support
 
-As windows does come with bash installed it makes no sense to support it. Please install WSL 2 on your windows machine and install Linux version of Amber compiler.
+As windows does not come with bash installed it makes no sense to support it. Please install WSL 2 on your windows machine and install Linux version of Amber compiler inside.
 
 # Uninstallation
 
