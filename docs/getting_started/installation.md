@@ -12,7 +12,7 @@ Make sure that the operating system meets the following prerequisites
 - Curl tool for downloading the installation script
 
 ```sh
-sudo curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | $(echo /bin/bash)
+curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | $(echo /bin/bash)
 ```
 
 ## Windows support
