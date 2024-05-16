@@ -24,7 +24,7 @@ As windows does not come with bash installed it makes no sense to support it. Pl
 You can uninstall Amber any time. To do this you can simply run the following code snippet.
 
 ```sh
-sudo curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/uninstall.sh" | $(echo /bin/bash)
+curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/uninstall.sh" | $(echo /bin/bash)
 ```
 
 
