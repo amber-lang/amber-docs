@@ -32,6 +32,18 @@ $cat {filePath}$ failed {
 }
 ```
 
+## Getting the exit code
+
+In order to get the exit code, you can use the `status` keyword. It will always return you the exit code of the last bash command or *failable function*.
+
+```ab
+let filePath = "/path/to/file"
+$cat {filePath}$ failed {
+	echo "Error! Exit code: {status}"
+}
+echo "The status code is: {status}"
+```
+
 ## Failure propagation
 
 In order to propagate failure to the context above, you can simply use the question mark syntax `?`.
