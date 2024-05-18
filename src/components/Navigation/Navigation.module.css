@@ -57,7 +57,7 @@
 }
 
 .tag {
-    transform: translate(-3rem, 0.99rem);
+    transform: translate(-3rem, 0.8rem) scale(0.8);
     display: inline-block;
     font-size: 0.85rem;
     color: color-mix(in srgb, white 85%, transparent);
@@ -70,7 +70,7 @@
 }
 
 .title:hover + .tag, .tag:hover {
-    transform: translate(-2.8rem, 1.4rem);
+    transform: translate(-2.9rem, 1.1rem) scale(0.8);
 }
 
 @media screen and (max-width: 1000px) {
