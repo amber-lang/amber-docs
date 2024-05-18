@@ -57,11 +57,11 @@
 }
 
 .tag {
-    transform: translate(-3rem, 1.1rem);
+    transform: translate(-3rem, 0.99rem);
     display: inline-block;
     font-size: 0.85rem;
-    color: white;
-    padding: 0.3rem 0.6rem;
+    color: color-mix(in srgb, white 85%, transparent);
+    padding: 0.2rem 0.4rem;
     border-radius: 1rem;
     margin-left: 1rem;
     background: linear-gradient(to bottom right, #d5940e, #e500ea);
