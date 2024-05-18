@@ -56,6 +56,23 @@
     margin-right: 0.5rem;
 }
 
+.tag {
+    transform: translate(-3rem, 1.1rem);
+    display: inline-block;
+    font-size: 0.85rem;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    background: linear-gradient(to bottom right, #d5940e, #e500ea);
+    border: 2pt solid var(--background);
+    transition: 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.title:hover + .tag, .tag:hover {
+    transform: translate(-2.8rem, 1.4rem);
+}
+
 @media screen and (max-width: 1000px) {
     .nav {
         height: 4rem;

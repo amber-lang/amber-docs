@@ -34,6 +34,9 @@ export default function Navigation() {
                         <div className={style.title}>
                             amber
                         </div>
+                        <div className={style.tag}>
+                            alpha
+                        </div>
                     </Link>
                 </div>
                 <div className={style.center}>
