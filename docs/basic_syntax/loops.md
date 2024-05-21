@@ -21,7 +21,7 @@ loop {
 	sum += i
 }
 echo sum
-// Outputs: 10
+// Outputs: 15
 ```
 
 ## Iterator loop
