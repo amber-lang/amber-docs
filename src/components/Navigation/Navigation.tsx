@@ -4,17 +4,17 @@ import Icon from '@/components/Icon/Icon'
 import Button from '@/components/Button/Button'
 import Link from 'next/link'
 import SearchBar from '@/components/SearchBar/SearchBar'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import style from './Navigation.module.css'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import { useTheme } from '@/contexts/ThemeContext'
-import { Text } from '@/components/Text'
 import Image from 'next/image'
 
 export default function Navigation() {
     const pathname = usePathname()
     const { isOpen, setSidebar } = useSidebar()
     const { mode, setThemeMode } = useTheme()
+    const router = useRouter()
 
     const toggleSideBar = () => {
         setSidebar(!isOpen)
@@ -48,6 +48,9 @@ export default function Navigation() {
                     </Button>
                     <Button onClick={toggleDarkMode}>
                         <Icon src='/internal/moon.svg' size='2rem' />
+                    </Button>
+                    <Button onClick={() => router.push('https://github.com/Ph0enixKM/Amber')}>
+                        <Icon src='/internal/gh.svg' size='2rem' />
                     </Button>
                     {/* Uncomment when we are ready */}
                     {/* <Button>
