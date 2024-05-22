@@ -1,12 +1,12 @@
 # Commands
 
-The only way to access bash shell is through Amber's commands. Command can be used in a form of statement or expression.
+The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
-The important thing regarding commands is that they can `fail`. Failing is a new concept that forces caller to handle the failure. There are many ways to handle failure:
+The important thing regarding commands is that they can `fail`. Failing is a new concept that forces the caller to handle the failure. There are many ways to handle failure:
 
-- `failed` - the most recommended one that enables you to write some additional logic to run when command failed
-- `?` - this a shorthand for propagating the failure to the caller. This operator can only be used in a `main` block or inside of a function.
-- `unsafe` - the discouraged way to handle expressions. This command modifier will treat command as if it has completed successfully and will allow it to be parsed without any further steps.
+- `failed` - the recommended way to handle failing that enables you to write some specific logic to run when a command fails
+- `?` - this shorthand for propagating the failure to the caller. This operator can only be used in a `main` block or inside of a function.
+- `unsafe` - the discouraged way to handle failing. This modifier will treat commands as if they have completed successfully and will allow them to be parsed without any further steps.
 
 Here is an example use:
 

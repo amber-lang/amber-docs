@@ -2,7 +2,7 @@
 
 There are three ways to perform conditional logic:
 - **If Statement** - This is a regular if statement that can be used anywhere
-- **If Chain** - This is a _syntax sugar_ for pesky if-else chained together.
+- **If Chain** - This is _syntactical sugar_ for pesky if-else chained together.
 - **Ternary Expression** - This is a way to represent conditional logic within an expression.
 
 ## If Statement
