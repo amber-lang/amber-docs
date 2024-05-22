@@ -31,7 +31,16 @@ Arithmetic operations can only be used on `Num` data type. Here is the list of a
 
 ## Comparison operations
 
-Comparison operations can only be used on `Num` data type as well. These are basically the same as in other modern programming languages: `==`, `!=`, `>`, `<`, `>=`, `<=`.
+The equality `==` and inequality `!=` operations can be applied to any data type as long as both sides have the same type.
+
+```ab
+"foo" != "bar"
+42 == 42
+true != false
+"equal" == "equal"
+```
+
+The remaining comparison operations can only be used on the `Num` data type. These are basically the same as in other modern programming languages: `>`, `<`, `>=`, `<=`.
 
 ```ab
 42 != 24
