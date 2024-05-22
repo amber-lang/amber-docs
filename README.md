@@ -12,7 +12,7 @@ Amber is a cutting-edge programming language compiled into Bash Script. With a f
 
 This documentation serves as a comprehensive guide to understanding and utilizing the features of Amber. Whether you are a seasoned developer or a newcomer, this documentation will walk you through the unique aspects and advantages that Amber brings to the world of scripting.
 
-Explore the sections [here](https://amber.marble.software/) to delve into Amber's syntax, safety measures, and practical functionalities, and discover how it can enhance your scripting workflow. If you have any questions or need assistance, feel free to reach out for support.
+Explore the sections [here](https://docs.amber-lang.com/) to delve into Amber's syntax, safety measures, and practical functionalities, and discover how it can enhance your scripting workflow. If you have any questions or need assistance, feel free to reach out for support.
 
 Happy scripting with Amber!
 
