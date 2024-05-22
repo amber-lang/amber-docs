@@ -6,7 +6,7 @@
 
 ## What is Amber?
 
-Amber is a cutting-edge programming language compiled into Bash Script. With a focus on modern syntax, safety features, type safety, and practical functionalities that exceed the capabilities of Bash, Amber aims to provide a streamlined and robust scripting experience.
+[Amber](https://amber-lang.com/) is a cutting-edge programming language compiled into Bash Script. With a focus on modern syntax, safety features, type safety, and practical functionalities that exceed the capabilities of Bash, Amber aims to provide a streamlined and robust scripting experience. The implementation is written in Rust and hosted [on GitHub](https://github.com/Ph0enixKM/Amber).
 
 ### Documentation Purpose
 
