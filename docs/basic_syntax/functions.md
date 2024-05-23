@@ -99,3 +99,6 @@ echo groceries
 ```
 
 The behavior of this keyword is pretty similar to `&` in other C-like programming languages.
+
+## Reserved Prefix
+The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.
