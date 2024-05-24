@@ -13,7 +13,7 @@ Make sure that the operating system meets the following prerequisites
 - Curl tool for downloading the installation script
 
 ```sh
-curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | $(echo /bin/bash)
+curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | bash
 ```
 
 ## Windows support
@@ -32,8 +32,5 @@ sudo mkdir /opt /usr/local/bin
 You can uninstall Amber any time. To do this you can simply run the following code snippet.
 
 ```sh
-curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/uninstall.sh" | $(echo /bin/bash)
+curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/uninstall.sh" | bash
 ```
-
-
-
