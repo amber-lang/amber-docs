@@ -32,6 +32,10 @@
     height: var(--size);
     opacity: 0.7;
     margin: 0 auto;
+
+    &.fallback {
+        mask-image: url('/internal/amber-docs.svg');
+    }
 }
 
 .jumbotron .amber {
