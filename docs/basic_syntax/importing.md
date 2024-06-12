@@ -73,3 +73,16 @@ Here is the behavior when we import the file instead.
 import * from "./file.ab"
 // Outputs: Running indirectly
 ```
+
+
+### Main block and external arguments
+
+Main block can provide an array of arguments (that is of type `[Text]`) passed to this script.
+
+```ab
+main (args) {
+	loop i, arg in args {
+		echo "{i}: {arg}"
+	}
+}
+```
