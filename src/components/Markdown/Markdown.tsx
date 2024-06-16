@@ -44,8 +44,6 @@ class MarkdownRenderer extends Renderer {
             const img = `<img src="/internal/warning.svg" class="${style["warning-icon"]}" />`
             result = img + result.replace(warningText, '')
         }
-        console.log(text.replace('<p>', '').startsWith(''));
-        if (text)
         return `<blockquote class="${style[className]}">${result}</blockquote>`
     }
 
