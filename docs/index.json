@@ -7,12 +7,13 @@
         {
           "path": "getting_started/installation",
           "title": "Installation"
-        }, {
+        },
+        {
           "path": "getting_started/usage",
           "title": "Usage"
         }
       ]
-    }, 
+    },
     {
       "path": "basic_syntax/basic_syntax",
       "title": "Basic Syntax",
@@ -76,6 +77,10 @@
           "title": "Compiler Flags"
         }
       ]
+    },
+    {
+      "path": "by_example/examples",
+      "title": "Examples"
     }
   ]
 }
