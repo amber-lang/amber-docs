@@ -40,6 +40,11 @@
     white-space: nowrap;
 }
 
+.indent[indent="0"] {
+    color: var(--text);
+    font-weight: 500;
+}
+
 .indent[relation="child"]:not([indent="0"])::before {
     content: "";
     display: block;

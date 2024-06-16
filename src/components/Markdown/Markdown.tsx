@@ -35,6 +35,20 @@ class MarkdownRenderer extends Renderer {
         return `<code class="${style.inline}">${text}</code>`
     }
 
+    blockquote(text: string): string {
+        const warningText = 'WARNING:'
+        const isWarning = (text.replace('<p>', '').startsWith(warningText));
+        const className = isWarning ? 'warning' : 'quote'
+        let result = text;
+        if (isWarning) {
+            const img = `<img src="/internal/warning.svg" class="${style["warning-icon"]}" />`
+            result = img + result.replace(warningText, '')
+        }
+        console.log(text.replace('<p>', '').startsWith(''));
+        if (text)
+        return `<blockquote class="${style[className]}">${result}</blockquote>`
+    }
+
     code(rawCode: string, lang: string, escaped: boolean) {
         let code = rawCode.trim()
         if (this.options.highlight) {

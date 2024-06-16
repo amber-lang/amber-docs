@@ -64,7 +64,7 @@ export default function SideBar({ headers, isFixed = false }: Props) {
     const onPageRef = React.useRef<HTMLDivElement>(null)
     const tocRef = React.useRef<HTMLDivElement>(null)
 
-    const getHeaderLink = (header: string) => {        
+    const getHeaderLink = (header: string) => {
         return ['#', header.toLowerCase().replace(/[^\w]+/g, '-')].join('')
     }
 
@@ -117,7 +117,7 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                                 <React.Fragment key={path}>
                                     <Link href={`/${path}`} key={path}>
                                         <Text block>
-                                            <div className={style.indent}>{title}</div>
+                                            <div className={style.indent} {...{ indent: "0" }}>{title}</div>
                                         </Text>
                                     </Link>
                                     {docs && docs.map(({ path, title }, index) => (
