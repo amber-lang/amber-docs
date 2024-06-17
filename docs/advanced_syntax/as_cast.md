@@ -26,7 +26,9 @@ We can clearly see that this could lead to some big bugs. For example one could 
 import { parse } from "std"
 
 let a = "12"
-let b = parse(a)
+let b = parse(a) failed {
+    echo "Variable `a` is not a number."
+}
 
 echo b + 12
 // Outputs: 24
