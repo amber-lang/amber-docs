@@ -17,7 +17,9 @@ $mv file.txt dest.txt$ failed {
 }
 
 // Command expression
-let result = $cat file.txt | grep "READY"$
+let result = $cat file.txt | grep "READY"$ failed {
+    echo "Failed to read the file"
+}
 echo result
 ```
 
