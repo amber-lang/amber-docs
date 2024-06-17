@@ -2,6 +2,8 @@
 
 Here is an example script to periodically install software updates on an Ubuntu system. The update commands are wrapped in a `main` block, so that all commands between `$` signs can pass up errors with the `?` operator. The script will stop in that case and not execute any further commands.
 
+> As you can see as of now the Amber code looks as if it was intertwined with bash commands. As the development goes on - executing custom commands will be even better integrated with special syntax and better runtime safety features to aid this process.
+
 ```ab
 import { exit } from "std"
 
