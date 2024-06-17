@@ -1,6 +1,6 @@
 .markdown h1 {
     margin-bottom: 1.25rem;
-    margin-top: 3rem;
+    margin-top: 3.5rem;
     vertical-align: middle;
 }
 
@@ -17,14 +17,14 @@
 }
 
 .markdown h2 {
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     margin-bottom: 0.75rem;
     vertical-align: middle;
 }
 
 .markdown h3 {
     margin-top: 2rem;
-    margin-bottom: -0.5rem;
+    margin-bottom: 0.5rem;
     vertical-align: middle;
 }
 
@@ -103,6 +103,7 @@ html[mode="light"] .markdown .light-dark img:last-child {
 .markdown .quote {
     border-radius: 10px;
     padding: 1rem;
+    margin: 1rem 0;
     border-left: 5px solid var(--border);
     background: linear-gradient(
         90deg,
@@ -114,6 +115,7 @@ html[mode="light"] .markdown .light-dark img:last-child {
 .markdown .warning {
     border-radius: 10px;
     padding: 1rem;
+    margin: 1rem 0;
     border-left: 5px solid #ffa300;
     background: linear-gradient(
         90deg,

@@ -3,6 +3,7 @@
 Amber compiler currently works on:
 - Linux x86 and ARM
 - macOS x86 and ARM (Apple Silicon)
+- Nix (NixOS)
 
 ## macOS / Linux
 
@@ -12,9 +13,40 @@ Make sure that the operating system meets the following prerequisites
 - Basic calculator `bc` command (On Debian run `sudo apt install bc`)
 - Curl tool for downloading the installation script
 
-```sh
-curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | bash
+### Installation Options
+- **System-wide**
+```bash
+curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | /bin/bash
 ```
+- **Local-user**
+```bash
+curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | /bin/bash -s -- --user
+```
+- **Package manager**
+> Contribute and add Amber to your favourite package manager!
+
+    Available distributions:
+    - [**Arch Linux**](https://aur.archlinux.org/packages/amber-bash-bin) (AUR) with package name `amber-bash-bin`
+
+## NixOS and Flakes
+
+The package contains all the required install scripts and dependencies. You can use the flake as:
+
+```nix
+{
+    inputs = {
+        # ...
+        amber.url = "github:Ph0enixKM/Amber";
+    };
+
+    # then later with home manager for example
+    home.packages = [ inputs.amber.packages.${pkgs.system}.default ];
+}
+```
+
+The package is avaiable as `amber-lang` on [nixpkgs](https://github.com/NixOS/nixpkgs/pull/313774).
+
+While developing with Nix, the flake defines all dependencies for `nix develop` (or `direnv` if used).
 
 ## Windows support
 

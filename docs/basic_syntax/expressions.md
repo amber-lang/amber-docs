@@ -7,7 +7,7 @@ We can combine our data type literals with operators. The operators only work on
 Addition can be performed on number, text and array. This operator applied on different data types yields different results:
 
 - `Num` - Arithmetic sum
-- `Text` - String concatenation 
+- `Text` - String concatenation
 - `[]` - Array join
 
 ```ab
@@ -21,13 +21,22 @@ Addition can be performed on number, text and array. This operator applied on di
 Arithmetic operations can only be used on `Num` data type. Here is the list of all available ones:
 - `+` Arithmetic sum
 - `-` Substraction
-- `*` Multiplication 
+- `*` Multiplication
 - `/` Division
 - `%` Modulo operation
 
 ```ab
 ((12 + 34) * 9) % 4
 ```
+
+There is also an unary operator that negates the value stored in [variable](/basic_syntax/variables).
+
+```ab
+let value = 12
+echo -value // Outputs: -12
+```
+
+
 
 ## Comparison operations
 
@@ -74,4 +83,3 @@ let age = 18
 echo "Hi, I'm {name}. I'm {age} years old."
 // Outputs: Hi, I'm John. I'm 18 years old
 ```
-
