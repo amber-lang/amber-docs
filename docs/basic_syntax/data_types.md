@@ -18,7 +18,7 @@ Amber supports 5 data types:
 
 ## Number
 
-Under the hood it's value is stored as a string of characters - the same way as it's done in Bash. The difference is that Amber applies standard commands to do operations on numbers that support _floating point_ values so that you can simply write operator sign instead.
+Under the hood its value is stored as a string of characters - the same way as it's done in Bash. The difference is that Amber applies standard commands to do operations on numbers that support _floating point_ values so that you can simply write operator sign instead.
 
 ```ab
 // `Num` data type

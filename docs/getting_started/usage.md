@@ -22,7 +22,7 @@ amber -e 'echo upper("hello world!")'
 # Output: HELLO WORLD!
 ```
 
-Notice that when executing a single expression, Amber automatically includes it's standard library for you. This can be really handy when you're in the flow and all you want is to use a function from Amber's standard library in the terminal.
+Notice that when executing a single expression, Amber automatically includes its standard library for you. This can be really handy when you're in the flow and all you want is to use a function from Amber's standard library in the terminal.
 
 ## Compiling
 
