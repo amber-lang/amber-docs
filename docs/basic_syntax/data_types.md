@@ -2,8 +2,8 @@
 
 Amber supports 5 data types:
 - `Text` - The textual data type. In other programming languages it can also be called "string".
-- `Num` - The numeric data type. It's basically any number. 
-- `Bool` - The boolean data type. It's value can be either `true` or `false`. 
+- `Num` - The numeric data type. It's basically any number.
+- `Bool` - The boolean data type. It's value can be either `true` or `false`.
 - `Null` - The _nothing_ data type.
 - `[]` - The array data type.
 
@@ -63,9 +63,9 @@ If you want to create an empty array, you have to specify the data type that it'
 [Text]
 ```
 
-Due to the bash's limitations it's pretty hard to implement 2D+ arrays to behave as regular arrays. As of right now Amber does not support nested arrays
+> WARNING: Due to the bash's limitations it's pretty hard to implement 2D+ arrays to behave as regular arrays. As of right now Amber does not support nested arrays
 
 ```ab
 [[Bool]]
-// Error: Arrays cannot be nested due to the Bash limitations 
+// Error: Arrays cannot be nested due to the Bash limitations
 ```
