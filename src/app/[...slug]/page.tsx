@@ -42,7 +42,7 @@ export default async function Post({ params }: Props) {
             <InfoCard
               id='swipe-to-copy'
               title='Swipe to copy'
-              content="You can swipe heading to copy link or swipe codeblock to copy it's contents."
+              content="You can swipe heading to copy link or swipe codeblock to copy its contents."
               icon='/internal/swipe-to-copy.svg'
             />
           </div>
