@@ -85,6 +85,10 @@
                 {
                     "path": "by_example/ubuntu_updater",
                     "title": "Ubuntu Updater"
+                },
+                {
+                    "path": "by_example/bot_detector",
+                    "title": "Bot Detector"
                 }
             ]
         }
