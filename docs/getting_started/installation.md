@@ -26,6 +26,7 @@ curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/in
 > Contribute and add Amber to your favourite package manager!
 
     Available distributions:
+    - [**Ubuntu**](https://snapcraft.io/amber-bash) on Snapcraft with package name `amber-bash`
     - [**Arch Linux**](https://aur.archlinux.org/packages/amber-bash-bin) (AUR) with package name `amber-bash-bin`
 
 ## NixOS and Flakes
