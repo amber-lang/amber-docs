@@ -28,9 +28,9 @@ Command expression result is sent to the variable instead of _standard output_.
 Command expression can also be interpolated with other expressions and variables
 
 ```ab
-let filePath = "/path/to/file"
-$cat {filePath}$ failed {
-	echo "Could not open '{filePath}'"
+let file_path = "/path/to/file"
+$cat {file_path}$ failed {
+	echo "Could not open '{file_path}'"
 }
 ```
 
@@ -39,8 +39,8 @@ $cat {filePath}$ failed {
 In order to get the exit code, you can use the `status` keyword. It will always return you the exit code of the last bash command or *failable function*.
 
 ```ab
-let filePath = "/path/to/file"
-$cat {filePath}$ failed {
+let file_path = "/path/to/file"
+$cat {file_path}$ failed {
 	echo "Error! Exit code: {status}"
 }
 echo "The status code is: {status}"
