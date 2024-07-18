@@ -10,7 +10,6 @@ body {
   flex-direction: column;
   width: 100vw;
   min-height: 100vh;
-  overflow-x: hidden;
   /* Resets REM from 16px to 10px */
   font-size: 62.5%;
   font-size: medium;
