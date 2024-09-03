@@ -1,5 +1,5 @@
 <div align="center">
- <img src="logo.png" alt="amberlogo" height="250" width="250" />
+ <img src="logo.png" alt="amberlogo" height="200" width="200" />
 </div>
 
 <div style="text-align: center;"> <h1> Official documentation of Amber </h1> </div>
