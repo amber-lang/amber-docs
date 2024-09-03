@@ -1,5 +1,5 @@
 <div align="center">
- <img src="https://amber-docs.vercel.app/internal/amber.svg" alt="amberlogo" height="25" width="25" />
+ <img src="logo.png" alt="amberlogo" height="250" width="250" />
 </div>
 
 <div style="text-align: center;"> <h1> Official documentation of Amber </h1> </div>
