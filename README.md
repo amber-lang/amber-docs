@@ -1,4 +1,4 @@
-<div align="center"> 
+<div align="center">
  <img src="https://amber-docs.vercel.app/internal/amber.svg" alt="amberlogo" height="25" width="25" />
 </div>
 
@@ -16,6 +16,11 @@ Explore the sections [here](https://docs.amber-lang.com/) to delve into Amber's 
 
 Happy scripting with Amber!
 
-<div align="center"> 
- <img src="https://amber-docs.vercel.app/internal/amber.svg" alt="amberlogo" height="25" width="25" />
-</div>
+## Installation
+
+```sh
+# Install dependencies
+npm install
+# Start the development server
+npm run dev
+```
