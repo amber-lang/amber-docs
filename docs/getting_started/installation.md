@@ -23,11 +23,8 @@ curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/in
 curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | bash -s -- --user
 ```
 - **Package manager**
-> Contribute and add Amber to your favourite package manager!
 
-    Available distributions:
-    - [**Ubuntu**](https://snapcraft.io/amber-bash) on Snapcraft with package name `amber-bash`
-    - [**Arch Linux**](https://aur.archlinux.org/packages/amber-bash-bin) (AUR) with package name `amber-bash-bin`
+[![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
 
 ## NixOS and Flakes
 
@@ -59,6 +56,15 @@ In order for it to work you may need to run the following code that pulls all th
 sudo apt install curl bc
 sudo mkdir /opt /usr/local/bin
 ```
+
+# External tools integrated
+
+Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
+
+If these tools are available on your system, they will be executed at the end of the Bash compilation process.
+
+* [shfmt](https://github.com/patrickvane/shfmt): A shell formatter (sh/bash/mksh), It is recommended because Amber currently does not format the generated Bash code.
+* [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
 
 # Uninstallation
 
