@@ -1,12 +1,12 @@
 # Builtins
 
-Builtins are native methods (built in the compiler itself) reserved keywords in Amber.  
+Builtins are native methods (built in the compiler itself) and they are also reserved keywords in Amber.  
 
 Similar to the standard library, they generate valid [Shellcheck](https://www.shellcheck.net/) code (though full support for this in Amber is still in progress).
 
 ## Cd
 
-A classic command in Bash scripts is `cd` which changes the current directory, require a `Text` parameter.
+A classic command in Bash scripts is `cd` which changes the current directory, requires a `Text` parameter.
 
 ```ab
 cd "/tmp"
@@ -14,7 +14,7 @@ cd "/tmp"
 
 ## Echo
 
-Console output is essential, and the `echo` command allows you to print text to the console, require a `Text` parameter.
+Console output is essential, and the `echo` command allows you to print text to the console, requires a `Text` parameter.
 
 ```ab
 echo "Hello World!"
@@ -22,7 +22,7 @@ echo "Hello World!"
 
 ## Mv
 
-If you need to move files you can use the `mv` builtin, require two `Text` parameters.
+If you need to move files you can use the `mv` builtin, requires two `Text` parameters.
 
 ```ab
 mv "/tmp/a" "/tmp/b"
