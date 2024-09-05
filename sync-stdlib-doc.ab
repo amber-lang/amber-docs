@@ -1,0 +1,18 @@
+import { download } from "std/http"
+import { split, contains } from "std/text"
+import { file_exist } from "std/fs"
+
+unsafe $rm -fr /tmp/amber-git$
+if silent download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
+    unsafe $unzip "/tmp/amber-git.zip" -d /tmp/amber-git$
+
+    let std = unsafe $/usr/bin/ls "/tmp/amber-git/amber-master/src/std/"$
+    let stdlib = split(std, "\n")
+
+    loop v in stdlib {
+        if (contains(v, ".ab") and file_exist("/tmp/amber-git/amber-master/src/std/{v}")) {
+            unsafe $amber --docs "/tmp/amber-git/amber-master/src/std/{v}" "./docs/stdlib/doc"$
+            echo "\n"
+        }
+    }
+}
