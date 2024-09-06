@@ -100,7 +100,7 @@
                 },
                 {
                     "path": "stdlib/doc/fs",
-                    "title": "FileSytem"
+                    "title": "FileSystem"
                 },
                 {
                     "path": "stdlib/doc/http",
