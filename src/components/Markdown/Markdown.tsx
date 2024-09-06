@@ -77,6 +77,8 @@ function initializeMarked() {
     Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
     Marked.setOptions({
         renderer: new MarkdownRenderer(),
+        breaks: true,
+        gfm: true,
         highlight(code, lang) {
             if (!lang) return code
             return hljs.highlight(code, { language: lang }).value
