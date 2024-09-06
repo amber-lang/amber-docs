@@ -2,7 +2,7 @@
 
 [Builtins](/advanced_syntax/builtins) are method that are included in the Amber compiler and don't need to be imported in the code.
 
-In contrast, the standard library (stdlib) is a collection of Amber functions that is embedded in every Amber release. Each version of Amber may include changes to the standard library, and you need to import these functions in your code. These functions are more advanced and can accept various parameters.
+In contrast, the standard library (stdlib) is a collection of Amber functions that are embedded in every Amber release. Each version of Amber may include changes to the standard library and you need to import these functions in your code. These functions are more advanced and can accept various parameters.
 
 ## Standard library advantages
 
