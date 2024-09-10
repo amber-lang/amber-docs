@@ -16,11 +16,11 @@ Make sure that the operating system meets the following prerequisites
 ### Installation Options
 - **System-wide**
 ```bash
-curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | bash
+bash <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/install.sh")
 ```
 - **Local-user**
 ```bash
-curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/install.sh" | bash -s -- --user
+bash -- --user <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/install.sh")
 ```
 - **Package manager**
 
