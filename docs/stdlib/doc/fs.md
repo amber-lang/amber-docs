@@ -3,7 +3,7 @@
 pub fun dir_exist(path) 
 ```
 
-Check if directory exists
+Checks if a directory exists.
 
 
 ## `file_exist`
@@ -11,7 +11,7 @@ Check if directory exists
 pub fun file_exist(path) 
 ```
 
-Check if file exists
+Checks if a file exists.
 
 
 ## `file_read`
@@ -19,7 +19,7 @@ Check if file exists
 pub fun file_read(path) 
 ```
 
-Get the file content
+Gets file contents from a path.
 
 
 ## `file_write`
@@ -27,7 +27,7 @@ Get the file content
 pub fun file_write(path, content) 
 ```
 
-Write the content to the file
+Writes content to a file.
 Doesn't check if the file exist
 
 
@@ -36,8 +36,9 @@ Doesn't check if the file exist
 pub fun file_append(path, content) 
 ```
 
-Append the content to the file
-Doesn't check if the file exist
+Appends content to a file.
+
+Doesn't check if the file exists.
 
 
 ## `create_symbolic_link`
@@ -45,8 +46,9 @@ Doesn't check if the file exist
 pub fun create_symbolic_link(origin: Text, destination: Text): Bool 
 ```
 
-Create a symbolic link
-If the file doens't exist return a boolean and print a message
+Creates a symbolic link.
+
+If the file doesn't exist, it returns a boolean and prints a message.
 
 
 ## `create_dir`
@@ -54,7 +56,7 @@ If the file doens't exist return a boolean and print a message
 pub fun create_dir(path: Text): Null 
 ```
 
-Create a directory with all intermediate directories as required
+Creates a directory with all parent directories as required.
 
 
 ## `make_executable`
@@ -62,8 +64,9 @@ Create a directory with all intermediate directories as required
 pub fun make_executable(path: Text): Bool 
 ```
 
-Set the file as executable
-If the file doesn't exist return a boolean and print a message
+Sets a file as executable.
+
+If the file doesn't exist, it returns a boolean and prints a message.
 
 
 ## `change_owner`
@@ -71,7 +74,8 @@ If the file doesn't exist return a boolean and print a message
 pub fun change_owner(user: Text, path: Text): Bool 
 ```
 
-Change the owner of the file
-If the file doesn't exist return false
+Changes the owner of a file.
+
+If the file doesn't exist, it returns `false`
 
 

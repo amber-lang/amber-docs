@@ -3,7 +3,7 @@
 pub fun sum(list: [Num]): Num 
 ```
 
-Sum the array content
+Sums an array's contents
 
 
 ## `round`
@@ -11,7 +11,7 @@ Sum the array content
 pub fun round(number: Num): Num 
 ```
 
-Returns the number rounded to the nearest integer
+Returns a number, rounded to the nearest integer
 
 
 ## `floor`
@@ -19,7 +19,7 @@ Returns the number rounded to the nearest integer
 pub fun floor(number: Num): Num 
 ```
 
-Returns the largest integer less than or equal to the number
+Returns the largest integer less than or equal to a number
 
 
 ## `ceil`
@@ -27,7 +27,7 @@ Returns the largest integer less than or equal to the number
 pub fun ceil(number: Num): Num 
 ```
 
-Returns the smallest integer greater than or equal to the number
+Returns the smallest integer greater than or equal to a number
 
 
 ## `abs`
@@ -35,6 +35,6 @@ Returns the smallest integer greater than or equal to the number
 pub fun abs(number: Num): Num 
 ```
 
-Returns the absolute value of the number
+Returns the absolute value of a number
 
 

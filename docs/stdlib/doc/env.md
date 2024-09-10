@@ -11,7 +11,7 @@ Retrieves the value of an environment variable, optionally sourcing it from a fi
 pub fun load_env_file(file: Text = ".env"): Null 
 ```
 
-Load the env file in the environment, using `xargs`
+Loads the env file in the environment, using `xargs`.
 
 
 ## `shell_isset`
@@ -19,7 +19,7 @@ Load the env file in the environment, using `xargs`
 pub fun shell_isset(name: Text): Bool 
 ```
 
-Check if a variable inside the Shell session exist
+Checks if a variable inside the shell session exists.
 
 
 ## `shell_constant_set`
@@ -27,7 +27,7 @@ Check if a variable inside the Shell session exist
 pub fun shell_constant_set(name: Text, val: Text): Null ? 
 ```
 
-Set a constant inside the Shell session
+Sets a constant inside the shell session.
 
 
 ## `shell_constant_get`
@@ -35,7 +35,7 @@ Set a constant inside the Shell session
 pub fun shell_constant_get(name: Text): Text ? 
 ```
 
-Get a constant inside the Shell session
+Gets a constant inside the shell session.
 
 
 ## `shell_var_set`
@@ -43,7 +43,7 @@ Get a constant inside the Shell session
 pub fun shell_var_set(name: Text, val: Text): Null ? 
 ```
 
-Set a constant inside the Shell session
+Sets a constant inside the shell session.
 
 
 ## `shell_var_get`
@@ -51,7 +51,7 @@ Set a constant inside the Shell session
 pub fun shell_var_get(name: Text): Text ? 
 ```
 
-Get a constant inside the Shell session
+Gets a constant inside the shell session.
 
 
 ## `shell_unset`
@@ -59,7 +59,7 @@ Get a constant inside the Shell session
 pub fun shell_unset(name: Text): Null ? 
 ```
 
-Remove a variable inside the Shell session
+Removes a variable inside the shell session.
 
 
 ## `is_command`
@@ -67,7 +67,7 @@ Remove a variable inside the Shell session
 pub fun is_command(command: Text): Bool 
 ```
 
-Check if the command exist
+Checks if a command exists.
 
 
 ## `input`
@@ -75,7 +75,7 @@ Check if the command exist
 pub fun input(prompt: Text): Text 
 ```
 
-Create a prompt and return the value
+Creates a prompt and returns the value.
 
 
 ## `confirm`
@@ -83,8 +83,9 @@ Create a prompt and return the value
 pub fun confirm(prompt: Text, default_yes: Bool = false): Bool 
 ```
 
-Confirm prompt (Yes/No), return true if choice is Yes
-"No" is the default choice, set default_yes to true for "Yes" as default choice
+Creates a confirm prompt (Yes/No), and returns true if the choice is Yes.
+
+"No" is the default choice, set default_yes to true for "Yes" as default choice.
 
 
 ## `has_failed`
@@ -92,7 +93,7 @@ Confirm prompt (Yes/No), return true if choice is Yes
 pub fun has_failed(command: Text): Bool 
 ```
 
-Checks if the command has failed
+Checks if the command has failed.
 
 
 ## `exit`
@@ -100,7 +101,7 @@ Checks if the command has failed
 pub fun exit(code: Num): Null 
 ```
 
-Close the script
+Closes the script.
 
 
 ## `is_root`
@@ -108,7 +109,7 @@ Close the script
 pub fun is_root(): Bool 
 ```
 
-Check if the script is running with a user with root permission
+Checks if the script is running with a user with root permission.
 
 
 ## `printf`
@@ -116,7 +117,7 @@ Check if the script is running with a user with root permission
 pub fun printf(format: Text, args: [Text] = [""]): Null 
 ```
 
-`printf` the text following the arguments
+`printf` the text following the arguments.
 
 
 ## `printf_escape`
@@ -124,7 +125,7 @@ pub fun printf(format: Text, args: [Text] = [""]): Null
 pub fun printf_escape(text: Text): Text 
 ```
 
-Escape the text to be used with `printf`
+Escapes the text to be used with `printf`.
 
 
 ## `text_shell`
@@ -132,7 +133,7 @@ Escape the text to be used with `printf`
 pub fun text_shell(message: Text, style: Num, fg: Num, bg: Num): Text 
 ```
 
-Prepare a text with formatting options for `printf`
+Prepares a text with formatting options for `printf`.
 
 
 ## `text_bold`
@@ -140,7 +141,7 @@ Prepare a text with formatting options for `printf`
 pub fun text_bold(message: Text): Text 
 ```
 
-Return a text as bold
+Returns a text as bold.
 
 
 ## `text_italic`
@@ -148,7 +149,7 @@ Return a text as bold
 pub fun text_italic(message: Text): Text 
 ```
 
-Return a text as italic
+Returns a text as italic.
 
 
 ## `text_underlined`
@@ -156,7 +157,7 @@ Return a text as italic
 pub fun text_underlined(message: Text): Text 
 ```
 
-Return a text as underlined
+Returns a text as underlined.
 
 
 ## `color_echo`
@@ -164,7 +165,7 @@ Return a text as underlined
 pub fun color_echo(message: Text, color: Num): Null 
 ```
 
-Print a text with a specified color
+Prints a text with a specified color.
 
 
 ## `echo_info`
@@ -172,7 +173,7 @@ Print a text with a specified color
 pub fun echo_info(message: Text): Null 
 ```
 
-Print a text as Info
+Prints a text as a info message.
 
 
 ## `echo_success`
@@ -180,7 +181,7 @@ Print a text as Info
 pub fun echo_success(message: Text): Null 
 ```
 
-Print a text as Success
+Prints a text as a success message.
 
 
 ## `echo_warning`
@@ -188,7 +189,7 @@ Print a text as Success
 pub fun echo_warning(message: Text): Null 
 ```
 
-Print a text as Warning
+Prints a text as a warning message.
 
 
 ## `error`
@@ -196,6 +197,6 @@ Print a text as Warning
 pub fun error(message: Text, exit_code: Num = 1): Null 
 ```
 
-Print a text as Error and exit if the status code is greater than 0
+Prints a text as a error and exits if the status code is greater than 0.
 
 

@@ -3,7 +3,7 @@
 pub fun replace_once(source, pattern, replacement) 
 ```
 
-Finds the first occurrence of a pettern in the content and replaces it with provided replacement text
+Finds the first occurrence of a pettern in the content and replaces it with the provided replacement text.
 
 
 ## `replace`
@@ -11,7 +11,7 @@ Finds the first occurrence of a pettern in the content and replaces it with prov
 pub fun replace(source, pattern, replacement) 
 ```
 
-Replaces all occurences of a pattern in the content with provided replacement text
+Replaces all occurences of a pattern in the content with the provided replacement text.
 
 
 ## `replace_regex`
@@ -19,7 +19,7 @@ Replaces all occurences of a pattern in the content with provided replacement te
 pub fun replace_regex(source: Text, pattern: Text, replacement: Text): Text 
 ```
 
-Replaces all occurences of a regex pattern in the content with provided replacement text
+Replaces all occurences of a regex pattern in the content with the provided replacement text.
 
 Function uses `sed`
 
@@ -29,7 +29,7 @@ Function uses `sed`
 pub fun split(text: Text, delimiter: Text): [Text] 
 ```
 
-This function splits the input `text` into an array of substrings using the specified `delimiter`.
+Splits the input `text` into an array of substrings using the specified `delimiter`.
 
 
 ## `lines`
@@ -53,7 +53,7 @@ Splits a `text` into an array of substrings based on space character.
 pub fun join(list: [Text], delimiter: Text): Text 
 ```
 
-Merge a text using the delimeter specified
+Merges text using the delimeter specified.
 
 
 ## `trim_left`
@@ -61,7 +61,7 @@ Merge a text using the delimeter specified
 pub fun trim_left(text: Text): Text 
 ```
 
-Trim the spaces at top of the text using `sed`
+Trims the spaces at top of the text using `sed`.
 
 
 ## `trim_right`
@@ -69,7 +69,7 @@ Trim the spaces at top of the text using `sed`
 pub fun trim_right(text: Text): Text 
 ```
 
-Trim the spaces at end of the text using `sed`
+Trims the spaces at end of the text using `sed`.
 
 
 ## `trim`
@@ -77,7 +77,7 @@ Trim the spaces at end of the text using `sed`
 pub fun trim(text: Text): Text 
 ```
 
-Trim the spaces from the text input
+Trims the spaces from the text input.
 
 
 ## `lower`
@@ -85,7 +85,7 @@ Trim the spaces from the text input
 pub fun lower(text: Text): Text 
 ```
 
-Lowercase the text input using `tr`
+Makes the text input lowercase using `tr`.
 
 
 ## `upper`
@@ -93,7 +93,7 @@ Lowercase the text input using `tr`
 pub fun upper(text: Text): Text 
 ```
 
-Lowercase the text input using `tr`
+Makes the text input uppercase using `tr`.
 
 
 ## `parse`
@@ -117,7 +117,7 @@ Splits a text into an array of individual characters.
 pub fun len(value): Num 
 ```
 
-Get the text or array length
+Gets the length of provided text or array.
 
 
 ## `contains`
@@ -125,7 +125,7 @@ Get the text or array length
 pub fun contains(text: Text, phrase: Text): Bool 
 ```
 
-Check if text contain the value
+Checks if some text contains a value/
 
 
 ## `reverse`
@@ -133,7 +133,7 @@ Check if text contain the value
 pub fun reverse(text: Text): Text 
 ```
 
-Reverse a text using `rev`
+Reverses text using `rev`.
 
 
 ## `starts_with`
@@ -141,7 +141,7 @@ Reverse a text using `rev`
 pub fun starts_with(text: Text, prefix: Text): Bool 
 ```
 
-Check if text starts with a value
+Checks if text starts with a value.
 
 
 ## `ends_with`
@@ -149,7 +149,7 @@ Check if text starts with a value
 pub fun ends_with(text: Text, suffix: Text): Bool 
 ```
 
-Check if text ends with a value
+Checks if text ends with a value.
 
 
 ## `slice`
@@ -158,6 +158,7 @@ pub fun slice(text: Text, index: Num, length: Num = 0): Text
 ```
 
 Returns a substring from `text` starting at the given `index` (0-based).
+
 If `index` is negative, the substring starts from the end of `text` based on the absolute value of `index`.
 If `length` is provided, the substring will include `length` characters; otherwise, it slices to the end of `text`.
 If `length` is negative, an empty string is returned.
@@ -177,7 +178,7 @@ If `index` is negative, the substring starts from the end of `text` based on the
 pub fun capitalize(text: Text): Text 
 ```
 
-Capitalize the first letter of the given `text`
+Capitalize the first letter of the given `text`.
 
 
 ## `lpad`

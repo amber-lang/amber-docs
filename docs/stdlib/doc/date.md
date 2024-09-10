@@ -3,12 +3,18 @@
 pub fun date_posix(format: Text = "", date: Text = "", utc: Bool = false): Text ? 
 ```
 
-EXPERIMENTAL
-Format a date with a special format
-If no date is specified, the current date is used
-If no format is specified, "%FT%T%Z" format is used
-For more info about format type "man date" on your shell or go to https://www.gnu.org/software/coreutils/date
+### EXPERIMENTAL
+
+Formats a date with a special format.
+
+If no date is specified, the current date is used.
+
+If no format is specified, "%FT%T%Z" format is used.
+
+For more info about format type "man date" on your shell or go to <https://www.gnu.org/software/coreutils/date>.
+
 Format :
+```
 %%     a literal %
 %a     locale's abbreviated weekday name (e.g., Sun)
 %A     locale's full weekday name (e.g., Sunday)
@@ -55,15 +61,18 @@ Format :
 %::z   +hh:mm:ss numeric time zone (e.g., -04:00:00)
 %:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)
 %Z     alphabetic time zone abbreviation (e.g., EDT)
+```
 
 By default, date pads numeric fields with zeroes.  The following optional flags may follow '%':
 
+```
 -      (hyphen) do not pad the field
 _      (underscore) pad with spaces
 0      (zero) pad with zeros
 +      pad with zeros, and put '+' before future years with >4 digits
 ^      use upper case if possible
 #      use opposite case if possible
+```
 
 
 ## `now`
@@ -71,7 +80,7 @@ _      (underscore) pad with spaces
 pub fun now(): Num 
 ```
 
-Return current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC))
+Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
 
 
 ## `date_add`
@@ -79,34 +88,38 @@ Return current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC))
 pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
 ```
 
-EXPERIMENTAL
-Add value to date.
-If no date is specified, the current date is used
-Ex : date_add("+3 days")
-You can use :
-(+/-)
-years
-months
-days
-hours
-minutes
-seconds
+### EXPERIMENTAL
 
+Adds a value to a date.
 
-EXPERIMENTAL
+If no date is specified, the current date is used.
 
+Example : `date_add("+3 days")`
 
-Compare 2 date
+You can use (+/-):
 
-Return 1 if date_a is after date_b
+- years
+- months
+- days
+- hours
+- minutes
+- seconds
 
-Return 0 if date_a and date_b is the same
-
-Return -1 if date_b is after date_a
-
-If date_b is not provided, current date will be used
 
 ## `date_compare`
 ```ab
 pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
 ```
+
+### EXPERIMENTAL
+Compares two dates.
+
+Returns 1 if date_a is after date_b.
+
+Returns 0 if date_a and date_b is the same.
+
+Returns -1 if date_b is after date_a.
+
+If date_b is not provided, current date will be used.
+
+
