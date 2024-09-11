@@ -4,13 +4,8 @@
 
 In contrast, the standard library (stdlib) is a collection of Amber functions that are embedded in every Amber release. Each version of Amber may include changes to the standard library and you need to import these functions in your code. These functions are more advanced and can accept various parameters.
 
-## Standard library advantages
-
-There are 3 reasons to use this library:
-
-* Generate valid [Shellcheck](https://www.shellcheck.net/) code (though full support for this in Amber is still in progress)
-* They have unit tests for every function
-* Extended the native Bash commands with more features
+## Standard library and Shellcheck
+Just like the Amber's compiled Bash output, all standard library functions are built from the ground up to be shellcheck compliant. This means that you can focus more on building the logic and spend less time on keeping the code predictable and valid.
 
 ## How to use it
 
