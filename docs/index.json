@@ -83,12 +83,20 @@
             "title": "Amber by Example",
             "docs": [
                 {
+                    "path": "by_example/sh_tester",
+                    "title": "ShellCheck tester"
+                },
+                {
                     "path": "by_example/ubuntu_updater",
                     "title": "Ubuntu Updater"
                 },
                 {
                     "path": "by_example/bot_detector",
                     "title": "Bot Detector"
+                },
+                {
+                    "path": "by_example/lsp_installer",
+                    "title": "LSP Installer"
                 }
             ]
         }
