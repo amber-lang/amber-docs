@@ -1,6 +1,6 @@
 # LSP installer
 
-This script automates the installation of several Language Server Protocol (LSP) tools, primarily by downloading them from GitHub and installing them on your system. The latest version of the script can be found [here](https://github.com/Mte90/My-Scripts/blob/master/dev/lsp-installer/install.ab).
+This script automates the installation of several Language Server Protocol (LSP) tools, primarily by downloading them from GitHub and installing them on your system. The latest version of the script (and also **complete**) can be found [here](https://github.com/Mte90/My-Scripts/blob/master/dev/lsp-installer/install.ab).
 
 > The script uses standard library functions to simplify the process of downloading, unpacking, and installing various LSP tools. It checks for necessary permissions, downloads the latest releases of selected LSPs, moves them to system directories, makes them executable, and installs additional LSPs using `npm`, `pip`, and `gem` as needed.  
 > For each tool, if the download or installation fails, an error message is displayed, and the script exits to prevent partial installations.
@@ -53,23 +53,11 @@ fun download_to_bin(download_url, binary, packed_file) {
 
 cd "/tmp"
 
-echo "Install PHPactor LSP"
-move_to_bin(get_download_path("phpactor/phpactor", 0), "phpactor")
-
 echo "Install Typos LSP"
 download_to_bin(get_download_path("tekumara/typos-lsp", 6), "typos-lsp", "typos.tar.gz")
 
 echo "Install Rust LSP"
 download_to_bin("https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz", "rust-analyzer", "rust-analyzer-x86_64-unknown-linux-gnu.gz")
-
-echo "Install GitLab CI LSP"
-move_to_bin(get_download_path("alesbrelih/gitlab-ci-ls", 3), "gitlab-ci-ls")
-
-echo "Install HTMX LSP"
-move_to_bin(get_download_path("ThePrimeagen/htmx-lsp", 2), "htmx-lsp")
-
-echo "Install Marksman LSP"
-move_to_bin(get_download_path("artempyanykh/marksman", 1), "marksman")
 
 echo "Install Lua LSP"
 if not dir_exist("/opt/lua-language-server") {
@@ -92,16 +80,6 @@ let npm_lsp_name = ["CSS, HTML, JSON LSP", "Tailwind LSP", "Emmet LSP", "Intelep
 loop index, lsp in npm_lsp {
     echo "Install {npm_lsp_name[index]}"
     $npm i -g "{lsp}"$ failed {
-        echo "Error! Exit code: {status}"
-    }
-}
-
-let command_lsp = ["pip install python-lsp-server", "gem install ruby-lsp"]
-let command_lsp_name = ["Python LSP", "Ruby LSP"]
-
-loop index, lsp in command_lsp {
-    echo "Install {command_lsp_name[index]}"
-    ${lsp}$ failed {
         echo "Error! Exit code: {status}"
     }
 }
