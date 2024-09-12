@@ -2,6 +2,7 @@
 This is a simple but exhaustive guide to get you started on contributing to amber.
 
 ## Contributing guidelines
+
 Before you dig into Amber, you should know a few things before you contribute.
 
 Any code change is submitted [through a PR](https://github.com/amber-lang/Amber/pulls), which is then approved by at least 2 maintainers.
@@ -24,6 +25,45 @@ The maintainers will check who it is the best reviewer, we suggest to open a tic
 
 Along the way, you may need help with your code. The best way to ask is in [our Discord server](https://discord.com/invite/cjHjxbsDvZ), but you may also ask other contributors personally or post in [Discussions](https://github.com/amber-lang/Amber/discussions).
 
+### Development
+
+In order to contribute, you have to add couple of build targets:
+```bash
+rustup target add x86_64-unknown-linux-musl
+rustup target add x86_64-apple-darwin
+rustup target add x86_64-pc-windows-gnu
+rustup target add aarch64-apple-darwin
+```
+
+And linkers (macos):
+```bash
+brew install messense/macos-cross-toolchains/aarch64-unknown-linux-musl
+brew install messense/macos-cross-toolchains/x86_64-unknown-linux-gnu
+```
+
+Compile it:
+```
+git clone https://github.com/amber-lang/amber
+cd Amber
+cargo build
+```
+
+In order to build the installer scripts run:
+```bash
+amber build.ab
+```
+
+Debugging Amber:
+```bash
+// Shows the AST
+AMBER_DEBUG_PARSER=true cargo run <file.ab>
+// Shows the time it took to compile each phase
+AMBER_DEBUG_TIME=true cargo run <file.ab>
+
+// Flamegraph is a profiling tool that is used to visualize the time each function took to execute
+sudo cargo flamegraph -- <file.ab> <file.sh>
+```
+
 #### Running tests
 
 To run ALL tests, run `cargo test`.
@@ -31,3 +71,6 @@ To run ALL tests, run `cargo test`.
 If you want to run only tests from a specific file, let's say from [`stdlib.rs`](src/tests/stdlib.rs), you add the file name to the command: `cargo test stdlib`
 
 And if there is a specific function, like `test_function()` in `stdlib.rs`, you should add the full path to it: `cargo test stdlib::test_function` 
+
+#### Github Actions
+We are using `cargo-dist` to build the binaries for all the platforms. The binaries are then uploaded to the release page once a new release a tag is created.
