@@ -24,7 +24,7 @@ bash -- --user <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/mas
 ```
 - **Package manager**
 
-<div style="width:300px;margin: 0 auto;">
+<div style="width:250px;margin: 0 auto;">
 [![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
 </div>
 
