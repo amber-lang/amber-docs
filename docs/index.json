@@ -9,6 +9,10 @@
                     "title": "Installation"
                 },
                 {
+                    "path": "getting_started/cli",
+                    "title": "Cli"
+                },
+                {
                     "path": "getting_started/usage",
                     "title": "Usage"
                 }
