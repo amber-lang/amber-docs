@@ -48,6 +48,16 @@ The package is avaiable as `amber-lang` on [nixpkgs](https://github.com/NixOS/ni
 
 While developing with Nix, the flake defines all dependencies for `nix develop` (or `direnv` if used).
 
+## Snap
+
+You can install the snap package in any distro via the store:
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/amber-bash)
+
+or from the terminal:
+```bash
+sudo snap install amber-bash --classic
+```
+
 ## Windows support
 
 As windows does not come with bash installed it makes no sense to support it. Please install WSL 2 on your windows machine and install Linux version of Amber compiler inside.
