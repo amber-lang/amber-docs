@@ -2,12 +2,40 @@
 
 Amber CLI can be used as a runtime or as a compiler.
 
-## Syntax Highlighting
-You can install syntax highlighting for Visual Studio Code. You can find it in Visual Studio Code extension store under the name **Amber Language**.
+## Command Line Interface (CLI) Parameters
 
-Or you can download it here in [the Visual Studio Marketplace website](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language).
+*This output is generated from the 0.3.5-alpha version.*
+```
+Usage: amber [OPTIONS] [INPUT] [OUTPUT]
 
-## Running
+Arguments:
+  [INPUT]   '-' to read from stdin
+  [OUTPUT]  '-' to output to stdout, '--silent' to discard
+
+Options:
+  -e, --eval <EVAL>     Code to evaluate
+      --docs            Generate docs (OUTPUT is dir instead, default: `docs/`)
+      --disable-format  Don't format the output file
+      --minify          Minify the resulting code
+  -h, --help            Print help
+  -V, --version         Print version
+```
+
+For detailed usage instructions, refer to the [Amber usage guide](https://docs.amber-lang.com/getting_started/usage).
+
+### Documentation Generation
+
+The `--docs` option extracts comments prefixed with `///` (triple slashes) from the Amber file and generates a Markdown file for documentation.
+
+#### Disable formatting
+
+Using the `--disable-format` option prevents the execution of external formatting tools after the Bash compilation process.
+
+### Minification
+
+The `--minify` option compresses the generated Bash code to reduce its size.
+
+### Running
 
 For example the following line will simply execute `file.ab` as a script file. Amber code will be compiled to BashScript and then executed all in one go.
 
@@ -39,3 +67,8 @@ Furthermore, Amber adds a _shebang_ at the top of the compiled script. This enab
 ```sh
 ./output.sh
 ```
+
+## Syntax Highlighting
+You can install syntax highlighting for Visual Studio Code. You can find it in Visual Studio Code extension store under the name **Amber Language**.
+
+Or you can download it here in [the Visual Studio Marketplace website](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language).
