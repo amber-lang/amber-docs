@@ -75,9 +75,6 @@ fun failable(): Num? {
     return 1
 }
 
-let a = failable() failed: echo "Failed"
-
-if a is Num: echo "Succeded"
 ```
 
 Note that you cannot force a function to become failable by simply appending the `?` to the return type. The `?` can (and must) only be used in a function declaration, if the function is known to be failable.
