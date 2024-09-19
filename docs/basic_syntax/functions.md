@@ -27,7 +27,7 @@ fun myFunction(arg1: Num, arg2: Num): Num {
 
 An interesting fact about functions is that they are not parsed unless they are used. This behavior exists because Amber allows you to omit specifying any type at all. When you use such function - then it generates different variants of this function with types that were used (without any duplications).
 
-You can use default parameters but requires to define the type of the parameter:
+On the condition that you specify an argument's type, you can also specify its default value — it will be used if none other is provided when the function is called:
 
 ```ab
 fun addition(a: Num, b: Num = 100): Num {
