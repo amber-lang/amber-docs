@@ -80,6 +80,8 @@ let a = failable() failed: echo "Failed"
 if a is Num: echo "Succeded"
 ```
 
+Note that you cannot force a function to become failable by simply appending the `?` to the return type. The `?` can (and must) only be used in a function declaration, if the function is known to be failable.
+
 ## Status code
 
 Status code contains information about latest failing function or a command that was run. Accessing status is as simple as using `status` keyword.
