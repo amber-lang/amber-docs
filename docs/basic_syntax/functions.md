@@ -33,8 +33,8 @@ On the condition that you specify an argument's type, you can also specify its d
 fun addition(a: Num, b: Num = 100): Num {
     return a + b
 }
-echo addition(10)
-// Outputs: 110
+echo addition(10) // Outputs: 110
+echo addition(10, 20) // Outputs: 30
 ```
 Notice that arguments with default values must come after the regular arguments.
 
