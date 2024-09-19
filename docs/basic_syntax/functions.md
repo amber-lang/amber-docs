@@ -63,7 +63,7 @@ fun failing(name) {
 
 Notice that using `?` operator is automatically failing with the `status` code of the failing operation.
 
-You can mark a whole function as failable using `?` in the function declaration, an example:
+If you specify the return type of a failable function, you must also append the `?` to the type name.
 
 ```ab
 fun failable(): Num? {
