@@ -36,6 +36,7 @@ fun addition(a: Num, b: Num = 100): Num {
 echo addition(10)
 // Outputs: 110
 ```
+Notice that arguments with default values must come after the regular arguments.
 
 ## Modifiers
 
