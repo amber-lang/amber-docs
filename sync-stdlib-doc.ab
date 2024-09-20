@@ -13,7 +13,8 @@ if silent download("https://github.com/amber-lang/amber/archive/refs/heads/maste
 
     loop v in stdlib {
         if (contains(v, ".ab") and file_exist("{std_path}{v}")) {
-            unsafe $amber --docs "{std_path}{v}" "./docs/stdlib/doc"$
+            echo "Parsing {std_path}{v}"
+            unsafe $amber --docs "{std_path}{v}" "./docs/stdlib/doc/"$
             echo "\n"
         }
     }

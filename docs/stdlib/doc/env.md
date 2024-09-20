@@ -1,81 +1,9 @@
-## `get_env_var`
+## `color_echo`
 ```ab
-pub fun get_env_var(var: Text, file: Text = ".env"): Text 
+pub fun color_echo(message: Text, color: Num): Null 
 ```
 
-Retrieves the value of an environment variable, optionally sourcing it from a file if not already set.
-
-
-## `load_env_file`
-```ab
-pub fun load_env_file(file: Text = ".env"): Null 
-```
-
-Loads the env file in the environment, using `xargs`.
-
-
-## `shell_isset`
-```ab
-pub fun shell_isset(name: Text): Bool 
-```
-
-Checks if a variable inside the shell session exists.
-
-
-## `shell_constant_set`
-```ab
-pub fun shell_constant_set(name: Text, val: Text): Null ? 
-```
-
-Sets a constant inside the shell session.
-
-
-## `shell_constant_get`
-```ab
-pub fun shell_constant_get(name: Text): Text ? 
-```
-
-Gets a constant inside the shell session.
-
-
-## `shell_var_set`
-```ab
-pub fun shell_var_set(name: Text, val: Text): Null ? 
-```
-
-Sets a constant inside the shell session.
-
-
-## `shell_var_get`
-```ab
-pub fun shell_var_get(name: Text): Text ? 
-```
-
-Gets a constant inside the shell session.
-
-
-## `shell_unset`
-```ab
-pub fun shell_unset(name: Text): Null ? 
-```
-
-Removes a variable inside the shell session.
-
-
-## `is_command`
-```ab
-pub fun is_command(command: Text): Bool 
-```
-
-Checks if a command exists.
-
-
-## `input`
-```ab
-pub fun input(prompt: Text): Text 
-```
-
-Creates a prompt and returns the value.
+Prints a text with a specified color.
 
 
 ## `confirm`
@@ -86,86 +14,6 @@ pub fun confirm(prompt: Text, default_yes: Bool = false): Bool
 Creates a confirm prompt (Yes/No), and returns true if the choice is Yes.
 
 "No" is the default choice, set default_yes to true for "Yes" as default choice.
-
-
-## `has_failed`
-```ab
-pub fun has_failed(command: Text): Bool 
-```
-
-Checks if the command has failed.
-
-
-## `exit`
-```ab
-pub fun exit(code: Num): Null 
-```
-
-Closes the script.
-
-
-## `is_root`
-```ab
-pub fun is_root(): Bool 
-```
-
-Checks if the script is running with a user with root permission.
-
-
-## `printf`
-```ab
-pub fun printf(format: Text, args: [Text] = [""]): Null 
-```
-
-`printf` the text following the arguments.
-
-
-## `printf_escape`
-```ab
-pub fun printf_escape(text: Text): Text 
-```
-
-Escapes the text to be used with `printf`.
-
-
-## `text_shell`
-```ab
-pub fun text_shell(message: Text, style: Num, fg: Num, bg: Num): Text 
-```
-
-Prepares a text with formatting options for `printf`.
-
-
-## `text_bold`
-```ab
-pub fun text_bold(message: Text): Text 
-```
-
-Returns a text as bold.
-
-
-## `text_italic`
-```ab
-pub fun text_italic(message: Text): Text 
-```
-
-Returns a text as italic.
-
-
-## `text_underlined`
-```ab
-pub fun text_underlined(message: Text): Text 
-```
-
-Returns a text as underlined.
-
-
-## `color_echo`
-```ab
-pub fun color_echo(message: Text, color: Num): Null 
-```
-
-Prints a text with a specified color.
 
 
 ## `echo_info`
@@ -198,5 +46,157 @@ pub fun error(message: Text, exit_code: Num = 1): Null
 ```
 
 Prints a text as a error and exits if the status code is greater than 0.
+
+
+## `exit`
+```ab
+pub fun exit(code: Num): Null 
+```
+
+Closes the script.
+
+
+## `get_env_var`
+```ab
+pub fun get_env_var(var: Text, file: Text = ".env"): Text 
+```
+
+Retrieves the value of an environment variable, optionally sourcing it from a file if not already set.
+
+
+## `has_failed`
+```ab
+pub fun has_failed(command: Text): Bool 
+```
+
+Checks if the command has failed.
+
+
+## `input`
+```ab
+pub fun input(prompt: Text): Text 
+```
+
+Creates a prompt and returns the value.
+
+
+## `is_command`
+```ab
+pub fun is_command(command: Text): Bool 
+```
+
+Checks if a command exists.
+
+
+## `is_root`
+```ab
+pub fun is_root(): Bool 
+```
+
+Checks if the script is running with a user with root permission.
+
+
+## `load_env_file`
+```ab
+pub fun load_env_file(file: Text = ".env"): Null 
+```
+
+Loads the env file in the environment, using `xargs`.
+
+
+## `printf`
+```ab
+pub fun printf(format: Text, args: [Text] = [""]): Null 
+```
+
+`printf` the text following the arguments.
+
+
+## `printf_escape`
+```ab
+pub fun printf_escape(text: Text): Text 
+```
+
+Escapes the text to be used with `printf`.
+
+
+## `shell_constant_get`
+```ab
+pub fun shell_constant_get(name: Text): Text ? 
+```
+
+Gets a constant inside the shell session.
+
+
+## `shell_constant_set`
+```ab
+pub fun shell_constant_set(name: Text, val: Text): Null ? 
+```
+
+Sets a constant inside the shell session.
+
+
+## `shell_isset`
+```ab
+pub fun shell_isset(name: Text): Bool 
+```
+
+Checks if a variable inside the shell session exists.
+
+
+## `shell_unset`
+```ab
+pub fun shell_unset(name: Text): Null ? 
+```
+
+Removes a variable inside the shell session.
+
+
+## `shell_var_get`
+```ab
+pub fun shell_var_get(name: Text): Text ? 
+```
+
+Gets a constant inside the shell session.
+
+
+## `shell_var_set`
+```ab
+pub fun shell_var_set(name: Text, val: Text): Null ? 
+```
+
+Sets a constant inside the shell session.
+
+
+## `text_bold`
+```ab
+pub fun text_bold(message: Text): Text 
+```
+
+Returns a text as bold.
+
+
+## `text_italic`
+```ab
+pub fun text_italic(message: Text): Text 
+```
+
+Returns a text as italic.
+
+
+## `text_shell`
+```ab
+pub fun text_shell(message: Text, style: Num, fg: Num, bg: Num): Text 
+```
+
+Prepares a text with formatting options for `printf`.
+
+
+## `text_underlined`
+```ab
+pub fun text_underlined(message: Text): Text 
+```
+
+Returns a text as underlined.
 
 

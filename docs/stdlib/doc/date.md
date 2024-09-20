@@ -1,3 +1,43 @@
+## `date_add`
+```ab
+pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
+```
+
+### EXPERIMENTAL
+
+Adds a value to a date.
+
+If no date is specified, the current date is used.
+
+Example : `date_add("+3 days")`
+
+You can use (+/-):
+
+- years
+- months
+- days
+- hours
+- minutes
+- seconds
+
+
+## `date_compare`
+```ab
+pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
+```
+
+### EXPERIMENTAL
+Compares two dates.
+
+Returns 1 if date_a is after date_b.
+
+Returns 0 if date_a and date_b is the same.
+
+Returns -1 if date_b is after date_a.
+
+If date_b is not provided, current date will be used.
+
+
 ## `date_posix`
 ```ab
 pub fun date_posix(format: Text = "", date: Text = "", utc: Bool = false): Text ? 
@@ -81,45 +121,5 @@ pub fun now(): Num
 ```
 
 Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
-
-
-## `date_add`
-```ab
-pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
-```
-
-### EXPERIMENTAL
-
-Adds a value to a date.
-
-If no date is specified, the current date is used.
-
-Example : `date_add("+3 days")`
-
-You can use (+/-):
-
-- years
-- months
-- days
-- hours
-- minutes
-- seconds
-
-
-## `date_compare`
-```ab
-pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
-```
-
-### EXPERIMENTAL
-Compares two dates.
-
-Returns 1 if date_a is after date_b.
-
-Returns 0 if date_a and date_b is the same.
-
-Returns -1 if date_b is after date_a.
-
-If date_b is not provided, current date will be used.
 
 
