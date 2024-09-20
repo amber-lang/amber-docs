@@ -6,7 +6,7 @@ Similar to the standard library, they generate valid [Shellcheck](https://www.sh
 
 ## Cd
 
-A classic command in Bash scripts is `cd` which changes the current directory, requires a `Text` parameter.
+Transpile to `cd` which changes the current directory, requires a `Text` parameter.
 
 ```ab
 cd "/tmp"
@@ -14,7 +14,7 @@ cd "/tmp"
 
 ## Echo
 
-Console output is essential, and the `echo` command allows you to print text to the console, requires a `Text` parameter.
+Transpile to `echo` which print text to the console, requires a `Text` parameter.
 
 ```ab
 echo "Hello World!"
@@ -37,7 +37,7 @@ mv "/tmp/a" "/tmp/b" failed {
 
 ## Nameof
 
-For more advanced commands, you might need the mangled name of a variable. The `nameof` keyword provides this functionality.  
+For more advanced commands, you might need the name of the variable in the compiled script. The `nameof` keyword provides this functionality.  
 
 For example, this allows you to perform operations like:
 

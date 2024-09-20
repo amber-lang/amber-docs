@@ -34,7 +34,7 @@ if silent download("https://github.com/amber-lang/amber/archive/refs/heads/maste
 
 > WARNING: Each Amber release may have a different version of the standard library, so make sure to verify compatibility with the specific release you are using.
 
-### Importing all the stdlib
+### Importing a library
 
 You can also import all functions from a module by using the following syntax:
 
