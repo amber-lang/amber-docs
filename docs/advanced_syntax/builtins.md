@@ -22,7 +22,8 @@ echo "Hello World!"
 
 ## Mv
 
-If you need to move files you can use the `mv` builtin, requires two `Text` parameters.
+If you need to move files you can use the `mv` builtin, requires two `Text` parameters.   
+*Doesn't support the `mv` unix command parameters*.
 
 ```ab
 mv "/tmp/a" "/tmp/b"
