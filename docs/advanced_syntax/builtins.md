@@ -46,6 +46,6 @@ For example, this allows you to perform operations like:
 let variable = null
 
 unsafe ${nameof variable}=12$
-// Which is the same as:
+// Which is the same as declaring (but it is more readable in this way)
 let variable = 12
 ```
