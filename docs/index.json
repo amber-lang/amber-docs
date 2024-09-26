@@ -65,8 +65,8 @@
                     "title": "As Cast"
                 },
                 {
-                    "path": "advanced_syntax/nameof",
-                    "title": "Nameof"
+                    "path": "advanced_syntax/builtins",
+                    "title": "Builtins"
                 },
                 {
                     "path": "advanced_syntax/type_condition",
@@ -75,6 +75,44 @@
                 {
                     "path": "advanced_syntax/compiler_flags",
                     "title": "Compiler Flags"
+                }
+            ]
+        },
+        {
+            "path": "stdlib/doc",
+            "title": "Standard Library",
+            "docs": [
+                {
+                    "path": "stdlib/doc",
+                    "title": "Documentation"
+                },
+                {
+                    "path": "stdlib/doc/array",
+                    "title": "Array"
+                },
+                {
+                    "path": "stdlib/doc/date",
+                    "title": "Date"
+                },
+                {
+                    "path": "stdlib/doc/env",
+                    "title": "Environment"
+                },
+                {
+                    "path": "stdlib/doc/fs",
+                    "title": "FileSystem"
+                },
+                {
+                    "path": "stdlib/doc/http",
+                    "title": "HTTP"
+                },
+                {
+                    "path": "stdlib/doc/math",
+                    "title": "Math"
+                },
+                {
+                    "path": "stdlib/doc/text",
+                    "title": "Text"
                 }
             ]
         },

@@ -21,6 +21,8 @@ Happy scripting with Amber!
 ```sh
 # Install dependencies
 npm install
+# Generate the stdlib documentation
+./sync-stdlib-doc.ab
 # Start the development server
 npm run dev
 ```
