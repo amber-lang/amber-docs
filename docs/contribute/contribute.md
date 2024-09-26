@@ -27,20 +27,6 @@ Along the way, you may need help with your code. The best way to ask is in [our 
 
 ### Development
 
-In order to contribute, you have to add couple of build targets:
-```bash
-rustup target add x86_64-unknown-linux-musl
-rustup target add x86_64-apple-darwin
-rustup target add x86_64-pc-windows-gnu
-rustup target add aarch64-apple-darwin
-```
-
-And linkers (macos):
-```bash
-brew install messense/macos-cross-toolchains/aarch64-unknown-linux-musl
-brew install messense/macos-cross-toolchains/x86_64-unknown-linux-gnu
-```
-
 Compile it:
 ```
 git clone https://github.com/amber-lang/amber

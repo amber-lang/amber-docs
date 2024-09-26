@@ -87,8 +87,8 @@
                     "title": "How to"
                 },
                 {
-                    "path": "contribute/internals",
-                    "title": "Internals"
+                    "path": "contribute/guide_book",
+                    "title": "Guide"
                 },
                 {
                     "path": "contribute/compiler",
