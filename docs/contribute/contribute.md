@@ -27,7 +27,7 @@ Along the way, you may need help with your code. The best way to ask is in [our 
 
 ### Development
 
-Compile it:
+Compile Amber with the following instructions:
 ```
 git clone https://github.com/amber-lang/amber
 cd Amber
