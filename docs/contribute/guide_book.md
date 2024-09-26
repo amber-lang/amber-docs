@@ -72,7 +72,7 @@ fn translate() -> String {
 
 Basically, the `translate()` method should return a `String` for the compiler to construct a compiled file from all of them. If it translates to nothing, you should output an empty string, like `String::new()`
 
-#### 2.3. Built-in creation
+#### 2.3. Creating built-ins
 
 In this guide we will see how to create a basic built-in function that in Amber syntax presents like:
 ```sh
