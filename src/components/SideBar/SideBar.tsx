@@ -10,7 +10,7 @@ import useSidebar from '@/contexts/DocumentContext/useSidebar'
 
 interface Props {
     headers: string[],
-    docDesc: DocDescriptor,
+    docDesc?: DocDescriptor,
     isFixed?: boolean
 }
 
