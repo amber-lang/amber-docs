@@ -47,6 +47,6 @@ However, only the functions that are used in the script will be included in the 
 
 If you prefer a verbose import, you can specify a single function:
 
-```
+```ab
 import { download } from "std/http"
 ```
