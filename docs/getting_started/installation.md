@@ -24,7 +24,9 @@ bash -- --user <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/mas
 ```
 - **Package manager**
 
+<div style="width:250px;margin: 0 auto;">
 [![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
+</div>
 
 ## NixOS and Flakes
 
@@ -45,6 +47,13 @@ The package contains all the required install scripts and dependencies. You can 
 The package is avaiable as `amber-lang` on [nixpkgs](https://github.com/NixOS/nixpkgs/pull/313774).
 
 While developing with Nix, the flake defines all dependencies for `nix develop` (or `direnv` if used).
+
+## Snap
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/amber-bash)
+
+```bash
+sudo snap install amber-bash --classic
+```
 
 ## Windows support
 

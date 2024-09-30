@@ -27,6 +27,18 @@ fun myFunction(arg1: Num, arg2: Num): Num {
 
 An interesting fact about functions is that they are not parsed unless they are used. This behavior exists because Amber allows you to omit specifying any type at all. When you use such function - then it generates different variants of this function with types that were used (without any duplications).
 
+On the condition that you specify an argument's type, you can also specify its default value — it will be used if none other is provided when the function is called:
+
+```ab
+fun addition(a: Num, b: Num = 100): Num {
+    return a + b
+}
+
+echo addition(10) // Outputs: 110
+echo addition(10, 20) // Outputs: 30
+```
+Notice that arguments with default values must come after the regular arguments.
+
 ## Modifiers
 
 You can apply [Command Modifiers](/basic_syntax/commands) to function calls as well. This way you can suppress any output with `silent` modifier or run _failable_ functions as if they could never fail (although this is unrecommended) with `unsafe` keyword
@@ -51,6 +63,20 @@ fun failing(name) {
 ```
 
 Notice that using `?` operator is automatically failing with the `status` code of the failing operation.
+
+If you specify the return type of a failable function, you must also append the `?` to the type name.
+
+```ab
+fun failable(): Num? {
+    if 0 > 5 {
+        fail 1
+    }
+
+    return 1
+}
+```
+
+Note that you cannot force a function to become failable by simply appending the `?` to the return type. The `?` can (and must) only be used in a function declaration, if the function is known to be failable.
 
 ## Status code
 
