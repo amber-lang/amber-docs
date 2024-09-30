@@ -17,11 +17,18 @@ interface Props {
   }
 }
 
+const getHeaders = (content: string) => {
+    let markdown = false
+    return content.split('\n').filter(line => {
+        if (line.startsWith('```')) markdown = !markdown
+        return !markdown && /^#+\s/.test(line)
+    })
+}
+
 const getDocument = async (path: string) => {
   const content = await getDoc(path)
   if (!content) return null
-  const rawHeaders = content.split('\n').filter(line => /^#+\s/.test(line))
-  const headers = rawHeaders.map(header => header.trim())
+  const headers = getHeaders(content)
   return { content, headers, path }
 }
 
@@ -45,6 +52,9 @@ export default async function Post({ params }: Props) {
               content="You can swipe heading to copy link or swipe codeblock to copy its contents."
               icon='/internal/swipe-to-copy.svg'
             />
+          </div>
+          <div className={style.title}>
+            {docDesc.title}
           </div>
           <Markdown content={doc.content} />
           <ChapterNavigation index={docDesc.index} />

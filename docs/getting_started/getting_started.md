@@ -1,5 +1,3 @@
-# Getting started
-
 Welcome to the documentation of Amber the programming language! 🎉
 
 Here is a minimal hello world example:
@@ -28,4 +26,3 @@ Amber comes with a straightforward type system that aids in identifying simple b
 ### Extra features
 
 Amber supports things that are essential to developer like floating point arithmetic, a non-obscure way to handle arrays or even passing variables by reference instead of by copy. In addition to that Amber comes with a standard library that includes features like text trimming, summing all number in an array, splitting text and many more.
-

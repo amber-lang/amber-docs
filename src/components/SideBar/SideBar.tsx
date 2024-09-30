@@ -40,7 +40,7 @@ function getHeaders(headers: string[]): Header[] {
     let distances = [0, 0, 0]
     let prevLevel = NaN
     return headers.map(header => {
-        const level = getHeaderLevel(header) - 1
+        const level = Math.min(getHeaderLevel(header), 3) - 1
         const relation = getRelation(level, prevLevel)
         const distance = distances[level]
         for (const i of distances.keys()) {
@@ -50,7 +50,7 @@ function getHeaders(headers: string[]): Header[] {
         prevLevel = level
         return {
             level,
-            title: header.replace(/^#+\s/, ''),
+            title: header.replace(/^#+\s/, '').replaceAll(/`([^`]+)`/g, '$1'),
             relation,
             distance
         }

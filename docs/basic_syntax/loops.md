@@ -1,5 +1,3 @@
-# Loops
-
 Amber supports two types of loop:
 
 - **Infinite** loop that can only be broken with a `break` keyword
@@ -50,10 +48,3 @@ loop index, file in files {
 ```
 
 The above example will iterate through all the files in the array and index them according to their order in the array. As a result, these files will be renamed to `0config.json`, `1file.txt`, and `2audio.mp3`.
-
-
-
-
-
-
-

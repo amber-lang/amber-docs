@@ -1,5 +1,3 @@
-# Bot Detector
-
 This script is meant for periodic execution and must be run as root. It scans an Nginx webserver log file for large volumes of requests from automated bots not identifying themselves as bots. If a bad bot makes more than 1000 requests per hour then the IP address is added to a blocklist file that can be picked up by firewall block software such as ipset.
 
 ```ab

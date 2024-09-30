@@ -14,7 +14,7 @@ hljs.registerAliases(['ab'], { languageName: 'amber' })
 // You can override the default renderer to customize the output
 class MarkdownRenderer extends Renderer {
     heading(text: string, level: number, raw: string): string {
-        const id = raw.toLowerCase().replace(/[^\w]+/g, '-')
+        const id = raw.toLowerCase().replace(/`([^`]+)`/g, '$1').replace(/[^\w]+/g, '-')
         return `
             <div class="${style.container}">
                 <div

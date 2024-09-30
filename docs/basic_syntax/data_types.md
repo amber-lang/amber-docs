@@ -1,5 +1,3 @@
-# Data types
-
 Amber supports 5 data types:
 - `Text` - The textual data type. In other programming languages it can also be called "string".
 - `Num` - The numeric data type. It's basically any number.
