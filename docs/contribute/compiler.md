@@ -1,8 +1,8 @@
-## Compiler informations
+# Compiler Information
 
-Here you will find out how the compiler is structured, how the Amber's parser works and how to write new syntax modules. Let's begin!
+Here you will find out how the compiler is structured, how the parser works and how to write new syntax modules. Let's begin!
 
-# Lexer
+## Lexer
 
 Beforehand the code is transformed into an array of tokens that contain information about:
 - `word` - the token content
@@ -24,16 +24,16 @@ Here is the example of how an array of Amber tokens can look like, where strings
 [Token<"let">, Token<"is_alive">, Token<"=">, Token<"true">, ...]
 ```
 
-# Parser
+## Parser
 
 Parser takes in Tokens and forms an Abstract Syntax Tree that represents the code written in Amber.
 
-## Syntax Module
+### Syntax Module
 
 What transforms tokens into the AST (Abstract Syntax Tree) is a `SyntaxModule`. It can be a `Text` literal, `echo` builtin or `Add` operator. The `SyntaxModule` is a trait that implements:
 - `parse` method that parses the module and determines whether or not the corresponding token string represents this sytax module. If otherwise, then a `Failure::Quiet` is returned that means that this is not the correct module to parse the tokens. However if this is the correct module but an error is encountered, then `Failure::Loud` is returned with an error (or warning / info) is returned.
 - `new` method that instantiates a new SyntaxModule.
-- `syntax_name!("<name of this module>")` that identifies this syntax module with it's name.
+- `syntax_name!("<name of this module>")` that identifies this syntax module with its name.
 
 The most important method here is `parse` that is defined with the following signature:
 
@@ -41,7 +41,7 @@ The most important method here is `parse` that is defined with the following sig
 fn parse(&mut self, meta: &mut M) where M: Metadata -> SyntaxResult;
 ```
 
-Parsing returns a `SyntaxResult` that under the hood is represented as `Result<(), Failure>` . It means that parsing can be finished successfully or it can fail returning a `Failure` object.
+Parsing returns a `SyntaxResult` that under the hood is represented as `Result<(), Failure>`. It means that parsing can be finished successfully or it can fail returning a `Failure` object.
 
 Here is an example `SyntaxModule` that parses `Bool` literal:
 ```rs
@@ -62,7 +62,7 @@ impl SyntaxModule<ParserMetadata> for Bool {
 }
 ```
 
-## Metadata
+### Metadata
 
 You can see that in the `parse` method mentioned above we pass some object called `meta`. This is a metadata parameter of type `ParserMetadata` that inherits from `Metadata` provided by Heraclitus. The structure instance is carried through the parsing process to keep a track of current state. It holds information such as declared variables, functions, boolean parameters telling if current context is within a loop or a function etc. `ParserMetadata` is represented as:
 
@@ -78,11 +78,11 @@ struct ParserMetadata {
 
 You can find out more about this structure in [src/utils/metadata/parser.rs](https://github.com/amber-lang/amber/blob/master/src/utils/metadata/parser.rs) file.
 
-## Parsing flow
+### Parsing flow
 
 The journey starts with parsing the global `Block` that can be located in [src/modules/block.rs](https://github.com/amber-lang/amber/blob/master/src/modules/block.rs) file. The `Block` parses a sequence of statements (`Statement` located in [src/modules/statement/stmt.rs](https://github.com/amber-lang/amber/blob/master/src/modules/statement/stmt.rs)).
 
-### Statement
+#### Statement
 
 Statement (`Statement`) is a structure that can represent any `SyntaxModule` that is of statement type. In other words Statement is a wrapper for syntax modules that represents a statement type such as loop, if condition, variable declaration etc.
 
@@ -121,7 +121,7 @@ This macro generates a couple of methods for the implementation of Stmt. This ma
 - `fn translate_match(&self, meta: &mut TranslateMetadata, module: &StatementType) -> String` - calls `translate` method on each of the syntax modules to translate them into Bash code.
 - `fn document_match(&self, meta: &ParserMetadata, module: &StatementType) -> String` - calls `document` method on each of the syntax modules to retrieve a documentation string.'
 
-### Expr
+#### Expr
 
 Expression (`Expr` located in [src/modules/expression/expr.rs](https://github.com/amber-lang/amber/blob/master/src/modules/expression/expr.rs)) represents a syntax that is a value of certain type (also referred to as _kind_ because of the Rust's type keyword). For example `1 + 1` is an addition of type `Num`.
 
