@@ -5,6 +5,7 @@ export function getTableOfContents() {
 }
 
 export type FlatDoc = { path: string, title: string };
+export type DocDescriptor = { index: number } & FlatDoc;
 
 export function* getFlatTableOfContents(): Generator<FlatDoc, undefined, undefined> {
   for (const doc of config.docs) {

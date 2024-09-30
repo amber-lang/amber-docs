@@ -64,7 +64,7 @@ export default async function Post({ params }: Props) {
         <div className={style.search}>
           <SearchBar variant='body' />
         </div>
-        <SideBar headers={doc.headers} />
+          <SideBar headers={doc.headers} docDesc={docDesc} />
         <SettingsGrid />
       </Sheet>
     </>

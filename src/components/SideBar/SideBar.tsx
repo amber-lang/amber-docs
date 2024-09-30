@@ -4,12 +4,13 @@ import React, { useEffect } from 'react'
 import { Island } from '@/components/Island'
 import { Text } from '@/components/Text'
 import style from './SideBar.module.css'
-import { getTableOfContents } from '@/utils/docs'
+import { DocDescriptor, getTableOfContents } from '@/utils/docs'
 import Link from 'next/link'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 
 interface Props {
     headers: string[],
+    docDesc: DocDescriptor,
     isFixed?: boolean
 }
 
@@ -57,7 +58,7 @@ function getHeaders(headers: string[]): Header[] {
     })
 }
 
-export default function SideBar({ headers, isFixed = false }: Props) {
+export default function SideBar({ headers, docDesc, isFixed = false }: Props) {
     const topics = getTableOfContents()
     const { isOpen } = useSidebar()
     const formattedHeaders = getHeaders(headers)
@@ -83,6 +84,14 @@ export default function SideBar({ headers, isFixed = false }: Props) {
 
             addEventListener('resize', setSize)
             setSize()
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!docDesc) return;
+        const currentDoc = document.querySelector(`[path="${docDesc.path}"]`)
+        if (currentDoc) {
+            currentDoc.scrollIntoView({ block: 'center' })
         }
     }, [])
 
@@ -117,7 +126,7 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                                 <React.Fragment key={path}>
                                     <Link href={`/${path}`} key={path}>
                                         <Text block>
-                                            <div className={style.indent} {...{ indent: "0" }}>{title}</div>
+                                            <div className={style.indent} {...{ indent: "0", path }}>{title}</div>
                                         </Text>
                                     </Link>
                                     {docs && docs.map(({ path, title }, index) => (
@@ -127,7 +136,7 @@ export default function SideBar({ headers, isFixed = false }: Props) {
                                                     <div
                                                         className={style.indent}
                                                         style={{ '--distance': '0' } as any}
-                                                        {...{ indent: 1, relation: index === 0 ? 'child' : 'sibling' }}
+                                                        {...{ indent: 1, path, relation: index === 0 ? 'child' : 'sibling' }}
                                                     >
                                                         {title}
                                                     </div>
