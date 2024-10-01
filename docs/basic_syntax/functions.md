@@ -1,5 +1,3 @@
-# Functions
-
 Functions can help you organize the structure of your code into reusable components. Here is how you can declare such function:
 
 ```ab

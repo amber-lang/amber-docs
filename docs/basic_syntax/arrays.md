@@ -1,5 +1,3 @@
-# Arrays
-
 We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
 
 To store or retrieve a value at a particular index of an array, you can use the following syntax:

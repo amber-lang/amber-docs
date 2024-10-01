@@ -1,6 +1,4 @@
-# Builtins
-
-Builtins are native methods (built in the compiler itself) and they are also reserved keywords in Amber.  
+Builtins are native methods (built in the compiler itself) and they are also reserved keywords in Amber.
 
 Similar to the standard library, they generate valid [Shellcheck](https://www.shellcheck.net/) code (though full support for this in Amber is still in progress).
 
@@ -22,7 +20,7 @@ echo "Hello World!"
 
 ## Mv
 
-If you need to move files you can use the `mv` builtin, requires two `Text` parameters.   
+If you need to move files you can use the `mv` builtin, requires two `Text` parameters.
 *Doesn't support the `mv` unix command parameters*.
 
 ```ab
@@ -38,7 +36,7 @@ mv "/tmp/a" "/tmp/b" failed {
 
 ## Nameof
 
-For more advanced commands, you might need the name of the variable in the compiled script. The `nameof` keyword provides this functionality.  
+For more advanced commands, you might need the name of the variable in the compiled script. The `nameof` keyword provides this functionality.
 
 For example, this allows you to perform operations like:
 

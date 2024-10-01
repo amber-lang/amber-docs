@@ -83,10 +83,6 @@
             "title": "Standard Library",
             "docs": [
                 {
-                    "path": "stdlib/doc",
-                    "title": "Documentation"
-                },
-                {
                     "path": "stdlib/doc/array",
                     "title": "Array"
                 },

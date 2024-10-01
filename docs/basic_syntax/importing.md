@@ -1,5 +1,3 @@
-# Importing
-
 In Amber, you can import functions from other files. To make a function accessible from an external file, you need to declare it as _public_ within the file where it’s defined.
 
 ## Public Functions

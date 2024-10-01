@@ -1,5 +1,3 @@
-# Usage
-
 Amber CLI can be used as a runtime or as a compiler.
 
 ## Command Line Interface (CLI) Parameters

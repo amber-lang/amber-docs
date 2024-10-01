@@ -1,5 +1,3 @@
-# As cast
-
 As cast is a tool that might initially seem like an easy way to convert types. So, why has this functionality found its place in the advanced category? Well, with great power comes great responsibility. You could perform some casts that make sense, like from `Bool` to `Num`, but you could also perform casts that we refer to as _absurd_. An example of this might be converting `Text` to `Num`.
 
 ## Regular casts

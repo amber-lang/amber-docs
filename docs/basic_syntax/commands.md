@@ -1,5 +1,3 @@
-# Commands
-
 The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
 The important thing regarding commands is that they can `fail`. Failing is a new concept that forces the caller to handle the failure. There are many ways to handle failure:
@@ -88,7 +86,7 @@ silent unsafe {
 }
 ```
 
-## Unsafe command execution 
+## Unsafe command execution
 
 ```ab
 unsafe $test -d /path/to/file$
@@ -106,5 +104,3 @@ You can easily silent given command. Here is an example usage:
 ```ab
 silent $very loud command$
 ```
-
-

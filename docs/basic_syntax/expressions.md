@@ -1,5 +1,3 @@
-# Expressions
-
 We can combine our data type literals with operators. The operators only work on **the same** data type. For example adding `Text` to `Num` will cause in error and is an unsupported operation. If you want to merge multiple different values into one text, learn more here about [string interpolation](/basic_syntax/expressions#text-interpolation)
 
 ## Addition operator `+`

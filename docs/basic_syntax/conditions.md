@@ -1,5 +1,3 @@
-# Conditions
-
 There are three ways to perform conditional logic:
 - **If Statement** - This is a regular if statement that can be used anywhere
 - **If Chain** - This is _syntactical sugar_ for pesky if-else chained together.
@@ -100,4 +98,3 @@ The ternary expression can of course be inlined when the expressions inside are 
 ```ab
 let candy = count > 1 then "candies" else "candy"
 ```
-

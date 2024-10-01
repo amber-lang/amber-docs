@@ -3,6 +3,12 @@
   width: 1000px;
 }
 
+.title {
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    vertical-align: middle;
+}
 
 .search {
   display: block;
@@ -18,7 +24,7 @@
 @media screen and (hover: none) {
   .no-hover {
     display: block;
-  } 
+  }
 }
 
 @media screen and (max-width: 1920px) {
@@ -38,4 +44,3 @@
     width: 80vw;
   }
 }
-
