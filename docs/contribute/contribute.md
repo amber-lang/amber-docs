@@ -7,7 +7,7 @@ Before you dig into Amber, you should know a few things before you contribute.
 
 Any code change is submitted [through a PR](https://github.com/amber-lang/Amber/pulls), which is then approved by at least 2 maintainers.
 
-The way we talk on github is not the same as we would talk in person. When on GitHub, always get straight to the point and be critical.
+The way we talk on GitHub is not the same as we would talk in person. When on GitHub, always get straight to the point and be critical.
 
 Personal grudges are forbidden around here, as well as anything offtopic or offensive.
 
