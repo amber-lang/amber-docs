@@ -20,7 +20,7 @@ bash <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/
 ```
 - **Local-user**
 ```bash
-bash -- --user <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/install.sh")
+bash -- <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/install.sh") --user 
 ```
 - **Package manager**
 
