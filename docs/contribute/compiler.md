@@ -11,9 +11,9 @@ Beforehand the code is transformed into an array of tokens that contain informat
 
 ```rs
 struct Token {
-	word: String,
-	pos: (usize, usize),
-	start: usize
+    word: String,
+    pos: (usize, usize),
+    start: usize
 }
 ```
 
@@ -68,11 +68,11 @@ You can see that in the `parse` method mentioned above we pass some object calle
 
 ```rs
 struct ParserMetadata {
-	// Parsing contenxt
-	pub context: Context
-	// Error / Warning messages
-	pub messages: Vec<Message>
-	// ...
+    // Parsing contenxt
+    pub context: Context
+    // Error / Warning messages
+    pub messages: Vec<Message>
+    // ...
 }
 ```
 
@@ -170,27 +170,26 @@ The pattern that the macro follows can be represented as `<function_group_name> 
 
 ```rs
 let result = {
-	fn _terminal(...) {
-		panic!("Please end the recurrence in the group before");
-	}
-	
-	fn literal(...) {
-		parse_expr_group!(... {literal, _terminal} ...);
-	}
-	
-	// ...
-	
-	fn range(...) {
-		parse_expr_group!(... {range, addition} ...);
-	}
-	
-	fn ternary(...) {
-		parse_expr_group!(... {ternary, range} ...);
-	}
-	
-	return ternary(...);
+    fn _terminal(...) {
+        panic!("Please end the recurrence in the group before");
+    }
+
+    fn literal(...) {
+        parse_expr_group!(... {literal, _terminal} ...);
+    }
+
+    // ...
+
+    fn range(...) {
+        parse_expr_group!(... {range, addition} ...);
+    }
+
+    fn ternary(...) {
+        parse_expr_group!(... {ternary, range} ...);
+    }
+
+    return ternary(...);
 };
 ```
 
 The main objective of `parse_expr_group!` is to implement given function's body with appropriate parsing mechanism. If it's a `BinOp` that parses from left to right, then first we parse left expression by calling the lower order group, then we parse the operator, and then the right expression. You can read more on how parsing groups works in the macros file.
-
