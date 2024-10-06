@@ -18,6 +18,16 @@ Transpile to `echo` which print text to the console, requires a `Text` parameter
 echo "Hello World!"
 ```
 
+## Exit 
+
+Transpile to `exit` which terminate the program execution, optionally specify `Num` exit code (defaults to `exit 0` if no parameter provided).
+
+```ab
+exit 1
+
+exit // transpiles to exit 0
+```
+
 ## Mv
 
 If you need to move files you can use the `mv` builtin, requires two `Text` parameters.
