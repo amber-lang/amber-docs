@@ -25,7 +25,7 @@ Transpile to `exit` which terminate the program execution, optionally specify `N
 ```ab
 exit 1
 
-exit // transpils to exit 0
+exit // transpiles to exit 0
 ```
 
 ## Mv
