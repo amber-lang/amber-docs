@@ -34,7 +34,7 @@ The package contains all the required install scripts and dependencies. You can 
 {
     inputs = {
         # ...
-        amber.url = "github:Ph0enixKM/Amber";
+        amber.url = "github:amber-lang/Amber";
     };
 
     # then later with home manager for example
@@ -47,7 +47,6 @@ The package is avaiable as `amber-lang` on [nixpkgs](https://github.com/NixOS/ni
 While developing with Nix, the flake defines all dependencies for `nix develop` (or `direnv` if used).
 
 ## Snap
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/amber-bash)
 
 ```bash
 sudo snap install amber-bash --classic
