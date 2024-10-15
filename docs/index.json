@@ -113,6 +113,24 @@
             ]
         },
         {
+            "path": "contribute/contribute",
+            "title": "Contributing",
+            "docs": [
+                {
+                    "path": "contribute/contribute",
+                    "title": "How to"
+                },
+                {
+                    "path": "contribute/guide_book",
+                    "title": "Guide"
+                },
+                {
+                    "path": "contribute/compiler",
+                    "title": "Compiler structure"
+                }
+             ]
+        },
+        {
             "path": "by_example/examples",
             "title": "Amber by Example",
             "docs": [
