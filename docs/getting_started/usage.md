@@ -80,4 +80,6 @@ You can download it from https://github.com/amber-lang/zed-amber-extension.
 
 ### Vim
 
-There is a WIP syntax color scheme at https://github.com/gbhorwood/amber.vim
+The official Amber Vim plugin supports syntax highlighting, and sets some Vim options for easier editing.
+
+You can clone it into your Vim plugin directory from https://github.com/amber-lang/amber-vim.
