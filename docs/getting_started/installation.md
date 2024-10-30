@@ -77,5 +77,5 @@ If these tools are available on your system, they will be executed at the end of
 You can uninstall Amber any time. To do this you can simply run the following code snippet.
 
 ```sh
-curl -s "https://raw.githubusercontent.com/Ph0enixKM/AmberNative/master/setup/uninstall.sh" | bash
+bash -- <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/uninstall.sh")
 ```
