@@ -28,20 +28,14 @@ body {
   width: 5px;
   height: 5px;
 }
- 
+
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
- 
+
 ::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: var(--border);
-}
-
-main {
-  flex: 1;
-  display: flex;
-  margin-top: 100px;
 }
 
 a {
@@ -51,7 +45,7 @@ a {
 
 @media screen and (max-width: 1000px) {
   body {
-    margin-bottom: 40px;    
+    margin-bottom: 40px;
   }
 
   .left {

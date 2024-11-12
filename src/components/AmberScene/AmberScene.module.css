@@ -1,0 +1,8 @@
+.amber {
+    width: calc(var(--size) * 4);
+    height: calc(var(--size) * 4);
+    filter: drop-shadow(0 0 10px var(--background));
+    position: absolute;
+    top: calc(var(--size) * -1.5);
+    left: calc(var(--size) * -1.5);
+}

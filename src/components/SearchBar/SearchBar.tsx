@@ -1,6 +1,6 @@
 'use client'
 
-import { useDebounce } from 'usehooks-ts'
+import { useDebounceCallback } from 'usehooks-ts'
 import style from './SearchBar.module.css'
 import { useState } from 'react'
 import useSWR from 'swr'
@@ -21,12 +21,12 @@ function useSearchResult(query: string) {
 export default function SearchBar({ variant = 'body', placeholder = 'Search documentation' }: Props) {
     const [query, setQuery] = useState('')
     const [isInputFocused, setIsInputFocused] = useState(false)
-    const debouncedQuery = useDebounce(query, 500)
-    const { result, isLoading } = useSearchResult(debouncedQuery)
+    const debounceQuery = useDebounceCallback(setQuery, 500)
+    const { result, isLoading } = useSearchResult(query)
     const showResults = isInputFocused && query.length > 0 && !isLoading
-    
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value)
+        debounceQuery(event.target.value)
     }
 
     return (

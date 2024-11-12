@@ -4,13 +4,15 @@ import React, { useEffect } from 'react'
 import { Island } from '@/components/Island'
 import { Text } from '@/components/Text'
 import style from './SideBar.module.css'
-import { DocDescriptor, getTableOfContents } from '@/utils/docs'
+import { DocDescriptor } from '@/utils/docs'
+import { TocSection } from '@/utils/docsServer'
 import Link from 'next/link'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 
 interface Props {
     headers: string[],
     docDesc?: DocDescriptor,
+    toc: TocSection[],
     isFixed?: boolean
 }
 
@@ -58,8 +60,7 @@ function getHeaders(headers: string[]): Header[] {
     })
 }
 
-export default function SideBar({ headers, docDesc, isFixed = false }: Props) {
-    const topics = getTableOfContents()
+export default function SideBar({ headers, docDesc, toc = [], isFixed = false }: Props) {
     const { isOpen } = useSidebar()
     const formattedHeaders = getHeaders(headers)
     const onPageRef = React.useRef<HTMLDivElement>(null)
@@ -122,7 +123,7 @@ export default function SideBar({ headers, docDesc, isFixed = false }: Props) {
                 <div className={style.spacer}/>
                 <Island label="Table of contents">
                     <div className={[style.links, !headers.length && style.toc].join(' ')} ref={tocRef}>
-                        {topics.map(({ path, title, docs }) => (
+                        {toc.map(({ path, title, docs }) => (
                                 <React.Fragment key={path}>
                                     <Link href={`/${path}`} key={path}>
                                         <Text block>

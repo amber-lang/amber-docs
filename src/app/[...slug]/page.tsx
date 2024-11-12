@@ -8,13 +8,39 @@ import Sheet from '@/components/Sheet/Sheet'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
-import { getDocDescriptor } from '@/utils/docs'
+import { getDocDescriptor, getFlatTableOfContents } from '@/utils/docs'
+import { getTableOfContents } from '@/utils/docsServer'
 import InfoCard from '@/components/InfoCard/InfoCard'
+import config from "@/../config.json"
+import Main from '@/views/Main/Main'
+import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
 
 interface Props {
   params: {
     slug: string[]
   }
+}
+
+interface Location {
+    version: string
+    slug: string[]
+    fullPath: string
+}
+
+const getLocation = (slug: string[]): Location => {
+    const versionRegex = /^\d+\.\d+\.\d+(?:-(?:alpha|beta))?$/
+    if (versionRegex.test(slug[0])) {
+        return {
+            version: slug[0],
+            slug: slug.slice(1),
+            fullPath: slug.join('/')
+        }
+    }
+    return {
+        version: config.defaultVersion,
+        slug,
+        fullPath: [config.defaultVersion, ...slug].join('/')
+    }
 }
 
 const getHeaders = (content: string) => {
@@ -33,40 +59,44 @@ const getDocument = async (path: string) => {
 }
 
 export default async function Post({ params }: Props) {
-  const doc = await getDocument(params.slug.join('/'))
-  if (!doc) return <NotFound />
-  const docDesc = getDocDescriptor(params.slug.join('/'))
+    const location = getLocation(params.slug)
+    if (location.slug.length == 0) return <Main version={location.version} />
+    const doc = await getDocument(location.fullPath)
+    if (!doc) return <NotFound />
+    const toc = await getTableOfContents()
+    const docDesc = getDocDescriptor(toc, location.slug.join('/'))
+    const flatToc = getFlatTableOfContents(toc)
 
-  return (
-    <>
-      <div className='left'>
-        <SideBar headers={doc.headers} isFixed />
-      </div>
-      <div className='right'>
-        <div className={style.main}>
-          <Breadcrumbs path={[docDesc!]} />
-          <div className={style['no-hover']}>
-            <InfoCard
-              id='swipe-to-copy'
-              title='Swipe to copy'
-              content="You can swipe heading to copy link or swipe codeblock to copy its contents."
-              icon='/internal/swipe-to-copy.svg'
-            />
-          </div>
-          <div className={style.title}>
-            {docDesc.title}
-          </div>
-          <Markdown content={doc.content} />
-          <ChapterNavigation index={docDesc.index} />
-        </div>
-      </div>
-      <Sheet>
-        <div className={style.search}>
-          <SearchBar variant='body' />
-        </div>
-          <SideBar headers={doc.headers} docDesc={docDesc} />
-        <SettingsGrid />
-      </Sheet>
-    </>
-  )
+    return (
+        <NavigationLayout version={location.version}>
+            <div className='left'>
+                <SideBar toc={toc} headers={doc.headers} isFixed />
+            </div>
+            <div className='right'>
+                <div className={style.main}>
+                    <Breadcrumbs path={[docDesc]} />
+                    <div className={style['no-hover']}>
+                        <InfoCard
+                            id='swipe-to-copy'
+                            title='Swipe to copy'
+                            content="You can swipe heading to copy link or swipe codeblock to copy its contents."
+                            icon='/internal/swipe-to-copy.svg'
+                        />
+                    </div>
+                    <div className={style.title}>
+                        {docDesc.title}
+                    </div>
+                    <Markdown content={doc.content} />
+                    <ChapterNavigation flatToc={flatToc} index={docDesc.index} />
+                </div>
+            </div>
+            <Sheet>
+                <div className={style.search}>
+                    <SearchBar variant='body' />
+                </div>
+                <SideBar toc={toc} headers={doc.headers} docDesc={docDesc} />
+                <SettingsGrid />
+            </Sheet>
+        </NavigationLayout>
+    )
 }

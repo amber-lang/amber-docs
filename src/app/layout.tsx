@@ -3,7 +3,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
-import Navigation from '@/components/Navigation/Navigation'
 import SidebarProvider from '@/contexts/DocumentContext/SidebarProvider'
 import TopLoader from '@/components/TopLoader/TopLoader'
 
@@ -38,7 +37,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider>
           <SidebarProvider>
-            <Navigation />
             <TopLoader />
             <main>
               {children}

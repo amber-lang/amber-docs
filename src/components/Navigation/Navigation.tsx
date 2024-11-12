@@ -10,7 +10,11 @@ import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import { useTheme } from '@/contexts/ThemeContext'
 import Image from 'next/image'
 
-export default function Navigation() {
+interface Props {
+    version: string
+}
+
+export default function Navigation({ version }: Props) {
     const pathname = usePathname()
     const { isOpen, setSidebar } = useSidebar()
     const { mode, setThemeMode } = useTheme()
@@ -34,10 +38,15 @@ export default function Navigation() {
                         <div className={style.title}>
                             amber
                         </div>
+                    </Link>
+                    <div className={style.version}>
+                        {version.split('-')[0]}
+                    </div>
+                    {version.includes("alpha") && (
                         <div className={style.tag}>
                             alpha
                         </div>
-                    </Link>
+                    )}
                 </div>
                 <div className={style.center}>
                     {pathname !== '/' && <SearchBar />}
