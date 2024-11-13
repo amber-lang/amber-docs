@@ -9,6 +9,8 @@ import SettingsGrid from "@/components/SettingsGrid/SettingsGrid";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import NavigationLayout from "@/layouts/NavigationLayout/NavigationLayout";
+import { generateUrl } from "@/utils/urls";
+import MainBigLink from "@/layouts/MainBigLink/MainBigLink";
 const AmberScene = dynamic(() => import("@/components/AmberScene/AmberScene"), { ssr: false });
 
 export default async function Main() {
@@ -37,9 +39,7 @@ export default async function Main() {
                         <SearchBar variant="title" />
                     </div>
                     {Boolean(toc.length) && (
-                        <Link href={toc[0].path} className={style["big-link"]}>
-                            {toc[0].title}
-                        </Link>
+                        <MainBigLink toc={toc} />
                     )}
                 </div>
             </div>
