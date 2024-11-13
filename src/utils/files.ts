@@ -24,7 +24,6 @@ const getHeaders = (content: string) => {
 }
 
 export async function getDocument(path: string): Promise<Document | null> {
-    console.log('getDocument', path)
     const content = await readFile(path)
     if (!content) return null
     const headers = getHeaders(content)
