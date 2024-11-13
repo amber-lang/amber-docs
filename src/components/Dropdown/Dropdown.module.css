@@ -1,0 +1,115 @@
+.container {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+
+    &.bold {
+        font-family: "Cal Sans";
+        font-size: 1.75rem;
+
+        .selected {
+            padding: 0.25rem 0.5rem;
+            color: color-mix(in srgb, var(--text) 50%, var(--background));
+            border-radius: 0.5rem;
+            position: relative;
+
+            &:hover {
+                .bg {
+                    width: calc(100% + 1.25rem);
+                    background-color: color-mix(in srgb, var(--background) 90%, var(--text));
+                }
+            }
+
+            /* Dark background that appears on hover */
+            .bg {
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                position: absolute;
+                z-index: -1;
+                display: inline-block;
+                border-radius: 0.5rem;
+                transition: 100ms;
+            }
+
+            /* Dropdown arrow */
+            &::after {
+                content: "";
+                width: 0.75rem;
+                height: 0.75rem;
+                background-image: url("/internal/arrow-dropdown.svg");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                position: absolute;
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 0.30rem;
+                top: 50%;
+                right: -0.625rem;
+                transform: translateY(-50%);
+                opacity: 0.5;
+                transform-origin: center;
+            }
+        }
+    }
+
+    .list {
+        visibility: hidden;
+        position: absolute;
+        width: calc(100% + 1.25rem);
+        transform: scaleY(0);
+        transform-origin: top center;
+        opacity: 0;
+        transition: 100ms;
+        background-color: color-mix(in srgb, var(--background) 90%, var(--text));
+        border-radius: 0.5rem;
+    }
+}
+
+.container.open {
+    .selected {
+        color: var(--text);
+
+        .bg {
+            border: 1px solid color-mix(in srgb, var(--background) 60%, var(--text));
+            width: calc(100% + 1.25rem);
+            border-radius: 0.5rem 0.5rem 0 0;
+            background-color: color-mix(in srgb, var(--background) 90%, var(--text));
+        }
+    }
+
+    .list {
+        visibility: visible;
+        top: 100%;
+        left: 0;
+        opacity: 1;
+        display: inline-block;
+        width: calc(100% + 1.25rem);
+        transform: scaleY(1);
+        border-radius: 0 0 0.5rem 0.5rem;
+        border: 1px solid color-mix(in srgb, var(--background) 60%, var(--text));
+        border-top: none;
+
+        .item {
+            padding: 0.25rem 0.5rem;
+            position: relative;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+
+            &:hover {
+                background-color: color-mix(in srgb, var(--background) 80%, var(--text));
+            }
+
+            /* Add bottom border radius to the last element */
+            &:last-child {
+                border-radius: 0 0 0.5rem 0.5rem;
+            }
+        }
+    }
+}

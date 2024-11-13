@@ -9,6 +9,7 @@ import style from './Navigation.module.css'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import { useTheme } from '@/contexts/ThemeContext'
 import Image from 'next/image'
+import Dropdown from '../Dropdown/Dropdown'
 
 interface Props {
     version: string
@@ -39,9 +40,12 @@ export default function Navigation({ version }: Props) {
                             amber
                         </div>
                     </Link>
-                    <div className={style.version}>
-                        {version.split('-')[0]}
-                    </div>
+                    <Dropdown
+                        value={version}
+                        onChange={(value: Object) => router.push(`/${value.toString()}`)}
+                        options={["1.0.0", "0.3.5-alpha", "0.4.0-alpha"]}
+                        getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
+                    />
                     {version.includes("alpha") && (
                         <div className={style.tag}>
                             alpha
