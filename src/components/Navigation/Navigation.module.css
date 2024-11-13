@@ -100,7 +100,17 @@
         display: none;
     }
 
+    .left {
+        margin-right: 0;
+    }
+
     .center {
         display: none;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .left {
+        margin-left: 0;
     }
 }
