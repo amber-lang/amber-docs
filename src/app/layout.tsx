@@ -5,6 +5,8 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import SidebarProvider from '@/contexts/DocumentContext/SidebarProvider'
 import TopLoader from '@/components/TopLoader/TopLoader'
+import VersionProvider from '@/contexts/VersionContext/VersionProvider'
+import config from '@/../config.json'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,9 +40,11 @@ export default function RootLayout({
         <ThemeProvider>
           <SidebarProvider>
             <TopLoader />
-            <main>
-              {children}
-            </main>
+            <VersionProvider version={config.defaultVersion}>
+                <main>
+                {children}
+                </main>
+            </VersionProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>
