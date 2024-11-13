@@ -5,6 +5,8 @@ import style from './ChapterNavigation.module.css'
 import { Text } from '../Text'
 import { FlatDoc } from '@/utils/docs'
 import Link from 'next/link'
+import { generateUrl } from '@/utils/urls'
+import useVersion from '@/contexts/VersionContext/useVersion'
 
 interface Props {
     index: number,
@@ -12,6 +14,7 @@ interface Props {
 }
 
 export default function ChapterNavigation({ index, flatToc }: Props) {
+    const { version } = useVersion()
     const prev = flatToc[index - 1]
     const next = flatToc[index + 1]
     return (
@@ -21,7 +24,7 @@ export default function ChapterNavigation({ index, flatToc }: Props) {
                     <>
                         <div className={`${style.reverse} ${style.icon}`}></div>
                         <Text>
-                            <Link href={`/${prev.path}`}>
+                            <Link href={`/${generateUrl(version, prev.path)}`}>
                                 <span className={style.text}>
                                     {prev.title}
                                 </span>
@@ -37,7 +40,7 @@ export default function ChapterNavigation({ index, flatToc }: Props) {
                 {next && (
                     <>
                         <Text>
-                            <Link href={`/${next.path}`}>
+                            <Link href={`/${generateUrl(version, next.path)}`}>
                                 <span className={style.text}>
                                     {next.title}
                                 </span>

@@ -8,6 +8,8 @@ import { DocDescriptor } from '@/utils/docs'
 import { TocSection } from '@/utils/docsServer'
 import Link from 'next/link'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
+import useVersion from '@/contexts/VersionContext/useVersion'
+import { generateUrl } from '@/utils/urls'
 
 interface Props {
     headers: string[],
@@ -61,6 +63,7 @@ function getHeaders(headers: string[]): Header[] {
 }
 
 export default function SideBar({ headers, docDesc, toc = [], isFixed = false }: Props) {
+    const { version } = useVersion()
     const { isOpen } = useSidebar()
     const formattedHeaders = getHeaders(headers)
     const onPageRef = React.useRef<HTMLDivElement>(null)
@@ -125,14 +128,14 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
                     <div className={[style.links, !headers.length && style.toc].join(' ')} ref={tocRef}>
                         {toc.map(({ path, title, docs }) => (
                                 <React.Fragment key={path}>
-                                    <Link href={`/${path}`} key={path}>
+                                    <Link href={`/${generateUrl(version, path)}`} key={path}>
                                         <Text block>
                                             <div className={style.indent} {...{ indent: "0", path }}>{title}</div>
                                         </Text>
                                     </Link>
                                     {docs && docs.map(({ path, title }, index) => (
                                         <React.Fragment key={path}>
-                                            <Link href={`/${path}`}>
+                                            <Link href={`/${generateUrl(version, path)}`}>
                                                 <Text block>
                                                     <div
                                                         className={style.indent}

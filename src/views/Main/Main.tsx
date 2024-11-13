@@ -11,15 +11,11 @@ import { ErrorBoundary } from "react-error-boundary";
 import NavigationLayout from "@/layouts/NavigationLayout/NavigationLayout";
 const AmberScene = dynamic(() => import("@/components/AmberScene/AmberScene"), { ssr: false });
 
-interface Props {
-    version: string;
-}
-
-export default async function Main({ version }: Props) {
+export default async function Main() {
     const toc = await getTableOfContents();
 
     return (
-        <NavigationLayout version={version}>
+        <NavigationLayout hideSearch>
             <div className="left">
                 <SideBar toc={toc} headers={[]} isFixed />
             </div>

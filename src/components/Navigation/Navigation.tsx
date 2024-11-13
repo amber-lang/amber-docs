@@ -10,12 +10,15 @@ import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import { useTheme } from '@/contexts/ThemeContext'
 import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
+import config from "@/../config.json"
+import useVersion from '@/contexts/VersionContext/useVersion'
 
 interface Props {
-    version: string
+    hideSearch?: boolean
 }
 
-export default function Navigation({ version }: Props) {
+export default function Navigation({ hideSearch = false }: Props) {
+    const { version } = useVersion()
     const pathname = usePathname()
     const { isOpen, setSidebar } = useSidebar()
     const { mode, setThemeMode } = useTheme()
@@ -43,7 +46,7 @@ export default function Navigation({ version }: Props) {
                     <Dropdown
                         value={version}
                         onChange={(value: Object) => router.push(`/${value.toString()}`)}
-                        options={["1.0.0", "0.3.5-alpha", "0.4.0-alpha"]}
+                        options={config.visibleVersions}
                         getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
                     />
                     {version.includes("alpha") && (
@@ -53,7 +56,7 @@ export default function Navigation({ version }: Props) {
                     )}
                 </div>
                 <div className={style.center}>
-                    {pathname !== '/' && <SearchBar />}
+                    {!hideSearch && <SearchBar />}
                 </div>
                 <div className={style.right}>
                     <Button onClick={toggleSideBar}>

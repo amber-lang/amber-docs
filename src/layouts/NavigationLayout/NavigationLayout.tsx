@@ -3,13 +3,13 @@ import styles from './NavigationLayout.module.css';
 
 interface Props {
     children: React.ReactNode;
-    version: string;
+    hideSearch?: boolean;
 }
 
-export default function NavigationLayout({ children, version }: Props) {
+export default function NavigationLayout({ children, hideSearch = false }: Props) {
     return (
         <>
-            <Navigation version={version} />
+            <Navigation hideSearch={hideSearch} />
             <main className={styles.main}>
                 {children}
             </main>
