@@ -1,36 +1,14 @@
 import NotFound from '../not-found'
 import { getDocument } from '@/utils/files'
-import config from "@/../config.json"
 import Main from '@/views/Main/Main'
 import Page from '@/views/Page/Page'
 import VersionProvider from '@/contexts/VersionContext/VersionProvider'
+import { getLocation } from '@/utils/urls'
 
 interface Props {
   params: {
     slug: string[]
   }
-}
-
-export interface Location {
-    version: string
-    slug: string[]
-    fullPath: string
-}
-
-const getLocation = (slug: string[]): Location => {
-    const versionRegex = /^\d+\.\d+\.\d+(?:-(?:alpha|beta))?$/
-    if (versionRegex.test(slug[0])) {
-        return {
-            version: slug[0],
-            slug: slug.slice(1),
-            fullPath: slug.join('/')
-        }
-    }
-    return {
-        version: config.defaultVersion,
-        slug,
-        fullPath: [config.defaultVersion, ...slug].join('/')
-    }
 }
 
 export default async function Post({ params }: Props) {

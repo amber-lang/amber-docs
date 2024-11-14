@@ -1,7 +1,6 @@
 import style from "./Main.module.css";
-import { getTableOfContents, TocSection } from "@/utils/docsServer";
+import { getTableOfContents } from "@/utils/docsServer";
 import SideBar from "@/components/SideBar/SideBar";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Sheet from "@/components/Sheet/Sheet";
@@ -9,7 +8,6 @@ import SettingsGrid from "@/components/SettingsGrid/SettingsGrid";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import NavigationLayout from "@/layouts/NavigationLayout/NavigationLayout";
-import { generateUrl } from "@/utils/urls";
 import MainBigLink from "@/layouts/MainBigLink/MainBigLink";
 const AmberScene = dynamic(() => import("@/components/AmberScene/AmberScene"), { ssr: false });
 

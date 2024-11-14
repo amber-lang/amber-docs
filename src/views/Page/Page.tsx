@@ -1,6 +1,5 @@
 
 import ChapterNavigation from '@/components/ChapterNavigation/ChapterNavigation'
-import Markdown from '@/components/Markdown/Markdown'
 import SideBar from '@/components/SideBar/SideBar'
 import style from './Page.module.css'
 import { Document } from '@/utils/files'
@@ -12,7 +11,8 @@ import { getDocDescriptor, getFlatTableOfContents } from '@/utils/docs'
 import { getTableOfContents } from '@/utils/docsServer'
 import InfoCard from '@/components/InfoCard/InfoCard'
 import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
-import { Location } from '@/app/[...slug]/page'
+import dynamic from 'next/dynamic'
+const Markdown = dynamic(() => import('@/components/Markdown/Markdown'), { ssr: false })
 
 interface Props {
     location: Location,
