@@ -10,7 +10,7 @@ Just like the Amber's compiled Bash output, all standard library functions are b
 
 ## How to use it
 
-Below is an example of how to use the standard library to generate documentation (using the [script](https://github.com/amber-lang/amber-docs/sync-stdlib-doc.ab) provided on the Amber Documentation repository):
+Below is an example of how to use the standard library to generate documentation (using the [script](https://github.com/amber-lang/amber-docs/blob/master/sync-stdlib-doc.ab) provided on the Amber Documentation repository):
 
 ```ab
 import { download } from "std/http"
