@@ -1,18 +1,23 @@
 'use client'
 
-import { Marked, MarkedOptions, Renderer } from '@ts-stack/markdown'
+import { Marked, Renderer } from '@ts-stack/markdown'
 import style from './Markdown.module.css'
 import hljs, { LanguageFn } from 'highlight.js'
 import amber from './amber'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
-import useVersion from '@/contexts/VersionContext/useVersion'
-import { generateUrl } from '@/utils/urls'
+import { generateUrl, getLocation } from '@/utils/urls'
 import { MarkOptions } from 'perf_hooks'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
+
+const getHrefWithVersion = (href: string, currentUrl: string) => {
+    const params = currentUrl.replace(/^\//, '').split('/')
+    const location = getLocation(params)
+    return generateUrl(location.version, href)
+}
 
 // You can override the default renderer to customize the output
 class MarkdownRenderer extends Renderer {
@@ -77,32 +82,25 @@ class MarkdownRenderer extends Renderer {
 
     link(href: string, title: string, text: string): string {
         const assetRegex = /\/(internal|images)/
-        const version = (this.options as MarkOptions & {version: string}).version
         if (href.startsWith('http') || assetRegex.test(window.location.pathname)) {
             return `<a href="${href}"${title ? ` title="${title}"` : ''}>${text}</a>`;
         }
-        return `<a href="/${generateUrl(version, href.slice(1))}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+        return `<a href="/${getHrefWithVersion(href, window.location.pathname)}"${title ? ` title="${title}"` : ''}>${text}</a>`;
     }
 }
 
+Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
+Marked.setOptions({
+    renderer: new MarkdownRenderer(),
+    breaks: true,
+    gfm: true,
+    highlight(code, lang) {
+        if (!lang) return code
+        return hljs.highlight(code, { language: lang }).value
+    }
+})
+
 export default function Markdown({ content }: { content: string }) {
-    const { version } = useVersion()
-
-    const markdownParser = useMemo(() => {
-        const renderer = new MarkdownRenderer({ ...Marked.options, version } as MarkedOptions);
-        Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
-        Marked.setOptions({
-            renderer,
-            breaks: true,
-            gfm: true,
-            highlight(code, lang) {
-                if (!lang) return code
-                return hljs.highlight(code, { language: lang }).value
-            }
-        })
-        return Marked
-    }, [version])
-
     useEffect(() => {
         const blocks: HTMLDivElement[] = Array.from(document.querySelectorAll(`.${style.container}`))
         if (matchMedia('(hover: none)').matches) {
@@ -111,6 +109,6 @@ export default function Markdown({ content }: { content: string }) {
     }, [])
 
     return (
-        <div className={style.markdown} dangerouslySetInnerHTML={{ __html: markdownParser.parse(content) }} />
+        <div className={style.markdown} dangerouslySetInnerHTML={{ __html: Marked.parse(content) }} />
     )
 }

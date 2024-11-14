@@ -1,10 +1,11 @@
 import config from "@/../config.json"
+import path from 'path'
 
-export function generateUrl(version: string, path: string) {
+export function generateUrl(version: string, pathname: string) {
     if (version === config.defaultVersion) {
-        return path
+        return pathname
     }
-    return `${version}/${path}`
+    return path.join(version, pathname)
 }
 
 export interface Location {
