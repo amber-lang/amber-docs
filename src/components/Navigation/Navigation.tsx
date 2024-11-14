@@ -43,12 +43,14 @@ export default function Navigation({ hideSearch = false }: Props) {
                             amber
                         </div>
                     </Link>
-                    <Dropdown
-                        value={version}
-                        onChange={(value: Object) => router.push(`/${value.toString()}`)}
-                        options={config.visibleVersions}
-                        getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
-                    />
+                    <div className={style.version}>
+                        <Dropdown
+                            value={version}
+                            onChange={(value: Object) => router.push(`/${value.toString()}`)}
+                            options={config.visibleVersions}
+                            getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
+                        />
+                    </div>
                     {version.includes("alpha") && (
                         <div className={style.tag}>
                             alpha

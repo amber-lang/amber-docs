@@ -57,6 +57,13 @@
     margin-right: 0.5rem;
 }
 
+.version {
+    font-weight: 400;
+    letter-spacing: -2px;
+    font-size: 1.75rem;
+    transform: translateY(0.15rem);
+}
+
 .tag {
     position: relative;
     z-index: 50;
@@ -72,7 +79,7 @@
     transition: 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-*:hover + .tag, [open] + .tag {
+*:hover + .tag, .version:has([open]) + .tag {
     transform: translate(1.25rem, 0);
 }
 

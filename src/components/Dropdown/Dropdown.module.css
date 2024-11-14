@@ -5,9 +5,6 @@
     z-index: 20;
 
     &.bold {
-        font-family: "Cal Sans";
-        font-size: 1.75rem;
-
         .selected {
             padding: 0.25rem 0.5rem;
             color: color-mix(in srgb, var(--text) 50%, var(--background));
