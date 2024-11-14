@@ -2,6 +2,7 @@
 import ChapterNavigation from '@/components/ChapterNavigation/ChapterNavigation'
 import SideBar from '@/components/SideBar/SideBar'
 import style from './Page.module.css'
+import { Location } from '@/utils/urls'
 import { Document } from '@/utils/files'
 import Sheet from '@/components/Sheet/Sheet'
 import SearchBar from '@/components/SearchBar/SearchBar'
