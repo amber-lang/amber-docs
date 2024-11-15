@@ -55,7 +55,7 @@ Here is another example of a failing function:
 
 ```ab
 fun failing(name) {
-	$command$?
+	$ command $?
 	parse(name)?
 }
 ```

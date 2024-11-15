@@ -17,9 +17,9 @@ import { download } from "std/http"
 import { split, contains } from "std/text"
 import { file_exist } from "std/fs"
 
-trust $rm -fr /tmp/amber-git$
+trust $ rm -fr /tmp/amber-git $
 if silent download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
-    trust $ unzip "/tmp/amber-git.zip" -d /tmp/amber-git$
+    trust $ unzip "/tmp/amber-git.zip" -d /tmp/amber-git $
 
     let std = trust $ /usr/bin/ls "/tmp/amber-git/amber-master/src/std/" $
     let stdlib = split(std, "\n")

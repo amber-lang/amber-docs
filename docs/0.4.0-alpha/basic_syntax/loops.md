@@ -41,7 +41,7 @@ Here is another example showing iterator loop in action:
 let files = ["config.json", "file.txt", "audio.mp3"]
 
 loop index, file in files {
-	$mv {file} {index}{file}$ failed {
+	$ mv {file} {index}{file} $ failed {
 		echo "Failed to rename {file}"
 	}
 }

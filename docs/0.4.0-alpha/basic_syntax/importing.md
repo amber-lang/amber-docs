@@ -54,7 +54,7 @@ Amber has a special syntax for this pattern. It is not just a syntactic sugar th
 echo "Running indirectly"
 
 main {
-	$some command$?
+	$ some command $?
 	echo "Running directly"
 }
 ```
