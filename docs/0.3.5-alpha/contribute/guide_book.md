@@ -5,7 +5,7 @@ Amber consists of the following layers:
 2. [Compiler](#2-compiler)
    1. [Parser & tokenizer](#21-parser--tokenizer)
    2. [Translator](#22-translator)
-   2. [Built-in](#23-built-in-creation)
+   3. [Built-in](#23-built-in-creation)
 3. [Runtime libraries](#3-runtime-libraries)
    1. [`stdlib`](#31-stdlib)
 4. [Tests](#4-tests)
@@ -75,15 +75,18 @@ Basically, the `translate()` method should return a `String` for the compiler to
 ### 2.3. Creating built-ins
 
 In this guide we will see how to create a basic built-in function that in Amber syntax presents like:
-```sh
+
+```ab
 example "Hello World"
 ```
+
 And compiles to:
+
 ```sh
 echo "Hello World"
 ```
 
-For a real example based on this guide you can check the [https://github.com/amber-lang/amber/blob/master/src/modules/builtin/cd.rs](`cd` builtin) that is also Failable.
+For a real example based on this guide you can check the [`cd` builtin](https://github.com/amber-lang/amber/blob/master/src/modules/builtin/cd.rs) that is also Failable.
 
 <details>
 <summary>Let's start!</summary>
@@ -214,7 +217,7 @@ For every test there are 3 ways to check the result following this order:
 
 * if a `// Output` comment on top that include the output to match
 * if there is a `*.output.txt` file that contains the expected output
-* "Succeded" will used as default value if the previous cases are not satisfied
+* "Succeeded" will used as default value if the previous cases are not satisfied
 
 Tests will be executed without recompilation. Amber will load the scripts and verify the output in the designated file to determine if the test passes.
 The `validity` tests are full in Amber in their folder the folder [`tests/validity`](src/tests/validity).

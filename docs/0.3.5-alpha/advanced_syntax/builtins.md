@@ -12,7 +12,7 @@ cd "/tmp"
 
 ## Echo
 
-Transpile to `echo` which print text to the console, requires a `Text` parameter.
+Transpile to `echo` which prints text to the console, requires a `Text` parameter.
 
 ```ab
 echo "Hello World!"
@@ -28,6 +28,7 @@ mv "/tmp/a" "/tmp/b"
 ```
 
 This builtin is `failable`, meaning you can handle errors like this:
+
 ```ab
 mv "/tmp/a" "/tmp/b" failed {
     echo "Error"
@@ -43,7 +44,7 @@ For example, this allows you to perform operations like:
 ```ab
 let variable = null
 
-unsafe ${nameof variable}=12$
+unsafe $ {nameof variable}=12 $
 // Which is the same as declaring (but it is more readable in this way)
 let variable = 12
 ```

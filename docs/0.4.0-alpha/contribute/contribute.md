@@ -1,7 +1,8 @@
 # Contributing to Amber
+
 This is a simple but exhaustive guide to get you started on contributing to Amber.
 
-## Contributing guidelines
+## Contributing Guidelines
 
 Before you dig into Amber, you should know a few things before you contribute.
 
@@ -28,6 +29,7 @@ Along the way, you may need help with your code. The best way to ask is in [our 
 ### Development
 
 Compile Amber with the following instructions:
+
 ```
 git clone https://github.com/amber-lang/amber
 cd amber
@@ -35,8 +37,9 @@ cargo build
 ```
 
 In order to build the installer scripts run:
+
 ```bash
-amber build.ab
+amber build.ab build.sh
 ```
 
 Debugging Amber:
@@ -54,7 +57,7 @@ sudo cargo flamegraph -- <file.ab> <file.sh>
 
 To run ALL tests, run `cargo test`.
 
-If you want to run only tests from a specific file, let's say from [`stdlib.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs), you add the file name to the command: `cargo test stdlib`
+If you want to run only tests from a specific file, let's say from [`stdlib.rs`](src/tests/stdlib.rs), you add the file name to the command: `cargo test stdlib` or `cargo test tests::stdlib::test_stdlib_src_tests_stdlib_extract_ab` for a single test.
 
 And if there is a specific function, like `test_function()` in `stdlib.rs`, you should add the full path to it: `cargo test stdlib::test_function` 
 

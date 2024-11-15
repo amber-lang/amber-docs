@@ -5,21 +5,21 @@ Amber consists of the following layers:
 2. [Compiler](#2-compiler)
    1. [Parser & tokenizer](#21-parser--tokenizer)
    2. [Translator](#22-translator)
-   2. [Built-in](#23-built-in-creation)
+   3. [Built-in](#23-built-in-creation)
 3. [Runtime libraries](#3-runtime-libraries)
    1. [`stdlib`](#31-stdlib)
 4. [Tests](#4-tests)
 
 ## 1. CLI Interface
-All CLI interface is in [`main.rs`](https://github.com/amber-lang/amber/blob/master/src/main.rs). [`clap`](https://crates.io/crates/clap) handles argument parsing.
+All CLI interface is in [`main.rs`](src/main.rs). [`clap`](https://crates.io/crates/clap) handles argument parsing.
 
 ## 2. Compiler
 Compiler consists of:
-- [`compiler.rs`](https://github.com/amber-lang/amber/blob/master/src/compiler.rs) - Main entry point for the compiler
-- [`rules.rs`](https://github.com/amber-lang/amber/blob/master/src/rules.rs) - Syntax rules that are used by Heraclitus framework to correctly output tokens
-- [`utils`](https://github.com/amber-lang/amber/blob/master/src/utils.rs) - Contains parsing environments, caches, contexts and Amber's implementations of metadata
-- [`modules`](https://github.com/amber-lang/amber/blob/master/src/modules) - Syntax modules that parse Amber syntax and also handle the translation process
-- [`translate`](https://github.com/amber-lang/amber/blob/master/src/translate) - Contains a definition of Translate Module trait that is used to translate modules the previously mentioned `modules`
+- [`compiler.rs`](src/compiler.rs) - Main entry point for the compiler
+- [`rules.rs`](src/rules.rs) - Syntax rules that are used by Heraclitus framework to correctly output tokens
+- [`utils`](src/utils.rs) - Contains parsing environments, caches, contexts and Amber's implementations of metadata
+- [`modules`](src/modules) - Syntax modules that parse Amber syntax and also handle the translation process
+- [`translate`](src/translate) - Contains a definition of Translate Module trait that is used to translate modules the previously mentioned `modules`
 
 `AmberCompiler` struct by itself is just a bootstrapper for all the syntax modules.
 
@@ -75,10 +75,13 @@ Basically, the `translate()` method should return a `String` for the compiler to
 ### 2.3. Creating built-ins
 
 In this guide we will see how to create a basic built-in function that in Amber syntax presents like:
-```sh
+
+```ab
 example "Hello World"
 ```
+
 And compiles to:
+
 ```sh
 echo "Hello World"
 ```
@@ -197,29 +200,29 @@ impl Statement {
 ```
 </details>
 
-Don't forget to add a test in the [`validity`](https://github.com/amber-lang/amber/tree/master/src/tests/validity) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
+Don't forget to add a test in the [https://github.com/amber-lang/amber/tree/master/src/tests/validity](`validity`) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
 
 ## 3. Runtime libraries
 ### 3.1. `stdlib`
 
-`stdlib` is written in Amber. See [`main.ab`](https://github.com/amber-lang/amber/blob/master/src/std/main) for the code. All `stdlib` functions must be covered by a [test](#4-tests)
+`stdlib` is written in Amber. See [`main.ab`](src/std/main) for the code. All `stdlib` functions must be covered by a [test](#4-tests)
 
 ## 4. Tests
 Amber uses `cargo test` for tests. `stdlib` and `validity` tests usually work by executing amber code and checking its output.
 
-We have [`validity tests`](https://github.com/amber-lang/amber/blob/master/src/tests/validity.rs) to check if the compiler outputs a valid bash code, [`stdlib tests`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs) and [`CLI tests`](https://github.com/amber-lang/amber/blob/master/src/tests/cli.rs).
+We have [`validity tests`](src/tests/validity.rs) to check if the compiler outputs a valid bash code, [`stdlib tests`](src/tests/stdlib.rs) and [`CLI tests`](src/tests/cli.rs).
 
-The majority of `stdlib` tests are written in pure Amber in the folder [`tests/stdlib`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib). 
+The majority of `stdlib` tests are written in pure Amber in the folder [`tests/stdlib`](src/tests/stdlib). 
 For every test there are 3 ways to check the result following this order:
 
 * if a `// Output` comment on top that include the output to match
 * if there is a `*.output.txt` file that contains the expected output
-* "Succeded" will used as default value if the previous cases are not satisfied
+* "Succeeded" will used as default value if the previous cases are not satisfied
 
 Tests will be executed without recompilation. Amber will load the scripts and verify the output in the designated file to determine if the test passes.
-The `validity` tests are full in Amber in their folder the folder [`tests/validity`](https://github.com/amber-lang/amber/blob/master/src/tests/validity).
+The `validity` tests are full in Amber in their folder the folder [`tests/validity`](src/tests/validity).
 
-Some tests require additional setup, such as those for `download` that needs Rust to load a web server. These functions require special tests written in Rust that we can find in [`stdlib tests`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs) file. The designated directory where to store the amber files is located in [`tests/stdlib/no_output`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/no_output). These tests do not coexist with `.output.txt` files hence the name of this folder.
+Some tests require additional setup, such as those for `download` that needs Rust to load a web server. These functions require special tests written in Rust that we can find in [`stdlib tests`](src/tests/stdlib.rs) file. The designated directory where to store the amber files is located in [`tests/stdlib/no_output`](src/tests/stdlib/no_output). These tests do not coexist with `.output.txt` files hence the name of this folder.
 
 <details>
 <summary>Let's write a simple test</summary>
