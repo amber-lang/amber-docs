@@ -44,7 +44,7 @@ For example, this allows you to perform operations like:
 ```ab
 let variable = null
 
-unsafe $ {nameof variable}=12 $
+trust $ {nameof variable}=12 $
 // Which is the same as declaring (but it is more readable in this way)
 let variable = 12
 ```

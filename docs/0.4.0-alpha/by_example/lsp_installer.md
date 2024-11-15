@@ -15,7 +15,7 @@ if not is_root() {
 }
 
 fun get_download_path(repo, position) {
-    return unsafe $ curl -sL "https://api.github.com/repos/{repo}/releases" | jq -r ".[0].assets.[{position}].browser_download_url" $
+    return trust $ curl -sL "https://api.github.com/repos/{repo}/releases" | jq -r ".[0].assets.[{position}].browser_download_url" $
 }
 
 fun move_to_bin(download_url, binary) {
@@ -33,10 +33,10 @@ fun move_to_bin(download_url, binary) {
 
 fun download_to_bin(download_url, binary, packed_file) {
     if silent download(download_url, packed_file) {
-        unsafe {
+        trust {
             if contains("tar.gz", packed_file) {
                 $ tar -zxvf "./{packed_file}" -C ./ > /dev/null 2>&1 $
-                unsafe mv "./{binary}" "/usr/local/bin"
+                trust mv "./{binary}" "/usr/local/bin"
             } else {
                 $ gunzip -c - > "/usr/local/bin/{binary}" $
             }
@@ -60,11 +60,11 @@ download_to_bin("https://github.com/rust-lang/rust-analyzer/releases/latest/down
 echo "Install Lua LSP"
 if not dir_exist("/opt/lua-language-server") {
     cd "/opt/"
-    unsafe $ git clone https://github.com/LuaLS/lua-language-server $
+    trust $ git clone https://github.com/LuaLS/lua-language-server $
 } else {
     cd "/opt/lua-language-server"
 }
-silent unsafe {
+silent trust {
     cd "lua-language-server"
     $ git pull $
     $ ./make.sh $

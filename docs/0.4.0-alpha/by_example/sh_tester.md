@@ -14,23 +14,23 @@ if (not dir_exist(path)) {
 }
 
 let report = "{path}/report.txt"
-unsafe file_write(report, "Report for Shellcheck")
+trust file_write(report, "Report for Shellcheck")
 let output = ""
 
-let stdtests = unsafe $ /usr/bin/ls "src/tests/stdlib/" $
+let stdtests = trust $ /usr/bin/ls "src/tests/stdlib/" $
 let stdlib = split(stdtests, "\n")
 
 loop v in stdlib {
     if (not contains(v, ".txt") and file_exist("src/tests/stdlib/{v}")) {
         echo "Generating Bash script for test {v}"
-        unsafe {
-            unsafe $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
-            output = unsafe $ shellcheck "{path}/{v}.sh" $
+        trust {
+            trust $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
+            output = trust $ shellcheck "{path}/{v}.sh" $
         }
 
         if (status != 0) {
             echo "Shellcheck found something!"
-            unsafe file_append(report, output)
+            trust file_append(report, output)
         }
     }
 }

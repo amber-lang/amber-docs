@@ -13,7 +13,7 @@ main {
 
   // Internet is slow on Austrian trains. Check the Wifi SSID and stop in that
   // case.
-  silent unsafe $ iwgetid -r | grep -E '(OEBB|WESTlan)' $
+  silent trust $ iwgetid -r | grep -E '(OEBB|WESTlan)' $
   if status == 0 {
     echo "Skipping updates because of slow Wifi"
     exit(0)

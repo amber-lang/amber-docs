@@ -39,7 +39,7 @@ Notice that arguments with default values must come after the regular arguments.
 
 ## Modifiers
 
-You can apply [Command Modifiers](/basic_syntax/commands) to function calls as well. This way you can suppress any output with `silent` modifier or run _failable_ functions as if they could never fail (although this is unrecommended) with `unsafe` keyword
+You can apply [Command Modifiers](/basic_syntax/commands) to function calls as well. This way you can suppress any output with `silent` modifier or run _failable_ functions as if they could never fail (although this is unrecommended) with `trust` keyword
 
 ## Failing
 
@@ -91,7 +91,7 @@ fun safeDivision(a: Num, b: Num): Num {
 Now let's see how this code will behave in different scenarios:
 
 ```ab
-let result = unsafe safeDivision(24, 4)
+let result = trust safeDivision(24, 4)
 echo "{result}, {status}"
 // Outputs: 6, 0
 ```

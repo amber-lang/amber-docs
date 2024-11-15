@@ -4,7 +4,7 @@ The important thing regarding commands is that they can `fail`. Failing is a new
 
 - `failed` - the recommended way to handle failing that enables you to write some specific logic to run when a command fails
 - `?` - this shorthand for propagating the failure to the caller. This operator can only be used in a `main` block or inside of a function.
-- `unsafe` - the discouraged way to handle failing. This modifier will treat commands as if they have completed successfully and will allow them to be parsed without any further steps.
+- `trust` - the discouraged way to handle failing. This modifier will treat commands as if they have completed successfully and will allow them to be parsed without any further steps.
 
 Here is an example use:
 
@@ -65,20 +65,20 @@ To learn more about fail keyword, please read the article covering [failures](/b
 
 Command modifier is a keyword that alters the behavior of a command. Here are some examples:
 - `silent` - prevents command from displaying the result to the standard output.
-- `unsafe` - disables Amber's mechanism that requires user to handle failures.
+- `trust` - disables Amber's mechanism that requires user to handle failures.
 
 You can learn more details about each command modifier in the forthcoming chapters.
 
 Here is the example usage of a command modifier:
 
 ```ab
-silent unsafe $ my command $
+silent trust $ my command $
 ```
 
 You can use the command modifiers as modifier scopes. This way you don't have to repeat yourself on multiple commands.
 
 ```ab
-silent unsafe {
+silent trust {
 	$ first command $
 	if isReady:
         	$ second command $
@@ -89,7 +89,7 @@ silent unsafe {
 ## Unsafe Command Execution
 
 ```ab
-unsafe $ test -d /path/to/file $
+trust $ test -d /path/to/file $
 ```
 
 This will be treated the same way Bash treats statements. If it fails, then carry on with the code execution. This behavior is the one that we were trying to avoid when building Amber. The cases when this method is encouraged are the following:

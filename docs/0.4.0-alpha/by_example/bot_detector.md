@@ -43,7 +43,7 @@ main (args) {
     // Never block requests from Google in the user agent.
     // Exclude requests to /files/ paths.
     // Check the top 20 results.
-    let ip_log = unsafe $ grep -e "{hour_timestamp}" "{logfile}" | \
+    let ip_log = trust $ grep -e "{hour_timestamp}" "{logfile}" | \
       grep \
         -e "GET /job/" \
         -e "GET /jobs/" \
@@ -69,12 +69,12 @@ main (args) {
       }
 
       let ip = parts[1]
-      silent unsafe $ grep "{ip}" /etc/ipblocklist.txt $
+      silent trust $ grep "{ip}" /etc/ipblocklist.txt $
       if status == 0 {
         echo "IP address {ip} is already blocked."
         continue
       }
-      silent unsafe $ grep "{ip}" /etc/ipexcludedlist.txt $
+      silent trust $ grep "{ip}" /etc/ipexcludedlist.txt $
       if status == 0 {
         echo "IP address {ip} is allow-listed and will not be blocked."
         continue
