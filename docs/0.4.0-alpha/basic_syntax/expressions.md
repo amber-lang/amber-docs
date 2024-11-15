@@ -1,6 +1,6 @@
 We can combine our data type literals with operators. The operators only work on **the same** data type. For example adding `Text` to `Num` will cause in error and is an unsupported operation. If you want to merge multiple different values into one text, learn more here about [string interpolation](/basic_syntax/expressions#text-interpolation)
 
-## Addition operator `+`
+## Addition Operator `+`
 
 Addition can be performed on number, text and array. This operator applied on different data types yields different results:
 
@@ -14,7 +14,7 @@ Addition can be performed on number, text and array. This operator applied on di
 [1, 2] + [3, 4] // [1, 2, 3, 4]
 ```
 
-## Arithmetic operations
+## Arithmetic Operations
 
 Arithmetic operations can only be used on `Num` data type. Here is the list of all available ones:
 - `+` Arithmetic sum
@@ -36,7 +36,7 @@ echo -value // Outputs: -12
 
 
 
-## Comparison operations
+## Comparison Operations
 
 The equality `==` and inequality `!=` operations can be applied to any data type as long as both sides have the same type.
 
@@ -53,7 +53,7 @@ The remaining comparison operations can only be used on the `Num` data type. The
 42 != 24
 ```
 
-## Logical operations
+## Logical Operations
 
 Logical operations can only be used on `Bool` data type. As opposed to C-like family of programming languages we've chosen to go for more Pythonic approach with literal names instead of symbols, as it suits the nature of the scripting programming language better: `and`, `or`, `not`.
 
@@ -61,7 +61,7 @@ Logical operations can only be used on `Bool` data type. As opposed to C-like fa
 18 >= 12 and not false
 ```
 
-## Shorthand operator
+## Shorthand Operator
 
 You can use addition operator as well as any arithmetic operator combined with `=` symbol to automatically apply the result to an existing variable:
 
@@ -71,7 +71,7 @@ age += 5
 echo age // Outputs: 23
 ```
 
-## Text interpolation
+## Text Interpolation
 
 There are moments when you want to embed values into a text:
 

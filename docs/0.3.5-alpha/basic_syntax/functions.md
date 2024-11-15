@@ -76,7 +76,7 @@ fun failable(): Num? {
 
 Note that you cannot force a function to become failable by simply appending the `?` to the return type. The `?` can (and must) only be used in a function declaration, if the function is known to be failable.
 
-## Status code
+## Status Code
 
 Status code contains information about latest failing function or a command that was run. Accessing status is as simple as using `status` keyword.
 
@@ -107,7 +107,7 @@ let result = safeDivision(15, 0) failed {
 // 1
 ```
 
-## Variable references `ref`
+## Variable References `ref`
 
 You have the ability to accept variables passed by reference. To  do this you can use the `ref` keyword.
 
@@ -125,4 +125,5 @@ echo groceries
 The behavior of this keyword is pretty similar to `&` in other C-like programming languages.
 
 ## Reserved Prefix
+
 The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.

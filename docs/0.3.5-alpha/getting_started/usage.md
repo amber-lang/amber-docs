@@ -25,7 +25,7 @@ For detailed usage instructions, refer to the [Amber usage guide](https://docs.a
 
 The `--docs` option extracts comments prefixed with `///` (triple slashes) from the Amber file and generates a Markdown file for documentation.
 
-#### Disable formatting
+#### Disable Formatting
 
 Using the `--disable-format` option prevents the execution of external formatting tools after the Bash compilation process.
 

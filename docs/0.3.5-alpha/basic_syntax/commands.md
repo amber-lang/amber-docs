@@ -32,7 +32,7 @@ $cat {file_path}$ failed {
 }
 ```
 
-## Getting the exit code
+## Getting the Exit Code
 
 In order to get the exit code, you can use the `status` keyword. It will always return you the exit code of the last bash command or *failable function*.
 
@@ -44,7 +44,7 @@ $cat {file_path}$ failed {
 echo "The status code is: {status}"
 ```
 
-## Failure propagation
+## Failure Propagation
 
 In order to propagate failure to the context above, you can simply use the question mark syntax `?`.
 
@@ -86,7 +86,7 @@ silent unsafe {
 }
 ```
 
-## Unsafe command execution
+## Unsafe Command Execution
 
 ```ab
 unsafe $test -d /path/to/file$
@@ -97,7 +97,7 @@ This will be treated the same way Bash treats statements. If it fails, then carr
 - You are **fully sure** that this command will complete successfully
 - You **do not care** whether the command will fail or not
 
-## Silencing commands
+## Silencing Commands
 
 You can easily silent given command. Here is an example usage:
 

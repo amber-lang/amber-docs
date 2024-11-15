@@ -1,4 +1,5 @@
 # Overview
+
 Amber consists of the following layers:
 
 1. [CLI Interface](#1-cli-interface)
@@ -11,9 +12,11 @@ Amber consists of the following layers:
 4. [Tests](#4-tests)
 
 ## 1. CLI Interface
+
 All CLI interface is in [`main.rs`](src/main.rs). [`clap`](https://crates.io/crates/clap) handles argument parsing.
 
 ## 2. Compiler
+
 Compiler consists of:
 - [`compiler.rs`](src/compiler.rs) - Main entry point for the compiler
 - [`rules.rs`](src/rules.rs) - Syntax rules that are used by Heraclitus framework to correctly output tokens
@@ -23,7 +26,8 @@ Compiler consists of:
 
 `AmberCompiler` struct by itself is just a bootstrapper for all the syntax modules.
 
-### 2.1. Parser & tokenizer
+### 2.1. Parser & Tokenizer
+
 Thanks to [`heraclitus`](https://github.com/amber-lang/Heraclitus), we can use simple abstractions to go through tokens.
 
 Please open any syntax module code file, and find a line that says: `impl SyntaxModule<ParserMetadata> for MODULE_NAME_HERE`
@@ -51,6 +55,7 @@ fn parse(meta: &mut ParserMetadata) -> SyntaxResult {
 </details>
 
 ### 2.2. Translator
+
 Same as parser open a syntax module, and find a line that says `impl TranslateModule for MODULE_NAME_HERE` and that should contain a `translate` function.
 
 Same as before, you can either dig into the code you opened or look at the example below.
@@ -72,7 +77,7 @@ fn translate() -> String {
 
 Basically, the `translate()` method should return a `String` for the compiler to construct a compiled file from all of them. If it translates to nothing, you should output an empty string, like `String::new()`
 
-### 2.3. Creating built-ins
+### 2.3. Creating Builtins
 
 In this guide we will see how to create a basic built-in function that in Amber syntax presents like:
 
@@ -202,12 +207,14 @@ impl Statement {
 
 Don't forget to add a test in the [https://github.com/amber-lang/amber/tree/master/src/tests/validity](`validity`) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
 
-## 3. Runtime libraries
+## 3. Runtime Libraries
+
 ### 3.1. `stdlib`
 
 `stdlib` is written in Amber. See [`main.ab`](src/std/main) for the code. All `stdlib` functions must be covered by a [test](#4-tests)
 
 ## 4. Tests
+
 Amber uses `cargo test` for tests. `stdlib` and `validity` tests usually work by executing amber code and checking its output.
 
 We have [`validity tests`](src/tests/validity.rs) to check if the compiler outputs a valid bash code, [`stdlib tests`](src/tests/stdlib.rs) and [`CLI tests`](src/tests/cli.rs).

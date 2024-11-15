@@ -4,11 +4,11 @@
 
 In contrast, the standard library (stdlib) is a collection of Amber functions that are embedded in every Amber release. Each version of Amber may include changes to the standard library and you need to import these functions in your code. These functions are more advanced and can accept various parameters.
 
-## Standard library and Shellcheck
+## Standard Library and Shellcheck
 
 Just like the Amber's compiled Bash output, all standard library functions are built from the ground up to be shellcheck compliant. This means that you can focus more on building the logic and spend less time on keeping the code predictable and valid.
 
-## How to use it
+## How to Use It
 
 Below is an example of how to use the standard library to generate documentation (using the [script](https://github.com/amber-lang/amber-docs/sync-stdlib-doc.ab) provided on the Amber Documentation repository):
 
@@ -35,7 +35,7 @@ if silent download("https://github.com/amber-lang/amber/archive/refs/heads/maste
 
 > WARNING: Each Amber release may have a different version of the standard library, so make sure to verify compatibility with the specific release you are using.
 
-### Importing a library
+### Importing a Library
 
 You can also import all functions from a module by using the following syntax:
 

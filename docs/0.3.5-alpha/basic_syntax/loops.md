@@ -5,7 +5,7 @@ Amber supports two types of loop:
 
 In the context of loops, you can use the break and continue keywords to help you control the flow.
 
-## Infinite loop
+## Infinite Loop
 
 Whatever you put into the infinite loop it will be executed infinitely until you `break` the loop.
 
@@ -22,7 +22,7 @@ echo sum
 // Outputs: 15
 ```
 
-## Iterator loop
+## Iterator Loop
 
 It's the most encouraged way to iterate over an array. The example in the previous chapter can be rewritten to a more concise version:
 

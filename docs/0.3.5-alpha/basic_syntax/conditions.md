@@ -37,7 +37,7 @@ else:
 	echo "Entry not allowed"
 ```
 
-## If chain
+## If Chain
 
 The if-chain is a simplification technique for a sequence of if-else blocks. Allow me to illustrate this concept.
 
@@ -81,7 +81,7 @@ if drink == "water" {
 
 This approach provides a more concise and readable structure for handling multiple conditions.
 
-## Ternary expression
+## Ternary Expression
 
 Imagine needing to swiftly determine a value to assign based on a straightforward condition. This is precisely where ternary expressions prove invaluable. Here's a concise example:
 

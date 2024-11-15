@@ -12,6 +12,7 @@ Make sure that the operating system meets the following prerequisites
 - Curl tool for downloading the installation script
 
 ### Installation Options
+
 - **System-wide**
 ```bash
 bash <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/setup/install.sh")
@@ -52,7 +53,7 @@ While developing with Nix, the flake defines all dependencies for `nix develop` 
 sudo snap install amber-bash --classic
 ```
 
-## Windows support
+## Windows Support
 
 As windows does not come with bash installed it makes no sense to support it. Please install WSL 2 on your windows machine and install Linux version of Amber compiler inside.
 
@@ -63,7 +64,7 @@ sudo apt install curl bc
 sudo mkdir /opt /usr/local/bin
 ```
 
-# External tools integrated
+# External Tools Integrated
 
 Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
 

@@ -22,7 +22,7 @@ To create a PR, you should fork the repo, create a branch, do your work in there
 
 The maintainers will check who it is the best reviewer, we suggest to open a ticket reporting the issue before starting to do the PR so we can discuss the implementation.
 
-### Getting help
+### Getting Help
 
 Along the way, you may need help with your code. The best way to ask is in [our Discord server](https://discord.com/invite/cjHjxbsDvZ), but you may also ask other contributors personally or post in [Discussions](https://github.com/amber-lang/Amber/discussions).
 
@@ -53,7 +53,7 @@ AMBER_DEBUG_TIME=true cargo run <file.ab>
 sudo cargo flamegraph -- <file.ab> <file.sh>
 ```
 
-#### Running tests
+#### Running Tests
 
 To run ALL tests, run `cargo test`.
 
@@ -62,4 +62,5 @@ If you want to run only tests from a specific file, let's say from [`stdlib.rs`]
 And if there is a specific function, like `test_function()` in `stdlib.rs`, you should add the full path to it: `cargo test stdlib::test_function` 
 
 #### Github Actions
+
 We are using `cargo-dist` to build the binaries for all the platforms. The binaries are then uploaded to the release page once a new release a tag is created.

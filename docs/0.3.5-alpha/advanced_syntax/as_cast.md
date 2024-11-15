@@ -1,6 +1,6 @@
 As cast is a tool that might initially seem like an easy way to convert types. So, why has this functionality found its place in the advanced category? Well, with great power comes great responsibility. You could perform some casts that make sense, like from `Bool` to `Num`, but you could also perform casts that we refer to as _absurd_. An example of this might be converting `Text` to `Num`.
 
-## Regular casts
+## Regular Casts
 
 There might be times when you want to pass a variables that is a `Bool` to a function that accepts `Num`. Since Bool and Num are types that are compatible with each other, you can easily cast one into the other like so:
 
@@ -9,7 +9,7 @@ let isReady = systemIsReady()
 processStatus(isReady as Num)
 ```
 
-## Absurd casts
+## Absurd Casts
 
 Amber allows you to cast one data type to any other data type. This should be avoided and only used if necessary.
 

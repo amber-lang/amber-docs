@@ -10,7 +10,7 @@ pub fun sum(left: Num, right: Num): Num {
 }
 ```
 
-### Importing from other files
+### Importing from Other Files
 
 You can import each function individually...
 
@@ -29,7 +29,7 @@ import * from "./arith.ab"
 echo sum(1, sub(2, mul(4, 5)))
 ```
 
-## Public imports
+## Public Imports
 
 There are times when you might want to export what you imported. Then you can simply do this:
 
@@ -39,7 +39,7 @@ pub import * from "my/path/file.ab"
 
 This will import all functions defined in `file.ab` and all of them will be publicly available again from this file.
 
-## Main block
+## Main Block
 
 Sometimes you want to run certain code when file is being run directly. The same issue can be solved in Python:
 
@@ -73,7 +73,7 @@ import * from "./file.ab"
 ```
 
 
-### Main block and external arguments
+### Main Block and External Arguments
 
 Main block can provide an array of arguments (that is of type `[Text]`) passed to this script.
 

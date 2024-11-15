@@ -28,4 +28,5 @@ let result = "Hello my friend"
 ```
 
 ## Reserved Prefix
+
 The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.
