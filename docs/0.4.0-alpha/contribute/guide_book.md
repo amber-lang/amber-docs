@@ -22,7 +22,7 @@ Compiler consists of:
 - [`rules.rs`](src/rules.rs) - Syntax rules that are used by Heraclitus framework to correctly output tokens
 - [`utils`](src/utils.rs) - Contains parsing environments, caches, contexts and Amber's implementations of metadata
 - [`modules`](src/modules) - Syntax modules that parse Amber syntax and also handle the translation process
-- [`translate`](src/translate) - Contains a definition of Translate Module trait that is used to translate modules the previously mentioned `modules`
+- [`translate`](src/translate) - Contains a definition of `TranslateModule` trait that is used to translate modules the previously mentioned `modules`
 
 `AmberCompiler` struct by itself is just a bootstrapper for all the syntax modules.
 
@@ -219,7 +219,7 @@ Amber uses `cargo test` for tests. `stdlib` and `validity` tests usually work by
 
 We have [`validity tests`](src/tests/validity.rs) to check if the compiler outputs a valid bash code, [`stdlib tests`](src/tests/stdlib.rs) and [`CLI tests`](src/tests/cli.rs).
 
-The majority of `stdlib` tests are written in pure Amber in the folder [`tests/stdlib`](src/tests/stdlib). 
+The majority of `stdlib` tests are written in pure Amber in the folder [`tests/stdlib`](src/tests/stdlib).
 For every test there are 3 ways to check the result following this order:
 
 * if a `// Output` comment on top that include the output to match
