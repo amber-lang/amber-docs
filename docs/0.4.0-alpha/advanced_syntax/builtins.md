@@ -18,6 +18,20 @@ Transpile to `echo` which prints text to the console, requires a `Text` paramete
 echo "Hello World!"
 ```
 
+## Len
+
+Transpile to `echo "${#TEXT}"` for a `Text` parameter:
+
+```ab
+echo len("Jackdaws love my big sphinx of quartz")
+```
+
+Transpile to `echo "${#ARRAY[@]}"` for an `Array` parameter:
+
+```ab
+echo len(["one", "two", "three", "four", "five"])
+```
+
 ## Lines
 
 This builtin reads one line at a time from a text file.  It can be used in place of an array in an iterative `for` loop (with or without an index).  This is efficient because each line is read into memory, and processed before the next line is read:
