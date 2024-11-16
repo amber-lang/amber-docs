@@ -1,0 +1,80 @@
+.container {
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-height: 700px) {
+    .container .jumbotron {
+        --size: 150px;
+    }
+}
+
+.jumbotron {
+    --size: 225px;
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    margin: 0 auto;
+}
+
+.jumbotron .jumbotron-bg {
+    /* This should be configurable */
+    mask-image: url('/internal/blueprint.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: var(--text);
+    width: var(--size);
+    height: var(--size);
+    opacity: 0.7;
+    margin: 0 auto;
+
+    &.fallback {
+        mask-image: url('/internal/amber-docs.svg');
+    }
+}
+
+.title {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+}
+
+.bold {
+    font-weight: 700;
+    margin-right: 1rem;
+    font-family: "Cal Sans";
+}
+
+.light {
+    font-weight: 300;
+}
+
+.search {
+    width: 450px;
+}
+
+@media screen and (max-width: 1000px) {
+    .jumbotron {
+        --size: 150px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .search {
+        width: 350px;
+    }
+
+    .big-link {
+        margin-top: 3rem;
+        padding: 0.6rem;
+    }
+}

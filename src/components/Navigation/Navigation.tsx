@@ -9,8 +9,16 @@ import style from './Navigation.module.css'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import { useTheme } from '@/contexts/ThemeContext'
 import Image from 'next/image'
+import Dropdown from '../Dropdown/Dropdown'
+import config from "@/../config.json"
+import useVersion from '@/contexts/VersionContext/useVersion'
 
-export default function Navigation() {
+interface Props {
+    hideSearch?: boolean
+}
+
+export default function Navigation({ hideSearch = false }: Props) {
+    const { version } = useVersion()
     const pathname = usePathname()
     const { isOpen, setSidebar } = useSidebar()
     const { mode, setThemeMode } = useTheme()
@@ -34,13 +42,23 @@ export default function Navigation() {
                         <div className={style.title}>
                             amber
                         </div>
+                    </Link>
+                    <div className={style.version}>
+                        <Dropdown
+                            value={version}
+                            onChange={(value: Object) => router.push(`/${value.toString()}`)}
+                            options={config.visibleVersions}
+                            getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
+                        />
+                    </div>
+                    {version.includes("alpha") && (
                         <div className={style.tag}>
                             alpha
                         </div>
-                    </Link>
+                    )}
                 </div>
                 <div className={style.center}>
-                    {pathname !== '/' && <SearchBar />}
+                    {!hideSearch && <SearchBar />}
                 </div>
                 <div className={style.right}>
                     <Button onClick={toggleSideBar}>

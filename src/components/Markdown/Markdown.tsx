@@ -7,9 +7,17 @@ import amber from './amber'
 import { useEffect } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
+import { generateUrl, getLocation } from '@/utils/urls'
+import { MarkOptions } from 'perf_hooks'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
+
+const getHrefWithVersion = (href: string, currentUrl: string) => {
+    const params = currentUrl.replace(/^\//, '').split('/')
+    const location = getLocation(params)
+    return generateUrl(location.version, href)
+}
 
 // You can override the default renderer to customize the output
 class MarkdownRenderer extends Renderer {
@@ -71,22 +79,26 @@ class MarkdownRenderer extends Renderer {
             </div>
         `
     }
-}
 
-function initializeMarked() {
-    Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
-    Marked.setOptions({
-        renderer: new MarkdownRenderer(),
-        breaks: true,
-        gfm: true,
-        highlight(code, lang) {
-            if (!lang) return code
-            return hljs.highlight(code, { language: lang }).value
+    link(href: string, title: string, text: string): string {
+        const assetRegex = /\/(internal|images)/
+        if (href.startsWith('http') || assetRegex.test(window.location.pathname)) {
+            return `<a href="${href}"${title ? ` title="${title}"` : ''}>${text}</a>`;
         }
-    })
+        return `<a href="/${getHrefWithVersion(href, window.location.pathname)}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+    }
 }
 
-initializeMarked()
+Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
+Marked.setOptions({
+    renderer: new MarkdownRenderer(),
+    breaks: true,
+    gfm: true,
+    highlight(code, lang) {
+        if (!lang) return code
+        return hljs.highlight(code, { language: lang }).value
+    }
+})
 
 export default function Markdown({ content }: { content: string }) {
     useEffect(() => {

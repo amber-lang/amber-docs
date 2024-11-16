@@ -3,9 +3,10 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
-import Navigation from '@/components/Navigation/Navigation'
 import SidebarProvider from '@/contexts/DocumentContext/SidebarProvider'
 import TopLoader from '@/components/TopLoader/TopLoader'
+import VersionProvider from '@/contexts/VersionContext/VersionProvider'
+import config from '@/../config.json'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,11 +39,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider>
           <SidebarProvider>
-            <Navigation />
             <TopLoader />
-            <main>
-              {children}
-            </main>
+            <VersionProvider version={config.defaultVersion}>
+                <main>
+                {children}
+                </main>
+            </VersionProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>
