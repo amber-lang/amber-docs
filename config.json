@@ -1,7 +1,6 @@
 {
     "defaultVersion": "0.3.5-alpha",
     "visibleVersions": [
-        "0.3.5-alpha",
-        "0.4.0-alpha"
+        "0.3.5-alpha"
     ]
 }
