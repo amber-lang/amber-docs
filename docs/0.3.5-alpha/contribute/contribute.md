@@ -55,11 +55,13 @@ sudo cargo flamegraph -- <file.ab> <file.sh>
 
 #### Running Tests
 
+Tests modules can be found in [`src/tests`](https://github.com/amber-lang/amber/tree/master/src/tests) where every single module contains multiple testing functions. The exception is for [`stdlib.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs) and [`validity.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/validity.rs). They keep all the test scenarios in directories `stdlib/` and `validity/` for easier readability and better code organization.
+
 To run ALL tests, run `cargo test`.
 
-If you want to run only tests from a specific file, let's say from [`stdlib.rs`](src/tests/stdlib.rs), you add the file name to the command: `cargo test stdlib` or `cargo test tests::stdlib::test_stdlib_src_tests_stdlib_extract_ab` for a single test.
+If you want to run only tests from a specific module, let's say from [`stdlib.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs), you can do that by adding the module name to the command: `cargo test stdlib` or `cargo test tests::stdlib::test_stdlib_src_tests_stdlib_extract_ab` to run a single test.
 
-And if there is a specific function, like `test_function()` in `stdlib.rs`, you should add the full path to it: `cargo test stdlib::test_function` 
+And if there is a specific function, like `function_with_wrong_typed_return()` in [`errors.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/errors.rs), you should add the full path to it: `cargo test errors::function_with_wrong_typed_return` 
 
 #### Github Actions
 
