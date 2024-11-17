@@ -56,7 +56,7 @@ lines += lines("bar.txt")
 echo len(lines)
 ```
 
-> WARNING: While embedded Bash commands like `$ cat foo.txt $` require a `trust` keyword or `failed` block, Amber does not currently support this for the `lines` builtin.  If the file does not exist at runtime, you will just get a Bash error.
+> WARNING: While embedded Bash commands like `$ cat foo.txt $` require a `trust` keyword or `failed` block, Amber does not currently support this for the `lines` builtin. If the file does not exist at runtime, the program will terminate midway, **potentially losing data stored only in variables**
 
 ## Mv
 
