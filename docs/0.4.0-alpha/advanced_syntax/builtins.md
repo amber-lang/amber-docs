@@ -20,15 +20,17 @@ echo "Hello World!"
 
 ## Len
 
-Transpile to `echo "${#TEXT}"` for a `Text` parameter:
+For a `Text` value, this builtin calculates and returns the length (in ASCII characters) as a `Num` type.  It is transpiled to `${#TEXT}`:
 
 ```ab
+// Returns 37
 echo len("Jackdaws love my big sphinx of quartz")
 ```
 
-Transpile to `echo "${#ARRAY[@]}"` for an `Array` parameter:
+For an `Array` `[]` value, it calculates and returns the length of the array as a `Num` type.  It is transpiled to `${#ARRAY[@]}`:
 
 ```ab
+// Returns 5
 echo len(["one", "two", "three", "four", "five"])
 ```
 
