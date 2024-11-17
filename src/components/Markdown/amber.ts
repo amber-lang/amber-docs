@@ -31,7 +31,7 @@ const amber = (hljs: HLJSApi) => {
     }
     const keywords = {
         scope: 'keyword',
-        match: /\b(and|as|break|cd|continue|echo|else|fail|failed|for|from|fun|if|import|in|is|len|let|loop|main|mv|nameof|not|or|pub|ref|return|silent|status|then|trust|unsafe)\b/
+        match: /\b(and|as|break|cd|continue|echo|else|fail|failed|for|from|fun|if|import|in|is|len|let|lines|loop|main|mv|nameof|not|or|pub|ref|return|silent|status|then|trust|unsafe)\b/
     }
     const type = {
         scope: 'type',
