@@ -67,7 +67,7 @@ export default function Navigation({ hideSearch = false }: Props) {
                     <Button onClick={toggleDarkMode}>
                         <Icon src='/internal/moon.svg' size='2rem' />
                     </Button>
-                    <Button onClick={() => router.push('https://github.com/Ph0enixKM/Amber')}>
+                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
                         <Icon src='/internal/gh.svg' size='2rem' />
                     </Button>
                     {/* Uncomment when we are ready */}
