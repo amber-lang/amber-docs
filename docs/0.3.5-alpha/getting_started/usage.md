@@ -68,18 +68,8 @@ Furthermore, Amber adds a _shebang_ at the top of the compiled script. This enab
 
 ## Syntax Highlighting
 
-### Visual Studio Code
-
-You can find it in Visual Studio Code extension store under the name **Amber Language**.
-
-Or you can download it here in [the Visual Studio Marketplace website](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language).
-
-### Zed
-
-You can download it from https://github.com/amber-lang/zed-amber-extension.
-
-### Vim
-
-The official Amber Vim plugin supports syntax highlighting, and sets some Vim options for easier editing.
-
-You can clone it into your Vim plugin directory from https://github.com/amber-lang/amber-vim.
+| Icon | Name | Location |
+|---|:----:|:-----:|
+| ![image](/images/logo-vsc.png)  | **Visual Studio Code** | [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language) or [Our extension repository](https://github.com/amber-lang/vsc-amber-extension) |
+| ![image](/images/logo-zed.png) | **Zed Editor** | Zed extensions or [Our extension repository](https://github.com/amber-lang/zed-amber-extension) |
+| ![image](/images/logo-vim.png)  | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
