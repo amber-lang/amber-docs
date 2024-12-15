@@ -34,6 +34,17 @@ echo groceries
 // Outputs: kiwi banana cherry date
 ```
 
+To retrieve a slice between a pair of indices of an array, you can use an exclusive range `a..b` or inclusive range `a..=b` (see above) with the following syntax:
+
+```ab
+echo groceries[1..3]
+// Outputs: banana cherry
+echo groceries[1..=2]
+// Outputs: banana cherry
+```
+
+> WARNING: It is not currently possible to *replace* a slice of an array. This means that you can't evaluate expressions like `groceries[1..=2] = ["kiwi"]` yet.
+
 To add an element to an array, you can use the mentioned in the [expressions chapter](/basic_syntax/expressions) addition operator to merge two arrays together.
 
 ```ab
