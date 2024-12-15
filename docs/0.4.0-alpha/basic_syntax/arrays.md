@@ -7,7 +7,6 @@ Amber gives you the ability to generate an array of numbers `[Num]` of certain r
 ```ab
 echo 0..10
 // Outputs: 0 1 2 3 4 5 6 7 8 9
-
 echo 0..=10
 // Outputs: 0 1 2 3 4 5 6 7 8 9 10
 ```
