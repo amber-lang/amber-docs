@@ -1,7 +1,7 @@
 ## `get_env_var`
 
 ```ab
-import { get_env_var } from "std/env.ab"
+import { get_env_var } from "std/env"
 ```
 
 ```ab
@@ -18,7 +18,7 @@ You can check the original tests for code examples:
 ## `load_env_file`
 
 ```ab
-import { load_env_file } from "std/env.ab"
+import { load_env_file } from "std/env"
 ```
 
 ```ab
@@ -35,7 +35,7 @@ You can check the original tests for code examples:
 ## `shell_isset`
 
 ```ab
-import { shell_isset } from "std/env.ab"
+import { shell_isset } from "std/env"
 ```
 
 ```ab
@@ -52,7 +52,7 @@ You can check the original tests for code examples:
 ## `shell_constant_set`
 
 ```ab
-import { shell_constant_set } from "std/env.ab"
+import { shell_constant_set } from "std/env"
 ```
 
 ```ab
@@ -69,7 +69,7 @@ You can check the original tests for code examples:
 ## `shell_constant_get`
 
 ```ab
-import { shell_constant_get } from "std/env.ab"
+import { shell_constant_get } from "std/env"
 ```
 
 ```ab
@@ -86,7 +86,7 @@ You can check the original tests for code examples:
 ## `shell_var_set`
 
 ```ab
-import { shell_var_set } from "std/env.ab"
+import { shell_var_set } from "std/env"
 ```
 
 ```ab
@@ -103,7 +103,7 @@ You can check the original tests for code examples:
 ## `shell_var_get`
 
 ```ab
-import { shell_var_get } from "std/env.ab"
+import { shell_var_get } from "std/env"
 ```
 
 ```ab
@@ -120,7 +120,7 @@ You can check the original tests for code examples:
 ## `shell_unset`
 
 ```ab
-import { shell_unset } from "std/env.ab"
+import { shell_unset } from "std/env"
 ```
 
 ```ab
@@ -137,7 +137,7 @@ You can check the original tests for code examples:
 ## `is_command`
 
 ```ab
-import { is_command } from "std/env.ab"
+import { is_command } from "std/env"
 ```
 
 ```ab
@@ -154,7 +154,7 @@ You can check the original tests for code examples:
 ## `input`
 
 ```ab
-import { input } from "std/env.ab"
+import { input } from "std/env"
 ```
 
 ```ab
@@ -171,7 +171,7 @@ You can check the original tests for code examples:
 ## `confirm`
 
 ```ab
-import { confirm } from "std/env.ab"
+import { confirm } from "std/env"
 ```
 
 ```ab
@@ -189,7 +189,7 @@ You can check the original tests for code examples:
 ## `has_failed`
 
 ```ab
-import { has_failed } from "std/env.ab"
+import { has_failed } from "std/env"
 ```
 
 ```ab
@@ -206,7 +206,7 @@ You can check the original tests for code examples:
 ## `exit`
 
 ```ab
-import { exit } from "std/env.ab"
+import { exit } from "std/env"
 ```
 
 ```ab
@@ -219,7 +219,7 @@ Close the script
 ## `is_root`
 
 ```ab
-import { is_root } from "std/env.ab"
+import { is_root } from "std/env"
 ```
 
 ```ab
@@ -236,7 +236,7 @@ You can check the original tests for code examples:
 ## `printf`
 
 ```ab
-import { printf } from "std/env.ab"
+import { printf } from "std/env"
 ```
 
 ```ab
@@ -254,7 +254,7 @@ You can check the original tests for code examples:
 ## `printf_escape`
 
 ```ab
-import { printf_escape } from "std/env.ab"
+import { printf_escape } from "std/env"
 ```
 
 ```ab
@@ -271,7 +271,7 @@ You can check the original tests for code examples:
 ## `text_shell`
 
 ```ab
-import { text_shell } from "std/env.ab"
+import { text_shell } from "std/env"
 ```
 
 ```ab
@@ -288,7 +288,7 @@ You can check the original tests for code examples:
 ## `text_bold`
 
 ```ab
-import { text_bold } from "std/env.ab"
+import { text_bold } from "std/env"
 ```
 
 ```ab
@@ -305,7 +305,7 @@ You can check the original tests for code examples:
 ## `text_italic`
 
 ```ab
-import { text_italic } from "std/env.ab"
+import { text_italic } from "std/env"
 ```
 
 ```ab
@@ -322,7 +322,7 @@ You can check the original tests for code examples:
 ## `text_underlined`
 
 ```ab
-import { text_underlined } from "std/env.ab"
+import { text_underlined } from "std/env"
 ```
 
 ```ab
@@ -339,7 +339,7 @@ You can check the original tests for code examples:
 ## `color_echo`
 
 ```ab
-import { color_echo } from "std/env.ab"
+import { color_echo } from "std/env"
 ```
 
 ```ab
@@ -356,7 +356,7 @@ You can check the original tests for code examples:
 ## `echo_info`
 
 ```ab
-import { echo_info } from "std/env.ab"
+import { echo_info } from "std/env"
 ```
 
 ```ab
@@ -373,7 +373,7 @@ You can check the original tests for code examples:
 ## `echo_success`
 
 ```ab
-import { echo_success } from "std/env.ab"
+import { echo_success } from "std/env"
 ```
 
 ```ab
@@ -390,7 +390,7 @@ You can check the original tests for code examples:
 ## `echo_warning`
 
 ```ab
-import { echo_warning } from "std/env.ab"
+import { echo_warning } from "std/env"
 ```
 
 ```ab
@@ -407,7 +407,7 @@ You can check the original tests for code examples:
 ## `error`
 
 ```ab
-import { error } from "std/env.ab"
+import { error } from "std/env"
 ```
 
 ```ab

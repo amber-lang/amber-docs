@@ -1,7 +1,7 @@
 ## `dir_exist`
 
 ```ab
-import { dir_exist } from "std/fs.ab"
+import { dir_exist } from "std/fs"
 ```
 
 ```ab
@@ -18,7 +18,7 @@ You can check the original tests for code examples:
 ## `file_exist`
 
 ```ab
-import { file_exist } from "std/fs.ab"
+import { file_exist } from "std/fs"
 ```
 
 ```ab
@@ -35,7 +35,7 @@ You can check the original tests for code examples:
 ## `file_read`
 
 ```ab
-import { file_read } from "std/fs.ab"
+import { file_read } from "std/fs"
 ```
 
 ```ab
@@ -52,7 +52,7 @@ You can check the original tests for code examples:
 ## `file_write`
 
 ```ab
-import { file_write } from "std/fs.ab"
+import { file_write } from "std/fs"
 ```
 
 ```ab
@@ -70,7 +70,7 @@ You can check the original tests for code examples:
 ## `file_append`
 
 ```ab
-import { file_append } from "std/fs.ab"
+import { file_append } from "std/fs"
 ```
 
 ```ab
@@ -88,7 +88,7 @@ You can check the original tests for code examples:
 ## `create_symbolic_link`
 
 ```ab
-import { create_symbolic_link } from "std/fs.ab"
+import { create_symbolic_link } from "std/fs"
 ```
 
 ```ab
@@ -106,7 +106,7 @@ You can check the original tests for code examples:
 ## `create_dir`
 
 ```ab
-import { create_dir } from "std/fs.ab"
+import { create_dir } from "std/fs"
 ```
 
 ```ab
@@ -123,7 +123,7 @@ You can check the original tests for code examples:
 ## `make_executable`
 
 ```ab
-import { make_executable } from "std/fs.ab"
+import { make_executable } from "std/fs"
 ```
 
 ```ab
@@ -141,7 +141,7 @@ You can check the original tests for code examples:
 ## `change_owner`
 
 ```ab
-import { change_owner } from "std/fs.ab"
+import { change_owner } from "std/fs"
 ```
 
 ```ab

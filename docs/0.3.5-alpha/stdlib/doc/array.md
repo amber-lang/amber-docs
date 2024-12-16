@@ -1,7 +1,7 @@
 ## `array_first_index`
 
 ```ab
-import { array_first_index } from "std/array.ab"
+import { array_first_index } from "std/array"
 ```
 
 ```ab
@@ -19,7 +19,7 @@ You can check the original tests for code examples:
 ## `array_search`
 
 ```ab
-import { array_search } from "std/array.ab"
+import { array_search } from "std/array"
 ```
 
 ```ab
@@ -36,7 +36,7 @@ You can check the original tests for code examples:
 ## `includes`
 
 ```ab
-import { includes } from "std/array.ab"
+import { includes } from "std/array"
 ```
 
 ```ab

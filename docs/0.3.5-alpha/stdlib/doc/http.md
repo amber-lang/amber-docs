@@ -1,7 +1,7 @@
 ## `download`
 
 ```ab
-import { download } from "std/http.ab"
+import { download } from "std/http"
 ```
 
 ```ab

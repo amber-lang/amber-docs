@@ -1,7 +1,7 @@
 ## `sum`
 
 ```ab
-import { sum } from "std/math.ab"
+import { sum } from "std/math"
 ```
 
 ```ab
@@ -18,7 +18,7 @@ You can check the original tests for code examples:
 ## `round`
 
 ```ab
-import { round } from "std/math.ab"
+import { round } from "std/math"
 ```
 
 ```ab
@@ -35,7 +35,7 @@ You can check the original tests for code examples:
 ## `floor`
 
 ```ab
-import { floor } from "std/math.ab"
+import { floor } from "std/math"
 ```
 
 ```ab
@@ -52,7 +52,7 @@ You can check the original tests for code examples:
 ## `ceil`
 
 ```ab
-import { ceil } from "std/math.ab"
+import { ceil } from "std/math"
 ```
 
 ```ab
@@ -69,7 +69,7 @@ You can check the original tests for code examples:
 ## `abs`
 
 ```ab
-import { abs } from "std/math.ab"
+import { abs } from "std/math"
 ```
 
 ```ab

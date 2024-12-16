@@ -1,7 +1,7 @@
 ## `replace_once`
 
 ```ab
-import { replace_once } from "std/text.ab"
+import { replace_once } from "std/text"
 ```
 
 ```ab
@@ -18,7 +18,7 @@ You can check the original tests for code examples:
 ## `replace`
 
 ```ab
-import { replace } from "std/text.ab"
+import { replace } from "std/text"
 ```
 
 ```ab
@@ -37,7 +37,7 @@ You can check the original tests for code examples:
 ## `replace_regex`
 
 ```ab
-import { replace_regex } from "std/text.ab"
+import { replace_regex } from "std/text"
 ```
 
 ```ab
@@ -56,7 +56,7 @@ You can check the original tests for code examples:
 ## `split`
 
 ```ab
-import { split } from "std/text.ab"
+import { split } from "std/text"
 ```
 
 ```ab
@@ -74,7 +74,7 @@ You can check the original tests for code examples:
 ## `lines`
 
 ```ab
-import { lines } from "std/text.ab"
+import { lines } from "std/text"
 ```
 
 ```ab
@@ -91,7 +91,7 @@ You can check the original tests for code examples:
 ## `words`
 
 ```ab
-import { words } from "std/text.ab"
+import { words } from "std/text"
 ```
 
 ```ab
@@ -104,7 +104,7 @@ Splits a `text` into an array of substrings based on space character.
 ## `join`
 
 ```ab
-import { join } from "std/text.ab"
+import { join } from "std/text"
 ```
 
 ```ab
@@ -121,7 +121,7 @@ You can check the original tests for code examples:
 ## `trim_left`
 
 ```ab
-import { trim_left } from "std/text.ab"
+import { trim_left } from "std/text"
 ```
 
 ```ab
@@ -138,7 +138,7 @@ You can check the original tests for code examples:
 ## `trim_right`
 
 ```ab
-import { trim_right } from "std/text.ab"
+import { trim_right } from "std/text"
 ```
 
 ```ab
@@ -155,7 +155,7 @@ You can check the original tests for code examples:
 ## `trim`
 
 ```ab
-import { trim } from "std/text.ab"
+import { trim } from "std/text"
 ```
 
 ```ab
@@ -174,7 +174,7 @@ You can check the original tests for code examples:
 ## `lower`
 
 ```ab
-import { lower } from "std/text.ab"
+import { lower } from "std/text"
 ```
 
 ```ab
@@ -191,7 +191,7 @@ You can check the original tests for code examples:
 ## `upper`
 
 ```ab
-import { upper } from "std/text.ab"
+import { upper } from "std/text"
 ```
 
 ```ab
@@ -208,7 +208,7 @@ You can check the original tests for code examples:
 ## `parse`
 
 ```ab
-import { parse } from "std/text.ab"
+import { parse } from "std/text"
 ```
 
 ```ab
@@ -225,7 +225,7 @@ You can check the original tests for code examples:
 ## `chars`
 
 ```ab
-import { chars } from "std/text.ab"
+import { chars } from "std/text"
 ```
 
 ```ab
@@ -242,7 +242,7 @@ You can check the original tests for code examples:
 ## `len`
 
 ```ab
-import { len } from "std/text.ab"
+import { len } from "std/text"
 ```
 
 ```ab
@@ -260,7 +260,7 @@ You can check the original tests for code examples:
 ## `contains`
 
 ```ab
-import { contains } from "std/text.ab"
+import { contains } from "std/text"
 ```
 
 ```ab
@@ -277,7 +277,7 @@ You can check the original tests for code examples:
 ## `reverse`
 
 ```ab
-import { reverse } from "std/text.ab"
+import { reverse } from "std/text"
 ```
 
 ```ab
@@ -294,7 +294,7 @@ You can check the original tests for code examples:
 ## `starts_with`
 
 ```ab
-import { starts_with } from "std/text.ab"
+import { starts_with } from "std/text"
 ```
 
 ```ab
@@ -311,7 +311,7 @@ You can check the original tests for code examples:
 ## `ends_with`
 
 ```ab
-import { ends_with } from "std/text.ab"
+import { ends_with } from "std/text"
 ```
 
 ```ab
@@ -328,7 +328,7 @@ You can check the original tests for code examples:
 ## `slice`
 
 ```ab
-import { slice } from "std/text.ab"
+import { slice } from "std/text"
 ```
 
 ```ab
@@ -348,7 +348,7 @@ You can check the original tests for code examples:
 ## `char_at`
 
 ```ab
-import { char_at } from "std/text.ab"
+import { char_at } from "std/text"
 ```
 
 ```ab
@@ -366,7 +366,7 @@ You can check the original tests for code examples:
 ## `capitalize`
 
 ```ab
-import { capitalize } from "std/text.ab"
+import { capitalize } from "std/text"
 ```
 
 ```ab
@@ -383,7 +383,7 @@ You can check the original tests for code examples:
 ## `lpad`
 
 ```ab
-import { lpad } from "std/text.ab"
+import { lpad } from "std/text"
 ```
 
 ```ab
@@ -400,7 +400,7 @@ You can check the original tests for code examples:
 ## `rpad`
 
 ```ab
-import { rpad } from "std/text.ab"
+import { rpad } from "std/text"
 ```
 
 ```ab
@@ -417,7 +417,7 @@ You can check the original tests for code examples:
 ## `zfill`
 
 ```ab
-import { zfill } from "std/text.ab"
+import { zfill } from "std/text"
 ```
 
 ```ab

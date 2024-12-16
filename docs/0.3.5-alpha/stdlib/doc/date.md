@@ -1,7 +1,7 @@
 ## `date_posix`
 
 ```ab
-import { date_posix } from "std/date.ab"
+import { date_posix } from "std/date"
 ```
 
 ```ab
@@ -78,7 +78,7 @@ You can check the original tests for code examples:
 ## `now`
 
 ```ab
-import { now } from "std/date.ab"
+import { now } from "std/date"
 ```
 
 ```ab
@@ -95,7 +95,7 @@ You can check the original tests for code examples:
 ## `date_add`
 
 ```ab
-import { date_add } from "std/date.ab"
+import { date_add } from "std/date"
 ```
 
 ```ab
@@ -136,7 +136,7 @@ If date_b is not provided, current date will be used
 ## `date_compare`
 
 ```ab
-import { date_compare } from "std/date.ab"
+import { date_compare } from "std/date"
 ```
 
 ```ab
