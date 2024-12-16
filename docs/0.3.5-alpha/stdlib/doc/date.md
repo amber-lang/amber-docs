@@ -1,60 +1,19 @@
-## `date_add`
-```ab
-pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
-```
-
-### EXPERIMENTAL
-
-Adds a value to a date.
-
-If no date is specified, the current date is used.
-
-Example : `date_add("+3 days")`
-
-You can use (+/-):
-
-- years
-- months
-- days
-- hours
-- minutes
-- seconds
-
-
-## `date_compare`
-```ab
-pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
-```
-
-### EXPERIMENTAL
-Compares two dates.
-
-Returns 1 if date_a is after date_b.
-
-Returns 0 if date_a and date_b is the same.
-
-Returns -1 if date_b is after date_a.
-
-If date_b is not provided, current date will be used.
-
-
 ## `date_posix`
+
+```ab
+import { date_posix } from "std/date.ab"
+```
+
 ```ab
 pub fun date_posix(format: Text = "", date: Text = "", utc: Bool = false): Text ? 
 ```
 
-### EXPERIMENTAL
-
-Formats a date with a special format.
-
-If no date is specified, the current date is used.
-
-If no format is specified, "%FT%T%Z" format is used.
-
-For more info about format type "man date" on your shell or go to <https://www.gnu.org/software/coreutils/date>.
-
+EXPERIMENTAL
+Format a date with a special format
+If no date is specified, the current date is used
+If no format is specified, "%FT%T%Z" format is used
+For more info about format type "man date" on your shell or go to https://www.gnu.org/software/coreutils/date
 Format :
-```
 %%     a literal %
 %a     locale's abbreviated weekday name (e.g., Sun)
 %A     locale's full weekday name (e.g., Sunday)
@@ -101,25 +60,89 @@ Format :
 %::z   +hh:mm:ss numeric time zone (e.g., -04:00:00)
 %:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)
 %Z     alphabetic time zone abbreviation (e.g., EDT)
-```
 
 By default, date pads numeric fields with zeroes.  The following optional flags may follow '%':
 
-```
 -      (hyphen) do not pad the field
 _      (underscore) pad with spaces
 0      (zero) pad with zeros
 +      pad with zeros, and put '+' before future years with >4 digits
 ^      use upper case if possible
 #      use opposite case if possible
-```
 
+
+
+You can check the original tests for code examples:
+* [date_posix.ab](https://github.com/amber-lang/amber/blob/0.3.5-alpha/src/tests/stdlib/date_posix.ab)
 
 ## `now`
+
+```ab
+import { now } from "std/date.ab"
+```
+
 ```ab
 pub fun now(): Num 
 ```
 
-Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
+Return current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC))
 
+
+
+You can check the original tests for code examples:
+* [now.ab](https://github.com/amber-lang/amber/blob/0.3.5-alpha/src/tests/stdlib/now.ab)
+
+## `date_add`
+
+```ab
+import { date_add } from "std/date.ab"
+```
+
+```ab
+pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
+```
+
+EXPERIMENTAL
+Add value to date.
+If no date is specified, the current date is used
+Ex : date_add("+3 days")
+You can use :
+(+/-)
+years
+months
+days
+hours
+minutes
+seconds
+
+
+
+You can check the original tests for code examples:
+* [date_add.ab](https://github.com/amber-lang/amber/blob/0.3.5-alpha/src/tests/stdlib/date_add.ab)
+
+EXPERIMENTAL
+
+
+Compare 2 date
+
+Return 1 if date_a is after date_b
+
+Return 0 if date_a and date_b is the same
+
+Return -1 if date_b is after date_a
+
+If date_b is not provided, current date will be used
+
+## `date_compare`
+
+```ab
+import { date_compare } from "std/date.ab"
+```
+
+```ab
+pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
+```
+
+You can check the original tests for code examples:
+* [date_compare.ab](https://github.com/amber-lang/amber/blob/0.3.5-alpha/src/tests/stdlib/date_compare.ab)
 
