@@ -1,6 +1,6 @@
 # Ranges
 
-Amber gives you the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
+Amber gives us the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
 - `a..b` is exclusive from `a` to `b` excluding `b`.
 - `a..=b` is inclusive from `a` to `b` including `b`.
 
@@ -15,7 +15,7 @@ echo 0..=10
 
 We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
 
-To store or retrieve a value at a particular index of an array, you can use the following syntax:
+To store or retrieve a value at a particular index of an array, we can use the following syntax:
 
 ```ab
 let groceries = ["apple", "banana", "cherry", "date"]
@@ -24,9 +24,9 @@ echo groceries[1]
 // Outputs: banana
 ```
 
-> WARNING: As of right now (Amber alpha) the subscript syntax does not work with expressions. This means that you can't evaluate expressions like `foo()[0]` yet.
+> WARNING: As of right now (Amber alpha) the subscript syntax does not work with expressions. This means that we can't evaluate expressions like `foo()[0]` yet.
 
-You can also _echo_ an entire array:
+We can also _echo_ an entire array:
 
 ```ab
 echo groceries

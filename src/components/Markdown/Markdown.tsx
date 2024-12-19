@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
 import { generateUrl, getLocation } from '@/utils/urls'
-import { MarkOptions } from 'perf_hooks'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
@@ -17,6 +16,25 @@ const getHrefWithVersion = (href: string, currentUrl: string) => {
     const params = currentUrl.replace(/^\//, '').split('/')
     const location = getLocation(params)
     return generateUrl(location.version, href)
+}
+
+
+const handleWarning = (text: string): string | null => {
+    const warningText = 'WARNING:'
+    const isWarning = (text.replace('<p>', '').startsWith(warningText));
+    if (!isWarning) return null
+    const img = `<img src="/internal/warning.svg" class="${style.icon}" />`
+    const result = img + text.replace(warningText, '')
+    return `<blockquote class="${style.warning}">${result}</blockquote>`
+}
+
+const handleDetails = (text: string): string | null => {
+    const detailsText = 'DETAILS:'
+    const isDetails = (text.replace('<p>', '').startsWith(detailsText));
+    if (!isDetails) return null
+    const img = `<img src="/internal/details.svg" class="${style.icon}" />`
+    const result = img + text.replace(detailsText, '')
+    return `<blockquote class="${style.details}">${result}</blockquote>`
 }
 
 // You can override the default renderer to customize the output
@@ -44,15 +62,8 @@ class MarkdownRenderer extends Renderer {
     }
 
     blockquote(text: string): string {
-        const warningText = 'WARNING:'
-        const isWarning = (text.replace('<p>', '').startsWith(warningText));
-        const className = isWarning ? 'warning' : 'quote'
-        let result = text;
-        if (isWarning) {
-            const img = `<img src="/internal/warning.svg" class="${style["warning-icon"]}" />`
-            result = img + result.replace(warningText, '')
-        }
-        return `<blockquote class="${style[className]}">${result}</blockquote>`
+        const fallback = `<blockquote class="${style.quote}">${text}</blockquote>`
+        return handleWarning(text) ?? handleDetails(text) ?? fallback
     }
 
     code(rawCode: string, lang: string, escaped: boolean) {

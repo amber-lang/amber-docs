@@ -28,7 +28,7 @@ It's the most encouraged way to iterate over an array. The example in the previo
 
 ```ab
 let sum = 0
-loop i in 0..5 {
+for i in 0..5 {
 	sum += i
 }
 echo sum
@@ -40,7 +40,7 @@ Here is another example showing iterator loop in action:
 ```ab
 let files = ["config.json", "file.txt", "audio.mp3"]
 
-loop index, file in files {
+for index, file in files {
 	$ mv {file} {index}{file} $ failed {
 		echo "Failed to rename {file}"
 	}
