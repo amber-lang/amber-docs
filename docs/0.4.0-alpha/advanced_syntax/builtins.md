@@ -60,14 +60,14 @@ echo len(lines)
 
 ## Mv
 
-If you need to move files you can use the `mv` builtin, requires two `Text` parameters.
+If we need to move files we can use the `mv` builtin, requires two `Text` parameters.
 *Doesn't support the `mv` unix command parameters*.
 
 ```ab
 mv "/tmp/a" "/tmp/b"
 ```
 
-This builtin is `failable`, meaning you can handle errors like this:
+This builtin is `failable`, meaning we can handle errors like this:
 
 ```ab
 mv "/tmp/a" "/tmp/b" failed {
@@ -77,9 +77,9 @@ mv "/tmp/a" "/tmp/b" failed {
 
 ## Nameof
 
-For more advanced commands, you might need the name of the variable in the compiled script. The `nameof` keyword provides this functionality.
+For more advanced commands, we might need the name of the variable in the compiled script. The `nameof` keyword provides this functionality.
 
-For example, this allows you to perform operations like:
+For example, this allows us to perform operations like:
 
 ```ab
 let variable = null

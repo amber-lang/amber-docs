@@ -1,29 +1,54 @@
-We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
+# Ranges
 
-To store or retrieve a value at a particular index of an array, you can use the following syntax:
+Amber gives us the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
+- `a..b` is exclusive from `a` to `b` excluding `b`.
+- `a..=b` is inclusive from `a` to `b` including `b`.
 
 ```ab
-let groceries = ["Apple", "Banana", "Orange"]
-groceries[0] = "Almond"
-echo groceries[1]
-// Outputs: Banana
+echo 0..10
+// Outputs: 0 1 2 3 4 5 6 7 8 9
+echo 0..=10
+// Outputs: 0 1 2 3 4 5 6 7 8 9 10
 ```
 
-> WARNING: As of right now (Amber alpha) the subscript syntax does not work with expressions! This means that you can't evaluate expressions like: `foo()[0]` yet.
+# Arrays
 
-You can also _echo_ an entire array
+We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
+
+To store or retrieve a value at a particular index of an array, we can use the following syntax:
+
+```ab
+let groceries = ["apple", "banana", "cherry", "date"]
+groceries[0] = "kiwi"
+echo groceries[1]
+// Outputs: banana
+```
+
+> WARNING: As of right now (Amber alpha) the subscript syntax does not work with expressions. This means that we can't evaluate expressions like `foo()[0]` yet.
+
+We can also _echo_ an entire array:
 
 ```ab
 echo groceries
-// Outputs: Almond Banana Orange
+// Outputs: kiwi banana cherry date
 ```
 
-To add element to an array you can use the mentioned in the [expressions chapter](/basic_syntax/expressions) addition operator to merge two arrays together.
+To retrieve a slice between a pair of indices of an array, we can use an exclusive range `a..b` or inclusive range `a..=b` (see above) with the following syntax:
+
+```ab
+echo groceries[1..3]
+// Outputs: banana cherry
+echo groceries[1..=2]
+// Outputs: banana cherry
+```
+
+> WARNING: It is not currently possible to *replace* a slice of an array. This means that we can't evaluate expressions like `groceries[1..=2] = ["kiwi"]` yet.
+
+To add an element to an array, we can use the mentioned in the [expressions chapter](/basic_syntax/expressions) addition operator to merge two arrays together.
 
 ```ab
 let capitals = ["London", "Paris"]
 capitals += ["Warsaw"]
-
 let cities = capitals + ["Barcelona", "Florence"]
 ```
 
@@ -58,7 +83,7 @@ typedef struct array_element {
 
 # Ranges
 
-Amber gives you the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
+Amber gives us the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
 - `..` Exclusive that are from a to b excluding b
 - `..=` Inclusive that are from a to b including b
 
