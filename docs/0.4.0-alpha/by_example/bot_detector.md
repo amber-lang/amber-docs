@@ -5,7 +5,7 @@ This script is meant for periodic execution and must be run as root. It scans an
 // Usage: ./bot-detector.sh <LOG_FILE_PATH>
 // The script is triggered by a cronjob every 10 minutes.
 
-import * from "std"
+import * from "std/text"
 
 main (args) {
   if len(args) < 1 {
@@ -21,7 +21,7 @@ main (args) {
     exit(1)
   }
 
-  let start = parse($ date +%s $?)?
+  let start = parse_number($ date +%s $?)?
 
   // Get server IP address for excluding.
   let server_ip = $ hostname -i $?
@@ -62,7 +62,7 @@ main (args) {
 
     loop line in lines(ip_log) {
       let parts = split(line, " ")
-      let count = parse(parts[0])?
+      let count = parse_number(parts[0])?
       // Skip IP addresses that sent less than 1000 requests.
       if count < 1000 {
         continue
@@ -84,7 +84,7 @@ main (args) {
       $ echo "\$(date) | IP addess {ip} added to the block list, RPH={count}" >> /var/log/bot-detector.log $?
     }
   }
-  let end = parse($ date +%s $?)?
+  let end = parse_number($ date +%s $?)?
   let duration = end - start
   echo "Execution time: {duration} seconds"
 }

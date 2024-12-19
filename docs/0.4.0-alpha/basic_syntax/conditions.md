@@ -23,7 +23,7 @@ if age >= 16 {
 }
 ```
 
-Well... you may notice that this short and simple "if" condition takes up a lot of space. In Amber, there is a rule that allows you to use a `:` symbol where you intend to write only one statement, wherever you can write a block of code. This can be handy when you want to perform multiple conditions with a single statement each.
+In Amber, a simple if condition can often feel unnecessarily bulky. To address this, Amber allows the use of a `:` symbol to replace a full block when you only need to write a single statement. This feature is especially useful for handling multiple conditions with concise, single-statement actions.
 
 ```ab
 if age >= 16: echo "Welcome"
@@ -36,6 +36,7 @@ if age >= 16:
 else:
 	echo "Entry not allowed"
 ```
+
 
 ## If Chain
 
@@ -72,9 +73,9 @@ if drink == "water" {
 	echo "Have a natural, mineralized water"
 } else {
     if drink == "cola" {
-        	echo "Here is your fresh cola"
+        echo "Here is your fresh cola"
     } else {
-        	echo "Sorry, we have none of that"
+        echo "Sorry, we have none of that"
     }
 }
 ```

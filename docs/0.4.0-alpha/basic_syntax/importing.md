@@ -1,8 +1,8 @@
-In Amber, you can import functions from other files. To make a function accessible from an external file, you need to declare it as _public_ within the file where it’s defined.
+In Amber, we can import functions from other files. To make a function accessible from an external file, we need to declare it as _public_ within the file where it’s defined.
 
 ## Public Functions
 
-To declare a function as public you can use a `pub` keyword. Keep in mind that `pub` keyword has to be used before the `fun` keyword that declares your function:
+To declare a function as public we can use a `pub` keyword. Let's keep in mind that `pub` keyword has to be used before the `fun` keyword that declares your function:
 
 ```ab
 pub fun sum(left: Num, right: Num): Num {
@@ -12,7 +12,7 @@ pub fun sum(left: Num, right: Num): Num {
 
 ### Importing from Other Files
 
-You can import each function individually...
+It's possible to import functions individually.
 
 ```ab
 import { foo, bar } from "./my-file.ab"
@@ -21,7 +21,7 @@ foo()
 bar()
 ```
 
-...or you can import all functions at once
+It's also possible to import all functions at once.
 
 ```ab
 import * from "./arith.ab"
@@ -31,24 +31,24 @@ echo sum(1, sub(2, mul(4, 5)))
 
 ## Public Imports
 
-There are times when you might want to export what you imported. Then you can simply do this:
+There are situations where we might need to re-export something we’ve imported. Amber makes this straightforward with the following syntax:
 
 ```ab
 pub import * from "my/path/file.ab"
 ```
 
-This will import all functions defined in `file.ab` and all of them will be publicly available again from this file.
+This statement imports all functions defined in file.ab and re-exports them, making them publicly accessible from the current file.
 
 ## Main Block
 
-Sometimes you want to run certain code when file is being run directly. The same issue can be solved in Python:
+In case when we want a specific code to run only when a file is executed directly, Amber offers a clean and powerful solution. Similar to Python’s approach:
 
 ```py
 if __name__ == '__main__':
 	# code to execute
 ```
 
-Amber has a special syntax for this pattern. It is not just a syntactic sugar though. Main scope gives you also the ability to use `?` operator in which case the exit code will be simply propagated to the external shell.
+Amber uses a dedicated main scope for this purpose. However, it’s more than just a convenient syntax — it also provides additional functionality. Within the main block, we can use the `?` operator to propagate exit codes directly to the external shell, simplifying error handling.
 
 ```ab
 echo "Running indirectly"
@@ -58,6 +58,11 @@ main {
 	echo "Running directly"
 }
 ```
+
+> DETAILS: Key features of `main` block:
+- Code outside the main block runs regardless of how the file is executed.
+- Code inside the main block runs only when the file is executed directly.
+- The `?` operator ensures that any exit code from some command is automatically passed back to the shell, making it easy to handle script results effectively.
 
 Now if we run this file the output will look like this:
 ```
@@ -79,7 +84,7 @@ Main block can provide an array of arguments (that is of type `[Text]`) passed t
 
 ```ab
 main (args) {
-	loop i, arg in args {
+	for i, arg in args {
 		echo "{i}: {arg}"
 	}
 }

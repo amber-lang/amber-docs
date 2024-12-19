@@ -5,7 +5,7 @@ This script is meant for periodic execution and must be run as root. It scans an
 // Usage: ./bot-detector.sh <LOG_FILE_PATH>
 // The script is triggered by a cronjob every 10 minutes.
 
-import * from "std"
+import * from "std/text"
 
 main (args) {
   if len(args) < 1 {

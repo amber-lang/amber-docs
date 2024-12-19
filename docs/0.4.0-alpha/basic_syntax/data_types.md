@@ -57,8 +57,6 @@ Arrays in Amber and Bash are dynamically allocated. When creating an array liter
 
 To create an array literal simply enclose a list of elements separated with a comma `,` with square brackets `[]`.
 
-> EXAMPLE: `[1, 2, 3]` will create an array of type `[Num]`. 
-
 ```ab
 // `[Num]` data type
 [1, 2, 3]
@@ -69,8 +67,6 @@ To create an array literal simply enclose a list of elements separated with a co
 ```
 
 In a situation of empty array there is no value that can tell the compiler of what type it is. In this case we can simply use the type signature of it to represent an empty array.
-
-> EXAMPLE: `[Num]` used as a value will simply represent an empty array of numbers.
 
 ```ab
 // Example of a value that represents empty array of text

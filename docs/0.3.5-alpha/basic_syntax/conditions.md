@@ -72,9 +72,9 @@ if drink == "water" {
 	echo "Have a natural, mineralized water"
 } else {
     if drink == "cola" {
-        	echo "Here is your fresh cola"
+        echo "Here is your fresh cola"
     } else {
-        	echo "Sorry, we have none of that"
+        echo "Sorry, we have none of that"
     }
 }
 ```

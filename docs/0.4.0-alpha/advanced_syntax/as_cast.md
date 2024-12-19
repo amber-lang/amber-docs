@@ -21,10 +21,10 @@ let b = a as Num
 We can clearly see that this could lead to some big bugs. For example one could pass `"abc"` instead of `"12"` in a string which is not a valid value for `Num` type. To convert a string to a number, it's better to use `parse()` function from the [standard library]().
 
 ```ab
-import { parse } from "std"
+import { parse_number } from "std/text"
 
 let a = "12"
-let b = parse(a) failed {
+let b = parse_number(a) failed {
     echo "Variable `a` is not a number."
 }
 
