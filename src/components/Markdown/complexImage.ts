@@ -5,8 +5,6 @@ function getStyles(options: { [key: string]: string | number }) {
         switch (option) {
             case 'width': return `width: ${options[option]}px`
             case 'height': return `height: ${options[option]}px`
-            case 'hide-border': return 'border: none'
-            case 'border-radius': return `border-radius: ${options[option]}px`
             case 'align': return (() => {
                 switch (options[option]) {
                     case 'left': return 'margin-right: auto'
@@ -24,7 +22,7 @@ export default function complexImageParser(execArr?: string[]): string {
     if (!execArr) return ''
     const options = JSON.parse(`{${execArr[2]}}`)
     const styles = getStyles(options)
-    
+
     if (execArr[4]) {
         return `<div class="${[style.container, style['light-dark']].join(' ')}">
             <img src="${execArr[3]}" alt="${execArr[1]}" class="${style.image}" style="${styles.join(';')}"/>

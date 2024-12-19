@@ -23,7 +23,7 @@ export default function SettingsGrid() {
                     </Button>
                 </div>
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://github.com/Ph0enixKM/Amber')}>
+                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
                         <Icon src='/internal/gh.svg' size='2rem'/>
                     </Button>
                 </div>

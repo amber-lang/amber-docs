@@ -28,17 +28,19 @@
     vertical-align: middle;
 }
 
-.markdown img {
-    display: block;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    width: 100%;
-    margin: 0.75rem 0;
-}
-
 .markdown a {
     text-decoration: underline;
     color: var(--accent);
+}
+
+.markdown table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.markdown table th, .markdown table td {
+    padding: 6px 13px;
+    border: 1px solid var(--border);
 }
 
 .light-dark img:last-child {

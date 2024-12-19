@@ -66,6 +66,16 @@
     }
 }
 
+.container.single {
+    .selected .bg {
+        border-radius: 0.5rem !important;
+    }
+
+    .list {
+        display: none !important;
+    }
+}
+
 .container.open {
     .selected {
         color: var(--text);
