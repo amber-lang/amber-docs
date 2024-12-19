@@ -5,7 +5,7 @@ There are three ways to perform conditional logic:
 
 ## If Statement
 
-The good ol' if statement that you may recognize from other modern programming languages:
+The good ol' if statement that one may recognize from other modern programming languages:
 
 ```ab
 if age >= 16 {

@@ -29,6 +29,33 @@ let cities = capitals + ["Barcelona", "Florence"]
 
 In order to see more operations on the array data type take a look at the standard library documentation which covers functions such as `join`, `len` or `sum`.
 
+## Nested arrays
+
+We already learned that Bash does not support nesting arrays. But what makes this limitation? The answer is that under the hood Bash defines arrays that essentially only store structures containing string value. You can learn more about Bash arrays by reading [the official source code](https://git.savannah.gnu.org/cgit/bash.git/tree/array.h).
+
+```c
+typedef struct array {
+	arrayind_t	max_index;
+	arrayind_t	num_elements;
+#ifdef ALT_ARRAY_IMPLEMENTATION
+	arrayind_t	first_index;
+	arrayind_t	alloc_size;
+	struct array_element **elements;
+#else
+	struct array_element *head;
+	struct array_element *lastref;
+#endif
+} ARRAY;
+
+typedef struct array_element {
+	arrayind_t	ind;
+	char	*value;
+#ifndef ALT_ARRAY_IMPLEMENTATION
+	struct array_element *next, *prev;
+#endif
+} ARRAY_ELEMENT;
+```
+
 # Ranges
 
 Amber gives you the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
