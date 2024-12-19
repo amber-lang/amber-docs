@@ -33,7 +33,7 @@ echo groceries
 // Outputs: kiwi banana cherry date
 ```
 
-To add an element to an array, you can use the mentioned in the [expressions chapter](/basic_syntax/expressions) addition operator to merge two arrays together.
+To add an element to an array, use the addition operator, described in the [Expressions chapter](/basic_syntax/expressions), to combine two arrays.
 
 ```ab
 let capitals = ["London", "Paris"]
