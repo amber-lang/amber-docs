@@ -4,7 +4,10 @@ Since Amber was designed based on the ECMA script syntax some of the following p
 
 > We suggest to take a look on [the examples](https://docs.amber-lang.com/by_example/examples) we provide to see real use cases written in Amber.
 
+Here you might notice an `echo` built-in that does the same thing that Bash's `echo` do.
+
 Here is a code snippet that illustrates certain features of Amber. We will provide detailed explanations for each of these features and cover additional content in the forthcoming chapters.
+
 
 ```ab
 // Define variables

@@ -73,7 +73,23 @@ echo age // Outputs: 23
 
 ## Text Interpolation
 
-There are moments when you want to embed values into a text:
+Text interpolation is a form of embedding various values into the text literal that are combined together with their textual representations.
+
+```ab
+echo "State: {false}" // Outputs: "State: 0"
+// It's possible to also nest interpolation
+echo "1 {" 2 {"3"} 4"} 5" // Outputs: "1 2 3 4 5"
+```
+
+In the following table we can see how the interpolation behaves for various data types:
+
+Type  |Description          |Before         |After
+------|---------------------|---------------|---------
+`Text`|Identity             |`"{"Text"}"`   |`"Text"`
+`Num` |Identity             |`"{12.34}"`    |`"12.34"`
+`Bool`|`1` or `0`           |`"{true}"`     |`"1"`
+`[]`  |Spaces between values|`"{[1, 2, 3]}"`|`"1 2 3"`
+
 
 ```ab
 let name = "John"
