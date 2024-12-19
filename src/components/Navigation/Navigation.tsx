@@ -32,6 +32,10 @@ export default function Navigation({ hideSearch = false }: Props) {
         setThemeMode(mode === 'light' ? 'dark' : 'light')
     }
 
+    const versions = process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
+        ? config.visibleVersions
+        : config.allVersions
+
     return <>
             <div className={style.nav}>
                 <div className={style.left}>
@@ -47,7 +51,7 @@ export default function Navigation({ hideSearch = false }: Props) {
                         <Dropdown
                             value={version}
                             onChange={(value: Object) => router.push(`/${value.toString()}`)}
-                            options={config.visibleVersions}
+                            options={versions}
                             getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
                         />
                     </div>
