@@ -1,4 +1,5 @@
 import { HLJSApi } from 'highlight.js'
+import { keywords as amberKeywords } from './amber-config.json'
 
 const amber = (hljs: HLJSApi) => {
     const interpolation = {
@@ -31,7 +32,7 @@ const amber = (hljs: HLJSApi) => {
     }
     const keywords = {
         scope: 'keyword',
-        match: /\b(and|as|break|cd|const|continue|echo|else|fail|failed|for|from|fun|if|import|in|is|len|let|lines|loop|main|mv|nameof|not|or|pub|ref|return|silent|status|then|trust|unsafe)\b/
+        match: new RegExp(`\\b(${amberKeywords.join("|")})\\b`)
     }
     const type = {
         scope: 'type',
