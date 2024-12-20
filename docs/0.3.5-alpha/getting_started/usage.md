@@ -30,10 +30,13 @@ $ amber hello.ab
 Hello world!
 ```
 
-If you want to run just a small expression, you can do that as well. Simply pass the `-e` (execute) flag to the command:
+If you want to run just a small code snippet, you can do that as well. Simply pass the `-e` (execute) flag to the command:
 
 ```sh
-$ amber -e 'echo upper("Hello world!")'
+$ amber -e '
+    import * from "std/text"
+    echo upper("Hello world!")
+'
 HELLO WORLD!
 ```
 

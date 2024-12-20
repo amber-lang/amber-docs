@@ -1,5 +1,5 @@
 import { HLJSApi } from 'highlight.js'
-import { keywords as amberKeywords } from './amber-config.json'
+import amberConfig from './amber-config.json'
 
 const amber = (hljs: HLJSApi) => {
     const interpolation = {
@@ -32,7 +32,7 @@ const amber = (hljs: HLJSApi) => {
     }
     const keywords = {
         scope: 'keyword',
-        match: new RegExp(`\\b(${amberKeywords.join("|")})\\b`)
+        match: new RegExp(`\\b(${amberConfig.keywords.join("|")})\\b`)
     }
     const type = {
         scope: 'type',
@@ -58,6 +58,10 @@ const amber = (hljs: HLJSApi) => {
         scope: 'comment',
         match: /\#\[.*\]/
     }
+    const shebang = {
+        scope: 'comment',
+        match: /\#\!.*\n/
+    }
     const all = [
         hljs.C_LINE_COMMENT_MODE,
         hljs.C_BLOCK_COMMENT_MODE,
@@ -72,7 +76,8 @@ const amber = (hljs: HLJSApi) => {
         compilerFlag,
         type,
         fun,
-        variable
+        variable,
+        shebang
     ]
     interpolation.contains = all.concat([{
         begin: /\{/,
