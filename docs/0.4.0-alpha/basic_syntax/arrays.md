@@ -60,23 +60,23 @@ We already learned that Bash does not support nesting arrays. But what makes thi
 
 ```c
 typedef struct array {
-	arrayind_t	max_index;
-	arrayind_t	num_elements;
+    arrayind_t	max_index;
+    arrayind_t	num_elements;
 #ifdef ALT_ARRAY_IMPLEMENTATION
-	arrayind_t	first_index;
-	arrayind_t	alloc_size;
-	struct array_element **elements;
+    arrayind_t	first_index;
+    arrayind_t	alloc_size;
+    struct array_element **elements;
 #else
-	struct array_element *head;
-	struct array_element *lastref;
+    struct array_element *head;
+    struct array_element *lastref;
 #endif
 } ARRAY;
 
 typedef struct array_element {
-	arrayind_t	ind;
-	char	*value;
+    arrayind_t	ind;
+    char	*value;
 #ifndef ALT_ARRAY_IMPLEMENTATION
-	struct array_element *next, *prev;
+    struct array_element *next, *prev;
 #endif
 } ARRAY_ELEMENT;
 ```

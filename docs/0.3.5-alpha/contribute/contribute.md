@@ -1,12 +1,12 @@
-# Contributing to Amber
+Welcome to the Amber Contributing Guidebook! 👋
 
-This is a simple but exhaustive guide to get you started on contributing to Amber.
+This guide offers a clear and comprehensive introduction to getting started with contributing to Amber. If you haven’t already, consider joining our [Discord](https://discord.com/invite/cjHjxbsDvZ) community, where you can ask any questions and connect with other contributors.
 
 ## Contributing Guidelines
 
 Before you dig into Amber, you should know a few things before you contribute.
 
-Any code change is submitted [through a PR](https://github.com/amber-lang/Amber/pulls), which is then approved by at least 2 maintainers.
+Any code change is submitted [through a PR](https://github.com/amber-lang/Amber/pulls), which is then approved by at least 2 maintainers. Each pull request should be directed to the `staging` branch unless there is a specific justification for targeting the `master` branch.
 
 The way we talk on GitHub is not the same as we would talk in person. When on GitHub, always get straight to the point and be critical.
 
@@ -61,7 +61,7 @@ To run ALL tests, run `cargo test`.
 
 If you want to run only tests from a specific module, let's say from [`stdlib.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs), you can do that by adding the module name to the command: `cargo test stdlib` or `cargo test tests::stdlib::test_stdlib_src_tests_stdlib_extract_ab` to run a single test.
 
-And if there is a specific function, like `function_with_wrong_typed_return()` in [`errors.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/errors.rs), you should add the full path to it: `cargo test errors::function_with_wrong_typed_return` 
+And if there is a specific function, like `function_with_wrong_typed_return()` in [`errors.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/errors.rs), you should add the full path to it: `cargo test errors::function_with_wrong_typed_return`
 
 #### Github Actions
 

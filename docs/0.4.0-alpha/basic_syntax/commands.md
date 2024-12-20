@@ -1,6 +1,6 @@
 The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
-Commands can sometimes fail, so it’s important for whoever uses them to be ready to handle what happens next. There are different ways to deal with failures, each with its own pros and cons:
+Commands can sometimes _fail_, so it’s important for whoever uses them to be ready to handle what happens next. There are different ways to deal with failures, each with its own pros and cons:
 - `failed` - the recommended way to handle failing that enables you to write some specific logic to run when a command fails
 - `?` - this shorthand for propagating the failure to the caller. This operator can only be used in a `main` block or inside of a function.
 - `trust` - the discouraged way to handle failing. This modifier will treat commands as if they have completed successfully and will allow them to be parsed without any further steps.

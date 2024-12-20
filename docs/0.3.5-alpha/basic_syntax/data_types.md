@@ -1,4 +1,6 @@
-Amber supports 5 data types:
+In Bash there is only one primitive data type, string, which internal implementation is represented by an array of characters `char*`. Amber extends on this data type to introduce a few more.
+
+Amber supports five data types:
 - `Text` - The textual data type. In other programming languages it can also be called "string".
 - `Num` - The numeric data type. It's basically any number.
 - `Bool` - The boolean data type. It's value can be either `true` or `false`.
@@ -9,10 +11,14 @@ Amber supports 5 data types:
 
 `Text` data type is the most basic data type in Amber. It's just a string of characters and is also stored as a string of characters under the hood.
 
+Text literal in Amber is contained between double quotes. Amber makes sure to prevent content inside from [globbing](https://en.wikipedia.org/wiki/Glob_%28programming%29). This prevents unexpected behaviors from happening.
+
 ```ab
 // `Text` literal:
 "Welcome to the jungle"
 ```
+
+Just like in other programming languages, characters in Text literals can be escaped.
 
 ## Number
 
@@ -28,13 +34,13 @@ Under the hood its value is stored as a string of characters - the same way as i
 
 ## Boolean
 
+Boolean values are translated to `0` or `1` numerical values. These values can be easily [cast](/advanced_syntax/as_cast) to numbers `Num`.
+
 ```ab
 // `Bool` data type
 true
 false
 ```
-
-Under the hood these values are stored as either `1` or `0`.
 
 ## Null
 
@@ -43,18 +49,21 @@ Under the hood these values are stored as either `1` or `0`.
 null
 ```
 
-The most common use of this data type is when you want to declare that some function does not return any value. There is no real world example why someone might want to `null` literal as it serves no purpose right now.
+The most common use of this data type is to indicate that a function does not return a value. Currently, there is no practical real-world scenario where using a null literal is necessary, as it serves no functional purpose at this time.
 
 ## Array
 
-When dealing with arrays you probably want to define of which data type you want to create the array. In that case simply put the data type inside of the square brackets. For example an array of type `Num` is `[Num]` (in C like languages it would be `Num[]`)
+Arrays in Amber and Bash are dynamically allocated. When creating an array literal it is important to specify of which data type the array should be made. Type signature of arrays can be represented with `[T]` where `T` is the value type that this array holds. Example: an array of type `Num` is `[Num]` (in C like languages it would be `Num[]`).
+
+To create an array literal simply enclose a list of elements separated with a comma `,` with square brackets `[]`.
+
 
 ```ab
 // `[Num]` data type
 [1, 2, 3]
 ```
 
-If you want to create an empty array, you have to specify the data type that it's going to contain. In order to do that simply pass the type to the inside of the array as if it was a value.
+In a situation of empty array there is no value that can tell the compiler of what type it is. In this case we can simply use the type signature of it to represent an empty array.
 
 ```ab
 // Example of a value that represents empty array of text

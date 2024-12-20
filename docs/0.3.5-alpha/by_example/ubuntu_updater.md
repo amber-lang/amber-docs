@@ -3,6 +3,8 @@ Here is an example script to periodically install software updates on an Ubuntu 
 > As you can see, the Amber code currently looks as if it is intertwined with bash commands. As development progresses, executing custom commands will be even better integrated with special syntax and improved runtime safety features to aid this process.
 
 ```ab
+import { exit } from "std/env"
+
 main {
   // Print output and log it at the same time.
   $ exec > >(tee -a /var/log/autoapt.log) 2>&1 $?
@@ -14,7 +16,7 @@ main {
   silent unsafe $ iwgetid -r | grep -E '(OEBB|WESTlan)' $
   if status == 0 {
     echo "Skipping updates because of slow Wifi"
-    exit 0
+    exit(0)
   }
 
   $ export DEBIAN_FRONTEND=noninteractive $?

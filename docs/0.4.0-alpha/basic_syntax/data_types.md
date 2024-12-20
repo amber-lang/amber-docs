@@ -49,7 +49,7 @@ false
 null
 ```
 
-The most common use of this data type is when you want to declare that some function does not return any value. There is no real world example why someone might want to `null` literal as it serves no purpose right now.
+The most common use of this data type is to indicate that a function does not return a value. Currently, there is no practical real-world scenario where using a null literal is necessary, as it serves no functional purpose at this time.
 
 ## Array
 

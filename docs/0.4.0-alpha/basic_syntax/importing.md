@@ -1,4 +1,4 @@
-In Amber, we can import functions from other files. To make a function accessible from an external file, we need to declare it as _public_ within the file where it’s defined.
+In Amber, functions can be imported from other files. To make a function accessible externally, it must be declared as public in the file where it is defined.
 
 ## Public Functions
 
@@ -62,7 +62,7 @@ main {
 > DETAILS: Key features of `main` block:
 - Code outside the main block runs regardless of how the file is executed.
 - Code inside the main block runs only when the file is executed directly.
-- The `?` operator ensures that any exit code from some command is automatically passed back to the shell, making it easy to handle script results effectively.
+- The `?` operator ensures that any exit code from a failable command or function call is automatically passed back to the shell, making it easy to handle script results effectively.
 
 Now if we run this file the output will look like this:
 ```

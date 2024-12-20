@@ -1,9 +1,8 @@
-Compiler flags allow us to change the behavior of the compiler for the given scope of a function. Remember that some warnings are there for a reason. If you do not understand why some warning is being emitted, go ahead and learn more about basic syntax. Here is a list of all the compiler flags that are ready to be used:
-- `allow_nested_if_else` - Turns off the warning that encourages developer to use the syntax designed to handle if else chains.
-- `allow_generic_return` - Turns off the warning that tells user to specify a concrete return type when arguments with concrete types are used
-- `allow_absurd_cast` - Turns off the warning that tells user that the result of given force type can be [absurd](/advanced_syntax/as_cast#absurd-cast).
+Compiler flags enable customization of the compiler’s behavior within the scope of a specific function. These flags are particularly useful for managing edge cases by temporarily relaxing certain restrictions. Below is a list of available compiler flags and their functions:
+- `allow_nested_if_else` - Disables warnings that recommend using specialized [if-chain](/basic_syntax/conditions#if-chain) syntax.
+- `allow_generic_return` - Suppresses warnings that prompt the developer to specify a concrete return type when using arguments with defined types.
+- `allow_absurd_cast` - Turns off warnings about the potential for nonsensical results when using force-type casting, which may result in an [absurd cast](/advanced_syntax/as_cast#absurd-cast).
 
-Example:
 ```ab
 #[allow_nested_if_else]
 fun foo() {

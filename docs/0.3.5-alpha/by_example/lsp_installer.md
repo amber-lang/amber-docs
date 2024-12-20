@@ -6,7 +6,7 @@ This script automates the installation of several Language Server Protocol (LSP)
 ```ab
 import { dir_exist, make_executable, create_symbolic_link } from "std/fs"
 import { download } from "std/http"
-import { is_root } from "std/env"
+import { is_root, exit } from "std/env"
 import { contains } from "std/text"
 
 if not is_root() {

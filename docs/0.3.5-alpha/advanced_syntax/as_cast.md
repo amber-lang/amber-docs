@@ -1,8 +1,8 @@
-As cast is a tool that might initially seem like an easy way to convert types. So, why has this functionality found its place in the advanced category? Well, with great power comes great responsibility. You could perform some casts that make sense, like from `Bool` to `Num`, but you could also perform casts that we refer to as _absurd_. An example of this might be converting `Text` to `Num`.
+As cast is a tool that might initially seem like an easy way to convert types. So, why has this functionality found its place in the advanced category? Well, with great power comes great responsibility. We could perform some casts that make sense, like from `Bool` to `Num`, but we could also perform casts that we refer to as _absurd_. An example of this might be converting `Text` to `Num`.
 
 ## Regular Casts
 
-There might be times when we want to pass a variable that is a `Bool` to a function that accepts `Num`. Since Bool and Num are types that are compatible with each other, you can easily cast one into the other like so:
+There might be times when we want to pass a variable that is a `Bool` to a function that accepts `Num`. Since Bool and Num are types that are compatible with each other, we can easily cast one into the other like so:
 
 ```ab
 let isReady = systemIsReady()

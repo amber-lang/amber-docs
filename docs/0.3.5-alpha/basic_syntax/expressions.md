@@ -1,4 +1,4 @@
-We can combine our data type literals with operators. The operators only work on **the same** data type. For example adding `Text` to `Num` will cause in error and is an unsupported operation. If you want to merge multiple different values into one text, learn more here about [string interpolation](/basic_syntax/expressions#text-interpolation)
+Data type literals can be combined using operators, but these operators only function with values of **the same** data type. For example, attempting to add a `Text` value to a `Num` value will result in an error, as this is an unsupported operation. To combine different types of values into a single text, consider using [string interpolation](/basic_syntax/expressions#text-interpolation) instead.
 
 ## Addition Operator `+`
 
@@ -34,8 +34,6 @@ let value = 12
 echo -value // Outputs: -12
 ```
 
-
-
 ## Comparison Operations
 
 The equality `==` and inequality `!=` operations can be applied to any data type as long as both sides have the same type.
@@ -63,7 +61,7 @@ Logical operations can only be used on `Bool` data type. As opposed to C-like fa
 
 ## Shorthand Operator
 
-You can use addition operator as well as any arithmetic operator combined with `=` symbol to automatically apply the result to an existing variable:
+The addition operator, along with any arithmetic operator combined with the = symbol, can be used to automatically update the value of an existing variable with the calculated result.
 
 ```ab
 let age = 18
@@ -73,7 +71,23 @@ echo age // Outputs: 23
 
 ## Text Interpolation
 
-There are moments when you want to embed values into a text:
+Text interpolation is a form of embedding various values into the text literal that are combined with their textual representations.
+
+```ab
+echo "State: {false}" // Outputs: "State: 0"
+// It's possible to also nest interpolation
+echo "1 {" 2 {"3"} 4"} 5" // Outputs: "1 2 3 4 5"
+```
+
+In the following table we can see how the interpolation behaves for various data types:
+
+Type  |Description          |Before         |After
+------|---------------------|---------------|---------
+`Text`|Identity             |`"{"Text"}"`   |`"Text"`
+`Num` |Identity             |`"{12.34}"`    |`"12.34"`
+`Bool`|`1` or `0`           |`"{true}"`     |`"1"`
+`[]`  |Spaces between values|`"{[1, 2, 3]}"`|`"1 2 3"`
+
 
 ```ab
 let name = "John"

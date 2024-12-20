@@ -20,7 +20,7 @@ echo name // Outputs: "Rob"
 
 ## Overshadowing
 
-Variable declarations can be overshadowed - this means that you can redeclare the existing variable with different data type in given scope if you need to. Here is an example:
+Variable declarations in Amber can be overshadowed, allowing the redeclaration of an existing variable with a different data type within a specific scope if necessary. Here’s an example:
 
 ```ab
 // `result` is a `Num`
@@ -34,6 +34,6 @@ let result = "Hello my friend"
 Constant is a type of variable that cannot be modified.
 
 ```ab
-const gravity = 9.81
-gravity = 15 // ERROR: Cannot reassign constant 'gravity'
+const sunrise = "east"
+sunrise = "west" // ERROR: Cannot reassign constant 'sunrise'
 ```

@@ -6,6 +6,7 @@ This script is meant for periodic execution and must be run as root. It scans an
 // The script is triggered by a cronjob every 10 minutes.
 
 import * from "std/text"
+import { exit } from "std/env"
 
 main (args) {
   if len(args) < 1 {

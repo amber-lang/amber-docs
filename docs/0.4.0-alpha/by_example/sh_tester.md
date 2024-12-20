@@ -20,13 +20,11 @@ let output = ""
 let stdtests = trust $ /usr/bin/ls "src/tests/stdlib/" $
 let stdlib = split(stdtests, "\n")
 
-loop v in stdlib {
-    if (not text_contains(v, ".txt") and file_exists("src/tests/stdlib/{v}")) {
+for v in stdlib {
+    if not text_contains(v, ".txt") and file_exists("src/tests/stdlib/{v}") {
         echo "Generating Bash script for test {v}"
-        trust {
-            trust $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
-            output = trust $ shellcheck "{path}/{v}.sh" $
-        }
+        trust $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
+        output = trust $ shellcheck "{path}/{v}.sh" $
 
         if (status != 0) {
             echo "Shellcheck found something!"
