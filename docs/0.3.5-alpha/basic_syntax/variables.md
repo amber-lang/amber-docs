@@ -16,9 +16,11 @@ And to access the value stored by this variable - just refer to it by name, like
 echo name // Outputs: "Rob"
 ```
 
+> WARNING: The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.
+
 ## Overshadowing
 
-Variable declarations can be overshadowed - this means that you can redeclare the existing variable with different data type in given scope if you need to. Here is an example:
+Variable declarations in Amber can be overshadowed, allowing the redeclaration of an existing variable with a different data type within a specific scope if necessary. Here’s an example:
 
 ```ab
 // `result` is a `Num`
@@ -27,6 +29,11 @@ let result = 123
 let result = "Hello my friend"
 ```
 
-## Reserved Prefix
+# Constant
 
-The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.
+Constant is a type of variable that cannot be modified.
+
+```ab
+const sunrise = "east"
+sunrise = "west" // ERROR: Cannot reassign constant 'sunrise'
+```

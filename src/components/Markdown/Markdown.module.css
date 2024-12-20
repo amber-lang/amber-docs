@@ -145,35 +145,32 @@ html[mode="light"] .markdown .light-dark img:last-child {
     color: var(--text);
 }
 
-.markdown .quote {
+.markdown blockquote {
+    --quote-color: var(--border);
     border-radius: 10px;
     padding: 1rem;
     margin: 1rem 0;
-    border-left: 5px solid var(--border);
+    border-left: 5px solid var(--quote-color);
     background: linear-gradient(
         90deg,
-        color-mix(in srgb, var(--border), transparent 70%),
-        color-mix(in srgb, var(--border), transparent 90%)
+        color-mix(in srgb, var(--quote-color), transparent 70%),
+        color-mix(in srgb, var(--quote-color), transparent 90%)
     );
 }
 
 .markdown .warning {
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-left: 5px solid #ffa300;
-    background: linear-gradient(
-        90deg,
-        color-mix(in srgb, #ffa300, transparent 70%),
-        color-mix(in srgb, #ffa300, transparent 90%)
-    );
+    --quote-color: #ffa300;
 }
 
-.quote p, .warning p {
+.markdown .details {
+    --quote-color: color-mix(in srgb, #007eff, var(--border));
+}
+
+.quote p, .warning p, .details p {
     display: inline;
 }
 
-.markdown .warning .warning-icon {
+.markdown .icon {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 0;

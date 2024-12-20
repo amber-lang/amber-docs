@@ -4,13 +4,13 @@ This script is used within the project to automate the process of identifying an
 > If ShellCheck detects any issues (i.e., returns a non-zero exit code), the script generates a `.txt` report detailing the problems found. This report is stored in a designated temporary directory (`/tmp/amber-sc-tests`).
 
 ```ab
-import { split, contains } from "std/text"
-import { file_write, file_append, dir_exist, file_exist, create_dir } from "std/fs"
+import { split, text_contains } from "std/text"
+import { file_write, file_append, dir_exists, file_exists, dir_create } from "std/fs"
 
 let path = "/tmp/amber-sc-tests"
 
-if (not dir_exist(path)) {
-    create_dir(path)
+if (not dir_exists(path)) {
+    dir_create(path)
 }
 
 let report = "{path}/report.txt"
@@ -20,13 +20,11 @@ let output = ""
 let stdtests = trust $ /usr/bin/ls "src/tests/stdlib/" $
 let stdlib = split(stdtests, "\n")
 
-loop v in stdlib {
-    if (not contains(v, ".txt") and file_exist("src/tests/stdlib/{v}")) {
+for v in stdlib {
+    if not text_contains(v, ".txt") and file_exists("src/tests/stdlib/{v}") {
         echo "Generating Bash script for test {v}"
-        trust {
-            trust $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
-            output = trust $ shellcheck "{path}/{v}.sh" $
-        }
+        trust $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
+        output = trust $ shellcheck "{path}/{v}.sh" $
 
         if (status != 0) {
             echo "Shellcheck found something!"

@@ -21,12 +21,10 @@ let stdtests = unsafe $ /usr/bin/ls "src/tests/stdlib/" $
 let stdlib = split(stdtests, "\n")
 
 loop v in stdlib {
-    if (not contains(v, ".txt") and file_exist("src/tests/stdlib/{v}")) {
+    if not contains(v, ".txt") and file_exist("src/tests/stdlib/{v}") {
         echo "Generating Bash script for test {v}"
-        unsafe {
-            unsafe $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
-            output = unsafe $ shellcheck "{path}/{v}.sh" $
-        }
+        unsafe $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
+        output = unsafe $ shellcheck "{path}/{v}.sh" $
 
         if (status != 0) {
             echo "Shellcheck found something!"

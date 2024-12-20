@@ -4,14 +4,14 @@ This script automates the installation of several Language Server Protocol (LSP)
 > For each tool, if the download or installation fails, an error message is displayed, and the script exits to prevent partial installations.
 
 ```ab
-import { dir_exist, make_executable, create_symbolic_link } from "std/fs"
-import { download } from "std/http"
-import { is_root, exit } from "std/env"
-import { contains } from "std/text"
+import { dir_exists, file_chmod, symlink_create } from "std/fs"
+import { file_download } from "std/http"
+import { is_root } from "std/env"
+import { text_contains } from "std/text"
 
 if not is_root() {
     echo "This script requires root permissions!"
-    exit(1)
+    exit 1
 }
 
 fun get_download_path(repo, position) {
@@ -19,22 +19,22 @@ fun get_download_path(repo, position) {
 }
 
 fun move_to_bin(download_url, binary) {
-    if silent download(download_url, binary) {
+    if silent file_download(download_url, binary) {
         mv binary "/usr/local/bin" failed {
             echo "Move {binary} to /usr/local/bin failed!"
-            exit(1)
+            exit 1
         }
-        make_executable("/usr/local/bin/{binary}")
+        file_chmod("/usr/local/bin/{binary}", "+x")
     } else {
         echo "Download for {binary} at {download_url} failed"
-        exit(1)
+        exit 1
     }
 }
 
 fun download_to_bin(download_url, binary, packed_file) {
-    if silent download(download_url, packed_file) {
+    if silent file_download(download_url, packed_file) {
         trust {
-            if contains("tar.gz", packed_file) {
+            if text_contains("tar.gz", packed_file) {
                 $ tar -zxvf "./{packed_file}" -C ./ > /dev/null 2>&1 $
                 trust mv "./{binary}" "/usr/local/bin"
             } else {
@@ -42,10 +42,10 @@ fun download_to_bin(download_url, binary, packed_file) {
             }
             $ rm "./{packed_file}" $
         }
-        make_executable("/usr/local/bin/{binary}")
+        file_chmod("/usr/local/bin/{binary}", "+x")
     } else {
         echo "Download for {binary} at {download_url} failed"
-        exit(1)
+        exit 1
     }
 }
 
@@ -58,7 +58,7 @@ echo "Install Rust LSP"
 download_to_bin("https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz", "rust-analyzer", "rust-analyzer-x86_64-unknown-linux-gnu.gz")
 
 echo "Install Lua LSP"
-if not dir_exist("/opt/lua-language-server") {
+if not dir_exists("/opt/lua-language-server") {
     cd "/opt/"
     trust $ git clone https://github.com/LuaLS/lua-language-server $
 } else {
@@ -69,13 +69,13 @@ silent trust {
     $ git pull $
     $ ./make.sh $
 }
-create_symbolic_link("/opt/lua-language-server/bin/lua-language-server", "/usr/local/bin/lua-language-server")
+symlink_create("/opt/lua-language-server/bin/lua-language-server", "/usr/local/bin/lua-language-server")
 
 cd "/tmp"
 
 let npm_lsp = ["vscode-langservers-extracted", "@tailwindcss/language-server", "@olrtg/emmet-language-server", "intelephense", "bash-language-server"]
 let npm_lsp_name = ["CSS, HTML, JSON LSP", "Tailwind LSP", "Emmet LSP", "Intelephense LSP", "Bash LSP"]
-loop index, lsp in npm_lsp {
+for index, lsp in npm_lsp {
     echo "Install {npm_lsp_name[index]}"
     $ npm i -g "{lsp}" $ failed {
         echo "Error! Exit code: {status}"

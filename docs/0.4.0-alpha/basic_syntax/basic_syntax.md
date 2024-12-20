@@ -1,8 +1,10 @@
-> This language documentation assumes that you understand the basics of programming
+> This documentation assumes a foundational understanding of programming concepts.
 
-Since Amber was designed based on the ECMA script syntax some of the following parts of programming language may be familiar.
+Since Amber is designed with a syntax inspired by ECMAScript, some aspects of the programming language may appear familiar.
 
 > We suggest to take a look on [the examples](https://docs.amber-lang.com/by_example/examples) we provide to see real use cases written in Amber.
+
+Here, we may notice an echo built-in function, which performs the same operation as Bash’s echo command.
 
 Here is a code snippet that illustrates certain features of Amber. We will provide detailed explanations for each of these features and cover additional content in the forthcoming chapters.
 
@@ -16,15 +18,15 @@ echo "Hello, my name is {name}"
 
 // Perform conditional checks
 if age < 18 {
-	echo "I'm not an adult yet"
+    echo "I'm not an adult yet"
 } else {
-	echo "I'm an adult"
+    echo "I'm an adult"
 }
 
 // Loop through an array
 let fruits = ["apple", "banana", "cherry", "date"]
 echo "My favorite fruits are:"
-loop fruit in fruits {
-	echo fruit
+for fruit in fruits {
+    echo fruit
 }
 ```

@@ -2,8 +2,8 @@ Functions can help you organize the structure of your code into reusable compone
 
 ```ab
 fun myFunction(arg1, arg2) {
-	let result = arg1 + arg2
-	return result
+    let result = arg1 + arg2
+    return result
 }
 
 echo myFunction(2, 3)
@@ -18,8 +18,8 @@ If you want to declare a function that takes arguments of certain type - you are
 
 ```ab
 fun myFunction(arg1: Num, arg2: Num): Num {
-	let result = arg1 + arg2
-	return result
+    let result = arg1 + arg2
+    return result
 }
 ```
 
@@ -47,7 +47,7 @@ Functions can additionally fail. We call them _failable_ functions. A failable f
 
 ```ab
 fun failing() {
-	fail 1
+    fail 1
 }
 ```
 
@@ -55,8 +55,8 @@ Here is another example of a failing function:
 
 ```ab
 fun failing(name) {
-	$ command $?
-	parse(name)?
+    $ command $?
+    parse(name)?
 }
 ```
 
@@ -82,9 +82,9 @@ Status code contains information about latest failing function or a command that
 
 ```ab
 fun safeDivision(a: Num, b: Num): Num {
-	if b == 0:
-		fail 1
-	return a / b
+    if b == 0:
+        fail 1
+    return a / b
 }
 ```
 
@@ -99,8 +99,8 @@ This was a happy ending. Now let's see what happens when we divide by zero:
 
 ```ab
 let result = safeDivision(15, 0) failed {
-	echo "function Failed"
-	echo status
+    echo "function Failed"
+    echo status
 }
 // Outputs:
 // function Failed
@@ -113,7 +113,7 @@ You have the ability to accept variables passed by reference. To  do this you ca
 
 ```ab
 fun push(ref array, value) {
-	array += [value]
+    array += [value]
 }
 
 let groceries = ["apples", "bananas"]

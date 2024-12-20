@@ -1,7 +1,6 @@
 The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
-The important thing regarding commands is that they can `fail`. Failing is a new concept that forces the caller to handle the failure. There are many ways to handle failure:
-
+Commands can sometimes _fail_, so it’s important for whoever uses them to be ready to handle what happens next. There are different ways to deal with failures, each with its own pros and cons:
 - `failed` - the recommended way to handle failing that enables you to write some specific logic to run when a command fails
 - `?` - this shorthand for propagating the failure to the caller. This operator can only be used in a `main` block or inside of a function.
 - `trust` - the discouraged way to handle failing. This modifier will treat commands as if they have completed successfully and will allow them to be parsed without any further steps.
@@ -11,7 +10,7 @@ Here is an example use:
 ```ab
 // Command statement
 $ mv file.txt dest.txt $ failed {
-	echo "It seems that the file.txt does not exist"
+    echo "It seems that the file.txt does not exist"
 }
 
 // Command expression
@@ -21,14 +20,14 @@ let result = $ cat file.txt | grep "READY" $ failed {
 echo result
 ```
 
-Command expression result is sent to the variable instead of _standard output_.
+> DETAILS: Command expression result is sent to the variable instead of _standard output_.
 
 Command expression can also be interpolated with other expressions and variables
 
 ```ab
 let file_path = "/path/to/file"
 $ cat {file_path} $ failed {
-	echo "Could not open '{file_path}'"
+    echo "Could not open '{file_path}'"
 }
 ```
 
@@ -39,7 +38,7 @@ In order to get the exit code, you can use the `status` keyword. It will always 
 ```ab
 let file_path = "/path/to/file"
 $ cat {file_path} $ failed {
-	echo "Error! Exit code: {status}"
+    echo "Error! Exit code: {status}"
 }
 echo "The status code is: {status}"
 ```
@@ -55,7 +54,7 @@ $ test -d /path/to/file $?
 // Which is the same as
 
 $ test -d /path/to/file $ failed {
-	fail status
+    fail status
 }
 ```
 
@@ -79,10 +78,10 @@ You can use the command modifiers as modifier scopes. This way you don't have to
 
 ```ab
 silent trust {
-	$ first command $
-	if isReady:
-        	$ second command $
-	$ third command $
+    $ first command $
+    if isReady:
+            $ second command $
+    $ third command $
 }
 ```
 

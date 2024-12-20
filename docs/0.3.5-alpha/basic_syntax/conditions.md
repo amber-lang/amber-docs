@@ -5,11 +5,11 @@ There are three ways to perform conditional logic:
 
 ## If Statement
 
-The good ol' if statement that you may recognize from other modern programming languages:
+The good old if statement that one may recognize from other modern programming languages:
 
 ```ab
 if age >= 16 {
-	echo "Welcome"
+    echo "Welcome"
 }
 ```
 
@@ -17,13 +17,13 @@ Let's add an `else` branch to the mix
 
 ```ab
 if age >= 16 {
-	echo "Welcome"
+    echo "Welcome"
 } else {
-	echo "Entry not allowed"
+    echo "Entry not allowed"
 }
 ```
 
-Well... you may notice that this short and simple "if" condition takes up a lot of space. In Amber, there is a rule that allows you to use a `:` symbol where you intend to write only one statement, wherever you can write a block of code. This can be handy when you want to perform multiple conditions with a single statement each.
+In Amber, a simple if condition can often feel unnecessarily bulky. To address this, Amber allows the use of a `:` symbol to replace a full block when you only need to write a single statement. This feature is especially useful for handling multiple conditions with concise, single-statement actions.
 
 ```ab
 if age >= 16: echo "Welcome"
@@ -32,69 +32,69 @@ else: echo "Entry not allowed"
 // Or
 
 if age >= 16:
-	echo "Welcome"
+    echo "Welcome"
 else:
-	echo "Entry not allowed"
+    echo "Entry not allowed"
 ```
 
 ## If Chain
 
-The if-chain is a simplification technique for a sequence of if-else blocks. Allow me to illustrate this concept.
-
-You can express it as follows:
+The if-chain is a streamlined approach for handling a sequence of if-else conditions. Here’s an example to illustrate this concept:
 
 ```ab
 if {
-	drink == "water" {
-		echo "Have a natural, mineralized water"
-	}
-	drink == "cola" {
-		echo "Here is your fresh cola"
-	}
-	else {
-		echo "Sorry, we have none of that"
-	}
+    drink == "water" {
+        echo "Have a natural, mineralized water"
+    }
+    drink == "cola" {
+        echo "Here is your fresh cola"
+    }
+    else {
+        echo "Sorry, we have none of that"
+    }
 }
 
-// Alternatively, as previously mentioned:
+// Compact alternative:
 
 if {
-	drink == "water": echo "Have a natural, mineralized water"
-	drink == "cola": echo "Here is your fresh cola"
-	else: echo "Sorry, we have none of that"
+    drink == "water": echo "Have a natural, mineralized water"
+    drink == "cola": echo "Here is your fresh cola"
+    else: echo "Sorry, we have none of that"
 }
 ```
 
-Instead of the nested if-else structure:
+Instead of using the traditional nested if-else structure:
 
 ```ab
 if drink == "water" {
-	echo "Have a natural, mineralized water"
+    echo "Have a natural, mineralized water"
 } else {
     if drink == "cola" {
-        	echo "Here is your fresh cola"
+        echo "Here is your fresh cola"
     } else {
-        	echo "Sorry, we have none of that"
+        echo "Sorry, we have none of that"
     }
 }
 ```
 
-This approach provides a more concise and readable structure for handling multiple conditions.
+The if-chain offers a cleaner, more concise, and readable way to handle multiple conditions.
 
 ## Ternary Expression
 
-Imagine needing to swiftly determine a value to assign based on a straightforward condition. This is precisely where ternary expressions prove invaluable. Here's a concise example:
+Ternary expressions are ideal for quickly assigning values based on simple conditions. They provide a compact and efficient alternative to traditional conditional statements. Here’s an example:
 
 ```ab
 let candy = count > 1
-	then "candies"
-	else "candy"
+    then "candies"
+    else "candy"
 
 echo "I have {count} {candy}"
 ```
 
-The ternary expression can of course be inlined when the expressions inside are short.
+To achieve an even more compact form, the ternary expression can be written inline when the expressions involved are concise.
 
 ```ab
 let candy = count > 1 then "candies" else "candy"
 ```
+
+This approach makes code concise and readable, especially for straightforward conditional assignments.
