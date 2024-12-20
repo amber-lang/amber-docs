@@ -66,6 +66,17 @@ class MarkdownRenderer extends Renderer {
         return handleWarning(text) ?? handleDetails(text) ?? fallback
     }
 
+    table(header: string, body: string): string {
+        return `
+            <div class="${style['table-wrapper']}">
+                <table>
+                    <thead>${header}</thead>
+                    <tbody>${body}</tbody>
+                </table>
+            </div>
+        `.replace(/\s+/, ' ');
+    }
+
     code(rawCode: string, lang: string, escaped: boolean) {
         let code = rawCode.trim()
         if (this.options.highlight) {

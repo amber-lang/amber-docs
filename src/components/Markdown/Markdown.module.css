@@ -33,11 +33,27 @@
     color: var(--accent);
 }
 
+.markdown .table-wrapper {
+    width: calc(100% + 4rem);
+    overflow-x: scroll;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.markdown .table-wrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+
 .markdown table {
     border-spacing: 0;
     border-collapse: separate;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding-right: 4rem;
+}
+
+.markdown table code {
+    text-wrap: nowrap;
 }
 
 .markdown table th {
@@ -240,6 +256,20 @@ html[mode="light"] .markdown .light-dark img:last-child {
     display: block;
     color: var(--code-foreground);
     overflow-x: scroll;
+}
+
+.block::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem;
+}
+
+.block::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--border), transparent 60%);
+    border-radius: 0.25rem;
+}
+
+.block::-webkit-scrollbar-track {
+    background-color: var(--code-background);
 }
 
 @media screen and (hover: hover) {
