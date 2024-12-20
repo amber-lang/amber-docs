@@ -125,7 +125,7 @@ array_find           |array_first_index
 array_find_all       |array_search
 array_first          |first
 array_last           |last
-aray_pop             |op
+array_pop            |pop
 array_remove_at      |remove_at
 array_shift          |shift
 
