@@ -9,7 +9,7 @@ The good old if statement that one may recognize from other modern programming l
 
 ```ab
 if age >= 16 {
-	echo "Welcome"
+    echo "Welcome"
 }
 ```
 
@@ -17,9 +17,9 @@ Let's add an `else` branch to the mix
 
 ```ab
 if age >= 16 {
-	echo "Welcome"
+    echo "Welcome"
 } else {
-	echo "Entry not allowed"
+    echo "Entry not allowed"
 }
 ```
 
@@ -32,9 +32,9 @@ else: echo "Entry not allowed"
 // Or
 
 if age >= 16:
-	echo "Welcome"
+    echo "Welcome"
 else:
-	echo "Entry not allowed"
+    echo "Entry not allowed"
 ```
 
 ## If Chain
@@ -43,23 +43,23 @@ The if-chain is a streamlined approach for handling a sequence of if-else condit
 
 ```ab
 if {
-	drink == "water" {
-		echo "Have a natural, mineralized water"
-	}
-	drink == "cola" {
-		echo "Here is your fresh cola"
-	}
-	else {
-		echo "Sorry, we have none of that"
-	}
+    drink == "water" {
+        echo "Have a natural, mineralized water"
+    }
+    drink == "cola" {
+        echo "Here is your fresh cola"
+    }
+    else {
+        echo "Sorry, we have none of that"
+    }
 }
 
 // Compact alternative:
 
 if {
-	drink == "water": echo "Have a natural, mineralized water"
-	drink == "cola": echo "Here is your fresh cola"
-	else: echo "Sorry, we have none of that"
+    drink == "water": echo "Have a natural, mineralized water"
+    drink == "cola": echo "Here is your fresh cola"
+    else: echo "Sorry, we have none of that"
 }
 ```
 
@@ -67,7 +67,7 @@ Instead of using the traditional nested if-else structure:
 
 ```ab
 if drink == "water" {
-	echo "Have a natural, mineralized water"
+    echo "Have a natural, mineralized water"
 } else {
     if drink == "cola" {
         echo "Here is your fresh cola"
@@ -85,8 +85,8 @@ Ternary expressions are ideal for quickly assigning values based on simple condi
 
 ```ab
 let candy = count > 1
-	then "candies"
-	else "candy"
+    then "candies"
+    else "candy"
 
 echo "I have {count} {candy}"
 ```

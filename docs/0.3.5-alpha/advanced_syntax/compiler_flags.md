@@ -6,6 +6,6 @@ Compiler flags enable customization of the compiler’s behavior within the scop
 ```ab
 #[allow_nested_if_else]
 fun foo() {
-	// ...
+    // ...
 }
 ```

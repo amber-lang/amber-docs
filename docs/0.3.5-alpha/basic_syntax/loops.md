@@ -12,10 +12,10 @@ An infinite loop executes its code repeatedly without end until a `break` statem
 let i = 0
 let sum = 0
 loop {
-	if i == 5:
-		break
-	i += 1
-	sum += i
+    if i == 5:
+        break
+    i += 1
+    sum += i
 }
 echo sum
 // Outputs: 15
@@ -28,7 +28,7 @@ It's the most encouraged way to iterate over an array. The example in the previo
 ```ab
 let sum = 0
 loop i in 0..5 {
-	sum += i
+    sum += i
 }
 echo sum
 // Outputs: 10
@@ -40,9 +40,9 @@ Here is another example showing iterator loop in action:
 let files = ["config.json", "file.txt", "audio.mp3"]
 
 loop index, file in files {
-	$ mv {file} {index}{file} $ failed {
-		echo "Failed to rename {file}"
-	}
+    $ mv {file} {index}{file} $ failed {
+        echo "Failed to rename {file}"
+    }
 }
 ```
 

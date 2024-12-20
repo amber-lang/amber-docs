@@ -6,7 +6,7 @@ To declare a function as public we can use a `pub` keyword. Let's keep in mind t
 
 ```ab
 pub fun sum(left: Num, right: Num): Num {
-	return left + right
+    return left + right
 }
 ```
 
@@ -45,7 +45,7 @@ In case when we want a specific code to run only when a file is executed directl
 
 ```py
 if __name__ == '__main__':
-	# code to execute
+    # code to execute
 ```
 
 Amber uses a dedicated main scope for this purpose. However, it’s more than just a convenient syntax — it also provides additional functionality. Within the main block, we can use the `?` operator to propagate exit codes directly to the external shell, simplifying error handling.
@@ -54,8 +54,8 @@ Amber uses a dedicated main scope for this purpose. However, it’s more than ju
 echo "Running indirectly"
 
 main {
-	$ some command $?
-	echo "Running directly"
+    $ some command $?
+    echo "Running directly"
 }
 ```
 

@@ -2,9 +2,9 @@ Sometimes when building generic functions one could find it very convenient to a
 
 ```ab
 fun getObject(value) {
-	if {
-		value is Text: getByName(value)
-		value is Num: getById(value)
-	}
+    if {
+        value is Text: getByName(value)
+        value is Num: getById(value)
+    }
 }
 ```

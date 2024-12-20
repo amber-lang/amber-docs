@@ -10,7 +10,7 @@ Here is an example use:
 ```ab
 // Command statement
 $ mv file.txt dest.txt $ failed {
-	echo "It seems that the file.txt does not exist"
+    echo "It seems that the file.txt does not exist"
 }
 
 // Command expression
@@ -27,7 +27,7 @@ Command expression can also be interpolated with other expressions and variables
 ```ab
 let file_path = "/path/to/file"
 $ cat {file_path} $ failed {
-	echo "Could not open '{file_path}'"
+    echo "Could not open '{file_path}'"
 }
 ```
 
@@ -38,7 +38,7 @@ In order to get the exit code, you can use the `status` keyword. It will always 
 ```ab
 let file_path = "/path/to/file"
 $ cat {file_path} $ failed {
-	echo "Error! Exit code: {status}"
+    echo "Error! Exit code: {status}"
 }
 echo "The status code is: {status}"
 ```
@@ -54,7 +54,7 @@ $ test -d /path/to/file $?
 // Which is the same as
 
 $ test -d /path/to/file $ failed {
-	fail status
+    fail status
 }
 ```
 
@@ -78,10 +78,10 @@ You can use the command modifiers as modifier scopes. This way you don't have to
 
 ```ab
 silent unsafe {
-	$ first command $
-	if isReady:
-        	$ second command $
-	$ third command $
+    $ first command $
+    if isReady:
+            $ second command $
+    $ third command $
 }
 ```
 

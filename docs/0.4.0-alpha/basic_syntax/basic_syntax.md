@@ -18,15 +18,15 @@ echo "Hello, my name is {name}"
 
 // Perform conditional checks
 if age < 18 {
-	echo "I'm not an adult yet"
+    echo "I'm not an adult yet"
 } else {
-	echo "I'm an adult"
+    echo "I'm an adult"
 }
 
 // Loop through an array
 let fruits = ["apple", "banana", "cherry", "date"]
 echo "My favorite fruits are:"
 for fruit in fruits {
-	echo fruit
+    echo fruit
 }
 ```
