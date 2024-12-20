@@ -1,4 +1,9 @@
 ## `date_add`
+
+```ab
+import { date_add } from "std/date"
+```
+
 ```ab
 pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
 ```
@@ -21,7 +26,16 @@ You can use (+/-):
 - seconds
 
 
+
+You can check the original tests for code examples:
+* [date_add.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_add.ab)
+
 ## `date_compare`
+
+```ab
+import { date_compare } from "std/date"
+```
+
 ```ab
 pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
 ```
@@ -38,7 +52,33 @@ Returns -1 if date_b is after date_a.
 If date_b is not provided, current date will be used.
 
 
+
+You can check the original tests for code examples:
+* [date_compare.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_compare.ab)
+
+## `date_now`
+
+```ab
+import { date_now } from "std/date"
+```
+
+```ab
+pub fun date_now(): Num 
+```
+
+Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
+
+
+
+You can check the original tests for code examples:
+* [date_now.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_now.ab)
+
 ## `date_posix`
+
+```ab
+import { date_posix } from "std/date"
+```
+
 ```ab
 pub fun date_posix(format: Text = "", date: Text = "", utc: Bool = false): Text ? 
 ```
@@ -115,11 +155,7 @@ _      (underscore) pad with spaces
 ```
 
 
-## `now`
-```ab
-pub fun now(): Num 
-```
 
-Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
-
+You can check the original tests for code examples:
+* [date_posix.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_posix.ab)
 
