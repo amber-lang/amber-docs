@@ -70,7 +70,7 @@ $ ./args.ab 1 2 3
 If you want to run just a small expression, you can do that as well:
 
 ```sh
-$ amber eval 'echo upper("Hello world!")'
+$ amber eval 'echo uppercase("Hello world!")'
 HELLO WORLD!
 ```
 
