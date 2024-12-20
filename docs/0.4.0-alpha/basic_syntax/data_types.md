@@ -18,7 +18,7 @@ Text literal in Amber is contained between double quotes. Amber makes sure to pr
 "Welcome to the jungle"
 ```
 
-Just like in other programming languages, characters in Text literals can be escaped.
+Just like in other programming languages, characters in `Text` literals can be escaped.
 
 ## Number
 
