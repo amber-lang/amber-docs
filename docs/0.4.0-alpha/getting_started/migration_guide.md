@@ -16,7 +16,7 @@ unsafe $ ls -a $
 trust $ ls -a $
 ```
 
-# Iterator Loop keyword rename
+# Rename of `loop` Keyword for Iterator Loop
 
 To align with standards and improve readability, the `loop` keyword used for iterator loops has been replaced with `for`. This change ensures linguistic consistency and adopts a convention widely recognized across many programming languages.
 
