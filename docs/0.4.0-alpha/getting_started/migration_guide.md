@@ -1,10 +1,10 @@
 This guide provides a step-by-step walkthrough for migrating code from 0.3.5-alpha to 0.4.0-alpha. The current version introduces several breaking changes. This document outlines the modifications, explains how to adapt your code to maintain the same behavior, and highlights updated features. In this guide we will cover two main categories of changes:
-1.	**Language Features**: Changes and updates to the core language syntax and semantics.
-2.	**Standard Library Updates**: Modifications to existing standard library functions and their usage.
+1. **Language Features**: Changes and updates to the core language syntax and semantics.
+2. **Standard Library Updates**: Modifications to existing standard library functions and their usage.
 
 Follow along to ensure a smooth transition to the new version. Let’s get started!
 
-# Command
+# Rename of `unsafe` Command Modifier
 
 The command can potentially fail. In the previous version the `unsafe` keyword was used to indicate that this command's failure should be ignored. In this release we renamed this keyword to `trust`, to better convey intent.
 
@@ -16,7 +16,7 @@ unsafe $ ls -a $
 trust $ ls -a $
 ```
 
-# Iterator loop
+# Iterator Loop keyword rename
 
 To align with standards and improve readability, the `loop` keyword used for iterator loops has been replaced with `for`. This change ensures linguistic consistency and adopts a convention widely recognized across many programming languages.
 
@@ -32,7 +32,7 @@ for number in 0..=5 {
 }
 ```
 
-# Builtin
+# New Builtins
 
 We've introduced new builtins `len`, `exit` and `lines`, replacing their equivalents in the standard library.
 
@@ -53,7 +53,7 @@ echo len([1, 2, 3])
 
 ## Exit
 
-Exit is used so often that we decided to move it as a separate built-in as well. It's implemented as a builtin statement which means that we can remove the parentheses.
+Exit is used so often that we decided to move it as a separate builtin as well. It's implemented as a builtin statement which means that we can remove the parentheses.
 
 ```ab
 // Before
@@ -66,7 +66,7 @@ exit 1
 
 ## Lines
 
-Lines was not only moved into a built-in but also it was changed in functionality. Before it accepted a `Text` value which then was splited by new line characters. In this version the newly added builtin accepts a path to file for which it returns each line.
+Lines was not only moved into a builtin but also it was changed in functionality. Before it accepted a `Text` value which was then split by newline characters. In this version the newly added builtin accepts a path to file for which it returns each line.
 
 ```ab
 // Before
@@ -78,7 +78,7 @@ lines(file_read("/path/to/file"))
 lines("/path/to/file")
 ```
 
-> DETAILS: This built-in is specifically optimized for direct use as an iterator in a for loop. When used this way, it does not load the entire file into memory but processes it line by line, ensuring efficient resource usage.
+> DETAILS: This builtin is specifically optimized for direct use as an iterator in a `for` loop. When used this way, it does not load the entire file into memory but processes it line by line, ensuring efficient resource usage.
 
 For scenarios where lines was used on a `Text` value originating from sources other than a file, it is recommended to use the new standard library function `split_lines` instead.
 
@@ -92,12 +92,11 @@ import { split_lines } from "std/text"
 split_lines(long_text)
 ```
 
-
 # Standard Library
 
 In order to keep a consistent standard library function naming, most of the functions have been renamed with one exception.
 
-## Make executable (`make_executable`)
+## Make Executable (`make_executable`)
 
 This function has been removed in favor of `file_chmod`. The same effect can be achieved when used with `+x` flag.
 
@@ -111,7 +110,7 @@ import { file_chmod } from "std/fs"
 file_chmod("script.ab", "+x")
 ```
 
-## Renamed functions
+## Renamed Functions
 
 Below is a table of all the functions that have been renamed. Their functionality and definitions remain unchanged.
 
@@ -181,7 +180,7 @@ file_download        |download
 
 New Name             |Old Name
 ---------------------|---------------------
-std/maths            |abs
+math_abs             |abs
 math_ceil            |ceil
 math_floor           |floor
 math_round           |round

@@ -5,16 +5,16 @@
             "title": "Getting Started",
             "docs": [
                 {
-                    "path": "getting_started/migration_guide",
-                    "title": "Migration Guide"
-                },
-                {
                     "path": "getting_started/installation",
                     "title": "Installation"
                 },
                 {
                     "path": "getting_started/usage",
                     "title": "Usage"
+                },
+                {
+                    "path": "getting_started/migration_guide",
+                    "title": "Migration Guide"
                 }
             ]
         },
