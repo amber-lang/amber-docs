@@ -1,6 +1,11 @@
-## `download`
+## `file_download`
+
 ```ab
-pub fun download(url: Text, path: Text): Bool 
+import { file_download } from "std/http"
+```
+
+```ab
+pub fun file_download(url: Text, path: Text): Bool 
 ```
 
 Downloads a file from a given URL and saves it to a specified path using available command-line tools.
