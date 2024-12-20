@@ -84,8 +84,8 @@ Main block can provide an array of arguments (that is of type `[Text]`) passed t
 
 ```ab
 main (args) {
-	loop i, arg in args {
-		echo "{i}: {arg}"
-	}
+    loop i, arg in args {
+        echo "{i}: {arg}"
+    }
 }
 ```
