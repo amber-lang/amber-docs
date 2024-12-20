@@ -71,13 +71,11 @@ If you want to run just a small code snippet, you can do that as well:
 
 ```sh
 $ amber eval '
-    import * from "std/text"
-    echo uppercase("Hello world!")
+import * from "std/text"
+echo uppercase("Hello world!")
 '
 HELLO WORLD!
 ```
-
-Notice that when executing a single expression, Amber automatically includes its standard library for you. This can be really handy when you're in the flow, and all you want is to use a function from Amber's standard library in the terminal.
 
 ### Compiling Amber Scripts
 

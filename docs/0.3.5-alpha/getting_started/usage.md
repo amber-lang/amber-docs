@@ -34,13 +34,11 @@ If you want to run just a small code snippet, you can do that as well. Simply pa
 
 ```sh
 $ amber -e '
-    import * from "std/text"
-    echo upper("Hello world!")
+import * from "std/text"
+echo upper("Hello world!")
 '
 HELLO WORLD!
 ```
-
-Notice that when executing a single expression, Amber automatically includes its standard library for you. This can be really handy when you're in the flow, and all you want is to use a function from Amber's standard library in the terminal.
 
 ### Compiling Amber Scripts
 
