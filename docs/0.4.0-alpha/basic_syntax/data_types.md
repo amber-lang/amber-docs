@@ -1,4 +1,4 @@
-In Bash there is only one primitive data type, string, which internal implementation is represented by an array of characters `char*`. Amber extends on this data type to introduce a couple more.
+In Bash there is only one primitive data type, string, which internal implementation is represented by an array of characters `char*`. Amber extends on this data type to introduce a few more.
 
 Amber supports five data types:
 - `Text` - The textual data type. In other programming languages it can also be called "string".
@@ -34,7 +34,7 @@ Under the hood its value is stored as a string of characters - the same way as i
 
 ## Boolean
 
-Boolean values are translated to `0` or `1` numerical values. These values can be easily [casted](/advanced_syntax/as_cast) to numbers `Num`.
+Boolean values are translated to `0` or `1` numerical values. These values can be easily [cast](/advanced_syntax/as_cast) to numbers `Num`.
 
 ```ab
 // `Bool` data type
@@ -60,7 +60,6 @@ To create an array literal simply enclose a list of elements separated with a co
 ```ab
 // `[Num]` data type
 [1, 2, 3]
-
 
 // `[Text]` data type
 ["Apple", "Banana", "Orange"]

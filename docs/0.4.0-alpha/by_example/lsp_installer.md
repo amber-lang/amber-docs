@@ -42,7 +42,7 @@ fun download_to_bin(download_url, binary, packed_file) {
             }
             $ rm "./{packed_file}" $
         }
-        chmod("/usr/local/bin/{binary}", "+x")
+        file_chmod("/usr/local/bin/{binary}", "+x")
     } else {
         echo "Download for {binary} at {download_url} failed"
         exit 1

@@ -5,7 +5,7 @@ There are three ways to perform conditional logic:
 
 ## If Statement
 
-The good ol' if statement that one may recognize from other modern programming languages:
+The good old if statement that one may recognize from other modern programming languages:
 
 ```ab
 if age >= 16 {
@@ -36,7 +36,6 @@ if age >= 16:
 else:
 	echo "Entry not allowed"
 ```
-
 
 ## If Chain
 

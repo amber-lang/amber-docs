@@ -8,7 +8,6 @@ Here you might notice an `echo` built-in that does the same thing that Bash's `e
 
 Here is a code snippet that illustrates certain features of Amber. We will provide detailed explanations for each of these features and cover additional content in the forthcoming chapters.
 
-
 ```ab
 // Define variables
 let name = "John"

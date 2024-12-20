@@ -73,7 +73,7 @@ echo age // Outputs: 23
 
 ## Text Interpolation
 
-Text interpolation is a form of embedding various values into the text literal that are combined together with their textual representations.
+Text interpolation is a form of embedding various values into the text literal that are combined with their textual representations.
 
 ```ab
 echo "State: {false}" // Outputs: "State: 0"

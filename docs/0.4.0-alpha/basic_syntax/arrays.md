@@ -54,7 +54,7 @@ let cities = capitals + ["Barcelona", "Florence"]
 
 In order to see more operations on the array data type take a look at the standard library documentation which covers functions such as `join`, `len` or `sum`.
 
-## Nested arrays
+## Nested Arrays
 
 We already learned that Bash does not support nesting arrays. But what makes this limitation? The answer is that under the hood Bash defines arrays that essentially only store structures containing string value. You can learn more about Bash arrays by reading [the official source code](https://git.savannah.gnu.org/cgit/bash.git/tree/array.h).
 
@@ -79,18 +79,4 @@ typedef struct array_element {
 	struct array_element *next, *prev;
 #endif
 } ARRAY_ELEMENT;
-```
-
-# Ranges
-
-Amber gives us the ability to generate an array of numbers `[Num]` of certain range. There are two types of ranges:
-- `..` Exclusive that are from a to b excluding b
-- `..=` Inclusive that are from a to b including b
-
-```ab
-echo 0..10
-// Outputs: 0 1 2 3 4 5 6 7 8 9
-
-echo 0..=10
-// Outputs: 0 1 2 3 4 5 6 7 8 9 10
 ```
