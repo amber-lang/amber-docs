@@ -60,9 +60,8 @@ To create an array literal simply enclose a list of elements separated with a co
 ```ab
 // `[Num]` data type
 [1, 2, 3]
-
 // `[Text]` data type
-["Apple", "Banana", "Orange"]
+["apple", "banana", "orange"]
 ```
 
 In a situation of empty array there is no value that can tell the compiler of what type it is. In this case we can simply use the type signature of it to represent an empty array.

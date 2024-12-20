@@ -28,7 +28,7 @@ main (args) {
 
   // We want to check the previous hour and the current hour.
   let timeframes = ["1 hour ago", "now"]
-  loop timeframe in timeframes {
+  for timeframe in timeframes {
     if timeframe == "1 hour ago" {
       echo "Checking the previous hour..."
     } else {
@@ -60,7 +60,7 @@ main (args) {
       grep -v "{server_ip}" | \
       head -n 20 $
 
-    loop line in lines(ip_log) {
+    for line in lines(ip_log) {
       let parts = split(line, " ")
       let count = parse_number(parts[0])?
       // Skip IP addresses that sent less than 1000 requests.

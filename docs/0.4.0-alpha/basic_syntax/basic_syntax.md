@@ -26,7 +26,7 @@ if age < 18 {
 // Loop through an array
 let fruits = ["apple", "banana", "cherry", "date"]
 echo "My favorite fruits are:"
-loop fruit in fruits {
+for fruit in fruits {
 	echo fruit
 }
 ```

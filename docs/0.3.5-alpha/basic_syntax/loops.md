@@ -1,5 +1,4 @@
 Amber supports two types of loop:
-
 - **Infinite** loop that can only be broken with a `break` keyword
 - **Iterator** loop that iterates over an array
 

@@ -2,7 +2,7 @@ As cast is a tool that might initially seem like an easy way to convert types. S
 
 ## Regular Casts
 
-There might be times when we want to pass a variables that is a `Bool` to a function that accepts `Num`. Since Bool and Num are types that are compatible with each other, we can easily cast one into the other like so:
+There might be times when we want to pass a variable that is a `Bool` to a function that accepts `Num`. Since Bool and Num are types that are compatible with each other, we can easily cast one into the other like so:
 
 ```ab
 let isReady = systemIsReady()

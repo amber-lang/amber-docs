@@ -61,7 +61,7 @@ Logical operations can only be used on `Bool` data type. As opposed to C-like fa
 
 ## Shorthand Operator
 
-The addition operator, along with any arithmetic operator combined with the = symbol, can be used to automatically update the value of an existing variable with the calculated result.
+The addition operator, along with any arithmetic operator combined with the `=` symbol, can be used to automatically update the value of an existing variable with the calculated result.
 
 ```ab
 let age = 18
@@ -87,7 +87,6 @@ Type  |Description          |Before         |After
 `Num` |Identity             |`"{12.34}"`    |`"12.34"`
 `Bool`|`1` or `0`           |`"{true}"`     |`"1"`
 `[]`  |Spaces between values|`"{[1, 2, 3]}"`|`"1 2 3"`
-
 
 ```ab
 let name = "John"
