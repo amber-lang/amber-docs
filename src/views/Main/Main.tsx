@@ -13,11 +13,11 @@ import { Location } from "@/utils/urls";
 const AmberScene = dynamic(() => import("@/components/AmberScene/AmberScene"), { ssr: false });
 
 interface Props {
-    location: Location;
+    location?: Location;
 }
 
 export default async function Main({ location }: Props) {
-    const toc = await getTableOfContents(location.version);
+    const toc = await getTableOfContents(location?.version);
 
     return (
         <NavigationLayout hideSearch>
