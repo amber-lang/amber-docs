@@ -35,12 +35,55 @@
 
 .markdown table {
     border-spacing: 0;
-    border-collapse: collapse;
+    border-collapse: separate;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.markdown table th {
+    background-color: var(--code-background);
+}
+
+.markdown table td {
+    color: color-mix(in srgb, var(--text), var(--border) 50%)
 }
 
 .markdown table th, .markdown table td {
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
     padding: 6px 13px;
-    border: 1px solid var(--border);
+}
+
+.markdown table tr th {
+    border-top: 1px solid var(--border);
+}
+
+.markdown table tr th:first-child,
+.markdown table tr td:first-child {
+    border-left: 1px solid var(--border);
+}
+
+.markdown table tr:hover {
+    background-color: var(--code-background);
+}
+
+.markdown table tr:first-child th:first-child {
+    border-top-left-radius: 0.5rem;
+}
+
+
+.markdown table tr:first-child th:last-child {
+    border-top-right-radius: 0.5rem;
+}
+
+
+.markdown table tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5rem;
+}
+
+
+.markdown table tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5rem;
 }
 
 .light-dark img:last-child {

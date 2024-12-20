@@ -15,7 +15,7 @@ export default async function Post({ params }: Props) {
     const location = getLocation(params.slug)
     if (location.slug.length == 0) return (
         <VersionProvider version={location.version}>
-            <Main />
+            <Main location={location} />
         </VersionProvider>
     )
     const document = await getDocument(location.fullPath)
