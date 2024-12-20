@@ -21,7 +21,7 @@ interface Props {
 }
 
 export default async function Page({ location, document }: Props) {
-    const toc = await getTableOfContents()
+    const toc = await getTableOfContents(location.version)
     const docDesc = getDocDescriptor(toc, location.slug.join('/'))
     const flatToc = getFlatTableOfContents(toc)
 

@@ -9,10 +9,15 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import NavigationLayout from "@/layouts/NavigationLayout/NavigationLayout";
 import MainBigLink from "@/layouts/MainBigLink/MainBigLink";
+import { Location } from "@/utils/urls";
 const AmberScene = dynamic(() => import("@/components/AmberScene/AmberScene"), { ssr: false });
 
-export default async function Main() {
-    const toc = await getTableOfContents();
+interface Props {
+    location?: Location;
+}
+
+export default async function Main({ location }: Props) {
+    const toc = await getTableOfContents(location?.version);
 
     return (
         <NavigationLayout hideSearch>
