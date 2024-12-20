@@ -117,89 +117,89 @@ Below is a table of all the functions that have been renamed. Their functionalit
 
 ### `std/array`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/array |array_contains       |includes
-std/array |array_extract_at     |extract_at
-std/array |array_find           |array_first_index
-std/array |array_find_all       |array_search
-std/array |array_first          |first
-std/array |array_last           |last
-std/array |aray_pop             |op
-std/array |array_remove_at      |remove_at
-std/array |array_shift          |shift
+New Name             |Old Name
+---------------------|---------------------
+array_contains       |includes
+array_extract_at     |extract_at
+array_find           |array_first_index
+array_find_all       |array_search
+array_first          |first
+array_last           |last
+aray_pop             |op
+array_remove_at      |remove_at
+array_shift          |shift
 
 ### `std/date`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/date  |date_now             |now
+New Name             |Old Name
+---------------------|---------------------
+date_now             |now
 
 ### `std/env`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/env   |bold                 |text_bold
-std/env   |echo_colored         |color_echo
-std/env   |echo_error           |error
-std/env   |env_const_get        |shell_constant_get
-std/env   |env_const_set        |shell_constant_set
-std/env   |env_file_load        |load_env_file
-std/env   |env_var_get          |shell_var_get
-std/env   |env_var_load         |get_env_var
-std/env   |env_var_set          |shell_var_set
-std/env   |env_var_test         |shell_isset
-std/env   |env_var_unset        |shell_unset
-std/env   |escaped              |printf_escape
-std/env   |input_confirm        |confirm
-std/env   |input_prompt         |input
-std/env   |italic               |text_italic
-std/env   |styled               |text_shell
-std/env   |underlined           |text_underlined
+New Name             |Old Name
+---------------------|---------------------
+bold                 |text_bold
+echo_colored         |color_echo
+echo_error           |error
+env_const_get        |shell_constant_get
+env_const_set        |shell_constant_set
+env_file_load        |load_env_file
+env_var_get          |shell_var_get
+env_var_load         |get_env_var
+env_var_set          |shell_var_set
+env_var_test         |shell_isset
+env_var_unset        |shell_unset
+escaped              |printf_escape
+input_confirm        |confirm
+input_prompt         |input
+italic               |text_italic
+styled               |text_shell
+underlined           |text_underlined
 
 ### `std/fs`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/fs    |dir_create           |create_dir
-std/fs    |dir_exists           |dir_exist
-std/fs    |file_chmod           |make_executable
-std/fs    |file_chown           |change_owner
-std/fs    |file_exists          |file_exist
-std/fs    |file_extract         |extract
-std/fs    |file_glob            |glob
-std/fs    |file_glob_all        |glob_multiple
-std/fs    |symlink_create       |create_symbolic_link
+New Name             |Old Name
+---------------------|---------------------
+dir_create           |create_dir
+dir_exists           |dir_exist
+file_chmod           |make_executable
+file_chown           |change_owner
+file_exists          |file_exist
+file_extract         |extract
+file_glob            |glob
+file_glob_all        |glob_multiple
+symlink_create       |create_symbolic_link
 
 ### `std/http`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/http  |file_download        |download
+New Name             |Old Name
+---------------------|---------------------
+file_download        |download
 
 ### `std/math`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/math  |std/maths            |abs
-std/math  |math_ceil            |ceil
-std/math  |math_floor           |floor
-std/math  |math_round           |round
-std/math  |math_sum             |sum
+New Name             |Old Name
+---------------------|---------------------
+std/maths            |abs
+math_ceil            |ceil
+math_floor           |floor
+math_round           |round
+math_sum             |sum
 
 ### `std/text`
 
-Module    |New Name             |Old Name
-----------|---------------------|---------------------
-std/text  |capitalized          |capitalize
-std/text  |lowercase            |lower
-std/text  |match_regex_any      |match_any_regex
-std/text  |parse_number         |parse
-std/text  |replace_one          |replace_once
-std/text  |reversed             |reverse
-std/text  |split_chars          |chars
-std/text  |split_words          |words
-std/text  |text_contains        |contains
-std/text  |text_contains_all    |contains_all
-std/text  |text_contains_any    |contains_any
-std/text  |uppercase            |upper
+New Name             |Old Name
+---------------------|---------------------
+capitalized          |capitalize
+lowercase            |lower
+match_regex_any      |match_any_regex
+parse_number         |parse
+replace_one          |replace_once
+reversed             |reverse
+split_chars          |chars
+split_words          |words
+text_contains        |contains
+text_contains_all    |contains_all
+text_contains_any    |contains_any
+uppercase            |upper
