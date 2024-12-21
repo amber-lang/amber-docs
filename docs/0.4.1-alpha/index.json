@@ -1,0 +1,160 @@
+{
+    "docs": [
+        {
+            "path": "getting_started/getting_started",
+            "title": "Getting Started",
+            "docs": [
+                {
+                    "path": "getting_started/installation",
+                    "title": "Installation"
+                },
+                {
+                    "path": "getting_started/usage",
+                    "title": "Usage"
+                },
+                {
+                    "path": "getting_started/migration_guide",
+                    "title": "Migration Guide"
+                }
+            ]
+        },
+        {
+            "path": "basic_syntax/basic_syntax",
+            "title": "Basic Syntax",
+            "docs": [
+                {
+                    "path": "basic_syntax/data_types",
+                    "title": "Data Types"
+                },
+                {
+                    "path": "basic_syntax/expressions",
+                    "title": "Expressions"
+                },
+                {
+                    "path": "basic_syntax/variables",
+                    "title": "Variables"
+                },
+                {
+                    "path": "basic_syntax/conditions",
+                    "title": "Conditions"
+                },
+                {
+                    "path": "basic_syntax/commands",
+                    "title": "Commands"
+                },
+                {
+                    "path": "basic_syntax/arrays",
+                    "title": "Arrays"
+                },
+                {
+                    "path": "basic_syntax/loops",
+                    "title": "Loops"
+                },
+                {
+                    "path": "basic_syntax/functions",
+                    "title": "Functions"
+                },
+                {
+                    "path": "basic_syntax/importing",
+                    "title": "Importing"
+                }
+            ]
+        },
+        {
+            "path": "advanced_syntax/advanced_syntax",
+            "title": "Advanced Syntax",
+            "docs": [
+                {
+                    "path": "advanced_syntax/as_cast",
+                    "title": "As Cast"
+                },
+                {
+                    "path": "advanced_syntax/builtins",
+                    "title": "Builtins"
+                },
+                {
+                    "path": "advanced_syntax/type_condition",
+                    "title": "Type Condition"
+                },
+                {
+                    "path": "advanced_syntax/compiler_flags",
+                    "title": "Compiler Flags"
+                }
+            ]
+        },
+        {
+            "path": "stdlib/doc",
+            "title": "Standard Library",
+            "docs": [
+                {
+                    "path": "stdlib/doc/array",
+                    "title": "Array"
+                },
+                {
+                    "path": "stdlib/doc/date",
+                    "title": "Date"
+                },
+                {
+                    "path": "stdlib/doc/env",
+                    "title": "Environment"
+                },
+                {
+                    "path": "stdlib/doc/fs",
+                    "title": "FileSystem"
+                },
+                {
+                    "path": "stdlib/doc/http",
+                    "title": "HTTP"
+                },
+                {
+                    "path": "stdlib/doc/math",
+                    "title": "Math"
+                },
+                {
+                    "path": "stdlib/doc/text",
+                    "title": "Text"
+                }
+            ]
+        },
+        {
+            "path": "contribute/contribute",
+            "title": "Contributing",
+            "docs": [
+                {
+                    "path": "contribute/contribute",
+                    "title": "How to"
+                },
+                {
+                    "path": "contribute/guide_book",
+                    "title": "Guide"
+                },
+                {
+                    "path": "contribute/compiler",
+                    "title": "Compiler structure"
+                }
+             ]
+        },
+        {
+            "path": "by_example/examples",
+            "title": "Amber by Example",
+            "docs": [
+                {
+                    "path": "by_example/sh_tester",
+                    "title": "ShellCheck tester"
+                },
+                {
+                    "path": "by_example/ubuntu_updater",
+                    "title": "Ubuntu Updater"
+                },
+                {
+                    "path": "by_example/bot_detector",
+                    "title": "Bot Detector"
+                },
+                {
+                    "path": "by_example/lsp_installer",
+                    "title": "LSP Installer"
+                }
+            ]
+        }
+    ]
+}
