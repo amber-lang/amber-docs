@@ -13,6 +13,10 @@
                     "title": "Usage"
                 },
                 {
+                    "path": "getting_started/new_changes",
+                    "title": "New Changes"
+                },
+                {
                     "path": "getting_started/migration_guide",
                     "title": "Migration Guide"
                 }
