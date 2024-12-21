@@ -11,10 +11,6 @@
                 {
                     "path": "getting_started/usage",
                     "title": "Usage"
-                },
-                {
-                    "path": "getting_started/migration_guide",
-                    "title": "Migration Guide"
                 }
             ]
         },

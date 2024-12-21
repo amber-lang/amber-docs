@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
 import { generateUrl, getLocation } from '@/utils/urls'
+import path from 'path'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
@@ -15,7 +16,7 @@ hljs.registerAliases(['ab'], { languageName: 'amber' })
 const getHrefWithVersion = (href: string, currentUrl: string) => {
     const params = currentUrl.replace(/^\//, '').split('/')
     const location = getLocation(params)
-    return generateUrl(location.version, href)
+    return path.join('/', generateUrl(location.version, href))
 }
 
 
@@ -107,7 +108,7 @@ class MarkdownRenderer extends Renderer {
         if (href.startsWith('http') || assetRegex.test(window.location.pathname)) {
             return `<a href="${href}"${title ? ` title="${title}"` : ''}>${text}</a>`;
         }
-        return `<a href="/${getHrefWithVersion(href, window.location.pathname)}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+        return `<a href="${getHrefWithVersion(href, window.location.pathname)}"${title ? ` title="${title}"` : ''}>${text}</a>`;
     }
 }
 

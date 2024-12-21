@@ -4,6 +4,8 @@ This guide provides a step-by-step walkthrough for migrating code from 0.3.5-alp
 
 Follow along to ensure a smooth transition to the new version. Let’s get started!
 
+> WARNING: Besides of the changes listed below, there are also some breaking changes in the CLI interface. Please refer to the [usage](/getting_started/usage) section for more details.
+
 # Rename of `unsafe` Command Modifier
 
 The command can potentially fail. In the previous version the `unsafe` keyword was used to indicate that this command's failure should be ignored. In this release we renamed this keyword to `trust`, to better convey intent.

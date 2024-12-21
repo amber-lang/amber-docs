@@ -26,8 +26,6 @@ Options:
   -V, --version  Print version
 ```
 
-For detailed usage instructions, refer to the [Amber usage guide](https://docs.amber-lang.com/getting_started/usage).
-
 ### Running Amber Code
 
 The following command will simply execute `hello.ab` as a script file. Amber code will be compiled to Bash and then executed all in one go:
