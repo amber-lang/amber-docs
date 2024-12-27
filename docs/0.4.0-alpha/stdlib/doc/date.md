@@ -28,7 +28,7 @@ You can use (+/-):
 
 
 You can check the original tests for code examples:
-* [date_add.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_add.ab)
+* [date_add.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_add.ab)
 
 ## `date_compare`
 
@@ -54,7 +54,7 @@ If date_b is not provided, current date will be used.
 
 
 You can check the original tests for code examples:
-* [date_compare.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_compare.ab)
+* [date_compare.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_compare.ab)
 
 ## `date_now`
 
@@ -71,7 +71,7 @@ Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
 
 
 You can check the original tests for code examples:
-* [date_now.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_now.ab)
+* [date_now.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_now.ab)
 
 ## `date_posix`
 
@@ -157,5 +157,5 @@ _      (underscore) pad with spaces
 
 
 You can check the original tests for code examples:
-* [date_posix.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_posix.ab)
+* [date_posix.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_posix.ab)
 

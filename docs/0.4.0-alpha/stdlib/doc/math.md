@@ -13,7 +13,7 @@ Returns the absolute value of a number
 
 
 You can check the original tests for code examples:
-* [math_abs.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/math_abs.ab)
+* [math_abs.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/math_abs.ab)
 
 ## `math_ceil`
 
@@ -30,7 +30,7 @@ Returns the smallest integer greater than or equal to a number
 
 
 You can check the original tests for code examples:
-* [math_ceil.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/math_ceil.ab)
+* [math_ceil.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/math_ceil.ab)
 
 ## `math_floor`
 
@@ -47,7 +47,7 @@ Returns the largest integer less than or equal to a number
 
 
 You can check the original tests for code examples:
-* [math_floor.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/math_floor.ab)
+* [math_floor.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/math_floor.ab)
 
 ## `math_round`
 
@@ -64,7 +64,7 @@ Returns a number, rounded to the nearest integer
 
 
 You can check the original tests for code examples:
-* [math_round.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/math_round.ab)
+* [math_round.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/math_round.ab)
 
 ## `math_sum`
 
@@ -81,5 +81,5 @@ Sums an array's contents
 
 
 You can check the original tests for code examples:
-* [math_sum.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/math_sum.ab)
+* [math_sum.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/math_sum.ab)
 

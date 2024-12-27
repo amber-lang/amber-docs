@@ -283,9 +283,9 @@ Checks if some text contains a value.
 
 
 You can check the original tests for code examples:
-* [text_contains.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/text_contains.ab)
-* [text_contains_all.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/text_contains_all.ab)
-* [text_contains_any.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/text_contains_any.ab)
+* [text_contains.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/text_contains.ab)
+* [text_contains_all.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/text_contains_all.ab)
+* [text_contains_any.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/text_contains_any.ab)
 
 ## `text_contains_all`
 
@@ -302,7 +302,7 @@ Checks if all the arrays values are in the string
 
 
 You can check the original tests for code examples:
-* [text_contains_all.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/text_contains_all.ab)
+* [text_contains_all.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/text_contains_all.ab)
 
 ## `text_contains_any`
 
@@ -319,7 +319,7 @@ Checks if an array value is in the text.
 
 
 You can check the original tests for code examples:
-* [text_contains_any.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/text_contains_any.ab)
+* [text_contains_any.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/text_contains_any.ab)
 
 ## `trim`
 

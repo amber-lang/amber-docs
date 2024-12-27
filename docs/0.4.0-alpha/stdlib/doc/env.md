@@ -91,7 +91,7 @@ Gets a constant inside the shell session.
 
 
 You can check the original tests for code examples:
-* [env_const_get.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_const_get.ab)
+* [env_const_get.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_const_get.ab)
 
 ## `env_const_set`
 
@@ -108,7 +108,7 @@ Sets a constant inside the shell session.
 
 
 You can check the original tests for code examples:
-* [env_const_set.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_const_set.ab)
+* [env_const_set.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_const_set.ab)
 
 ## `env_file_load`
 
@@ -125,7 +125,7 @@ Loads the env file in the environment, using `xargs`.
 
 
 You can check the original tests for code examples:
-* [env_file_load.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_file_load.ab)
+* [env_file_load.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_file_load.ab)
 
 ## `env_var_get`
 
@@ -142,7 +142,7 @@ Gets a constant inside the shell session.
 
 
 You can check the original tests for code examples:
-* [env_var_get.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_var_get.ab)
+* [env_var_get.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_var_get.ab)
 
 ## `env_var_load`
 
@@ -159,7 +159,7 @@ Retrieves the value of an environment variable, optionally sourcing it from a fi
 
 
 You can check the original tests for code examples:
-* [env_var_load.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_var_load.ab)
+* [env_var_load.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_var_load.ab)
 
 ## `env_var_set`
 
@@ -176,7 +176,7 @@ Sets a constant inside the shell session.
 
 
 You can check the original tests for code examples:
-* [env_var_set.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_var_set.ab)
+* [env_var_set.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_var_set.ab)
 
 ## `env_var_test`
 
@@ -193,7 +193,7 @@ Checks if a variable inside the shell session exists.
 
 
 You can check the original tests for code examples:
-* [env_var_test.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_var_test.ab)
+* [env_var_test.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_var_test.ab)
 
 ## `env_var_unset`
 
@@ -210,7 +210,7 @@ Removes a variable inside the shell session.
 
 
 You can check the original tests for code examples:
-* [env_var_unset.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/env_var_unset.ab)
+* [env_var_unset.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/env_var_unset.ab)
 
 ## `escaped`
 

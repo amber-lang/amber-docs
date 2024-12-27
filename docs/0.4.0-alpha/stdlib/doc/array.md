@@ -13,12 +13,12 @@ Checks if a value is in the array.
 
 
 You can check the original tests for code examples:
-* [array_contains_empty_num_array.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_contains_empty_num_array.ab)
-* [array_contains_empty_text_array.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_contains_empty_text_array.ab)
-* [array_contains_exact_match.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_contains_exact_match.ab)
-* [array_contains_partial_match_with_expanded_element.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_contains_partial_match_with_expanded_element.ab)
-* [array_contains_prefix_match.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_contains_prefix_match.ab)
-* [array_contains_text_array.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_contains_text_array.ab)
+* [array_contains_empty_num_array.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_contains_empty_num_array.ab)
+* [array_contains_empty_text_array.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_contains_empty_text_array.ab)
+* [array_contains_exact_match.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_contains_exact_match.ab)
+* [array_contains_partial_match_with_expanded_element.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_contains_partial_match_with_expanded_element.ab)
+* [array_contains_prefix_match.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_contains_prefix_match.ab)
+* [array_contains_text_array.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_contains_text_array.ab)
 
 ## `array_extract_at`
 
@@ -37,7 +37,7 @@ the array will be unchanged.
 
 
 You can check the original tests for code examples:
-* [array_extract_at.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_extract_at.ab)
+* [array_extract_at.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_extract_at.ab)
 
 ## `array_find`
 
@@ -56,8 +56,8 @@ If the value is not found, the function returns -1.
 
 
 You can check the original tests for code examples:
-* [array_find.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_find.ab)
-* [array_find_all.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_find_all.ab)
+* [array_find.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_find.ab)
+* [array_find_all.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_find_all.ab)
 
 ## `array_find_all`
 
@@ -74,7 +74,7 @@ Searches for a value in an array and returns an array with the index of the vari
 
 
 You can check the original tests for code examples:
-* [array_find_all.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_find_all.ab)
+* [array_find_all.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_find_all.ab)
 
 ## `array_first`
 
@@ -92,7 +92,7 @@ value is undefined.
 
 
 You can check the original tests for code examples:
-* [array_first.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_first.ab)
+* [array_first.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_first.ab)
 
 ## `array_last`
 
@@ -110,7 +110,7 @@ value is undefined.
 
 
 You can check the original tests for code examples:
-* [array_last.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_last.ab)
+* [array_last.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_last.ab)
 
 ## `array_pop`
 
@@ -128,7 +128,7 @@ is empty, the return value is undefined, but the array will be unchanged.
 
 
 You can check the original tests for code examples:
-* [array_pop.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_pop.ab)
+* [array_pop.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_pop.ab)
 
 ## `array_remove_at`
 
@@ -147,7 +147,7 @@ unchanged.
 
 
 You can check the original tests for code examples:
-* [array_remove_at.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_remove_at.ab)
+* [array_remove_at.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_remove_at.ab)
 
 ## `array_shift`
 
@@ -165,5 +165,5 @@ is empty, the return value is undefined, but the array will be unchanged.
 
 
 You can check the original tests for code examples:
-* [array_shift.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/array_shift.ab)
+* [array_shift.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/array_shift.ab)
 
