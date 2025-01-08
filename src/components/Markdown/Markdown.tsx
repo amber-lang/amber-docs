@@ -41,7 +41,7 @@ const handleDetails = (text: string): string | null => {
 const handleLogos = (text: string): string | null => {
     const hasLogo = text.match(/\bLOGO:[a-z]+\b/);
     if (!hasLogo) return null
-    return text.replace(/\bLOGO:([a-z]+)\b/g, `<img src="/images/logo-$1.png" class="${style.logo}" />`)
+    return text.replace(/\bLOGO:([a-z]+)\b/g, `<img src="/logos/$1.png" class="${style.logo}" />`)
 }
 
 // You can override the default renderer to customize the output
