@@ -145,4 +145,4 @@ source <(amber comp)
 | LOGO:vsc | **VS Code** | [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language) or [Our extension repository](https://github.com/amber-lang/vsc-amber-extension) |
 | LOGO:zed | **Zed** | Zed extensions or [Our extension repository](https://github.com/amber-lang/zed-amber-extension) |
 | LOGO:vim | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
-| LOGO:hx | **Helix Editor** | [Native](https://docs.helix-editor.com/lang-support.html) |
+| LOGO:hx | **Helix Editor** | [Native Support](https://docs.helix-editor.com/lang-support.html) |
