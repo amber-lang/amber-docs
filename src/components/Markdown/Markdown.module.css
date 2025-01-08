@@ -199,8 +199,8 @@ html[mode="light"] .markdown .light-dark img:last-child {
 }
 
 .markdown .logo {
-    width: 2rem;
-    height: 2rem;
+    width: auto;
+    max-height: 2rem;
 }
 
 @keyframes fade {
