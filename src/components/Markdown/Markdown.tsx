@@ -38,6 +38,12 @@ const handleDetails = (text: string): string | null => {
     return `<blockquote class="${style.details}">${result}</blockquote>`
 }
 
+const handleLogos = (text: string): string | null => {
+    const hasLogo = text.match(/\bLOGO:[a-z]+\b/);
+    if (!hasLogo) return null
+    return text.replace(/\bLOGO:([a-z]+)\b/g, `<img src="/images/logo-$1.png" class="${style.logo}" />`)
+}
+
 // You can override the default renderer to customize the output
 class MarkdownRenderer extends Renderer {
     heading(text: string, level: number, raw: string): string {
@@ -68,6 +74,7 @@ class MarkdownRenderer extends Renderer {
     }
 
     table(header: string, body: string): string {
+        body = handleLogos(body) ?? body
         return `
             <div class="${style['table-wrapper']}">
                 <table>
