@@ -1,17 +1,13 @@
 #!/usr/bin/env amber
 import { file_download } from "std/http"
-import { split_lines } from "std/text"
-import { file_extract } from "std/fs"
+import { file_extract, file_glob } from "std/fs"
 
-trust $rm -fr /tmp/amber-git$
-if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
+trust $ rm -fr /tmp/amber-git $
+if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/main.zip", "/tmp/amber-git.zip") {
     trust file_extract("/tmp/amber-git.zip", "/tmp/amber-git")
-    silent trust $ shopt -s globstar $
-    const stdlib = split_lines(trust $ ls /tmp/amber-git/amber-master/src/std/**/*.ab $)
-
-    for v in stdlib {
-        echo "Parsing {v}"
-        trust $ amber-staging docs --usage -- "{v}" "./docs/stdlib/doc/" $
-        echo "\n"
+    for file in trust file_glob("/tmp/amber-git/amber-main/src/std/*.ab") {
+        echo "Parsing {file}"
+        trust $ amber docs --usage "{file}" "./docs/stdlib/doc/" $
+        echo "" // Print a newline
     }
 }
