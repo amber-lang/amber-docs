@@ -1,21 +1,12 @@
 #!/usr/bin/env amber
-import { download } from "std/http"
-import { split, contains } from "std/text"
-import { file_exist } from "std/fs"
+import { file_download } from "std/http"
+import { file_extract, file_glob } from "std/fs"
 
-trust $rm -fr /tmp/amber-git$
-if silent download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
-    trust $unzip "/tmp/amber-git.zip" -d /tmp/amber-git$
-    let std_path = "/tmp/amber-git/amber-master/src/std/"
-
-    let std = trust $/usr/bin/ls "{std_path}"$
-    let stdlib = split(std, "\n")
-
-    loop v in stdlib {
-        if (contains(v, ".ab") and file_exist("{std_path}{v}")) {
-            echo "Parsing {std_path}{v}"
-            trust $amber --docs "{std_path}{v}" "./docs/stdlib/doc/"$
-            echo "\n"
-        }
+trust $ rm -fr /tmp/amber-git $
+if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/main.zip", "/tmp/amber-git.zip") {
+    trust file_extract("/tmp/amber-git.zip", "/tmp/amber-git")
+    for file in trust file_glob("/tmp/amber-git/amber-main/src/std/*.ab") {
+        echo "Parsing {file}"
+        trust $ amber docs --usage "{file}" "./docs/stdlib/doc/" $
     }
 }
