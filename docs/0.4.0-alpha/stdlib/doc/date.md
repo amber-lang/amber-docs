@@ -25,8 +25,6 @@ You can use (+/-):
 - minutes
 - seconds
 
-
-
 You can check the original tests for code examples:
 * [date_add.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_add.ab)
 
@@ -51,8 +49,6 @@ Returns -1 if date_b is after date_a.
 
 If date_b is not provided, current date will be used.
 
-
-
 You can check the original tests for code examples:
 * [date_compare.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_compare.ab)
 
@@ -67,8 +63,6 @@ pub fun date_now(): Num
 ```
 
 Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
-
-
 
 You can check the original tests for code examples:
 * [date_now.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_now.ab)
@@ -153,8 +147,6 @@ _      (underscore) pad with spaces
 ^      use upper case if possible
 #      use opposite case if possible
 ```
-
-
 
 You can check the original tests for code examples:
 * [date_posix.ab](https://github.com/amber-lang/amber/blob/0.4.0-alpha/src/tests/stdlib/date_posix.ab)
