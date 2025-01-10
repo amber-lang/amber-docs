@@ -8,6 +8,5 @@ if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/
     for file in trust file_glob("/tmp/amber-git/amber-main/src/std/*.ab") {
         echo "Parsing {file}"
         trust $ amber docs --usage "{file}" "./docs/stdlib/doc/" $
-        echo "" // Print a newline
     }
 }
