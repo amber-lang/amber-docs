@@ -38,7 +38,7 @@ const handleDetails = (text: string): string | null => {
     return `<blockquote class="${style.details}">${result}</blockquote>`
 }
 
-const handleLogos = (text: string): string | null => {
+const handleLogos = (text: string): string => {
     return text.replace(/\bLOGO:([a-z]+)\b/g, `<img src="/logos/$1.png" class="${style.logo}" />`)
 }
 
