@@ -146,3 +146,4 @@ source <(amber comp)
 | LOGO:zed | **Zed** | Zed extensions or [Our extension repository](https://github.com/amber-lang/zed-amber-extension) |
 | LOGO:vim | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
 | LOGO:hx | **Helix Editor** | [Native Support](https://docs.helix-editor.com/lang-support.html) |
+| LOGO:nova | **Nova** | [Nova extensions](https://extensions.panic.com/extensions/besya/besya.amber/) |
