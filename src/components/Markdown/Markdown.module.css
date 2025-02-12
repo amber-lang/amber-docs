@@ -198,6 +198,11 @@ html[mode="light"] .markdown .light-dark img:last-child {
     vertical-align: middle;
 }
 
+.markdown .logo {
+    width: auto;
+    max-height: 2rem;
+}
+
 @keyframes fade {
     0% {
         mask-size: 0rem 0rem;
