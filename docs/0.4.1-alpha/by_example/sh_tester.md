@@ -23,7 +23,7 @@ let stdlib = split(stdtests, "\n")
 for v in stdlib {
     if not text_contains(v, ".txt") and file_exists("src/tests/stdlib/{v}") {
         echo "Generating Bash script for test {v}"
-        trust $ ./target/debug/amber "src/tests/stdlib/{v}" "{path}/{v}.sh" $
+        trust $ ./target/debug/amber build "src/tests/stdlib/{v}" "{path}/{v}.sh" $
         output = trust $ shellcheck "{path}/{v}.sh" $
 
         if (status != 0) {
