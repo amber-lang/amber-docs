@@ -27,6 +27,12 @@ bash -- <(curl -s "https://raw.githubusercontent.com/amber-lang/amber/master/set
 [![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
 </div>
 
+## Homebrew
+
+```bash
+brew install --HEAD amber-lang/amber/amber-lang
+```
+
 ## NixOS and Flakes
 
 The package contains all the required install scripts and dependencies. You can use the flake as:
