@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Issue as GithubIssue } from 'github-types'
 import crypto from 'crypto';
+import Joi from 'joi';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN!;
 const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER!;
@@ -15,6 +16,13 @@ type CrashReportBody = {
     lspVersion: string;
 }
 
+const bodySchema = Joi.object<CrashReportBody, true>({
+    logs : Joi.string().max(1_000).required(),
+    editor: Joi.string().max(50).required(),
+    os: Joi.string().max(50).required(),
+    lspVersion: Joi.string().max(50).required(),
+}).required();
+
 type Issue = Omit<GithubIssue, 'body'> & {
     body: string | null;
 }
@@ -25,14 +33,18 @@ export async function POST(req: NextRequest) {
     }
 
     try {
-        const { logs, editor, os, lspVersion } = await req.json() as CrashReportBody;
+        const body = await req.json();
 
-        if (!logs || !editor || !os || !lspVersion) {
+        const validation = bodySchema.validate(body);
+
+        if (validation.error) {
             return NextResponse.json(
-                { message: 'Invalid request body. Please provide logs, editor, os, and lspVersion.' },
+                { message: `Invalid request body. ${validation.error.message}` },
                 { status: 400 }
             );
         }
+
+        const { logs, editor, os, lspVersion } = validation.value
 
         const fingerprint = generateErrorFingerprint(logs);
 
@@ -60,22 +72,16 @@ export async function POST(req: NextRequest) {
 
         if (githubResponse.ok) {
             const githubIssue = await githubResponse.json();
-            return NextResponse.json(
-                {
+            return NextResponse.json({
                 message: 'Crash report received and GitHub issue created successfully!',
                 issueUrl: githubIssue.html_url,
-                },
-                { status: 200 }
-            );
+            }, { status: 200 });
         } else {
             const errorData = await githubResponse.json();
-            return NextResponse.json(
-                {
+            return NextResponse.json({
                 message: 'Crash report received, but failed to create GitHub issue.',
                 githubError: errorData,
-                },
-                { status: 500 }
-            );
+            }, { status: 500 });
         }
     } catch (e) {
         return new NextResponse('Internal Server Error', { status: 500 });
