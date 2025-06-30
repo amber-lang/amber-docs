@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Issue as GithubIssue } from 'github-types'
 import crypto from 'crypto';
-import Joi from 'joi';
+import z from 'zod';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN!;
 const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER!;
@@ -9,19 +9,12 @@ const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME!;
 
 const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/issues`;
 
-type CrashReportBody = {
-    logs: string;
-    editor: string;
-    os: string;
-    lspVersion: string;
-}
-
-const bodySchema = Joi.object<CrashReportBody, true>({
-    logs : Joi.string().max(1_000).required(),
-    editor: Joi.string().max(50).required(),
-    os: Joi.string().max(50).required(),
-    lspVersion: Joi.string().max(50).required(),
-}).required();
+const bodySchema = z.strictObject({
+    logs : z.string().max(1_000),
+    editor: z.string().max(50),
+    os: z.string().max(50),
+    lspVersion: z.string().max(50),
+});
 
 type Issue = Omit<GithubIssue, 'body'> & {
     body: string | null;
@@ -35,16 +28,16 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
 
-        const validation = bodySchema.validate(body);
+        const { data, error } = bodySchema.safeParse(body);
 
-        if (validation.error) {
+        if (error) {
             return NextResponse.json(
-                { message: `Invalid request body. ${validation.error.message}` },
+                { message: `Invalid request body. ${error.message}` },
                 { status: 400 }
             );
         }
 
-        const { logs, editor, os, lspVersion } = validation.value
+        const { logs, editor, os, lspVersion } = data
 
         const fingerprint = generateErrorFingerprint(logs);
 
