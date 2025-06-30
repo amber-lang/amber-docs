@@ -31,6 +31,10 @@
     "swr": "^2.2.5",
     "three": "^0.170.0",
     "typescript": "5.6.3",
-    "usehooks-ts": "^3.1.0"
+    "usehooks-ts": "^3.1.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "github-types": "^1.0.0"
   }
 }
