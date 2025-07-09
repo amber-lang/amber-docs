@@ -3,8 +3,8 @@ import style from './Markdown.module.css'
 function getStyles(options: { [key: string]: string | number }) {
     return Object.keys(options).map(option => {
         switch (option) {
-            case 'width': return `width: ${options[option]}`
-            case 'height': return `height: ${options[option]}`
+            case 'width': return `width: ${typeof options[option] === 'number' ? options[option] + 'px' : options[option]}`
+            case 'height': return `height: ${typeof options[option] === 'number' ? options[option] + 'px' : options[option]}`
             case 'align': return (() => {
                 switch (options[option]) {
                     case 'left': return 'margin-right: auto'
