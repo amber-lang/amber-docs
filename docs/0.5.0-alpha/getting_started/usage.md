@@ -97,7 +97,7 @@ $ ./output.sh
 
 [VS Code](https://code.visualstudio.com) as well as [Zed](https://zed.dev) now have built-in LSP integration.
 
-![test]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
+![Amber LSP Feature]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
 	
 Here is a list of plugins that support syntax highlighting for Amber language.
 
