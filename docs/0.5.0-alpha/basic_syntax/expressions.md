@@ -4,7 +4,7 @@ Data type literals can be combined using operators, but these operators only fun
 
 Addition can be performed on number, text and array. This operator applied on different data types yields different results:
 
-- `Num` - Arithmetic sum
+- `Int` and `Num` - Arithmetic sum
 - `Text` - String concatenation
 - `[]` - Array join
 
@@ -16,7 +16,7 @@ Addition can be performed on number, text and array. This operator applied on di
 
 ## Arithmetic Operations
 
-Arithmetic operations can only be used on `Num` data type. Here is the list of all available ones:
+Arithmetic operations can only be used on `Int` and `Num` data types. Here is the list of all available ones:
 - `+` Arithmetic sum
 - `-` Substraction
 - `*` Multiplication
@@ -27,7 +27,7 @@ Arithmetic operations can only be used on `Num` data type. Here is the list of a
 ((12 + 34) * 9) % 4
 ```
 
-There is also an unary operator that negates the value stored in [variable](/basic_syntax/variables).
+There is also a unary operator that negates the value stored in [variable](/basic_syntax/variables).
 
 ```ab
 let value = 12
@@ -45,11 +45,16 @@ true != false
 "equal" == "equal"
 ```
 
-The remaining comparison operations can only be used on the `Num` data type. These are basically the same as in other modern programming languages: `>`, `<`, `>=`, `<=`.
+`Int` and `Num` values are compared using standard arithmetic rules. In contrast, `Text`, `[Text]`, and `[Int]` are compared lexically — that is, element by element (or character by character), based on Unicode (or ASCII) values, much like string comparison in most programming languages.
 
 ```ab
-42 != 24
+42 > 24
+"file1.txt" > "file.txt"
+[42, 12] > [24, 12]
+["Hello world"] > ["Hello", "there"]
 ```
+
+For sequences of different lengths, comparison continues left to right until a difference is found; if one sequence is a prefix of the other, the shorter one is considered smaller. For example, `"cat"` is less than `"catalog"`, and `[1, 2]` is less than `[1, 2, 0]`.
 
 ## Logical Operations
 

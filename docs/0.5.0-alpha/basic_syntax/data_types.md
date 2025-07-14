@@ -2,6 +2,7 @@ In Bash there is only one primitive data type, string, which internal implementa
 
 Amber supports five data types:
 - `Text` - The textual data type. In other programming languages it can also be called "string".
+- `Int` - Integer data type.
 - `Num` - The numeric data type. It's basically any number.
 - `Bool` - The boolean data type. It's value can be either `true` or `false`.
 - `Null` - The _nothing_ data type.
@@ -20,17 +21,36 @@ Text literal in Amber is contained between double quotes. Amber makes sure to pr
 
 Just like in other programming languages, characters in `Text` literals can be escaped.
 
+## Integer
+
+Under the hood its value is stored as a string of characters - the same way as it's done in Bash. However when performing operations the values are treated as 64-bit signed integers.
+
+```ab
+// `Int` data type
+42
+-123
+```
+
+This data type is the most performant way to compute integers. Later we will discover how `Num` data type can let us compute numbers using floating point arithmetic.
+
 ## Number
 
-Under the hood its value is stored as a string of characters - the same way as it's done in Bash. The difference is that Amber applies standard commands to do operations on numbers that support _floating point_ values so that you can simply write operator sign instead.
+Similarly to `Int` its value is stored as a string of characters. The difference is that Amber applies standard commands to do operations on numbers that support _floating point_ values so that you can simply write operator sign instead.
+
+> WARNING: The `Num` data type currently requires the `bc` command to be installed on your operating system when running compiled Amber code. For portability, it is recommended to use the `Int` data type whenever possible.
 
 ```ab
 // `Num` data type
-// Can be an integer
-42
-// or a floating point
+42.0
 -123.456
+
+// You can implicitly cast `Int` to `Num`
+let variable = 12.12
+// The variable keeps type of `Num`
+variable = 24
 ```
+
+We will learn more about variables in the upcoming chapters.
 
 ## Boolean
 
