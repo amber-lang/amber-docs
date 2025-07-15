@@ -12,7 +12,7 @@ let path = "/tmp/amber-sc-tests"
 if (not dir_exists(path)) {
     dir_create(path)
 }
-
+trust $cp -r "src/tests/stdlib/" {path}$
 let report = "{path}/report.txt"
 trust file_write(report, "Report for Shellcheck")
 let output = ""
