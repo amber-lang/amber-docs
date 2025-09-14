@@ -14,6 +14,7 @@
     margin-bottom: 1rem;
     vertical-align: middle;
     line-height: 1.5rem;
+    color: var(--text);
 }
 
 .markdown h2 {
@@ -239,7 +240,7 @@ html[mode="light"] .markdown .light-dark img:last-child {
 .inline {
     background-color: var(--code-background);
     color: var(--code-snippet);
-    padding: 0.125rem;
+    padding: 0.125rem 0.3rem;
     border-radius: 0.25rem;
     margin-top: 1rem;
     margin-bottom: 1rem;

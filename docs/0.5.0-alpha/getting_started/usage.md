@@ -93,8 +93,9 @@ Furthermore, Amber adds a _shebang_ at the top of the compiled script. This enab
 $ ./output.sh
 ```
 
-#### Postprocessors
+## Syntax Highlighting
 
+<<<<<<< HEAD:docs/0.4.1-alpha/getting_started/usage.md
 <<<<<<< Updated upstream:docs/0.4.1-alpha/getting_started/usage.md
 By default, Amber runs postprocessors `shfmt` and `bshchk` (if installed) on the compiled Bash script.  This functionality can be disabled with a `--no-proc` option:
 =======
@@ -102,6 +103,12 @@ By default, Amber runs postprocessors `shfmt` and `bshchk` (if installed) on the
 
 ![LSP Example]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
 
+=======
+[VS Code](https://code.visualstudio.com) as well as [Zed](https://zed.dev) now have built-in LSP integration.
+
+![Amber LSP Feature]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
+
+>>>>>>> 87d48e1a600dc7d4aa463f93b4941ac80e59e252:docs/0.5.0-alpha/getting_started/usage.md
 Here is a list of plugins that support syntax highlighting for Amber language.
 
 | Icon | Name | Location |
@@ -118,13 +125,12 @@ Here is a list of plugins that support syntax highlighting for Amber language.
 ### Postprocessors
 
 By default, Amber runs postprocessor `bshchk` (if installed) on the compiled Bash script.  This functionality can be disabled with a `--no-proc` option:
->>>>>>> Stashed changes:docs/0.5.0-alpha/getting_started/usage.md
 
 ```sh
 $ amber build --no-proc=bshchk input.ab output.sh
 ```
 
-#### Minification
+### Minification
 
 Additionally, the `--minify` option compresses the generated Bash code to reduce its size:
 
@@ -162,13 +168,3 @@ $ cat ~/.bashrc
 source <(amber comp)
 ...
 ```
-
-## Syntax Highlighting
-
-| Icon | Name | Location |
-|---|:----:|:-----:|
-| LOGO:hx | **Helix Editor** | [Native Support](https://docs.helix-editor.com/lang-support.html) |
-| LOGO:nova | **Nova** | [Nova extensions](https://extensions.panic.com/extensions/besya/besya.amber/) |
-| LOGO:vim | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
-| LOGO:vsc | **VS Code** | [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language) or [Our extension repository](https://github.com/amber-lang/vsc-amber-extension) |
-| LOGO:zed | **Zed** | Zed extensions or [Our extension repository](https://github.com/amber-lang/zed-amber-extension) |

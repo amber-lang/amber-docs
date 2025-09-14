@@ -49,7 +49,7 @@ const codeTheme = {
 
 const theme = {
     light: {
-        text: '#000',
+        text: '#404040',
         description: '#777',
         shadow: '#909090',
         shine: '#ffffff',
@@ -59,7 +59,7 @@ const theme = {
         ...constants
     },
     dark: {
-        text: '#fff',
+        text: '#ddc7be',
         description: '#7c6564',
         shadow: '#5e473c',
         shine: '#552f2d',

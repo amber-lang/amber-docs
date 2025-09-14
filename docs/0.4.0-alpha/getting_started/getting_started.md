@@ -15,7 +15,7 @@ Amber is designed based on the ECMA script syntax. The goal was to create a synt
 
 ### Safety Features
 
-When Bash command fails - it carries on with the code execution as if nothing has happened. This could lead to some serious problems and side effects that are irreversable.
+When Bash command fails - it carries on with the code execution as if nothing has happened. This could lead to some serious problems and side effects that are irreversible.
 
 We dislike this behavior. This is why Amber will not compile if edge cases aren't handled - whether that involves displaying an error message to the user or failing silently.
 

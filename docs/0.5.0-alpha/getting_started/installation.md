@@ -75,8 +75,6 @@ sudo mkdir /opt /usr/local/bin
 Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
 
 If these tools are available on your system, they will be executed at the end of the Bash compilation process.
-
-* [shfmt](https://github.com/patrickvane/shfmt): A shell formatter (sh/bash/mksh), It is recommended because Amber currently does not format the generated Bash code.
 * [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
 
 # Uninstallation
