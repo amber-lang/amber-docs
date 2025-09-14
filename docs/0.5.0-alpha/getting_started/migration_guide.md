@@ -1,4 +1,4 @@
-This guide provides a step-by-step walkthrough for migrating code from 0.3.5-alpha to 0.4.0-alpha. The current version introduces several breaking changes. This document outlines the modifications, explains how to adapt your code to maintain the same behavior, and highlights updated features. In this guide we will cover two main categories of changes:
+This guide provides a step-by-step walkthrough for migrating code from 0.4.0-alpha to 0.5.0-alpha. The current version introduces several breaking changes. This document outlines the modifications, explains how to adapt your code to maintain the same behavior, and highlights updated features. In this guide we will cover two main categories of changes:
 1. **Language Features**: Changes and updates to the core language syntax and semantics.
 2. **Standard Library Updates**: Modifications to existing standard library functions and their usage.
 
