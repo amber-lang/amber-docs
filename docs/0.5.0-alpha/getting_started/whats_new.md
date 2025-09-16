@@ -2,7 +2,7 @@ Featuring a new compiler backend that improves readability, reliability, and per
 
 # Amber LSP
 
-Amber now offers code autocompletion, intelligent suggestions, real-time error checking, and more. It’s available in both [VS Code](https://marketplace.visualstudio.com/items?itemName=amber-lsp-publisher.amber-lsp), [Zed](https://zed.dev/extensions/amber) and [Helix](https://github.com/helix-editor/helix) through our language extension. Prebuilt binaries for all supported platforms can be found in the [LSP release page](https://github.com/amber-lang/amber-lsp/releases). Thank you [@KrosFire](https://github.com/amber-lang/amber-lsp) for developing the LSP.
+Amber now offers code autocompletion, intelligent suggestions, real-time error checking, and more. It’s available in both [VS Code](https://marketplace.visualstudio.com/items?itemName=amber-lsp-publisher.amber-lsp), [Zed](https://zed.dev/extensions/amber) and [Helix](https://github.com/helix-editor/helix) through our language extension. Prebuilt binaries for all supported platforms can be found in the [LSP release page](https://github.com/amber-lang/amber-lsp/releases). Thank you [@KrosFire](https://github.com/KrosFire) for developing the LSP.
 
 ![Amber LSP Feature]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
 
