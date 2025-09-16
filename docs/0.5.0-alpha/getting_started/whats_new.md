@@ -113,7 +113,7 @@ How to compare dates now? Since date is now stored as milliseconds since epoch, 
 - Improved compiler error reporting.
 - When Amber is built by development branch, now the binary version includes commit hash. Thanks [@Thesola10](https://github.com/Thesola10).
 - Improved shellcheck code coverage.
-- Compiler collaborators can now benefit from a ready VS Code debug profile. Thanks [@b1ek](https://github.com/b1ek)
+- Compiler collaborators can now benefit from a ready VS Code debug profile. Thanks [@b1ek](https://github.com/b1ek).
 
 # Bugfixes
 
