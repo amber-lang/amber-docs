@@ -1,17 +1,29 @@
 Featuring a new compiler backend that improves readability, reliability, and performance of bash output, new `Int` data type and more.
 
-## More readable bash output
+# Amber LSP
+
+Amber now offers code autocompletion, intelligent suggestions, real-time error checking, and more. It’s available in both [VS Code](https://marketplace.visualstudio.com/items?itemName=amber-lsp-publisher.amber-lsp), [Zed](https://zed.dev/extensions/amber) and [Helix](https://github.com/helix-editor/helix) through our language extension. Binaries for all supported platforms can be found in the [lsp release page](https://github.com/amber-lang/amber-lsp/releases).
+
+![Amber LSP Feature]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
+
+# Support for a wide range of Bash versions
+
+Amber now compiles to a bash that is compatible with Bash versions all the way back from `3.2` to latest (currently `5.3`).
+
+To achieve this, we integrated all the different bash versions and a macos runner into our continuous integration (CI) pipeline. Thank you [@lens0021](https://github.com/lens0021).
+
+# More readable bash output
 
 ![Bash output comparison]{"width": "100%"}(/images/bash-output-comparison-light.webp)(/images/bash-output-comparison-dark.webp)
 
-## Integer type
+# Integer type
 
 New integer `Int` data type that is now the only supported type for:
 - **Array subscript** - `i` in `arr[i]` can only be of type `Int`
 - **Range** - `a` and `b` in `a..b` range operator can only be `Int`
 - **Iterator** - `i` in `for i, item in items` is `Int` instead of `Num`.
 
-## Comparison
+# Comparison
 
 Comparison operator now supports lexical comparison of `Text` data type.
 
@@ -29,7 +41,7 @@ echo left > right // True
 ```
 
 
-## Optimizer
+# Optimizer
 
 Optimizer removes redundant and unused variables in the bash output. It can significantly reduce the shell code size. Let's take this example:
 
@@ -55,7 +67,7 @@ echo "${my_array[@]}"
 
 For now, this optimizer works for simple expressions, but it will be improved as we continue to develop Amber.
 
-## Reversed range support
+# Reversed range support
 
 Previously, the range function required `start < end`. Now it supports any numeric order.
 
@@ -67,16 +79,16 @@ echo 0..=3 // [0, 1, 2, 3]
 echo 6..=3 // [6, 5, 4, 3]
 ```
 
-## Standard library
+# Standard library
 
 - New standard library function `bash_version` (in `std/env`) that returns currently installed version of bash.
 - New `temp_dir_create` function that properly creates a temporary directory on linux and macOS. Thanks [@lens0021](https://github.com/lens0021)
 
-### `std/date`
+## `std/date`
 
 Improved date library by replacing old functions with new ones.
 
-#### Removed functions:
+### Removed functions:
 
 | Name | Description |
 |:--|:--|
@@ -84,7 +96,7 @@ Improved date library by replacing old functions with new ones.
 | `date_add` | Adds time to already parsed date |
 | `date_compare` | Compares two dates and returns value of a sign function |
 
-#### Introduced functions:
+### Introduced functions:
 
 | Name | Description |
 |:--|:--|
@@ -95,9 +107,17 @@ Improved date library by replacing old functions with new ones.
 
 How to compare dates now? Since date is now stored as milliseconds since epoch, we can simply compare them with `>`, `>=`, `<` and `<=` operators.
 
-## Bugfixes
+# Other Features
 
-- Duplicate argument names are not allowed. Thanks [@MuhamedMagdi](https://github.com/MuhamedMagdi)
-- Standard library `replace_regex` now properly works on macOS and Linux musl. Thanks [@Aleksanaa](https://github.com/Aleksanaa)
-- Casting `Text` to `Bool` now raises an absurd cast warning. Thanks [@lens0021](https://github.com/lens0021)
+- Documentation Generator can output generated.documentation to standard output. Thanks [@hdwalters](https://github.com/hdwalters).
+- Improved compiler error reporting.
+- When Amber is built by development branch, now the binary version includes commit hash. Thanks [@Thesola10](https://github.com/Thesola10).
+- Improved shellcheck code coverage.
+- Compiler collaborators can now benefit from a ready VS Code debug profile. Thanks [@b1ek](https://github.com/b1ek)
+
+# Bugfixes
+
+- Duplicate argument names are not allowed. Thanks [@MuhamedMagdi](https://github.com/MuhamedMagdi).
+- Standard library `replace_regex` now properly works on macOS and Linux musl. Thanks [@Aleksanaa](https://github.com/Aleksanaa).
+- Casting `Text` to `Bool` now raises an absurd cast warning. Thanks [@lens0021](https://github.com/lens0021).
 - Fixed escaping of backticks in text literals.

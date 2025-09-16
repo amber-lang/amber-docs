@@ -95,20 +95,10 @@ $ ./output.sh
 
 ## Syntax Highlighting
 
-<<<<<<< HEAD:docs/0.4.1-alpha/getting_started/usage.md
-<<<<<<< Updated upstream:docs/0.4.1-alpha/getting_started/usage.md
-By default, Amber runs postprocessors `shfmt` and `bshchk` (if installed) on the compiled Bash script.  This functionality can be disabled with a `--no-proc` option:
-=======
-[VS Code](https://code.visualstudio.com) as well as [Zed](https://zed.dev) now have built-in LSP integration.
-
-![LSP Example]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
-
-=======
 [VS Code](https://code.visualstudio.com) as well as [Zed](https://zed.dev) now have built-in LSP integration.
 
 ![Amber LSP Feature]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
 
->>>>>>> 87d48e1a600dc7d4aa463f93b4941ac80e59e252:docs/0.5.0-alpha/getting_started/usage.md
 Here is a list of plugins that support syntax highlighting for Amber language.
 
 | Icon | Name | Location |
