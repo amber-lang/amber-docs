@@ -81,7 +81,7 @@ echo 6..=3 // [6, 5, 4, 3]
 
 # While Loop
 
-Amber now supports `while` loops, which execute a block of code as long as a condition is true.
+New `while` loop for executing a block of code as long as a condition is true.
 
 ```ab
 let i = 0
