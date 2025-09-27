@@ -7,23 +7,23 @@ Amber now offers code autocompletion, intelligent suggestions, real-time error c
 ![Amber LSP Feature]{"width": "100%"}(/images/lsp-example-light.webp)(/images/lsp-example-dark.webp)
 
 # Support for a wide range of Bash versions
-
+<!-- #616 #686 #703 #704 #708 #701 #709 #710 #725 -->
 Amber now compiles to a bash that is compatible with Bash versions all the way back from `3.2` to latest (currently `5.3`).
 
 To achieve this, we integrated all the different bash versions and a macos runner into our continuous integration (CI) pipeline. Thank you [@lens0021](https://github.com/lens0021).
 
-# More readable bash output
+# More readable bash output <!-- #654 -->
 
 ![Bash output comparison]{"width": "100%"}(/images/bash-output-comparison-light.webp)(/images/bash-output-comparison-dark.webp)
 
-# Integer type
+# Integer type <!-- #721 #752 #768 -->
 
 New integer `Int` data type that is now the only supported type for:
 - **Array subscript** - `i` in `arr[i]` can only be of type `Int`
 - **Range** - `a` and `b` in `a..b` range operator can only be `Int`
 - **Iterator** - `i` in `for i, item in items` is `Int` instead of `Num`.
 
-# Comparison
+# Comparison <!--703-->
 
 Comparison operator now supports lexical comparison of `Text` data type.
 
@@ -41,7 +41,7 @@ echo left > right // True
 ```
 
 
-# Optimizer
+# Optimizer <!-- #706 #728 #763 -->
 
 Optimizer removes redundant and unused variables in the bash output. It can significantly reduce the shell code size. Let's take this example:
 
@@ -67,7 +67,7 @@ echo "${my_array[@]}"
 
 For now, this optimizer works for simple expressions, but it will be improved as we continue to develop Amber.
 
-# Reversed range support
+# Reversed range support <!-- #753 -->
 
 Previously, the range function required `start < end`. Now it supports any numeric order.
 
@@ -82,9 +82,9 @@ echo 6..=3 // [6, 5, 4, 3]
 # Standard library
 
 - New standard library function `bash_version` (in `std/env`) that returns currently installed version of bash.
-- New `temp_dir_create` function that properly creates a temporary directory on linux and macOS. Thanks [@lens0021](https://github.com/lens0021)
+- New `temp_dir_create` function that properly creates a temporary directory on linux and macOS. Thanks [@lens0021](https://github.com/lens0021) <!-- #718 #726 -->
 
-## `std/date`
+## `std/date` <!-- #712 -->
 
 Improved date library by replacing old functions with new ones.
 
@@ -117,7 +117,7 @@ How to compare dates now? Since date is now stored as milliseconds since epoch, 
 
 # Bugfixes
 
-- Duplicate argument names are not allowed. Thanks [@MuhamedMagdi](https://github.com/MuhamedMagdi).
-- Standard library `replace_regex` now properly works on macOS and Linux musl. Thanks [@Aleksanaa](https://github.com/Aleksanaa).
-- Casting `Text` to `Bool` now raises an absurd cast warning. Thanks [@lens0021](https://github.com/lens0021).
+- Duplicate argument names are not allowed. Thanks [@MuhamedMagdi](https://github.com/MuhamedMagdi). <!-- #680 -->
+- Standard library `replace_regex` now properly works on macOS and Linux musl. Thanks [@Aleksanaa](https://github.com/Aleksanaa). <!-- #686 -->
+- Casting `Text` to `Bool` now raises an absurd cast warning. Thanks [@lens0021](https://github.com/lens0021). <!-- #719 -->
 - Fixed escaping of backticks in text literals.
