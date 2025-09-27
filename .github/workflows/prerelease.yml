@@ -1,0 +1,55 @@
+name: Prerelease check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - /docs/*/getting_started/new_changes.md
+
+jobs:
+  get-commits:
+    name: Get commit subjects
+    runs-on: ubuntu-latest
+    outputs:
+      subjects: ${{ steps.get-commits-step.outputs.subjects }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: amber-lang/amber
+          fetch-depth: 0
+          ref: staging
+      - id: get-commits-step
+        run: |
+          LATEST_TAG="$(git tag | tail --lines=1)"
+          echo latest tag is $LATEST_TAG
+          SUBJECTS="$(git log "$LATEST_TAG..staging" --oneline --format=%s)"
+          echo "--- Subjects ---"
+          echo "$SUBJECTS"
+          echo "--- End of Subjects ---"
+          {
+            echo 'subjects<<EOF'
+            echo "$SUBJECTS"
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+  review:
+    name: Check What's new
+    runs-on: ubuntu-latest
+    needs: get-commits
+    env:
+      COMMITS: ${{ needs.get-commits.outputs.subjects }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Print COMMITS
+        run: |
+          echo "Received COMMITS: $COMMITS"
+      - name: Review docs
+        run: |
+          shopt -s globstar
+          while IFS= read -r COMMIT; do
+            PULL_NUM="$(echo "$COMMIT" | rev | cut -d'#' -f1 | rev | cut -d')' -f1)"
+            if ! grep --quiet --extended-regexp "#$PULL_NUM\b|https://github.com/amber-lang/amber/pull/#$PULL_NUM\b" docs/**/*.md; then
+              echo "::warning title=Docs for upcoming release::Missing \"$COMMIT\""
+            fi
+          done <<< "$COMMITS"
