@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - /docs/*/getting_started/new_changes.md
+      - /docs/*/getting_started/whats_new.md
+      - /docs/*/getting_started/migration_guide.md
 
 jobs:
   get-commits:
