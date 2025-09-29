@@ -79,6 +79,18 @@ echo 0..=3 // [0, 1, 2, 3]
 echo 6..=3 // [6, 5, 4, 3]
 ```
 
+# While Loop
+
+New `while` loop for executing a block of code as long as a condition is true.
+
+```ab
+let i = 0
+while i < 5 {
+    i += 1
+    echo i
+}
+```
+
 # Standard library
 
 - New standard library function `bash_version` (in `std/env`) that returns currently installed version of bash.

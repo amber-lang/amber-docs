@@ -1,6 +1,7 @@
-Amber supports two types of loop:
+Amber supports three types of loop:
 - **Infinite** loop that can only be broken with a `break` keyword
 - **Iterator** loop that iterates over an array
+- **While** loop that runs as long as a condition is true
 
 Within loops, the `break` and `continue` keywords can be used to control the flow of execution effectively.
 
@@ -47,3 +48,28 @@ for index, file in files {
 ```
 
 The above example will iterate through all the files in the array and index them according to their order in the array. As a result, these files will be renamed to `0config.json`, `1file.txt`, and `2audio.mp3`.
+
+## While Loop
+
+The `while` loop is used to repeat a block of code as long as a condition is true. It's most powerful in situations where the number of iterations is not easily known beforehand.
+
+Consider an example where we want to find all powers of two less than 1000. While this could be calculated with a `for` loop, a `while` loop expresses the goal more directly: "keep doubling the number as long as it's less than 1000."
+
+```ab
+let number = 1
+
+while number < 100 {
+    echo number
+    number *= 2
+}
+// Outputs:
+// 1
+// 2
+// 4
+// 8
+// 16
+// 32
+// 64
+```
+
+Like other loops, `while` also supports `break` and `continue` to control the flow of execution.
