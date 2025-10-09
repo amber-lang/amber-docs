@@ -21,6 +21,20 @@ Text literal in Amber is contained between double quotes. Amber makes sure to pr
 
 Just like in other programming languages, characters in `Text` literals can be escaped.
 
+| Escape Sequence | Description |
+| :-------------- | :---------- |
+| `\n`            | Newline     |
+| `\t`            | Tab         |
+| `\r`            | Carriage return |
+| `\0`            | Null byte   |
+| `\{`            | Literal `{` |
+| `\$`            | Literal `$` |
+| `\'`            | Literal `'` |
+| `\"`            | Literal `"` |
+| `\\`            | Literal `\` |
+
+Using any other escape sequence (e.g., `\c`) will result in a warning from the compiler, though the character will still be output literally.
+
 ## Integer
 
 Under the hood its value is stored as a string of characters - the same way as it's done in Bash. However when performing operations the values are treated as 64-bit signed integers.
@@ -55,6 +69,8 @@ We will learn more about variables in the upcoming chapters.
 ## Boolean
 
 Boolean values are translated to `0` or `1` numerical values. These values can be easily [cast](/advanced_syntax/as_cast) to numbers `Num`.
+
+> WARNING: Casting `Text` to `Bool` issues an "absurd cast" warning, indicating a potential logical issue. It's recommended to use explicit comparisons (e.g., `my_text == "true"`) for clarity.
 
 ```ab
 // `Bool` data type
