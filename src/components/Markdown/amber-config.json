@@ -32,6 +32,8 @@
         "return",
         "silent",
         "status",
+        "successed",
+        "sudo",
         "then",
         "trust",
         "unsafe"
