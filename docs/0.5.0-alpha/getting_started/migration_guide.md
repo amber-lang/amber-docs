@@ -111,14 +111,15 @@ Casting `Text` to `Bool` now issues an "absurd cast" warning. While not an error
 
 ```ab
 // Before
-let my_text = "true"
-if my_text { // Implicit cast, no warning
+const my_text = "" as Bool
+if my_text { // This is always true
     echo "It's true!"
 }
 
 // After
-let my_text = "true"
-if my_text { // Warning: Absurd cast from Text to Bool
+const my_text = "" as Bool
+if my_text { // Warning: Casting a value of type 'Text' value to a 'Bool' is not recommended
+    // The 'if' block WILL execute.
     echo "It's true!"
 }
 // Recommended explicit conversion
