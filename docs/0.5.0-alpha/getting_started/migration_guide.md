@@ -135,7 +135,7 @@ A bug related to the escaping of `$` sequences within string literals has been f
 **Before (Buggy Behavior):**
 ```ab
 fun print_var(var: Num): Null {
-    echo "\\$var"
+    echo "\$var"
 }
 print_var(45) // Output: 45 (incorrect interpolation)
 ```
@@ -143,9 +143,9 @@ print_var(45) // Output: 45 (incorrect interpolation)
 **After (Correct Behavior):**
 ```ab
 fun print_var(var: Int): Null {
-    echo "\\$var"
+    echo "\$var"
 }
-print_var(45)  // Output: \\$var (literal dollar sign)
+print_var(45)  // Output: \$var (literal dollar sign)
 ```
 
 # Invalid Escape Sequence Warnings <!-- #732 -->
