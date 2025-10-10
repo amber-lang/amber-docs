@@ -128,9 +128,11 @@ if my_text == "true" {
 }
 ```
 
-# String Literal Escaping Changes <!-- #594 -->
+# Escaping Changes
 
-A bug related to the escaping of `$` sequences within string literals has been fixed. Previously, `"\\$variable"` would incorrectly interpolate the value of `variable` instead of treating `$` as a literal character. If your code inadvertently relied on the previous buggy behavior where `\$` within a string literal was interpolated, you will now observe the correct behavior where `\$` is treated as a literal dollar sign. You may need to adjust your string literals if you intended interpolation in such cases.
+## String Literal Escaping Changes <!-- #594 -->
+
+A bug related to the escaping of `$` sequences within string literals has been fixed. Previously, `"\$variable"` would incorrectly interpolate the value of `variable` instead of treating `$` as a literal character. If your code inadvertently relied on the previous buggy behavior where `\$` within a string literal was interpolated, you will now observe the correct behavior where `\$` is treated as a literal dollar sign. You may need to adjust your string literals if you intended interpolation in such cases.
 
 **Before (Buggy Behavior):**
 ```ab
@@ -148,7 +150,7 @@ fun print_var(var: Int): Null {
 print_var(45)  // Output: \$var (literal dollar sign)
 ```
 
-# Invalid Escape Sequence Warnings <!-- #732 -->
+## Invalid Escape Sequence Warnings <!-- #732 -->
 
 The compiler now issues warnings for invalid escape sequences within string literals. While this does not prevent compilation or change the runtime behavior of your scripts (invalid sequences are still output literally), it helps identify potential mistakes and encourages the use of valid escape sequences. If your build process treats warnings as errors, you may need to address these warnings by correcting the escape sequences or explicitly escaping backslashes.
 
@@ -156,7 +158,7 @@ The compiler now issues warnings for invalid escape sequences within string lite
 echo "Hello \$ World" // This will now produce a warning
 ```
 
-# Command String Escaping Changes <!-- #772 -->
+## Command String Escaping Changes <!-- #772 -->
 
 The internal handling of text within commands has been refactored, leading to a breaking change in how double quotes (`"`) should be escaped within command strings. Previously, `"` might have been escaped with `\"` in some contexts, but this is no longer the correct behavior.
 
