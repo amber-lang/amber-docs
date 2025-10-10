@@ -85,7 +85,7 @@ fun get_data(): Text? {
 
 // If 'Text?' was a distinct type, one might conceptually expect to 'unwrap' it.
 // However, Amber's '?' operator already handled control flow.
-let result = trust get_data() // 'result' was implicitly Text if successful, but the type system had 'Text?'
+const result = trust get_data() // 'result' was implicitly Text if successful, but the type system had 'Text?'
 ```
 
 **After (Actual Interpretation):**
@@ -97,7 +97,7 @@ fun getData(): Text? { // This function is failable, and returns Text on success
     return "Success"
 }
 
-let result = trust getData() // 'result' is now explicitly of type Text if the function succeeds.
+const result = trust getData() // 'result' is now explicitly of type Text if the function succeeds.
 // The compiler no longer considers 'Text?' as a distinct type.
 // The '?' operator continues to propagate failure as before.
 ```
@@ -164,10 +164,10 @@ Double quotes (`"`) should *not* be escaped with a backslash (`\`) when used wit
 
 ```ab
 // Before (will now cause an error or incorrect behavior)
-$ printf \"Amber\" $ // Incorrect: will now be interpreted as a literal backslash followed by a double quote
+trust $ printf \"Amber\" $ // Incorrect: will now be interpreted as a literal backslash followed by a double quote
 
 // After (correct behavior)
-$ printf "Amber" $ // Correct: the double quote is handled by the parser
+trust $ printf "Amber" $ // Correct: the double quote is handled by the parser
 ```
 
 # Standard Library Updates
@@ -198,10 +198,10 @@ The standard library function `parse_number` has been renamed to `parse_num` to 
 
 ```ab
 // Before
-let num_val = parse_number("123.45")
+const num_val = trust parse_number("123.45")
 
 // After
-let num_val = parse_num("123.45")
+const num_val = trust parse_num("123.45")
 ```
 
 ## Functions Now Failable <!-- #791 -->

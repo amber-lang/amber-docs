@@ -116,6 +116,7 @@ $ echo "hello" $ succeeded {
 **Failable Functions:**
 ```ab
 fun test(): Num? {
+    // ... logic that might fail ...
     return 42
 }
 
