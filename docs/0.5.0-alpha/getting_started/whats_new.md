@@ -21,12 +21,14 @@ The generated Bash output has been significantly improved for readability. The m
 # Integer type <!-- #721 #752 #768 #774 -->
 
 New integer `Int` data type that is now the only supported type for:
+
 - **Array subscript** - `i` in `arr[i]` can only be of type `Int`
 - **Range** - `a` and `b` in `a..b` range operator can only be `Int`
 - **Iterator** - `i` in `for i, item in items` is `Int` instead of `Num`.
+
 The standard library has been updated to consistently use `Int` for contexts like indexes, lengths, and incremental numbers.
 
-# Comparison <!--703-->
+# Comparison <!-- #703 -->
 
 Comparison operator now supports lexical comparison of `Text` data type.
 
@@ -169,7 +171,6 @@ my_failable_func() then(code) {
 
 - New standard library function `bash_version` (in `std/env`) that returns currently installed version of bash. <!-- #703 -->
 - New `temp_dir_create` function that properly creates a temporary directory on Linux and macOS. Thanks [@lens0021](https://github.com/lens0021) <!-- #718 #726 #730 -->
-- Renamed parameters of `text_contain*()` functions to `source` and `search` for improved clarity. Thanks [@lens0021](https://github.com/lens0021). <!-- #742 -->
 - New standard library function `parse_int` to parse text to an integer. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
 - Renamed `parse_number` to `parse_num` for clarity. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
 - `math_sum` no longer uses `awk`, improving portability. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
@@ -220,7 +221,7 @@ sudo {
 
 **Combined with other modifiers:**
 ```ab
-sudo trust silent $ systemctl status nginx $?
+sudo trust silent $ systemctl status nginx $
 ```
 
 # Other Features
@@ -276,6 +277,7 @@ sudo trust silent $ systemctl status nginx $?
 - Updated CI/CD workflows to run on `main` and `staging` branches, ensuring continuous integration for key development branches. Thanks [@b1ek](https://github.com/b1ek). <!-- #705 -->
 - Addressed `clippy::uninlined_format_args` warnings, improving code quality and adherence to Rust best practices. Thanks [@lens0021](https://github.com/lens0021). <!-- #722 -->
 - Removed `shfmt` postprocessor support, as it was rendered redundant by internal compiler improvements, streamlining the build process. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #735 -->
+- Renamed parameters of `text_contain()`, `text_contain_any()` and `text_contain_all()` functions to `source` and `search` for improved clarity. Thanks [@lens0021](https://github.com/lens0021). <!-- #742 -->
 - Improved test suite robustness by fixing concurrency issues in input tests using unique temporary files. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #756 -->
 - Refactored CLI tests to use internal API with inline logic, improving simplicity, reliability, and speed. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- b15593999ea5a1e217030eca9ae418432b3af9ed -->
 - Implemented a new and simpler release pipeline, replacing `cargo-dist` for improved maintainability and efficiency. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #758 -->
