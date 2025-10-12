@@ -33,6 +33,6 @@ Amber's compiled Bash scripts are actively tested across a range of environments
 
 | Environment       | Version Range | Status               | Notes                                                              |
 |-------------------|---------------|----------------------|--------------------------------------------------------------------|
-| **Bash (Linux)**  | 3.2 - 5.3     | Under Testing | All versions within this range are tested using [tianon/docker-bash](https://github.com/tianon/docker-bash). |
-| **Bash (macOS)**  | N/A           | Under Testing | Verified through GitHub Actions `macos-latest` environments.       |
-| **Sed**           | N/A           | Under Testing | Shell text processing utility. Tested for GNU and BusyBox `sed` compatibility due to behavioral differences. |
+| **Bash (Linux) GNU**  | 3.2 - 5.3     | Under Testing | All versions within this range are tested using [tianon/docker-bash](https://github.com/tianon/docker-bash). |
+| **Bash (macOS)**  | 3.2           | Under Testing | Verified through GitHub Actions `macos-latest` environments.       |
+| **Bash (Linux) Busy Box**           | Latest           | Under Testing | Busy box environment. As of right now latest is 5.3 |
