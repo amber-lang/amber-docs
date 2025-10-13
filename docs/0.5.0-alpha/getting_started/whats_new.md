@@ -263,7 +263,7 @@ sudo trust silent $ systemctl status nginx $
   ```ab
   trust $ echo '{"a":1, "b":2}' | jq '.["b"]' $
   ```
-  This example now correctly prints `2`.<!-- #808 -->
+  This example now correctly prints `2`.<!-- #808 #814 -->
 
 # Internal Improvements
 
