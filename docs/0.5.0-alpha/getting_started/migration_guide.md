@@ -226,7 +226,7 @@ if dir_create("my_directory") {
 }
 
 // After
-dir_create("my_directory") then(status) {
+dir_create("my_directory") exited(status) {
     if status == 0:
         echo "Directory created successfully."
     else:
