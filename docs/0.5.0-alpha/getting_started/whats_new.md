@@ -20,7 +20,7 @@ The generated Bash output has been significantly improved for readability. The m
 
 # Integer type <!-- #721 #752 #768 #774 -->
 
-New integer `Int` data type that is now the only supported type for:
+All new integer `Int` data type that is now the only supported type for:
 
 - **Array subscript** - `i` in `arr[i]` can only be of type `Int`
 - **Range** - `a` and `b` in `a..b` range operator can only be `Int`
@@ -168,6 +168,30 @@ my_failable_func() exited(code) {
 }
 ```
 
+# Sudo Command Modifier <!-- #782 -->
+
+Amber now includes a new `sudo` command modifier that intelligently handles privilege escalation. This modifier automatically detects at runtime whether `sudo` is necessary and available, ensuring your scripts run correctly whether executed as root or a regular user.
+
+Its features include runtime detection of `sudo` availability (checked when the script runs, not during compilation), portable scripts that adapt to different environments, and seamless integration alongside existing command modifiers like `trust` and `silent`.
+
+**Single command:**
+```ab
+sudo $ mv /test.txt /test1.txt $?
+```
+
+**Block syntax:**
+```ab
+sudo {
+    $ systemctl restart nginx $?
+    $ chown user:group /var/log/app.log $?
+}
+```
+
+**Combined with other modifiers:**
+```ab
+sudo trust silent $ systemctl status nginx $
+```
+
 # Standard library
 
 - New standard library function `bash_version` (in `std/env`) that returns currently installed version of bash. <!-- #703 -->
@@ -201,37 +225,12 @@ Improved date library by replacing old functions with new ones.
 
 How to compare dates now? Since date is now stored as milliseconds since epoch, we can simply compare them with `>`, `>=`, `<` and `<=` operators.
 
-# Sudo Command Modifier <!-- #782 -->
-
-Amber now includes a new `sudo` command modifier that intelligently handles privilege escalation. This modifier automatically detects at runtime whether `sudo` is necessary and available, ensuring your scripts run correctly whether executed as root or a regular user.
-
-Its features include runtime detection of `sudo` availability (checked when the script runs, not during compilation), portable scripts that adapt to different environments, and seamless integration alongside existing command modifiers like `trust` and `silent`.
-
-**Single command:**
-```ab
-sudo $ mv /test.txt /test1.txt $?
-```
-
-**Block syntax:**
-```ab
-sudo {
-    $ systemctl restart nginx $?
-    $ chown user:group /var/log/app.log $?
-}
-```
-
-**Combined with other modifiers:**
-```ab
-sudo trust silent $ systemctl status nginx $
-```
-
 # Other Features
 
 - Documentation Generator can output generated.documentation to standard output. Thanks [@hdwalters](https://github.com/hdwalters). <!-- #655 -->
 - The documentation now uses `CARGO_PKG_VERSION` instead of `master` when linking, improving reliability. Thanks [@lens0021](https://github.com/amber-lang/amber/pull/649). <!-- #649 -->
 - Improved compiler error reporting.
 - Refactored internal failable operations from "failable types" to "failable functions" for improved consistency. Thanks [@b1ek](https://github.com/b1ek). <!-- #642 -->
-- Added warnings for invalid escape sequences in string literals, improving developer experience by highlighting potential issues. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #732 -->
 - Improved error handling for invalid import statements, providing more helpful messages when `*` is incorrectly used in import closures. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #755 -->
 - Suppressed unnecessary warnings for valid escape characters used within commands, improving clarity in compiler output. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #759 -->
 - Introduced `AMBER_HEADER` and `AMBER_FOOTER` environment variables, allowing users to customize the header and footer of generated Bash scripts. Thanks [@Thesola10](https://github.com/Thesola10). <!-- #682 -->
