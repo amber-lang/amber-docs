@@ -98,7 +98,7 @@ while i < 5 {
 
 # Conditional Blocks: `succeeded`, `then` and `failed` <!-- #787 #806 -->
 
-Amber now provides enhanced control flow for failable operations with the introduction of `succeeded` and `then` blocks and parameter support for `failed` blocks. These features offer more explicit and cleaner ways to handle both success and failure paths for commands and failable functions.
+Amber now provides enhanced control flow for failable operations with the introduction of `succeeded` and `exited` blocks and parameter support for `failed` blocks. These features offer more explicit and cleaner ways to handle both success and failure paths for commands and failable functions.
 
 ## `succeeded` Block <!-- #787 -->
 
