@@ -1,7 +1,9 @@
 The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
-Commands can sometimes _fail_, so it’s important for whoever uses them to be ready to handle what happens next. There are different ways to deal with failures, each with its own pros and cons:
+Commands (as well as *failable functions*) can sometimes _fail_, so it’s important for whoever uses them to be ready to handle what happens next. There are different ways to deal with failures, each with its own pros and cons:
 - `failed` - the recommended way to handle failing that enables you to write some specific logic to run when a command fails
+- `succeeded` - allows you to write specific logic to run when a command completes successfully
+- `exited` - allows you to write logic that runs regardless of whether the command failed or succeeded
 - `?` - this shorthand for propagating the failure to the caller. This operator can only be used in a `main` block or inside of a function.
 - `trust` - the discouraged way to handle failing. This modifier will treat commands as if they have completed successfully and will allow them to be parsed without any further steps.
 
@@ -22,7 +24,7 @@ echo result
 
 > DETAILS: Command expression result is sent to the variable instead of _standard output_.
 
-Command expression can also be interpolated with other expressions and variables
+Command can also be interpolated with other expressions and variables
 
 ```ab
 let file_path = "/path/to/file"
@@ -31,16 +33,45 @@ $ cat {file_path} $ failed {
 }
 ```
 
-## Getting the Exit Code
+### Failed
 
-In order to get the exit code, you can use the `status` keyword. It will always return you the exit code of the last bash command or *failable function*.
+The `failed` modifier allows you to write specific logic that runs only when a command fails. This is useful when you want to handle errors gracefully or perform recovery operations. Note that `failed` can optionally accept an exit code parameter, like `failed(code)`, to access the command's exit code.
 
 ```ab
-let file_path = "/path/to/file"
-$ cat {file_path} $ failed {
-    echo "Error! Exit code: {status}"
+$ cat file.txt $ failed(code) {
+    echo "Exited with code {code}."
 }
-echo "The status code is: {status}"
+```
+
+### Succeeded
+
+Just like `failed` allows you to handle command failures, `succeeded` lets you write specific logic that runs only when a command completes successfully. This can be useful when you want to perform additional operations that should only happen if the command succeeds.
+
+```ab
+$ cat file.txt $ succeeded {
+    echo "File was read successfully"
+}
+```
+
+### Exited
+
+The `exited` modifier allows you to write logic that runs regardless of whether the command failed or succeeded. This is useful when you need to perform cleanup or logging operations that should always happen. Note that `exited` can only be used when an exit code parameter is provided, like `exited(code)`.
+
+```ab
+$ cat file.txt $ exited(code) {
+    echo "Command finished with exit code {code}"
+}
+```
+
+
+## Status
+
+The `status` keyword allows you to access the exit code of a command. This is the old school and Bash way of handling failures. Its trait is that it holds the exit code of only the previous command or *failable function* call.
+
+```ab
+trust $ no-access.txt < "some text" $ // status: 1
+trust $ cat available-for-all.txt $ // status: 0
+echo "The status code is: {status}" // The status code is 0
 ```
 
 ## Failure Propagation

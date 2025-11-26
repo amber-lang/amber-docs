@@ -99,3 +99,12 @@ let age = 18
 echo "Hi, I'm {name}. I'm {age} years old."
 // Outputs: Hi, I'm John. I'm 18 years old
 ```
+## Lexical Operations
+
+Lexical operations allow you to compare sequences element by element (or character by character). These operations work with `Text`, `[Text]`, and `[Int]` data types.
+
+```ab
+"apple" < "banana" // true - 'a' comes before 'b'
+["apple", "pie"] <= ["banana", "bread"] // true - "apple" < "banana"
+[5, 1] > [4, 9] // true - 5 is greater than 4
+```

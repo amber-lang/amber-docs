@@ -53,8 +53,6 @@ The above example will iterate through all the files in the array and index them
 
 The `while` loop is used to repeat a block of code as long as a condition is true. It's most powerful in situations where the number of iterations is not easily known beforehand.
 
-Consider an example where we want to find all powers of two less than 1000. While this could be calculated with a `for` loop, a `while` loop expresses the goal more directly: "keep doubling the number as long as it's less than 1000."
-
 ```ab
 let number = 1
 
@@ -71,5 +69,3 @@ while number < 100 {
 // 32
 // 64
 ```
-
-Like other loops, `while` also supports `break` and `continue` to control the flow of execution.

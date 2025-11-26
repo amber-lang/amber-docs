@@ -5,7 +5,7 @@ In Amber, functions can be imported from other files. To make a function accessi
 To declare a function as public we can use a `pub` keyword. Let's keep in mind that `pub` keyword has to be used before the `fun` keyword that declares our function:
 
 ```ab
-pub fun sum(left: Num, right: Num): Num {
+pub fun sum(left: Int, right: Int): Int {
     return left + right
 }
 ```

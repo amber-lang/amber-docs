@@ -17,7 +17,7 @@ Function declared in the example above has name `myFunction` and can take two ar
 If you want to declare a function that takes arguments of certain type - you are encouraged to do this. However, for consistency you are required to specify the return type as well
 
 ```ab
-fun myFunction(arg1: Num, arg2: Num): Num {
+fun myFunction(arg1: Int, arg2: Int): Int {
     let result = arg1 + arg2
     return result
 }
@@ -28,7 +28,7 @@ An interesting fact about functions is that they are not parsed unless they are 
 On the condition that you specify an argument's type, you can also specify its default value — it will be used if none other is provided when the function is called:
 
 ```ab
-fun addition(a: Num, b: Num = 100): Num {
+fun addition(a: Int, b: Int = 100): Int {
     return a + b
 }
 
@@ -65,7 +65,7 @@ Notice that using `?` operator is automatically failing with the `status` code o
 If you specify the return type of a failable function, you must also append the `?` to the type name.
 
 ```ab
-fun failable(): Num? {
+fun failable(): Int? {
     if 0 > 5 {
         fail 1
     }
@@ -98,13 +98,10 @@ echo "{result}, {status}"
 This was a happy ending. Now let's see what happens when we divide by zero:
 
 ```ab
-let result = safeDivision(15, 0) failed {
-    echo "function Failed"
-    echo status
+let result = safeDivision(15, 0) failed(code) {
+    echo "Function failed with code {code}"
 }
-// Outputs:
-// function Failed
-// 1
+// Outputs: Function failed with code 1
 ```
 
 ## Variable References `ref`

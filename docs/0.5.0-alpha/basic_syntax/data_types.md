@@ -1,6 +1,6 @@
 In Bash there is only one primitive data type, string, which internal implementation is represented by an array of characters `char*`. Amber extends on this data type to introduce a few more.
 
-Amber supports five data types:
+Amber supports six data types:
 - `Text` - The textual data type. In other programming languages it can also be called "string".
 - `Int` - Integer data type.
 - `Num` - The numeric data type. It's basically any number.
@@ -69,8 +69,6 @@ We will learn more about variables in the upcoming chapters.
 ## Boolean
 
 Boolean values are translated to `0` or `1` numerical values. These values can be easily [cast](/advanced_syntax/as_cast) to numbers `Num`.
-
-> WARNING: Casting `Text` to `Bool` issues an "absurd cast" warning, indicating a potential logical issue. It's recommended to use explicit comparisons (e.g., `my_text == "true"`) for clarity.
 
 ```ab
 // `Bool` data type
