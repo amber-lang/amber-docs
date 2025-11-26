@@ -6,7 +6,7 @@ Follow along to ensure a smooth transition to the new version. Let’s get start
 
 # New integer `Int` data type <!-- #712 #752 -->
 
-Previously, Amber supported only the Num type. This release introduces `Int`, which maps to Bash’s native integer arithmetic. To support this, we’ve updated parts of the language syntax.
+Previously, Amber supported only the `Num` type. This release introduces `Int`, which maps to Bash’s native integer arithmetic. To support this, we’ve updated parts of the language syntax.
 
 ## Array subscript
 
@@ -58,7 +58,7 @@ exit 2.0 // Error: exit accepts only `Int` type
 
 ## Status
 
-Status builtin now returns value of type `Int`.
+The `status` builtin now returns a value of type `Int`.
 
 ```ab
 // Before
@@ -68,64 +68,28 @@ status // Returns `Num` value
 status // Returns `Int` value
 ```
 
-# Failable Types Replaced by Failable Functions <!-- #642 -->
+## Len
 
-The internal handling of "failable" operations has been refactored. Previously, the concept of failability was tied to a `Failable` type variant (e.g., `Text?`), which could lead to confusion. The `Failable` type variant has now been removed from the type system.
-
-This change clarifies how the `?` operator functions and how return types are interpreted for failable operations.
-
-**Before (Conceptual Interpretation):**
-Under the old model, `fun getData(): Text?` might have been conceptually understood as a function returning an "optional Text" type, similar to `Option<Text>` in other languages.
-
-```ab
-fun get_data(): Text? {
-    // ... logic that might fail ...
-    return "Success"
-}
-
-// If 'Text?' was a distinct type, one might conceptually expect to 'unwrap' it.
-// However, Amber's '?' operator already handled control flow.
-const result = trust get_data() // 'result' was implicitly Text if successful, but the type system had 'Text?'
-```
-
-**After (Actual Interpretation):**
-Now, `fun getData(): Text?` explicitly means that `getData` is a *failable function* that, upon successful execution, returns a value of type `Text`. The `?` is a modifier on the function declaration, not part of the return type itself.
-
-```ab
-fun getData(): Text? { // This function is failable, and returns Text on success.
-    // ... logic that might fail ...
-    return "Success"
-}
-
-const result = trust getData() // 'result' is now explicitly of type Text if the function succeeds.
-// The compiler no longer considers 'Text?' as a distinct type.
-// The '?' operator continues to propagate failure as before.
-```
-
-**Impact on your code:**
-Existing failable operations (e.g., `let raw = $ curl data.com $?`) retain their syntax. The key change is conceptual: `?` now signifies a *failable function* rather than a "failable type." This improves consistency and predictability in error handling. While direct code changes are generally not required for existing failable operations, this refactoring provides a stronger foundation for future error handling features, including the new `succeeded` blocks (see [What's New](/0.5.0-alpha/getting_started/whats_new#conditional-blocks-succeeded-and-failed)).
-
-# Text to Bool Casting Warning <!-- #719 -->
-
-Casting `Text` to `Bool` now issues an "absurd cast" warning. While not an error, it indicates a potential logical issue and encourages explicit conversion for clarity.
+The `len` builtin now returns a value of type `Int`.
 
 ```ab
 // Before
-const my_text = "" as Bool
-if my_text { // This is always true
-    echo "It's true!"
-}
+len(text) // Returns `Num` value
 
 // After
-const my_text = "" as Bool
-if my_text { // Warning: Casting a value of type 'Text' value to a 'Bool' is not recommended
-    // The 'if' block WILL execute.
-    echo "It's true!"
-}
-// Recommended explicit conversion
-if my_text == "true" {
-    echo "It's true!"
-}
+len(text) // Returns `Int` value
+```
+
+# Text to Bool Casting Warning <!-- #719 #831 -->
+
+Casting `Text` to any values including `Bool` and `Int`, now issues an "absurd cast" warning. While not an error, it indicates a potential logical issue and encourages explicit conversion for clarity.
+
+```ab
+// Before
+echo "true" as Bool then 1 else 0 // OK
+
+// After
+echo "true" as Bool then 1 else 0 // Warning: Absurd cast
 ```
 
 # Escaping Changes
@@ -134,28 +98,14 @@ if my_text == "true" {
 
 A bug related to the escaping of `$` sequences within string literals has been fixed. Previously, `"\$variable"` would incorrectly interpolate the value of `variable` instead of treating `$` as a literal character. If your code inadvertently relied on the previous buggy behavior where `\$` within a string literal was interpolated, you will now observe the correct behavior where `\$` is treated as a literal dollar sign. You may need to adjust your string literals if you intended interpolation in such cases.
 
-**Before (Buggy Behavior):**
 ```ab
-fun print_var(var: Num): Null {
-    echo "\$var"
-}
-print_var(45) // Output: 45 (incorrect interpolation)
-```
+// Before
+let var = 45
+echo "\$var" // Output: 45
 
-**After (Correct Behavior):**
-```ab
-fun print_var(var: Int): Null {
-    echo "\$var"
-}
-print_var(45)  // Output: \$var (literal dollar sign)
-```
-
-## Invalid Escape Sequence Warnings <!-- #732 -->
-
-The compiler now issues warnings for invalid escape sequences within string literals. While this does not prevent compilation or change the runtime behavior of your scripts (invalid sequences are still output literally), it helps identify potential mistakes and encourages the use of valid escape sequences. If your build process treats warnings as errors, you may need to address these warnings by correcting the escape sequences or explicitly escaping backslashes.
-
-```ab
-echo "Hello \$ World" // This will now produce a warning
+// After
+let var = 45
+echo "\$var" // Output: \$var
 ```
 
 ## Command String Escaping Changes <!-- #772 -->
@@ -208,7 +158,7 @@ const num_val = trust parse_num("123.45")
 
 ## Functions Now Failable <!-- #791 -->
 
-Several standard library functions that previously returned a `Bool` to indicate success or failure have been updated to be failable functions. This change aligns with Amber's failable function paradigm, providing a more consistent and robust error handling mechanism. These functions no longer return a `Bool`. Instead, they will either succeed (and return `Null`) or fail, triggering the failable mechanism (e.g., propagating failure with `?` or being caught by a `failed` block).
+Several standard library functions that previously returned a `Bool` to indicate success or failure have been updated to be failable functions. This change aligns with Amber's failable paradigm, providing a more consistent and robust error handling mechanism. These functions no longer return a `Bool`. Instead, they will either succeed or fail, triggering the failable mechanism (e.g., propagating failure with `?` or being caught by a `failed` block).
 
 **Affected Functions:**
 - `std/fs::symlink_create`
@@ -226,8 +176,8 @@ if dir_create("my_directory") {
 }
 
 // After
-dir_create("my_directory") exited(status) {
-    if status == 0:
+dir_create("my_directory") exited(code) {
+    if code == 0:
         echo "Directory created successfully."
     else:
         echo "Failed to create directory."
