@@ -52,7 +52,7 @@ Hello world
 Additionally, command line arguments can be passed to the script:
 
 ```ab
-#!/usr/bin/env amber
+#!/usr/bin/env amber`
 main(args) {
     for arg in args {
         echo arg
