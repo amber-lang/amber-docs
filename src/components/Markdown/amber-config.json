@@ -37,6 +37,7 @@
         "exited",
         "then",
         "trust",
-        "unsafe"
+        "unsafe",
+        "while"
     ]
 }

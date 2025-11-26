@@ -6,7 +6,7 @@ Follow along to ensure a smooth transition to the new version. Let’s get start
 
 # New integer `Int` data type <!-- #712 #752 -->
 
-Previously, Amber supported only the Num type. This release introduces `Int`, which maps to Bash’s native integer arithmetic. To support this, we’ve updated parts of the language syntax.
+Previously, Amber supported only the `Num` type. This release introduces `Int`, which maps to Bash’s native integer arithmetic. To support this, we’ve updated parts of the language syntax.
 
 ## Array subscript
 
@@ -58,7 +58,7 @@ exit 2.0 // Error: exit accepts only `Int` type
 
 ## Status
 
-Status builtin now returns value of type `Int`.
+The `status` builtin now returns a value of type `Int`.
 
 ```ab
 // Before
@@ -66,6 +66,18 @@ status // Returns `Num` value
 
 // After
 status // Returns `Int` value
+```
+
+## Len
+
+The `len` builtin now returns a value of type `Int`.
+
+```ab
+// Before
+len(text) // Returns `Num` value
+
+// After
+len(text) // Returns `Int` value
 ```
 
 # Casting `Text` Warnings <!-- #719 #831 -->
