@@ -33,7 +33,7 @@ Just like in other programming languages, characters in `Text` literals can be e
 | `\"`            | Literal `"` |
 | `\\`            | Literal `\` |
 
-Using any other escape sequence (e.g., `\c`) will result in a warning from the compiler, though the character will still be output literally.
+Any other escape sequence not listed above will be treated as a literal escape sequence, similar to how Bash handles them. For instance, escaping `\c` will result in the literal `\c` being output.
 
 ## Integer
 
