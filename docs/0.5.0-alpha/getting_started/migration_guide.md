@@ -100,16 +100,12 @@ A bug related to the escaping of `$` sequences within string literals has been f
 
 ```ab
 // Before
-fun print_var(var: Num): Null {
-    echo "\$var"
-}
-print_var(45) // Output: 45
+let var = 45
+echo "\$var" // Output: 45
 
 // After
-fun print_var(var: Int): Null {
-    echo "\$var"
-}
-print_var(45)  // Output: \$var
+let var = 45
+echo "\$var" // Output: \$var
 ```
 
 ## Command String Escaping Changes <!-- #772 -->
