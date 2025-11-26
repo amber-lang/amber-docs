@@ -143,6 +143,10 @@
             "title": "Amber by Example",
             "docs": [
                 {
+                    "path": "by_example/backup_rotator",
+                    "title": "Backup Rotator"
+                },
+                {
                     "path": "by_example/sh_tester",
                     "title": "ShellCheck tester"
                 },

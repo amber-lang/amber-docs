@@ -145,14 +145,14 @@ silent $ false $ failed(error) {
 }
 ```
 
-## `then` Block <!-- #787 -->
+## `exited` Block <!-- #787 -->
 
-Amber now introduces a `then` block for handling command and failable function exit codes directly. It offers a unified way to access the exit status (success or failure) as a typed integer variable, providing an alternative to separate `failed` and `succeeded` blocks. This enhances code clarity and type safety. The `then` block requires a mandatory parameter (e.g., `then(exit_code)`) and cannot be combined with `failed` or `succeeded` blocks for the same failable expression.
+Amber now introduces a `exited` block for handling command and failable function exit codes directly. It offers a unified way to access the exit status (success or failure) as a typed integer variable, providing an alternative to separate `failed` and `succeeded` blocks. This enhances code clarity and type safety. The `exited` block requires a mandatory parameter (e.g., `exited(code)`) and cannot be combined with `failed` or `succeeded` blocks for the same failable expression.
 
 **Commands:**
 ```ab
-$ command $ then(exit_code) {
-    echo "Command finished with exit code: {exit_code}"
+$ command $ exited(code) {
+    echo "Command finished with exit code: {code}"
 }
 ```
 
@@ -163,7 +163,7 @@ fun my_failable_func(): Text? {
     return "Success"
 }
 
-my_failable_func() then(code) {
+my_failable_func() exited(code) {
     echo "Function finished with exit code: {code}"
 }
 ```

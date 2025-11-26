@@ -21,7 +21,7 @@ main (args) {
         exit 1
     }
 
-    let start = parse_number($ date +%s $?)?
+    let start = parse_int($ date +%s $?)?
 
     // Get server IP address for excluding.
     let server_ip = $ hostname -i $?
@@ -62,20 +62,18 @@ main (args) {
 
         for line in lines(ip_log) {
             let parts = split(line, " ")
-            let count = parse_number(parts[0])?
+            let count = parse_int(parts[0])?
             // Skip IP addresses that sent less than 1000 requests.
             if count < 1000 {
                 continue
             }
 
             let ip = parts[1]
-            silent trust $ grep "{ip}" /etc/ipblocklist.txt $
-            if status == 0 {
+            trust $ grep "{ip}" /etc/ipblocklist.txt $ succeeded {
                 echo "IP address {ip} is already blocked."
                 continue
             }
-            silent trust $ grep "{ip}" /etc/ipexcludedlist.txt $
-            if status == 0 {
+            trust $ grep "{ip}" /etc/ipexcludedlist.txt $ succeeded {
                 echo "IP address {ip} is allow-listed and will not be blocked."
                 continue
             }
@@ -84,7 +82,7 @@ main (args) {
             $ echo "\$(date) | IP addess {ip} added to the block list, RPH={count}" >> /var/log/bot-detector.log $?
         }
     }
-    let end = parse_number($ date +%s $?)?
+    let end = parse_int($ date +%s $?)?
     let duration = end - start
     echo "Execution time: {duration} seconds"
 }

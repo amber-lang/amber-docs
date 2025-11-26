@@ -3,16 +3,17 @@ Here is an example script to periodically install software updates on an Ubuntu 
 > As you can see, the Amber code currently looks as if it is intertwined with bash commands. As development progresses, executing custom commands will be even better integrated with special syntax and improved runtime safety features to aid this process.
 
 ```ab
+import { date_now, date_format_posix } from "std/date"
+
 main {
     // Print output and log it at the same time.
     $ exec > >(tee -a /var/log/autoapt.log) 2>&1 $?
     // Log the current date so that we can check when any failed runs happened.
-    $ date $?
+    echo date_format_posix(date_now())
 
     // Internet is slow on Austrian trains. Check the Wifi SSID and stop in that
     // case.
-    silent trust $ iwgetid -r | grep -E '(OEBB|WESTlan)' $
-    if status == 0 {
+    trust $ iwgetid -r | grep -E '(OEBB|WESTlan)' $ succeeded {
         echo "Skipping updates because of slow Wifi"
         exit 0
     }
