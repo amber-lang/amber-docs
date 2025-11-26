@@ -56,9 +56,12 @@ function getHeaders(headers: string[]): Header[] {
         return {
             level,
             title: header
-              .replace(/^#+\s/, '')
-              .replaceAll(/`([^`]+)`/g, '$1')
-              .replace(/<!--.*-->/, ''),
+                // Header
+                .replace(/^#+\s/, '')
+                // Comments
+                .replaceAll(/\s*<!--.*?-->\s*/g, '')
+                // Codes
+                .replaceAll(/`([^`]+)`/g, '$1'),
             relation,
             distance
         }
