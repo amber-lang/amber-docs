@@ -7,7 +7,9 @@ import SidebarProvider from '@/contexts/DocumentContext/SidebarProvider'
 import TopLoader from '@/components/TopLoader/TopLoader'
 import VersionProvider from '@/contexts/VersionContext/VersionProvider'
 import config from '@/../config.json'
-import SideBar from '@/components/SideBar/SideBar'
+import ThemeScript from '@/contexts/ThemeContext/ThemeScript'
+import ThemeStyles from '@/contexts/ThemeContext/ThemeStyles'
+import { defaultThemeConfig } from '@/contexts/ThemeContext/config'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,6 +38,8 @@ export default function RootLayout({
             <head>
             <link rel='icon' href='/internal/favicon.png'/>
             <meta name='view-transition' content='same-origin'/>
+            <ThemeScript />
+            <ThemeStyles theme={defaultThemeConfig()} />
             </head>
             <body className={inter.className}>
                 <ThemeProvider>

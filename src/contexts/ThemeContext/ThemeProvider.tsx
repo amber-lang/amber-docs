@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import { ThemeContext } from './useTheme'
 import { ThemeMode, ThemeConfig, defaultThemeConfig } from './config'
-import dynamic from 'next/dynamic'
-
-const CssVariableStyles = dynamic(() => import('./CssVariableStyles'), { ssr: false })
 
 interface Props {
     children: React.ReactNode,
@@ -13,20 +10,22 @@ interface Props {
     theme?: ThemeConfig
 }
 
-// Get the OS preference
-const osTheme = typeof window !== 'undefined'
-    ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    : 'light'
-
 export default function ThemeProvider({ children, mode, theme }: Props) {
-    const [themeMode, setThemeMode] = useState<ThemeMode>(mode ?? osTheme)
+    const [themeMode, setThemeMode] = useState<ThemeMode | null>(null)
     const globalTheme = theme ?? defaultThemeConfig()
 
     useEffect(() => {
-        setThemeMode(mode ?? osTheme)
-    }, [mode])
+        // Sync state with the attribute set by ThemeScript
+        const currentMode = document.documentElement.getAttribute('mode') as ThemeMode
+        if (currentMode) {
+            setThemeMode(currentMode)
+        } else {
+            setThemeMode('light')
+        }
+    }, [])
 
     useEffect(() => {
+        if (!themeMode) return
         if (themeMode === 'dark') {
             document.documentElement.setAttribute('mode', 'dark')
         } else {
@@ -38,26 +37,32 @@ export default function ThemeProvider({ children, mode, theme }: Props) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
             setThemeMode(event.matches ? 'dark' : 'light')
         })
-        document.head.insertAdjacentHTML('beforeend', `<meta name="theme-color" content="${globalTheme[mode ?? osTheme].background}">`)
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+        if (!metaThemeColor) {
+             document.head.insertAdjacentHTML('beforeend', `<meta name="theme-color" content="${globalTheme[themeMode || 'light'].background}">`)
+        }
     }, [])
 
-    const handleSetThemeMode = (value: ThemeMode) => {
+    useEffect(() => {
+        if (!themeMode) return
         const themeColorMetaTag = document.querySelector('meta[name="theme-color"]')
         if (themeColorMetaTag) {
-            themeColorMetaTag.setAttribute('content', globalTheme[value].background)
+            themeColorMetaTag.setAttribute('content', globalTheme[themeMode].background)
         }
+    }, [themeMode, globalTheme])
+
+    const handleSetThemeMode = (value: ThemeMode) => {
         setThemeMode(value)
     }
 
     return (
         <ThemeContext.Provider
             value={{
-                theme: theme ?? defaultThemeConfig(),
-                mode: themeMode,
+                theme: globalTheme,
+                mode: themeMode || 'light',
                 setThemeMode: handleSetThemeMode
             }}
         >
-            <CssVariableStyles theme={globalTheme} mode={themeMode} />
             {children}
         </ThemeContext.Provider>
     )
