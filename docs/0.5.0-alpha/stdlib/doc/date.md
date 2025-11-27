@@ -1,23 +1,13 @@
 ## `date_add`
 
 ```ab
-import { date_add } from "std/date"
+pub fun date_add(date: Int, amount: Int, unit: Text): Int? 
 ```
 
-```ab
-pub fun date_add(add: Text, date: Text = "", utc: Bool = false): Text ? 
-```
+Adds a value to a date passed in the unix epoch format in milliseconds.
+Example : `date_add(date, 3, "days")`
 
-### EXPERIMENTAL
-
-Adds a value to a date.
-
-If no date is specified, the current date is used.
-
-Example : `date_add("+3 days")`
-
-You can use (+/-):
-
+Available units:
 - years
 - months
 - days
@@ -25,137 +15,105 @@ You can use (+/-):
 - minutes
 - seconds
 
-
-
-You can check the original tests for code examples:
-* [date_add.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_add.ab)
-
-## `date_compare`
-
+### Usage
 ```ab
-import { date_compare } from "std/date"
+import { date_add } from "std/date"
+
+let date = date_now() // Example value: 1678887000
+let new_date = date_add(date, 5, "hours") // Example value: 1678890600
 ```
 
+## `date_format_posix`
+
 ```ab
-pub fun date_compare(date_a: Text, date_b: Text = "", utc: Bool = false): Num ? 
+pub fun date_format_posix(date: Int, format: Text = "%F %T", utc: Bool = false): Text? 
 ```
 
-### EXPERIMENTAL
-Compares two dates.
+Transform date from unix epoch to a human-readable format described by a posix format string.
+If no format is specified, "%F %T" is used.
+For more info about format type "man date" in your shell or see <https://www.gnu.org/software/coreutils/date>.
 
-Returns 1 if date_a is after date_b.
+Format includes the following patterns:
+- `%%` - a literal %
+- `%a` - locale's abbreviated weekday name (e.g., Sun)
+- `%A` - locale's full weekday name (e.g., Sunday)
+- `%b` - locale's abbreviated month name (e.g., Jan)
+- `%B` - locale's full month name (e.g., January)
+- `%d` - day of month (e.g., 01)
+- `%D` - date; same as %m/%d/%y
+- `%F` - full date; like %+4Y-%m-%d
+- `%H` - hour (00..23)
+- `%I` - hour (01..12)
+- `%m` - month (01..12)
+- `%M` - minute (00..59)
+- `%N` - nanoseconds (000000000..999999999)
+- `%p` - locale's equivalent of either AM or PM; blank if unknown
+- `%T` - time; same as %H:%M:%S
+- `%Y` - year
 
-Returns 0 if date_a and date_b is the same.
+### Usage
+```ab
+import { date_format_posix } from "std/date"
 
-Returns -1 if date_b is after date_a.
+let date = date_now() // Example value: 1678887000
+echo date_format_posix(date) // Outputs: 2023-03-15 14:30:00
+```
 
-If date_b is not provided, current date will be used.
+## `date_from_posix`
 
+```ab
+pub fun date_from_posix(date: Text, format: Text = "%F %T", utc: Bool = false): Int? 
+```
 
+Transforms date from a format described by a posix format string to a unix epoch format (seconds since the Epoch (1970-01-01 00:00 UTC)).
+If no format is specified, "%F %T" format is used.
+For more info about format type "man date" on your shell or go to <https://www.gnu.org/software/coreutils/date>.
 
-You can check the original tests for code examples:
-* [date_compare.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_compare.ab)
+### Usage
+```ab
+import { date_from_posix } from "std/date"
+
+let date = "2023-03-15 14:30:00"
+echo date_from_posix(date) // Output: 1678887000
+```
 
 ## `date_now`
 
 ```ab
-import { date_now } from "std/date"
-```
-
-```ab
-pub fun date_now(): Num 
+pub fun date_now(): Int 
 ```
 
 Returns the current timestamp (seconds since the Epoch (1970-01-01 00:00 UTC)).
 
+### Usage
+```ab
+import { date_now } from "std/date"
 
+let date = date_now() // Example value: 1678887000
+```
 
-You can check the original tests for code examples:
-* [date_now.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_now.ab)
-
-## `date_posix`
+## `date_sub`
 
 ```ab
-import { date_posix } from "std/date"
+pub fun date_sub(date: Int, amount: Int, unit: Text): Int? 
 ```
 
+Subtracts a value from a date passed in the unix epoch format in milliseconds.
+Example : `date_sub(date, 5, "hours")`
+
+Available units:
+- years
+- months
+- days
+- hours
+- minutes
+- seconds
+
+### Usage
 ```ab
-pub fun date_posix(format: Text = "", date: Text = "", utc: Bool = false): Text ? 
+import { date_sub } from "std/date"
+
+let date = date_now() // Example value: 1678887000
+let new_date = date_sub(date, 5, "hours") // Example value: 1678882200
 ```
-
-### EXPERIMENTAL
-
-Formats a date with a special format.
-
-If no date is specified, the current date is used.
-
-If no format is specified, "%FT%T%Z" format is used.
-
-For more info about format type "man date" on your shell or go to <https://www.gnu.org/software/coreutils/date>.
-
-Format :
-```
-%%     a literal %
-%a     locale's abbreviated weekday name (e.g., Sun)
-%A     locale's full weekday name (e.g., Sunday)
-%b     locale's abbreviated month name (e.g., Jan)
-%B     locale's full month name (e.g., January)
-%c     locale's date and time (e.g., Thu Mar  3 23:05:25 2005)
-%C     century; like %Y, except omit last two digits (e.g., 20)
-%d     day of month (e.g., 01)
-%D     date; same as %m/%d/%y
-%e     day of month, space padded; same as %_d
-%F     full date; like %+4Y-%m-%d
-%g     last two digits of year of ISO week number (see %G)
-%G     year of ISO week number (see %V); normally useful only with %V
-%h     same as %b
-%H     hour (00..23)
-%I     hour (01..12)
-%j     day of year (001..366)
-%k     hour, space padded ( 0..23); same as %_H
-%l     hour, space padded ( 1..12); same as %_I
-%m     month (01..12)
-%M     minute (00..59)
-%n     a newline
-%N     nanoseconds (000000000..999999999)
-%p     locale's equivalent of either AM or PM; blank if not known
-%P     like %p, but lower case
-%q     quarter of year (1..4)
-%r     locale's 12-hour clock time (e.g., 11:11:04 PM)
-%R     24-hour hour and minute; same as %H:%M
-%s     seconds since the Epoch (1970-01-01 00:00 UTC)
-%S     second (00..60)
-%t     a tab
-%T     time; same as %H:%M:%S
-%u     day of week (1..7); 1 is Monday
-%U     week number of year, with Sunday as first day of week (00..53)
-%V     ISO week number, with Monday as first day of week (01..53)
-%w     day of week (0..6); 0 is Sunday
-%W     week number of year, with Monday as first day of week (00..53)
-%x     locale's date representation (e.g., 12/31/99)
-%X     locale's time representation (e.g., 23:13:48)
-%y     last two digits of year (00..99)
-%Y     year
-%z     +hhmm numeric time zone (e.g., -0400)
-%:z    +hh:mm numeric time zone (e.g., -04:00)
-%::z   +hh:mm:ss numeric time zone (e.g., -04:00:00)
-%:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)
-%Z     alphabetic time zone abbreviation (e.g., EDT)
-```
-
-By default, date pads numeric fields with zeroes.  The following optional flags may follow '%':
-
-```
--      (hyphen) do not pad the field
-_      (underscore) pad with spaces
-0      (zero) pad with zeros
-+      pad with zeros, and put '+' before future years with >4 digits
-^      use upper case if possible
-#      use opposite case if possible
-```
-
-
-
-You can check the original tests for code examples:
-* [date_posix.ab](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib/date_posix.ab)
 

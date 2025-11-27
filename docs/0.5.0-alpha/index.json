@@ -92,31 +92,38 @@
             "docs": [
                 {
                     "path": "stdlib/doc/array",
-                    "title": "Array"
+                    "title": "Array",
+                    "disableLevels": [3]
                 },
                 {
                     "path": "stdlib/doc/date",
-                    "title": "Date"
+                    "title": "Date",
+                    "disableLevels": [3]
                 },
                 {
                     "path": "stdlib/doc/env",
-                    "title": "Environment"
+                    "title": "Environment",
+                    "disableLevels": [3]
                 },
                 {
                     "path": "stdlib/doc/fs",
-                    "title": "FileSystem"
+                    "title": "FileSystem",
+                    "disableLevels": [3]
                 },
                 {
                     "path": "stdlib/doc/http",
-                    "title": "HTTP"
+                    "title": "HTTP",
+                    "disableLevels": [3]
                 },
                 {
                     "path": "stdlib/doc/math",
-                    "title": "Math"
+                    "title": "Math",
+                    "disableLevels": [3]
                 },
                 {
                     "path": "stdlib/doc/text",
-                    "title": "Text"
+                    "title": "Text",
+                    "disableLevels": [3]
                 }
             ]
         },

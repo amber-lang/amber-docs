@@ -1,4 +1,3 @@
-# Use 4 spaces as tab
-set tabstop=2
-set shiftwidth=2
-set expandtab
+[*]
+indent_style = space
+indent_size = 4
