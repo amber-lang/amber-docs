@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 3rem auto;
 }
 
 .part.left {
@@ -38,16 +39,8 @@
     }
 }
 
-.page-indicator {
-    height: 2rem;
-    margin-top: 3rem;
-}
-
 .part {
-    display: inline-block;
     flex: 1;
-    height: 2rem;
-    margin-top: 3rem;
 }
 
 .part * {
@@ -80,11 +73,6 @@
 
 .icon.reverse {
     transform: rotate(180deg);
-}
-
-.container {
-    margin: 2rem auto;
-    display: flex;
 }
 
 @media screen and (max-width: 1200px) {
