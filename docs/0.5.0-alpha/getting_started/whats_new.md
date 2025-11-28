@@ -261,7 +261,7 @@ sudo trust silent $ systemctl status nginx $
 - Fixed an issue where arguments of the main function could be shadowed, ensuring globally unique IDs for main function arguments. Thanks [@lens0021](https://github.com/lens0021). <!-- #796 -->
 - Corrected interpolation within single-quoted strings in commands, resolving issues where interpolated values were not properly parsed. Thanks [@lens0021](https://github.com/lens0021). For example:
   ```ab
-  trust $ echo '{"a":1, "b":2}' | jq '.["b"]' $
+  trust $ echo '\{"a":1, "b":2}' | jq '.["b"]' $
   ```
   This example now correctly prints `2`.<!-- #808 #814 -->
 
