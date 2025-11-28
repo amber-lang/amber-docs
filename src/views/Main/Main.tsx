@@ -18,6 +18,7 @@ interface Props {
 
 export default async function Main({ location }: Props) {
     const toc = await getTableOfContents(location?.version);
+    const whatsNew = toc[0].docs.find(item => item.path === 'getting_started/whats_new')
 
     return (
         <NavigationLayout hideSearch>
@@ -42,7 +43,10 @@ export default async function Main({ location }: Props) {
                         <SearchBar variant="title" />
                     </div>
                     {Boolean(toc.length) && (
-                        <MainBigLink toc={toc} />
+                        <MainBigLink title={toc[0].title} path={toc[0].path} />
+                    )}
+                    {Boolean(whatsNew) && (
+                        <MainBigLink title={whatsNew!.title} path={whatsNew!.path} isFull />
                     )}
                 </div>
             </div>

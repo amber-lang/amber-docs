@@ -2,6 +2,7 @@
     font-size: 1rem;
     display: inline-block;
     margin: 0 auto;
+    margin-left: 1rem;
     margin-top: 4rem;
     opacity: 0.5;
     border: 1px solid var(--text);
@@ -12,5 +13,24 @@
 }
 
 .big-link:hover {
+    opacity: 1;
+}
+
+.big-link-full {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0 auto;
+    margin-left: 1rem;
+    margin-top: 4rem;
+    opacity: 0.5;
+    background-color: var(--text);
+    color: var(--background);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+.big-link-full:hover {
     opacity: 1;
 }

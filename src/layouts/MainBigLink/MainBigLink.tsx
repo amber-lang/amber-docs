@@ -7,14 +7,16 @@ import Link from "next/link";
 import styles from "./MainBigLink.module.css";
 
 interface Props {
-    toc: FlatDoc[];
+    title: string;
+    path: string;
+    isFull?: boolean;
 }
 
-export default function MainBigLink({ toc }: Props) {
+export default function MainBigLink({ title, path, isFull }: Props) {
     const { version } = useVersion();
     return (
-        <Link href={generateUrl(version, toc[0].path)} className={styles["big-link"]}>
-            {toc[0].title}
+        <Link href={generateUrl(version, path)} className={styles[isFull ? "big-link-full" : "big-link"]}>
+            {title}
         </Link>
     )
 }
