@@ -6,24 +6,28 @@ The Amber CLI syntax uses subcommands, like the Git CLI:
 
 *This output is generated from the 0.4.0-alpha version.*
 ```
-Usage: amber [INPUT] [ARGS]... [COMMAND]
+Usage: amber [OPTIONS] [INPUT] [ARGS]... [COMMAND]
 
 Commands:
-  eval   Execute Amber code fragment
-  run    Execute Amber script
-  check  Check Amber script for errors
-  build  Compile Amber script to Bash
-  docs   Generate Amber script documentation
-  comp   Generate Bash completion script
-  help   Print this message or the help of the given subcommand(s)
+  eval        Execute Amber code fragment
+  run         Execute Amber script
+  check       Check Amber script for errors
+  build       Compile Amber script to Bash
+  docs        Generate Amber script documentation
+  completion  Generate Bash completion script
+  help        Print this message or the help of the given subcommand(s)
 
 Arguments:
   [INPUT]    Input filename ('-' to read from stdin)
   [ARGS]...  Arguments passed to Amber script
 
 Options:
-  -h, --help     Print help
-  -V, --version  Print version
+      --no-proc <NO_PROC>  Disable a postprocessor
+                           Available postprocessors: 'bshchk'
+                           To select multiple, pass multiple times with different values
+                           Argument also supports a wildcard match, like "*" or "b*chk"
+  -h, --help               Print help
+  -V, --version            Print version
 ```
 
 For detailed usage instructions, refer to the [Amber usage guide](https://docs.amber-lang.com/getting_started/usage).
@@ -141,7 +145,7 @@ $ amber docs stdlib.ab
 The following command generates a [Bash completion](https://en.wikipedia.org/wiki/Command-line_completion) script:
 
 ```sh
-$ amber comp
+$ amber completion
 _amber() {
     local i cur prev opts cmd
     COMPREPLY=()
@@ -155,6 +159,6 @@ This can be sourced in the `.bashrc` file via command redirection, so that comma
 ```sh
 $ cat ~/.bashrc
 ...
-source <(amber comp)
+source <(amber completion)
 ...
 ```
