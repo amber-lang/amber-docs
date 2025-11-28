@@ -45,6 +45,11 @@ let right = ["apple", "bananas", "dates"]
 echo left > right // True
 ```
 
+# Enhanced Test Coverage
+
+![Chart showing growing trend of adding tests]{"width": "100%"}(/images/chart-tests-light.webp)(/images/chart-tests-dark.webp)
+
+Over the past three releases, we've maintained a strong commitment to quality assurance, increasing our test coverage by approximately **150% with each version**. This dedication has enabled us to identify and resolve dozens of bugs, steadily advancing Amber toward enterprise-grade reliability. We're committed to continuing this trend in future releases.
 
 # Optimizer <!-- #706 #728 #746 #763 -->
 
