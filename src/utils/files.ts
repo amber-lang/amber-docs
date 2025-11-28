@@ -23,9 +23,18 @@ const getHeaders = (content: string) => {
     })
 }
 
+const cachedDocs = new Map<string, Document>()
+
 export async function getDocument(path: string): Promise<Document | null> {
+    if (cachedDocs.has(path) && process.env.NODE_ENV === 'production') {
+        return cachedDocs.get(path)!
+    }
+
     const content = await readFile(path)
     if (!content) return null
     const headers = getHeaders(content)
-    return { content, headers, path }
+    const document = { content, headers, path }
+
+    cachedDocs.set(path, document)
+    return document
 }

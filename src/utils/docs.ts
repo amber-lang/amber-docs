@@ -1,6 +1,6 @@
 import { TocSection } from "./docsServer";
 
-export type FlatDoc = { path: string, title: string };
+export type FlatDoc = { path: string, title: string, disableLevels?: number[] };
 export type DocDescriptor = { index: number } & FlatDoc;
 
 export function getFlatTableOfContents(toc: TocSection[]): FlatDoc[] {

@@ -32,8 +32,12 @@
         "return",
         "silent",
         "status",
+        "succeeded",
+        "sudo",
+        "exited",
         "then",
         "trust",
-        "unsafe"
+        "unsafe",
+        "while"
     ]
 }

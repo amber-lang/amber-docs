@@ -1,3 +1,10 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3rem auto;
+}
+
 .part.left {
     text-align: left;
     margin-right: auto;
@@ -12,21 +19,34 @@
     margin-left: auto;
 }
 
-.page-indicator {
-    line-height: 2rem;
-    padding-top: 0.2rem;
+.part.right:hover {
+    .text {
+        color: var(--text);
+    }
+    .icon {
+        background-color: var(--text);
+        transform: translateX(10px);
+    }
+}
+
+.part.left:hover {
+    .text {
+        color: var(--text);
+    }
+    .icon {
+        background-color: var(--text);
+        transform: translateX(-10px) rotate(180deg);
+    }
 }
 
 .part {
-    display: inline-block;
     flex: 1;
-    height: 2rem;
-    margin-top: 3rem;
 }
 
 .part * {
     display: inline-block;
     vertical-align: middle;
+    color: var(--border);
 }
 
 .part .text {
@@ -34,6 +54,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.2s;
 }
 
 .icon {
@@ -42,19 +63,16 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
-    background-color: var(--text);
-    width: 2rem;
-    height: 2rem;
-    margin-top: 0.4rem;
+    background-color: var(--border);
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 .icon.reverse {
     transform: rotate(180deg);
-}
-
-.container {
-    margin: 2rem auto;
-    display: flex;
 }
 
 @media screen and (max-width: 1200px) {
@@ -88,5 +106,5 @@
 
     .part .text {
         width: 100px;
-    }    
+    }
 }

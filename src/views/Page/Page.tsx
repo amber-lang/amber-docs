@@ -28,7 +28,7 @@ export default async function Page({ location, document }: Props) {
     return (
         <NavigationLayout>
             <div className='left'>
-                <SideBar toc={toc} headers={document.headers} isFixed />
+                <SideBar toc={toc} headers={document.headers} docDesc={docDesc} isFixed />
             </div>
             <div className='right'>
                 <div className={style.main}>
