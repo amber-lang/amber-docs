@@ -177,6 +177,7 @@ my_failable_func() exited(code) {
 - `math_sum` no longer uses `awk`, improving portability. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
 - Five standard library functions (`symlink_create`, `dir_create`, `file_chmod`, `file_chown`, `file_download`) have been updated to be failable, providing more robust error handling. Thanks [@lens0021](https://github.com/lens0021). <!-- #791 -->
 - New standard library function `array_filled` (in `std/array`) to create an array of a specified size, filled with a given value. Thanks [@UrbanCoffee](https://github.com/UrbanCoffee). <!-- #783 -->
+- Removed `env_const_get` function from `std/env`. Use `env_var_get` instead.
 
 ## `std/date` <!-- #712 -->
 
