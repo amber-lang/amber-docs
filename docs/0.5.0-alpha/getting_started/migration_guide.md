@@ -94,7 +94,7 @@ echo "true" as Bool then 1 else 0 // Warning: Absurd cast
 echo "42" as Int // Warning: Absurd cast
 ```
 
-To properly convert text to integers, use the `parse_num` function:
+To properly convert text to integers, use the `parse_int` function:
 ```ab
 // Recommended approach
 let text = "42"
