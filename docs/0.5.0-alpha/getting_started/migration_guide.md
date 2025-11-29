@@ -183,3 +183,15 @@ dir_create("my_directory") exited(code) {
         echo "Failed to create directory."
 }
 ```
+
+## Removed `env_const_get` Function
+
+The `env_const_get` function has been removed from `std/env`. Use `env_var_get` instead, which provides the same functionality.
+
+```ab
+// Before
+env_const_get("VAR")
+
+// After
+env_var_get("VAR")
+```
