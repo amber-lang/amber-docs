@@ -12,13 +12,13 @@ Amber now compiles to a bash that is compatible with Bash versions all the way b
 
 To achieve this, we integrated all the different bash versions and a macos runner into our continuous integration (CI) pipeline. Thank you [@lens0021](https://github.com/lens0021).
 
-# More readable bash output
+# More readable bash output <!-- #654 #804 #817 -->
 
 The generated Bash output has been significantly improved for readability. The main block is now unindented, removing unnecessary leading spaces. Additionally, the `__` prefix has been removed from non-ALL-CAPS variable and function names, enhancing developer flexibility. ALL-CAPS identifiers retain the `__` prefix to prevent collisions.
 
 ![Bash output comparison]{"width": "100%"}(/images/bash-output-comparison-light.webp)(/images/bash-output-comparison-dark.webp)
 
-# Integer type <!-- #721 #752 #768 #774 -->
+# Integer type <!-- #721 #752 #768 #774 #821 -->
 
 New integer `Int` data type that is now the only supported type for:
 
@@ -89,7 +89,7 @@ echo 0..=3 // [0, 1, 2, 3]
 echo 6..=3 // [6, 5, 4, 3]
 ```
 
-# While Loop
+# While Loop <!-- #762 #812 -->
 
 New `while` loop for executing a block of code as long as a condition is true.
 
@@ -101,7 +101,7 @@ while i < 5 {
 }
 ```
 
-# Conditional Blocks: `succeeded`, `exited` and `failed` <!-- #787 #806 -->
+# Conditional Blocks: `succeeded`, `exited` and `failed` <!-- #787 #800 #806 #812 -->
 
 Amber now provides enhanced control flow for failable operations with the introduction of `succeeded` and `exited` blocks and parameter support for `failed` blocks. These features offer more explicit and cleaner ways to handle both success and failure paths for commands and failable functions.
 
@@ -180,7 +180,7 @@ my_failable_func() exited(code) {
 - New standard library function `parse_int` to parse text to an integer. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
 - Renamed `parse_number` to `parse_num` for clarity. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
 - `math_sum` no longer uses `awk`, improving portability. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #768 -->
-- Five standard library functions (`symlink_create`, `dir_create`, `file_chmod`, `file_chown`, `file_download`) have been updated to be failable, providing more robust error handling. Thanks [@lens0021](https://github.com/lens0021). <!-- #791 -->
+- Seven standard library functions (`symlink_create`, `dir_create`, `file_chmod`, `file_chown`, `file_download`, `array_first`, `array_shift`) have been updated to be failable, providing more robust error handling. Thanks [@lens0021](https://github.com/lens0021). <!-- #791 #789 -->
 - New standard library function `array_filled` (in `std/array`) to create an array of a specified size, filled with a given value. Thanks [@UrbanCoffee](https://github.com/UrbanCoffee). <!-- #783 -->
 - Removed `env_const_get` function from `std/env`. Use `env_var_get` instead.
 
@@ -207,7 +207,7 @@ Improved date library by replacing old functions with new ones.
 
 How to compare dates now? Since date is now stored as milliseconds since epoch, we can simply compare them with `>`, `>=`, `<` and `<=` operators.
 
-# Sudo Command Modifier <!-- #782 -->
+# Sudo Command Modifier <!-- #782 #812 -->
 
 Amber now includes a new `sudo` command modifier that intelligently handles privilege escalation. This modifier automatically detects at runtime whether `sudo` is necessary and available, ensuring your scripts run correctly whether executed as root or a regular user.
 
@@ -236,8 +236,9 @@ sudo trust silent $ systemctl status nginx $
 - Documentation Generator can output generated.documentation to standard output. Thanks [@hdwalters](https://github.com/hdwalters). <!-- #655 -->
 - The documentation now uses `CARGO_PKG_VERSION` instead of `master` when linking, improving reliability. Thanks [@lens0021](https://github.com/amber-lang/amber/pull/649). <!-- #649 -->
 - Improved compiler error reporting.
+- Function bodies are now properly parsed even when the function is not called, ensuring syntax errors are caught at compile time. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #830 -->
 - Refactored internal failable operations from "failable types" to "failable functions" for improved consistency. Thanks [@b1ek](https://github.com/b1ek). <!-- #642 -->
-- Added warnings for invalid escape sequences in string literals, improving developer experience by highlighting potential issues. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #732 -->
+<!-- REVERTED - Added warnings for invalid escape sequences in string literals, improving developer experience by highlighting potential issues. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). #732 #823 -->
 - Improved error handling for invalid import statements, providing more helpful messages when `*` is incorrectly used in import closures. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #755 -->
 - Suppressed unnecessary warnings for valid escape characters used within commands, improving clarity in compiler output. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #759 -->
 - Introduced `AMBER_HEADER` and `AMBER_FOOTER` environment variables, allowing users to customize the header and footer of generated Bash scripts. Thanks [@Thesola10](https://github.com/Thesola10). <!-- #682 -->
@@ -253,7 +254,7 @@ sudo trust silent $ systemctl status nginx $
 
 - Duplicate argument names are not allowed. Thanks [@MuhamedMagdi](https://github.com/MuhamedMagdi). <!-- #680 -->
 - Standard library `replace_regex` now properly works on macOS and Linux musl. Thanks [@Aleksanaa](https://github.com/Aleksanaa). <!-- #686 -->
-- Casting `Text` to `Bool` now raises an absurd cast warning. Thanks [@lens0021](https://github.com/lens0021). <!-- #719 -->
+- Casting `Text` to other types now emits warnings for potentially problematic conversions, improving type safety awareness. <!-- #830 -->
 - Fixed escaping of backticks in text literals.
 - The `replace_one` and `replace` functions now properly work when replacing backslash. <!--#592-->
 - Fixed an issue where `shfmt` failed when processing generated Bash code for array comparisons. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #715 -->
@@ -269,13 +270,13 @@ sudo trust silent $ systemctl status nginx $
   ```ab
   trust $ echo '\{"a":1, "b":2}' | jq '.["b"]' $
   ```
-  This example now correctly prints `2`.<!-- #808 #814 -->
+  This example now correctly prints `2`.<!-- #808 #814 #819 -->
 
 # Internal Improvements
 
-- When Amber is built by development branch, now the binary version includes commit hash. Thanks [@Thesola10](https://github.com/Thesola10).
+- When Amber is built by development branch, now the binary version includes commit hash. Thanks [@Thesola10](https://github.com/Thesola10). <!-- #685 -->
 - Improved shellcheck code coverage.
-- Compiler collaborators can now benefit from a ready VS Code debug profile. Thanks [@b1ek](https://github.com/b1ek). <!-- #692-->
+- Compiler collaborators can now benefit from a ready VS Code debug profile. Thanks [@b1ek](https://github.com/b1ek). <!-- #692 -->
 - Improved internal documentation generation and usage links by correctly referencing prefixed test files and removing excess blank lines from generated Markdown. Thanks [@hdwalters](https://github.com/hdwalters). <!-- #653 -->
 - The compiled installation scripts have been removed from the repository and are now published via CI, streamlining the installation process. Thanks [@Mte90](https://github.com/Mte90). <!-- #644 -->
 - Implemented a new translation modules architecture for the compiler, introducing a Bash pseudo AST for improved code generation. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #678 -->
@@ -286,11 +287,15 @@ sudo trust silent $ systemctl status nginx $
 - Removed `shfmt` postprocessor support, as it was rendered redundant by internal compiler improvements, streamlining the build process. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #735 -->
 - Renamed parameters of `text_contain()`, `text_contain_any()` and `text_contain_all()` functions to `source` and `search` for improved clarity. Thanks [@lens0021](https://github.com/lens0021). <!-- #742 -->
 - Improved test suite robustness by fixing concurrency issues in input tests using unique temporary files. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #756 -->
-- Refactored CLI tests to use internal API with inline logic, improving simplicity, reliability, and speed. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- b15593999ea5a1e217030eca9ae418432b3af9ed -->
+- Refactored CLI tests to use internal API with inline logic, improving simplicity, reliability, and speed. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #754 -->
 - Implemented a new and simpler release pipeline, replacing `cargo-dist` for improved maintainability and efficiency. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #758 -->
+- Separated type checking into a distinct compiler phase, improving compiler architecture by cleanly separating parsing from type analysis. This allows for more robust error detection and better separation of concerns in the compiler pipeline. <!-- #770 -->
 - Introduced an intermediate state for text handling between parsing and translation, simplifying escaping logic and improving compiler architecture. Thanks [@lens0021](https://github.com/lens0021). <!-- #772 -->
 - Improved internal documentation and code clarity through various fixes, including correcting internal comments, fixing typos in the standard library documentation, and updating `std/array` documentation to accurately reflect current behaviors. Thanks [@lens0021](https://github.com/lens0021). <!-- #720 #790 #788 -->
 - Removed the `build.ab` script, as its functionality has been replaced by the new release pipeline, streamlining the build process. Thanks [@lens0021](https://github.com/lens0021). <!-- #793 -->
 - Migrated bash calls in test files to use built-in functions, improving test efficiency and reliability. Thanks [@lens0021](https://github.com/lens0021). <!-- #794 -->
 - Updated internal installation, shared, and uninstallation scripts to use recent syntax and standard library features, improving maintainability. Thanks [@lens0021](https://github.com/lens0021). <!-- #792 -->
 - Removed rotten TODOs from the codebase. Thanks [@lens0021](https://github.com/lens0021). <!-- #809 -->
+- Refactored the `Statement` module for improved code organization and maintainability. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #839 -->
+- Resolved issues with uncovered warnings in tests and removed overly strict return type warnings for functions with typed parameters. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #841 -->
+- Optimized documentation generation usage examples for improved LSP performance and user experience. Thanks [@Ph0enixKM](https://github.com/Ph0enixKM). <!-- #843 -->
