@@ -80,16 +80,26 @@ len(text) // Returns `Num` value
 len(text) // Returns `Int` value
 ```
 
-# Text to Bool Casting Warning <!-- #719 #831 -->
+# Text Casting Warning <!-- #719 #830 -->
 
-Casting `Text` to any values including `Bool` and `Int`, now issues an "absurd cast" warning. While not an error, it indicates a potential logical issue and encourages explicit conversion for clarity.
+Casting `Text` to other types including `Bool` and `Int`, now issues an "absurd cast" warning. While not an error, it indicates a potential logical issue and encourages explicit conversion for clarity.
 
 ```ab
 // Before
 echo "true" as Bool then 1 else 0 // OK
+echo "42" as Int // OK
 
 // After
 echo "true" as Bool then 1 else 0 // Warning: Absurd cast
+echo "42" as Int // Warning: Absurd cast
+```
+
+To properly convert text to integers, use the `parse_num` function:
+```ab
+// Recommended approach
+let text = "42"
+let num = parse_int(text)?
+echo num
 ```
 
 # Escaping Changes
@@ -134,7 +144,7 @@ The standard library’s Date module has been completely overhauled. We improved
 | *new* | `date_format_posix` | Converts [unix epoch time](https://en.wikipedia.org/wiki/Unix_time) to a textual representation. |
 | `date_add` | `date_add` | Adds time to passed date. |
 | *new* | `date_sub` | Subtracts time to passed date. |
-| *removed* | `date_compare` | Compares two dates and returns value of a sign function. |
+| *removed* | `date_compare` | Compares two dates and returns value of a sign function. Use standard comparison operators (`>`, `>=`, `<`, `<=`) instead. |
 
 ## Regex Functions Compatibility Changes <!-- #717 -->
 
@@ -166,6 +176,8 @@ Several standard library functions that previously returned a `Bool` to indicate
 - `std/fs::file_chmod`
 - `std/fs::file_chown`
 - `std/net::file_download`
+- `std/array::array_first`
+- `std/array::array_shift`
 
 ```ab
 // Before
