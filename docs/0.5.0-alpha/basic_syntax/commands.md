@@ -24,7 +24,7 @@ echo result
 
 > DETAILS: Command expression result is sent to the variable instead of _standard output_.
 
-Command can also be interpolated with other expressions and variables
+Command can also be interpolated with other expressions and variables.
 
 ```ab
 let file_path = "/path/to/file"
@@ -94,8 +94,9 @@ To learn more about fail keyword, please read the article covering [failures](/b
 # Command Modifiers
 
 Command modifier is a keyword that alters the behavior of a command. Here are some examples:
-- `silent` - prevents command from displaying the result to the standard output.
+- `silent` - suppresses all output from a command (both stdout and stderr).
 - `trust` - disables Amber's mechanism that requires user to handle failures.
+- `sudo` - intelligently handles privilege escalation, detecting at runtime whether sudo is necessary and available.
 
 You can learn more details about each command modifier in the forthcoming chapters.
 
@@ -129,8 +130,16 @@ This will be treated the same way Bash treats statements. If it fails, then carr
 
 ## Silencing Commands
 
-You can easily silent given command. Here is an example usage:
+The `silent` modifier suppresses all output from a command, including both standard output (stdout) and standard error (stderr). This is equivalent to redirecting output to `/dev/null 2>&1` in bash.
 
 ```ab
 silent $ very loud command $
+```
+
+## Sudo
+
+The `sudo` modifier intelligently handles privilege escalation. It automatically detects at runtime whether `sudo` is necessary and available.
+
+```ab
+sudo $ systemctl restart nginx $
 ```
