@@ -11,6 +11,15 @@ echo 0..=10
 // Outputs: 0 1 2 3 4 5 6 7 8 9 10
 ```
 
+Ranges also support reversed order:
+
+```ab
+echo 6..3
+// Outputs: 6 5 4
+echo 6..=3
+// Outputs: 6 5 4 3
+```
+
 # Arrays
 
 We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
