@@ -4,7 +4,7 @@ The Amber CLI can be used as a runtime or as a compiler.
 
 The Amber CLI syntax uses subcommands, like the Git CLI:
 
-*This output is generated from the 0.4.0-alpha version.*
+*This output is generated from the 0.5.1-alpha version.*
 ```
 Usage: amber [OPTIONS] [INPUT] [ARGS]... [COMMAND]
 

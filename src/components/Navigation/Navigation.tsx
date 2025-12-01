@@ -51,7 +51,7 @@ export default function Navigation({ hideSearch = false }: Props) {
                         <Dropdown
                             value={version}
                             onChange={(value: Object) => router.push(`/${value.toString()}`)}
-                            options={versions}
+                            options={versions.toReversed()}
                             getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
                         />
                     </div>
