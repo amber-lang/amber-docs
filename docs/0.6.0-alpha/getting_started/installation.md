@@ -15,11 +15,11 @@ Make sure that the operating system meets the following prerequisites
 
 - **System-wide**
 ```bash
-bash <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.0-alpha/install.sh")
+bash <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/install.sh")
 ```
 - **Local-user**
 ```bash
-bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.0-alpha/install.sh") --user
+bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/install.sh") --user
 ```
 - **Package manager**
 
@@ -82,5 +82,5 @@ If these tools are available on your system, they will be executed at the end of
 You can uninstall Amber any time. To do this you can simply run the following code snippet.
 
 ```sh
-bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.0-alpha/uninstall.sh")
+bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/uninstall.sh")
 ```
