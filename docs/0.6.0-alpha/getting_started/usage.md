@@ -162,3 +162,11 @@ $ cat ~/.bashrc
 source <(amber completion)
 ...
 ```
+
+### Disabling the Optimizer
+
+The optimizer is still being improved. If you encounter any issues with optimization, you can disable it using an environment variable:
+
+```sh
+AMBER_NO_OPTIMIZE=1 amber ...
+```

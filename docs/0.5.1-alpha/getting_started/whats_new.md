@@ -75,7 +75,11 @@ my_array=(1 2 3)
 echo "${my_array[@]}"
 ```
 
-For now, this optimizer works for simple expressions, but it will be improved as we continue to develop Amber.
+For now, this optimizer works for simple expressions, but it will be improved as we continue to develop Amber. It's still an alpha version, so if you suspect that it works incorrectly, you can disable it with an environment variable:
+
+```sh
+AMBER_NO_OPTIMIZE=1 amber ...
+```
 
 # Reversed range support <!-- #753 -->
 
