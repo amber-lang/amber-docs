@@ -34,7 +34,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
   return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <head>
             <link rel='icon' href='/internal/favicon.png'/>
             <meta name='view-transition' content='same-origin'/>

@@ -12,8 +12,7 @@ import { getDocDescriptor, getFlatTableOfContents } from '@/utils/docs'
 import { getTableOfContents } from '@/utils/docsServer'
 import InfoCard from '@/components/InfoCard/InfoCard'
 import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
-import dynamic from 'next/dynamic'
-const Markdown = dynamic(() => import('@/components/Markdown/Markdown'), { ssr: false })
+import ClientMarkdown from '@/components/Markdown/ClientMarkdown'
 
 interface Props {
     location: Location,
@@ -44,7 +43,7 @@ export default async function Page({ location, document }: Props) {
                     <div className={style.title}>
                         {docDesc.title}
                     </div>
-                    <Markdown content={document.content} />
+                    <ClientMarkdown content={document.content} />
                     <ChapterNavigation flatToc={flatToc} index={docDesc.index} />
                 </div>
             </div>
