@@ -10,7 +10,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import NavigationLayout from "@/layouts/NavigationLayout/NavigationLayout";
 import MainBigLink from "@/layouts/MainBigLink/MainBigLink";
 import { Location } from "@/utils/urls";
-const AmberScene = dynamic(() => import("@/components/AmberScene/AmberScene"), { ssr: false });
+import ClientAmberScene from "@/components/AmberScene/ClientAmberScene";
 
 interface Props {
     location?: Location;
@@ -31,7 +31,7 @@ export default async function Main({ location }: Props) {
                         <ErrorBoundary fallback={<div className={[style["jumbotron-bg"], style.fallback].join(' ')} />}>
                             <div className={style["jumbotron-bg"]} />
                             <Suspense>
-                                <AmberScene />
+                                <ClientAmberScene />
                             </Suspense>
                         </ErrorBoundary>
                     </div>
