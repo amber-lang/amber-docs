@@ -59,7 +59,6 @@ class MarkdownRenderer extends Renderer {
                         this.classList.add('${style.checked}');
                         setTimeout(() => this.classList.remove('${style.checked}'), 1000);
                     "
-                    id="${id}"
                     class="${style['side-action']} ${style.link}"
                 ></div>
                 <h${level} id="${id}">${text}</h${level}>
@@ -139,7 +138,18 @@ export default function Markdown({ content }: { content: string }) {
         if (matchMedia('(hover: none)').matches) {
             setSwipeToCopy(blocks)
         }
-    }, [])
+        // Scroll to anchor hash
+        const hash = window.location.hash
+        if (hash) {
+            const id = hash.substring(1)
+            const element = document.getElementById(id)
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView()
+                }, 0)
+            }
+        }
+    }, [content])
 
     return (
         <div className={style.markdown} dangerouslySetInnerHTML={{ __html: Marked.parse(content) }} />
