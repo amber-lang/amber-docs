@@ -24,8 +24,6 @@ echo groceries[1]
 // Outputs: banana
 ```
 
-> WARNING: As of right now (Amber alpha) the subscript syntax does not work with expressions. This means that we can't evaluate expressions like `foo()[0]` yet.
-
 We can also _echo_ an entire array:
 
 ```ab
