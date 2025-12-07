@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 3rem auto;
+    color: var(--description);
 }
 
 .part.left {
@@ -46,7 +47,6 @@
 .part * {
     display: inline-block;
     vertical-align: middle;
-    color: var(--border);
 }
 
 .part .text {

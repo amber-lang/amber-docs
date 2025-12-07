@@ -2,7 +2,7 @@
 
 import React from 'react'
 import style from './ChapterNavigation.module.css'
-import { Text } from '../Text'
+
 import { FlatDoc } from '@/utils/docs'
 import Link from 'next/link'
 import { generateUrl } from '@/utils/urls'
@@ -23,29 +23,25 @@ export default function ChapterNavigation({ index, flatToc }: Props) {
                 {prev && (
                     <>
                         <div className={`${style.reverse} ${style.icon}`}></div>
-                        <Text>
-                            <Link href={`/${generateUrl(version, prev.path)}`}>
-                                <span className={style.text}>
-                                    {prev.title}
-                                </span>
-                            </Link>
-                        </Text>
+                        <Link href={`/${generateUrl(version, prev.path)}`}>
+                            <span className={style.text}>
+                                {prev.title}
+                            </span>
+                        </Link>
                     </>
                 )}
             </div>
             <div className={`${style.part} ${style.center} ${style['page-indicator']}`}>
-                <Text>{index + 1}/{flatToc.length}</Text>
+                {index + 1}/{flatToc.length}
             </div>
             <div className={`${style.part} ${style.right}`}>
                 {next && (
                     <>
-                        <Text>
-                            <Link href={`/${generateUrl(version, next.path)}`}>
-                                <span className={style.text}>
-                                    {next.title}
-                                </span>
-                            </Link>
-                        </Text>
+                        <Link href={`/${generateUrl(version, next.path)}`}>
+                            <span className={style.text}>
+                                {next.title}
+                            </span>
+                        </Link>
                         <div className={style.icon}></div>
                     </>
                 )}
