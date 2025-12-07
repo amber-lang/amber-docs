@@ -82,6 +82,6 @@ $ amber --docs stdlib.ab
 
 | Icon | Name | Location |
 |---|:----:|:-----:|
-| ![image](/images/logo-vsc.png)  | **VS Code** | [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language) or [Our extension repository](https://github.com/amber-lang/vsc-amber-extension) |
+| ![image](/images/logo-vsc.png)  | **VS Code** | [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language) or [Our extension repository](https://github.com/amber-lang/amber-vsc) |
 | ![image](/images/logo-zed.png) | **Zed** | Zed extensions or [Our extension repository](https://github.com/amber-lang/zed-amber-extension) |
 | ![image](/images/logo-vim.png)  | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
