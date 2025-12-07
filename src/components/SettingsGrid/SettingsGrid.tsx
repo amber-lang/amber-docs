@@ -23,19 +23,19 @@ export default function SettingsGrid() {
                     </Button>
                 </div>
                 <div className={style.button}>
-                <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
-                    <Icon src='/internal/gh.svg' size='2rem' />
-                </Button>
+                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
+                        <Icon src='/internal/gh.svg' size='2rem' />
+                    </Button>
                 </div>
                 <div className={style.button}>
-                <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')}>
-                    <Icon src='/internal/discord.svg' size='2rem' />
-                </Button>
+                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')}>
+                        <Icon src='/internal/discord.svg' size='2rem' />
+                    </Button>
                 </div>
                 <div className={style.button}>
-                <Button onClick={() => router.push('https://reddit.com/r/amberlang')}>
-                    <Icon src='/internal/reddit.svg' size='2rem' />
-                </Button>
+                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')}>
+                        <Icon src='/internal/reddit.svg' size='2rem' />
+                    </Button>
                 </div>
                 {/* Uncomment when we are ready */}
                 {/* <div className={style.button}>
