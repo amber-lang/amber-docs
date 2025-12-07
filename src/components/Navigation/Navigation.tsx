@@ -74,6 +74,12 @@ export default function Navigation({ hideSearch = false }: Props) {
                     <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
                         <Icon src='/internal/gh.svg' size='2rem' />
                     </Button>
+                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')}>
+                        <Icon src='/internal/discord.svg' size='2rem' />
+                    </Button>
+                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')}>
+                        <Icon src='/internal/reddit.svg' size='2rem' />
+                    </Button>
                     {/* Uncomment when we are ready */}
                     {/* <Button>
                         <a href="https://marble.software/">
