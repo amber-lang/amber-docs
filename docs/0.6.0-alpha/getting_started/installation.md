@@ -16,15 +16,12 @@ Make sure that the operating system meets the following prerequisites
   - On OpenSUSE: `sudo zypper install bc`
 
 - `curl` and `bash` are both installed by default in most cases. 
-  In the very rare case, that they happen to be not available yet, download them as well.
+  In the very rare case that they happen to be not available yet, download them as well.
 
 ## macOS
 
-You have everything preinstalled to use Amber on macOS.
-The default shell in macOS is zsh, and that one should be compatible with our bash code.
-
-We currently evaluate, if there are edge cases we still have to cover.
-If you find any issues, please report that, and switch temporarily to bash. 
+For macOS, you only have to install bash and Amber itself, ideally with Homebrew:
+`brew install --HEAD amber-lang/amber/amber-lang && brew install bash`
 
 ### Installation Options
 
@@ -43,12 +40,6 @@ bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-
 <div style="width:250px;margin: 0 auto;">
 [![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
 </div>
-
-## Homebrew
-
-```bash
-brew install --HEAD amber-lang/amber/amber-lang
-```
 
 ## NixOS Channel
 
@@ -106,9 +97,9 @@ While developing with Nix, the flake defines all dependencies for `nix develop` 
 
 ## Windows Support
 
-As windows does not come with bash installed it makes no sense to support it. Please install WSL 2 on your windows machine and install Linux version of Amber compiler inside.
+As Windows does not come with bash installed, it makes no sense to support it. Please install WSL 2 on your Windows machine and install the Linux version of the Amber compiler inside.
 
-In order for it to work you may need to run the following code that pulls all the prerequisites. These count for Debian and Ubuntu based images.
+For it to work, you may need to run the following code that pulls all the prerequisites. These count for Debian and Ubuntu-based images.
 
 ```sh
 sudo apt install curl bc
