@@ -3,9 +3,9 @@ The Amber compiler currently works on:
 - Linux x86 and ARM
 - macOS x86 and ARM (Apple Silicon)
 
-## Preparation for installation
+### Preparation for installation
 
-### Linux
+## Linux
 
 Make sure that the operating system meets the following prerequisites
 
