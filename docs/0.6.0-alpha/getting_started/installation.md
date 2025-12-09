@@ -1,15 +1,31 @@
-Amber compiler currently works on:
+## Installation
+
+### Support for architectures
+
+The Amber compiler currently works on:
+
 - Linux x86 and ARM
 - macOS x86 and ARM (Apple Silicon)
-- Nix (NixOS)
+- Windows over WSL 2
 
-## macOS / Linux
+### Preparation for installation
+
+## macOS
+
+On macOS, you should have everything preinstalled (curl, bash, bc).
+
+## Linux
 
 Make sure that the operating system meets the following prerequisites
 
-- Bourne-again shell (Bash)
-- Basic calculator `bc` command (On Debian run `sudo apt install bc`)
-- Curl tool for downloading the installation script
+- Install the basic calculator:
+  - On Debian and Ubuntu: `sudo apt install bc` 
+  - On Arch: `sudo pacman -Syu bc`
+  - On Fedora: `sudo dnf install bc`
+  - On OpenSUSE: `sudo zypper install bc`
+
+- `curl` and `bash` are both installed by default in most cases. 
+  In the very rare case that they happen to be not available yet, download them as well.
 
 ### Installation Options
 
@@ -17,25 +33,50 @@ Make sure that the operating system meets the following prerequisites
 ```bash
 bash <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/install.sh")
 ```
+
 - **Local-user**
 ```bash
 bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/install.sh") --user
 ```
-- **Package manager**
+
+- **Available versions with package managers**
 
 <div style="width:250px;margin: 0 auto;">
 [![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
 </div>
 
-## Homebrew
+### NixOS Channel
 
-```bash
-brew install --HEAD amber-lang/amber/amber-lang
+The name of the package is `amber-lang`.
+
+- **configuration.nix**
+
+```nix
+  environment.systemPackages = [
+    pkgs.amber-lang
+  ];
 ```
 
-## NixOS and Flakes
+- **And with home manager:**
 
-The package contains all the required install scripts and dependencies. You can use the flake as:
+```nix
+  home.packages = with pkgs; [
+    amber-lang
+  ];
+
+  programs.home-manager.enable = true;
+}
+```
+
+- **Start a shell with:**
+
+```nix
+nix-shell -p amber-lang
+```
+
+### NixOS with Flakes
+
+- **You can use the Amber flake like this:**
 
 ```nix
 {
@@ -43,43 +84,43 @@ The package contains all the required install scripts and dependencies. You can 
         # ...
         amber.url = "github:amber-lang/Amber";
     };
-
-    # then later with home manager for example
-    home.packages = [ inputs.amber.packages.${pkgs.system}.default ];
 }
 ```
 
-The package is avaiable as `amber-lang` on [nixpkgs](https://github.com/NixOS/nixpkgs/pull/313774).
+- **Flakes with home manager:**
+
+```nix
+home.packages = [ inputs.amber.packages.${pkgs.system}.default ];
+```
 
 While developing with Nix, the flake defines all dependencies for `nix develop` (or `direnv` if used).
 
-## Snap
+### Snap
 
-```bash
-sudo snap install amber-bash --classic
-```
+`sudo snap install amber-bash --classic`
 
 ## Windows Support
 
-As windows does not come with bash installed it makes no sense to support it. Please install WSL 2 on your windows machine and install Linux version of Amber compiler inside.
+As Windows does not come with bash installed, it makes no sense to support it. Please install WSL 2 on your Windows machine and install the Linux version of the Amber compiler inside.
 
-In order for it to work you may need to run the following code that pulls all the prerequisites.
+For it to work, you may need to run the following code that pulls all the prerequisites.  
+These count for Debian and Ubuntu-based images.
 
 ```sh
 sudo apt install curl bc
 sudo mkdir /opt /usr/local/bin
 ```
 
-# External Tools Integrated
+## Integration of external tools
 
 Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
-
 If these tools are available on your system, they will be executed at the end of the Bash compilation process.
+
 * [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
 
-# Uninstallation
+## Uninstallation
 
-You can uninstall Amber any time. To do this you can simply run the following code snippet.
+If you have installed it via the first installation option, simply run the following code snippet.
 
 ```sh
 bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/uninstall.sh")
