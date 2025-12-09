@@ -1,9 +1,18 @@
+## Installation
+
+### Support for architectures
+
 The Amber compiler currently works on:
 
 - Linux x86 and ARM
 - macOS x86 and ARM (Apple Silicon)
+- Windows over WSL 2
 
 ### Preparation for installation
+
+## macOS
+
+On macOS, you should have everything preinstalled (curl, bash, bc).
 
 ## Linux
 
@@ -17,11 +26,6 @@ Make sure that the operating system meets the following prerequisites
 
 - `curl` and `bash` are both installed by default in most cases. 
   In the very rare case that they happen to be not available yet, download them as well.
-
-## macOS
-
-For macOS, you only have to install bash and Amber itself, ideally with Homebrew:
-`brew install --HEAD amber-lang/amber/amber-lang && brew install bash`
 
 ### Installation Options
 
@@ -41,7 +45,7 @@ bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-
 [![Packaging status](https://repology.org/badge/vertical-allrepos/amber-lang.svg)](https://repology.org/project/amber-lang/versions)
 </div>
 
-## NixOS Channel
+### NixOS Channel
 
 The name of the package is `amber-lang`.
 
@@ -91,7 +95,7 @@ home.packages = [ inputs.amber.packages.${pkgs.system}.default ];
 
 While developing with Nix, the flake defines all dependencies for `nix develop` (or `direnv` if used).
 
-## Snap
+### Snap
 
 `sudo snap install amber-bash --classic`
 
@@ -99,21 +103,22 @@ While developing with Nix, the flake defines all dependencies for `nix develop` 
 
 As Windows does not come with bash installed, it makes no sense to support it. Please install WSL 2 on your Windows machine and install the Linux version of the Amber compiler inside.
 
-For it to work, you may need to run the following code that pulls all the prerequisites. These count for Debian and Ubuntu-based images.
+For it to work, you may need to run the following code that pulls all the prerequisites.  
+These count for Debian and Ubuntu-based images.
 
 ```sh
 sudo apt install curl bc
 sudo mkdir /opt /usr/local/bin
 ```
 
-# External Tools Integrated
+## Integration of external tools
 
 Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
-
 If these tools are available on your system, they will be executed at the end of the Bash compilation process.
+
 * [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
 
-# Uninstallation
+## Uninstallation
 
 If you have installed it via the first installation option, simply run the following code snippet.
 
