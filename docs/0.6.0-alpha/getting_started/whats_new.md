@@ -28,6 +28,20 @@ New integer `Int` data type that is now the only supported type for:
 
 The standard library has been updated to consistently use `Int` for contexts like indexes, lengths, and incremental numbers.
 
+# Union Types
+
+Union types provide a flexible way to define function parameters that can accept values of multiple distinct types.
+
+```ab
+fun print_value(val: Int | Text | Bool) {
+    echo val
+}
+
+print_value(42)       // Valid
+print_value("Amber")  // Valid
+print_value(true)     // Valid
+```
+
 # Comparison <!-- #703 -->
 
 Comparison operator now supports lexical comparison of `Text` data type.
