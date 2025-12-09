@@ -44,7 +44,10 @@ function getRelation(level: number, prevLevel: number): string {
 function getHeaders(headers: string[], disableLevels?: number[]): Header[] {
     let distances = [0, 0, 0]
     let prevLevel = NaN
-    return headers.filter(header => !disableLevels?.includes(getHeaderLevel(header))).map(header => {
+    const filterHeaders = (header: string) => (
+        header.startsWith('#') && !disableLevels?.includes(getHeaderLevel(header))
+    )
+    return headers.filter(filterHeaders).map(header => {
         const level = Math.min(getHeaderLevel(header), 3) - 1
         const relation = getRelation(level, prevLevel)
         const distance = distances[level]
@@ -71,7 +74,8 @@ function getHeaders(headers: string[], disableLevels?: number[]): Header[] {
 export default function SideBar({ headers, docDesc, toc = [], isFixed = false }: Props) {
     const { version } = useVersion()
     const { isOpen } = useSidebar()
-    const formattedHeaders = getHeaders(headers, docDesc?.disableLevels)
+    const titleHeader = docDesc?.title ? `# ${docDesc.title}` : ""
+    const formattedHeaders = getHeaders([titleHeader, ...headers], docDesc?.disableLevels)
     const onPageRef = React.useRef<HTMLDivElement>(null)
     const tocRef = React.useRef<HTMLDivElement>(null)
 
