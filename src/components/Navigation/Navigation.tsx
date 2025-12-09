@@ -39,7 +39,7 @@ export default function Navigation({ hideSearch = false }: Props) {
     return <>
             <div className={style.nav}>
                 <div className={style.left}>
-                    <Link href="/">
+                    <Link href={`/${version}`}>
                         <div className={style.logo}>
                             <Image src="/internal/amber.svg" alt="amber" fill />
                         </div>
