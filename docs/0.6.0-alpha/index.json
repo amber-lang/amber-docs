@@ -125,6 +125,11 @@
                     "disableLevels": [3]
                 },
                 {
+                    "path": "stdlib/doc/test",
+                    "title": "Test",
+                    "disableLevels": [3]
+                },
+                {
                     "path": "stdlib/doc/text",
                     "title": "Text",
                     "disableLevels": [3]
