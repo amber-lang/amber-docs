@@ -25,16 +25,16 @@ let output = ""
 
 let stdtests = trust $ /usr/bin/ls "src/tests/stdlib/" $
 let stdlib = split(stdtests, "\n")
-
+let output = ""
 for v in stdlib {
     if not text_contains(v, ".txt") and file_exists("src/tests/stdlib/{v}") {
         echo "Generating Bash script for test {v}"
         trust $ ./target/debug/amber build "src/tests/stdlib/{v}" "{path}/{v}.sh" $
-        
-        $ shellcheck "{path}/{v}.sh" $ exited(code) {
+
+        output = $ shellcheck "{path}/{v}.sh" $ exited(code) {
             if code != 0 {
                 echo "Shellcheck found something!"
-                file_append(report, "\n--- Issues in {v} ---\n") failed {
+                file_append(report, "\n--- Issues in {v} ---\n{output}") failed {
                     echo "Failed to append to report"
                 }
             }
