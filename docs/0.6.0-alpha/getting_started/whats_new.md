@@ -46,6 +46,16 @@ echo left > right // True
 ```
 
 
+# Array Type Resolution
+
+Amber now supports type inference for empty arrays `[]`. You can initialize an empty array without specifying its type immediately. The type will be resolved later based on how the array is used, such as in assignments, binary operations, or function calls.
+
+```amber
+let arr = [] // Type is generic
+arr += [1]   // Resolved to [Int]
+```
+
+
 # Optimizer <!-- #706 #728 #746 #763 -->
 
 Optimizer removes redundant and unused variables in the bash output. It can significantly reduce the shell code size. Let's take this example:

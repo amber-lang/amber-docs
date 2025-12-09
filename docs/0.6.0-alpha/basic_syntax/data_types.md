@@ -98,7 +98,18 @@ To create an array literal simply enclose a list of elements separated with a co
 ["apple", "banana", "orange"]
 ```
 
-In a situation of empty array there is no value that can tell the compiler of what type it is. In this case we can simply use the type signature of it to represent an empty array.
+### Array Type Resolution
+
+Amber supports type inference for empty arrays. You can initialize an empty array using `[]` without specifying its type immediately. The type will be resolved later based on how the array is used.
+
+```amber
+// Initializes an empty array with unresolved type
+let array = [] 
+// The type is resolved to [Int] upon this assignment
+array += [1]
+```
+
+In edge cases, where type inference is not possible or explicit typing is preferred, you can use the type signature to create an explicitly typed empty array.
 
 ```ab
 // Example of a value that represents empty array of text
