@@ -22,7 +22,7 @@ Make sure that the operating system meets the following prerequisites
   - On Debian and Ubuntu: `sudo apt install bc` 
   - On Arch: `sudo pacman -Syu bc`
   - On Fedora: `sudo dnf install bc`
-  - On OpenSUSE: `sudo zypper install bc` ¹
+  - On OpenSUSE: `sudo zypper install bc`
 
 - `curl` and `bash` are both installed by default in most cases. 
   In the very rare case that they happen to be not available yet, download them as well.
