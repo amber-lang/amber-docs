@@ -4,7 +4,7 @@ The Amber CLI can be used as a runtime or as a compiler.
 
 The Amber CLI syntax uses subcommands, like the Git CLI:
 
-*This output is generated from the 0.5.1-alpha version.*
+*This output is generated from the 0.5.2-alpha version.*
 ```
 Usage: amber [OPTIONS] [INPUT] [ARGS]... [COMMAND]
 
@@ -15,6 +15,7 @@ Commands:
   build       Compile Amber script to Bash
   docs        Generate Amber script documentation
   completion  Generate Bash completion script
+  test        Run Amber tests
   help        Print this message or the help of the given subcommand(s)
 
 Arguments:
@@ -96,6 +97,16 @@ Furthermore, Amber adds a _shebang_ at the top of the compiled script. This enab
 ```sh
 $ ./output.sh
 ```
+
+## Testing
+
+Amber comes with a built-in test runner. You can define named test blocks in your code and execute them using the `amber test` command.
+
+```sh
+$ amber test
+```
+
+For more details on writing and filtering tests, please refer to the [Testing guide](https://docs.amber-lang.com/getting_started/testing).
 
 ## Syntax Highlighting
 

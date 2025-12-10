@@ -122,3 +122,35 @@ In edge cases, where type inference is not possible or explicit typing is prefer
 [[Bool]]
 // Error: Arrays cannot be nested due to the Bash limitations
 ```
+
+## Union Types
+
+Union types provide a flexible way to define function parameters that can accept values of multiple distinct types. This feature enhances code reusability and polymorphism by allowing a single function to handle different data types safely. Currently, union types are exclusively supported for function parameters. To define a union type, separate the accepted types with a vertical bar (`|`).
+
+### Examples
+
+Here is an example of a function that accepts either an array of Booleans or an array of Integers:
+
+```amber
+fun process_data(data: [Bool] | [Int]) {
+    for item in data {
+        echo item
+    }
+}
+
+process_data([1, 2, 3])          // Valid
+process_data([true, false])      // Valid
+// process_data("Invalid")       // Compile-time Error
+```
+
+You can also combine primitive types like `Int`, `Text`, and `Bool`:
+
+```amber
+fun print_value(val: Int | Text | Bool) {
+    echo val
+}
+
+print_value(42)       // Valid
+print_value("Amber")  // Valid
+print_value(true)     // Valid
+```
