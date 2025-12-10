@@ -13,6 +13,10 @@
                     "title": "Usage"
                 },
                 {
+                    "path": "getting_started/testing",
+                    "title": "Testing"
+                },
+                {
                     "path": "getting_started/whats_new",
                     "title": "What's new"
                 },
@@ -118,6 +122,11 @@
                 {
                     "path": "stdlib/doc/math",
                     "title": "Math",
+                    "disableLevels": [3]
+                },
+                {
+                    "path": "stdlib/doc/test",
+                    "title": "Test",
                     "disableLevels": [3]
                 },
                 {
