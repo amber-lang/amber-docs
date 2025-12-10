@@ -20,7 +20,7 @@ Make sure that the operating system meets the following prerequisites
 
 - Install the basic calculator:
   - On Debian and Ubuntu: `sudo apt install bc` 
-  - On Arch: `sudo pacman -Syu bc` 
+  - On Arch: `sudo pacman -Syu bc`
   - On Fedora: `sudo dnf install bc`
   - On OpenSUSE: `sudo zypper install bc` ¹
 
