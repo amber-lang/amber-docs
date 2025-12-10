@@ -155,7 +155,7 @@ sudo mkdir /opt /usr/local/bin
 
 ## Integration of external tools
 
-Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
+Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.  
 If these tools are available on your system, they will be executed at the end of the Bash compilation process.
 
 * [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
