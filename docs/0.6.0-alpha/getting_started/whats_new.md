@@ -1,5 +1,18 @@
 > WARNING: Brief description of new changes TBD when releasing
 
+# Union Types
+Union types provide a flexible way to define function parameters that can accept values of multiple distinct types.
+
+```ab
+fun print_value(val: Int | Text | Bool) {
+    echo val
+}
+
+print_value(42)       // Valid
+print_value("Amber")  // Valid
+print_value(true)     // Valid
+```
+
 # Testing suite
 Amber now features a built-in testing suite. It allows you to write dedicated `test` blocks that are only executed when running the `amber test` command.
 
