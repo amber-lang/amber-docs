@@ -27,6 +27,15 @@ test "can multiply numbers" {
 
 You can also name your tests for better readability and filter them by name or filename using CLI arguments. Read more in the [Testing Guide](testing).
 
+# Array Type Resolution
+
+Amber now supports type inference for empty arrays `[]`. You can initialize an empty array without specifying its type immediately. The type will be resolved later based on how the array is used, such as in assignments, binary operations, or function calls.
+
+```ab
+let arr = [] // Type is generic
+arr += [1]   // Resolved to [Int]
+```
+
 # Standard library improvements
 
 > WARNING: Brief description of new changes TBD when releasing
