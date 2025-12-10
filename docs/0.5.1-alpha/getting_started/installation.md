@@ -43,7 +43,7 @@ https://github.com/marcosnils/bin/releases
 And then make it executable: 
 
 ```
-chmod +x filename
+chmod +x ./bin_0.24.2_linux_amd64
 ```
 
 And then run it from the directory it is located:
