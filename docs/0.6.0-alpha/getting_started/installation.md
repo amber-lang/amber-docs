@@ -27,7 +27,47 @@ Make sure that the operating system meets the following prerequisites
 - `curl` and `bash` are both installed by default in most cases. 
   In the very rare case that they happen to be not available yet, download them as well.
 
-### Installation Options
+**Note:**  You should always update the system before you install a package in a rolling release distro, such as **Arch** and **Tumbleweed.**  
+Always reboot after an update of the kernel, init system, and similar as well. 
+
+## Installation via *bin*, the binary package manager
+
+**Install bin itself**:
+
+Download for your platform here:
+
+```
+https://github.com/marcosnils/bin/releases 
+```
+
+And then make it executable: 
+
+```
+chmod +x ./bin_0.24.2_linux_amd64
+```
+
+And then run it from the directory it is located:
+
+```
+./bin_0.24.2_linux_amd64 install github.com/marcosnils/bin
+```
+
+And now, install Amber:
+
+```
+bin install github.com/amber-lang/amber
+```
+
+Update it via:
+
+```
+bin update
+```
+
+Note: Bin can install all binaries that are hosted somewhere on Github, Codeberg, and other locations. 
+For detailed documentation, see: [Commands Reference](https://github.com/marcosnils/bin?tab=readme-ov-file#-commands-reference)
+
+## Installation via script
 
 - **System-wide**
 ```bash
@@ -65,7 +105,6 @@ The name of the package is `amber-lang`.
   ];
 
   programs.home-manager.enable = true;
-}
 ```
 
 - **Start a shell with:**
@@ -97,11 +136,14 @@ While developing with Nix, the flake defines all dependencies for `nix develop` 
 
 ### Snap
 
-`sudo snap install amber-bash --classic`
+```bash
+sudo snap install amber-bash --classic
+```
 
 ## Windows Support
 
-As Windows does not come with bash installed, it makes no sense to support it. Please install WSL 2 on your Windows machine and install the Linux version of the Amber compiler inside.
+As Windows does not come with bash installed, it makes no sense to support it.  
+Please install WSL 2 on your Windows machine and install the Linux version of the Amber compiler inside.
 
 For it to work, you may need to run the following code that pulls all the prerequisites.  
 These count for Debian and Ubuntu-based images.
@@ -113,7 +155,7 @@ sudo mkdir /opt /usr/local/bin
 
 ## Integration of external tools
 
-Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.
+Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.  
 If these tools are available on your system, they will be executed at the end of the Bash compilation process.
 
 * [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
