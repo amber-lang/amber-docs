@@ -26,7 +26,7 @@ Make sure that the operating system meets the following prerequisites
 **Note:**  You should always update the system before you install a package in a rolling release distro, such as **Arch** and **Tumbleweed.**  
 Always reboot after an update of the kernel, init system, and similar software as well. 
 
-## Installation via *bin*, the binary package manager
+## Installation via `bin`, the binary package manager
 
 **Install bin itself**:
 
