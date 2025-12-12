@@ -23,8 +23,7 @@ Make sure that the operating system meets the following prerequisites
 - `curl` and `bash` are both installed by default in most cases. 
   In the very rare case that they happen to be not available yet, download them as well.
 
-**Note:**  You should always update the system before you install a package in a rolling release distro, such as **Arch** and **Tumbleweed.**  
-Always reboot after an update of the kernel, init system, and similar software as well. 
+> DETAILS: You should always update the system before you install a package in a rolling release distro, such as **Arch** and **Tumbleweed.**. Always reboot after an update of the kernel, init system, and similar software as well. 
 
 ## Installation via *bin*, the binary package manager
 
@@ -60,8 +59,7 @@ Update it via:
 bin update
 ```
 
-Note: Bin can install all binaries that are hosted somewhere on GitHub, Codeberg, and other locations. 
-For detailed documentation, see: [Commands Reference](https://github.com/marcosnils/bin?tab=readme-ov-file#-commands-reference)
+> DETAILS: Bin can install all binaries that are hosted somewhere on GitHub, Codeberg, and other locations. For detailed documentation, see: [Commands Reference](https://github.com/marcosnils/bin?tab=readme-ov-file#-commands-reference)
 
 ## Installation via script
 
