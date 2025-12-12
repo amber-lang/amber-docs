@@ -60,8 +60,7 @@ Update it via:
 bin update
 ```
 
-> DETAILS: Bin can install all binaries that are hosted somewhere on GitHub, Codeberg, and other locations. 
-For detailed documentation, see: [Commands Reference](https://github.com/marcosnils/bin?tab=readme-ov-file#-commands-reference)
+> DETAILS: Bin can install all binaries that are hosted somewhere on GitHub, Codeberg, and other locations. For detailed documentation, see: [Commands Reference](https://github.com/marcosnils/bin?tab=readme-ov-file#-commands-reference)
 
 ## Installation via script
 
