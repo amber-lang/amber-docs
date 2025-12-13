@@ -12,31 +12,32 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Checkout amber-docs repository
-        uses: actions/checkout@v4
-
       - name: Checkout amber repository
         uses: actions/checkout@v4
         with:
           repository: amber-lang/amber
-          path: amber
+
+      - name: Checkout amber-docs repository
+        uses: actions/checkout@v4
+        with:
+          path: amber-docs
 
       - name: Generate documentation using Amber
         uses: lens0021/amber-script-action@v1
         with:
-          file: amber/docs.ab
+          file: docs.ab
 
       - name: Get latest version from config.json
         id: get-version
         run: |
-          LATEST_VERSION=$(jq -r '.allVersions[-1]' config.json)
+          LATEST_VERSION=$(jq -r '.allVersions[-1]' amber-docs/config.json)
           echo "version=$LATEST_VERSION" >> "$GITHUB_OUTPUT"
           echo "Latest version: $LATEST_VERSION"
 
       - name: Compare documentation
         run: |
-          GENERATED_DOCS="amber/src/std/docs"
-          REPO_DOCS="docs/${{ steps.get-version.outputs.version }}/stdlib/doc"
+          GENERATED_DOCS="src/std/docs"
+          REPO_DOCS="amber-docs/docs/${{ steps.get-version.outputs.version }}/stdlib/doc"
 
           echo "Comparing documentation..."
           echo "Generated docs: $GENERATED_DOCS"
