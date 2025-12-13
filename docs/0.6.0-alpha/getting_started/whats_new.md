@@ -32,12 +32,9 @@ You can also name your tests for better readability and filter them by name or f
 The compiler now surfaces clearer warnings when variables are not used, helping you catch mistakes earlier. It also warns when a variable declared with `let` is never modified, encouraging the use of `const` for bindings that never need reassignment.
 
 ```ab
-let unused = 1          // Warning: variable 'unused' is not used (remove it or use it)
-let count = 3           // Warning: variable 'count' is never modified; consider using 'const'
-echo count              // Still warned because 'count' is never reassigned
-
-const total = 3         // Prefer const when a binding is not reassigned
-echo total
+let unused = 1          // Warning: variable 'unused' is not used
+let count = 3           // Warning: variable 'count' is never modified - consider using 'const'
+echo count
 ```
 
 # Array Type Resolution
