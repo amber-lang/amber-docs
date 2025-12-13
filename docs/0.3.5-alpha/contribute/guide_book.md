@@ -2,7 +2,7 @@
 2. [Compiler](#2-compiler)
    1. [Parser & tokenizer](#21-parser--tokenizer)
    2. [Translator](#22-translator)
-   3. [Built-in](#23-built-in-creation)
+   3. [Builtins](#23-creating-builtins)
 3. [Runtime libraries](#3-runtime-libraries)
    1. [`stdlib`](#31-stdlib)
 4. [Tests](#4-tests)
