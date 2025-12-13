@@ -40,7 +40,7 @@ jobs:
           REPO_DOCS="amber-docs/docs/${{ steps.get-version.outputs.version }}/stdlib/doc"
 
           echo "Listing directories..."
-          ls /src/std/
+          ls src/std/
           echo "Listing generated docs..."
           ls $GENERATED_DOCS
           echo "Listing repository docs..."
