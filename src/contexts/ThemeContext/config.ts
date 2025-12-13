@@ -54,6 +54,7 @@ const theme = {
         shadow: '#909090',
         shine: '#ffffff',
         border: '#ccc',
+        detailsBackground: '#E9EEEE',
         background: '#fff',
         ...codeTheme.light,
         ...constants
@@ -64,6 +65,7 @@ const theme = {
         shadow: '#5e473c',
         shine: '#552f2d',
         border: '#6b4a3e',
+        detailsBackground: '#221B19',
         background: '#191513',
         ...codeTheme.dark,
         ...constants

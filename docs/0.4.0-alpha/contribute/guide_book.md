@@ -29,8 +29,7 @@ Please open any syntax module code file, and find a line that says: `impl Syntax
 
 It will have a `parse()` function, where all the magic happens. You can either dig into the code yourself or look at the example below to understand how it works.
 
-<details>
-<summary>Example parser</summary>
+begin[details] Example parser
 
 **Important: this is pseudo code. Its purpose is to demonstrate how it should look like.**
 
@@ -47,7 +46,8 @@ fn parse(meta: &mut ParserMetadata) -> SyntaxResult {
     Ok(())
 }
 ```
-</details>
+
+end[details]
 
 ### 2.2. Translator
 
@@ -55,8 +55,7 @@ Same as parser open a syntax module, and find a line that says `impl TranslateMo
 
 Same as before, you can either dig into the code you opened or look at the example below.
 
-<details>
-<summary>Example parser</summary>
+begin[details] Example translator
 
 **Important: this is pseudo code. Its purpose is to demonstrate how it should look like.**
 
@@ -68,7 +67,8 @@ fn translate() -> String {
     format!("(( {} + {} ))", self.digit_1, self.digit_2)
 }
 ```
-</details>
+
+end[details]
 
 Basically, the `translate()` method should return a `String` for the compiler to construct a compiled file from all of them. If it translates to nothing, you should output an empty string, like `String::new()`
 
@@ -88,8 +88,7 @@ echo "Hello World"
 
 For a real example based on this guide you can check the [`cd` builtin](https://github.com/amber-lang/amber/blob/master/src/modules/builtin/cd.rs) that is also Failable.
 
-<details>
-<summary>Let's start!</summary>
+begin[details] Let's start!
 
 Create a `src/modules/builtin/builtin.rs` file with the following content:
 
@@ -116,6 +115,7 @@ pub struct Example {
     // This particular built-in contains a single expression
     value: Expr,
     // failed: Failed // You need this if you want that is failable
+    // }
 }
 
 // This is an implementation of a trait that creates a parser for this module
@@ -198,7 +198,8 @@ impl Statement {
     // ...
 }
 ```
-</details>
+
+end[details]
 
 Don't forget to add a test in the [https://github.com/amber-lang/amber/tree/master/src/tests/validity](`validity`) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
 
@@ -222,8 +223,7 @@ Tests will be executed without recompilation. Amber will load the scripts and ve
 
 Some tests require additional setup, such as those for `download` that needs Rust to load a web server. These functions require special tests written in Rust that we can find in `src/tests/stdlib.rs` file.
 
-<details>
-<summary>Let's write a simple test</summary>
+begin[details] Let's write a simple test
 
 ```rs
 #[test]
@@ -234,4 +234,5 @@ fn prints_hi() {
     test_amber!(code, "hi!");
 }
 ```
-</details>
+
+end[details]

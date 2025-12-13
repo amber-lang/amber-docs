@@ -29,8 +29,7 @@ Please open any syntax module code file, and find a line that says: `impl Syntax
 
 It will have a `parse()` function, where all the magic happens. You can either dig into the code yourself or look at the example below to understand how it works.
 
-<details>
-<summary>Example parser</summary>
+begin[details] Example parser
 
 **Important: this is pseudo code. Its purpose is to demonstrate how it should look like.**
 
@@ -47,7 +46,8 @@ fn parse(meta: &mut ParserMetadata) -> SyntaxResult {
     Ok(())
 }
 ```
-</details>
+
+end[details]
 
 ### 2.2. Translator
 
@@ -55,8 +55,7 @@ Same as parser open a syntax module, and find a line that says `impl TranslateMo
 
 Same as before, you can either dig into the code you opened or look at the example below.
 
-<details>
-<summary>Example parser</summary>
+begin[details] Example translator
 
 **Important: this is pseudo code. Its purpose is to demonstrate how it should look like.**
 
@@ -68,7 +67,8 @@ fn translate() -> String {
     format!("(( {} + {} ))", self.digit_1, self.digit_2)
 }
 ```
-</details>
+
+end[details]
 
 Basically, the `translate()` method should return a `String` for the compiler to construct a compiled file from all of them. If it translates to nothing, you should output an empty string, like `String::new()`
 
@@ -88,8 +88,7 @@ echo "Hello World"
 
 For a real example based on this guide you can check the [`cd` builtin](https://github.com/amber-lang/amber/blob/master/src/modules/builtin/cd.rs) that is also Failable.
 
-<details>
-<summary>Let's start!</summary>
+begin[details] Let's start!
 
 Create a `src/modules/builtin/builtin.rs` file with the following content:
 
@@ -109,6 +108,8 @@ use crate::translate::module::TranslateModule;
 use crate::utils::{ParserMetadata, TranslateMetadata};
 // Documentation module tells compiler what markdown content should it generate for this syntax module. This is irrelevent to our simple module so we will just return empty string.
 use crate::docs::module::DocumentationModule;
+// This is a macro that simplifies using `RawFragment` which is a very commonly used fragment in Amber
+use crate::raw_fragment;
 
 // This is a declaration of your built-in. Set the name accordingly.
 #[derive(Debug, Clone)]
@@ -132,8 +133,8 @@ impl SyntaxModule<ParserMetadata> for Echo {
     }
 
     // This is a function that will parse this syntax module "Built-in". It returns SyntaxResult which is a `Result<(), Failure>` where the `Failure` is an Heraclitus primitive that returns an error. It can be either:
-    - `Quiet` - which means that this is not the right syntax module to parse
-    - `Loud` - which means that this is the correct syntax module but there is some critical error in the code that halts the entire compilation process
+    // - `Quiet` - which means that this is not the right syntax module to parse
+    // - `Loud` - which means that this is the correct syntax module but there is some critical error in the code that halts the entire compilation process
     fn parse(&mut self, meta: &mut ParserMetadata) -> SyntaxResult {
         // `token` parses a token `builtin` which is basically a command name for our built-in.
         // If we add `?` in the end of the heraclitus provided function - this function will return a quiet error.
@@ -147,14 +148,29 @@ impl SyntaxModule<ParserMetadata> for Echo {
     }
 }
 
+// Here we check if types match
+impl TypeCheckModule for Example {
+    // Here we define the valid typecheck function. The String returns the current line.
+    fn typecheck(&self, meta: &mut TranslateMetadata) -> SyntaxResult {
+        // Here we run the typecheck function on inner value to let it resolve its type
+        let value = self.value.typecheck(meta);
+        // We return a loud error if the type is not Text
+        if value.get_type() != Type::Text {
+            let pos = self.value.get_position();
+            error!(meta, pos, "Expected 'Text' type, got {}", value.get_type());
+        }
+        Ok(())
+    }
+}
+
 // Here we implement the translator for the syntax module. Here we return valid Bash or sh code. Set the name accordingly.
 impl TranslateModule for Example {
     // Here we define the valid translate function. The String returns the current line.
     fn translate(&self, meta: &mut TranslateMetadata) -> String {
         // Here we run the translate function on the syntax module `Expr`
         let value = self.value.translate(meta);
-        // Here we return the Bash code
-        format!("echo {}", value)
+        // Here we return the Bash code in a form of a `RawFragment`
+        raw_fragment!("echo {}", value)
     }
 }
 
@@ -198,7 +214,8 @@ impl Statement {
     // ...
 }
 ```
-</details>
+
+end[details]
 
 Don't forget to add a test in the [https://github.com/amber-lang/amber/tree/master/src/tests/validity](`validity`) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
 
@@ -222,8 +239,7 @@ Tests will be executed without recompilation. Amber will load the scripts and ve
 
 Some tests require additional setup, such as those for `download` that needs Rust to load a web server. These functions require special tests written in Rust that we can find in `src/tests/stdlib.rs` file.
 
-<details>
-<summary>Let's write a simple test</summary>
+begin[details] Let's write a simple test
 
 ```rs
 #[test]
@@ -234,4 +250,5 @@ fn prints_hi() {
     test_amber!(code, "hi!");
 }
 ```
-</details>
+
+end[details]
