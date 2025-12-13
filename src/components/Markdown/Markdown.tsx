@@ -7,6 +7,7 @@ import amber from './amber'
 import { useEffect } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
+import { detailsBlockParser, DETAILS_BLOCK_RULE } from './detailsBlock'
 import { generateUrl, getLocation } from '@/utils/urls'
 import path from 'path'
 
@@ -18,7 +19,6 @@ const getHrefWithVersion = (href: string, currentUrl: string) => {
     const location = getLocation(params)
     return path.join('/', generateUrl(location.version, href))
 }
-
 
 const handleWarning = (text: string): string | null => {
     const warningText = 'WARNING:'
@@ -121,6 +121,7 @@ class MarkdownRenderer extends Renderer {
     }
 }
 
+Marked.setBlockRule(DETAILS_BLOCK_RULE, detailsBlockParser)
 Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
 Marked.setOptions({
     renderer: new MarkdownRenderer(),
