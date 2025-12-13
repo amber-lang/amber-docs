@@ -1,6 +1,6 @@
 1. [CLI Interface](contribute/guide_book#1-cli-interface)
 2. [Compiler](contribute/guide_book#2-compiler)
-   1. [Parser & tokenizer](contribute/guide_book#2-1-parser--tokenizer)
+   1. [Parser & tokenizer](contribute/guide_book#2-1-parser-tokenizer)
    2. [Translator](contribute/guide_book#2-2-translator)
    3. [Builtins](contribute/guide_book#2-3-creating-builtins)
 3. [Standard Library](contribute/guide_book#3-standard-library)
