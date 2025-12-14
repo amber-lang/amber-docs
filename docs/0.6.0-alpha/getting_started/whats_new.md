@@ -63,3 +63,14 @@ test "can multiply numbers" {
     assert_eq(result, 20)
 }
 ```
+
+## New `fetch` function for HTTP requests
+
+The `fetch` function provides a functionality for making HTTP requests. It intelligently utilizes available command-line tools for network operations, with a failover to bash's network sockets. This function supports a comprehensive set of HTTP methods, including `GET`, `POST`, `PUT`, and `DELETE`.
+
+```ab
+import { fetch } from "std/http"
+
+let response = trust fetch("https://example.com")
+let post_request = trust fetch("https://example.com", "POST", "hello world!", [ "content-type: text/plain" ]) // POST request
+```
