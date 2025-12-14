@@ -6,38 +6,81 @@ on:
   workflow_dispatch:  # Allows manual dispatch
 
 jobs:
-  check-stdlib-docs:
-    name: Check stdlib documentation
+  stdlib-docs-sync:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
-      - name: Checkout amber repository
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
         with:
           repository: amber-lang/amber
+          path: amber
 
-      - name: Checkout amber-docs repository
-        uses: actions/checkout@v6
+      - id: amber-builder
+        working-directory: amber
+        run: |
+          cargo build --release
+          if [ $? -ne 0 ]; then
+            echo "Building Amber failed"
+            exit 1
+          fi
+          AMBER_EXECUTABLE="$(realpath ./target/release/amber)"
+          echo "AMBER_EXECUTABLE=$AMBER_EXECUTABLE" >> "$GITHUB_OUTPUT"
+
+      - name: Build Standard Library Documentation
+        id: docs-builder
+        working-directory: amber
+        run: |
+          $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
+        env:
+          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
+          AMBER_SCRIPT: |
+            import { file_glob } from "std/fs"
+            import { env_var_get } from "std/env"
+
+            const amber_executable = trust env_var_get("AMBER_EXECUTABLE")
+            const files = file_glob("src/std/*.ab") failed {
+              echo "::error::Unable to glob files in 'src/std'"
+              exit 1
+            }
+
+            echo "Building docs..."
+            for file in files {
+              silent $ {amber_executable} docs --usage {file} $ exited(code): if {
+                code == 0: echo "Successfully generated for '{file}'"
+                code == 1: echo "::error::Docs gen failed for '{file}'"
+                code == 127: echo "::error::Cannot find compiled artifact '{amber_executable}'"
+                else: echo "::error::Unknown error"
+              }
+            }
+            const docs_path = trust $ realpath src/std/docs $
+            trust $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")}" $
+
+      - uses: actions/checkout@v6
         with:
           path: amber-docs
 
-      - name: Setup Amber compiler
-        uses: lens0021/setup-amber@v2
-        with:
-          amber-version: 0.5.1-alpha
-
-      - name: Generate documentation using Amber
-        run: amber docs.ab
-
-      - name: Get latest version from config.json
-        id: get-version
-        run: |
-          LATEST_VERSION=$(jq -r '.allVersions[-1]' amber-docs/config.json)
-          echo "version=$LATEST_VERSION" >> "$GITHUB_OUTPUT"
-          echo "Latest version: $LATEST_VERSION"
-
-      - name: Compare documentation
-        run: amber scripts/stdlib-docs-sync.ab
+      - name: Locate New Documentation
+        working-directory: amber-docs
+        run: $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
         env:
-          LATEST_VERSION: ${{ steps.get-version.outputs.version }}
+          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
+          DOCS_PATH: ${{ steps.docs-builder.outputs.DOCS_PATH }}
+          AMBER_SCRIPT: |
+            import { env_var_get } from "std/env"
+            import { file_glob } from "std/fs"
+
+            main {
+              const docs_path = trust env_var_get("DOCS_PATH")
+              const latest_version = $ jq -r '.allVersions[-1]' config.json $?
+
+              for file in trust file_glob("{docs_path}/*.md"):
+                $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
+                  echo "::error::Failed copy {file}"
+            }
+
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          path: amber-docs
+          commit-message: &title Synchronize Standard Library Documentation
+          branch: stdlib-docs-sync
+          title: *title
