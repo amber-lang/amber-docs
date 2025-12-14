@@ -22,10 +22,13 @@ jobs:
         with:
           path: amber-docs
 
-      - name: Generate documentation using Amber
-        uses: lens0021/amber-script-action@v1
+      - name: Setup Amber compiler
+        uses: lens0021/setup-amber@v2
         with:
-          file: docs.ab
+          amber-version: 0.5.1-alpha
+
+      - name: Generate documentation using Amber
+        run: amber docs.ab
 
       - name: Get latest version from config.json
         id: get-version
@@ -35,90 +38,6 @@ jobs:
           echo "Latest version: $LATEST_VERSION"
 
       - name: Compare documentation
-        run: |
-          GENERATED_DOCS="src/std/docs"
-          REPO_DOCS="amber-docs/docs/${{ steps.get-version.outputs.version }}/stdlib/doc"
-
-          echo "Listing directories..."
-          ls src/std/
-          echo "Listing generated docs..."
-          ls $GENERATED_DOCS
-          echo "Listing repository docs..."
-          ls $REPO_DOCS
-
-          echo "Comparing documentation..."
-          echo "Generated docs: $GENERATED_DOCS"
-          echo "Repository docs: $REPO_DOCS"
-
-          # Check if both directories exist
-          if [ ! -d "$GENERATED_DOCS" ]; then
-            echo "::error::Generated docs directory does not exist: $GENERATED_DOCS"
-            exit 1
-          fi
-
-          if [ ! -d "$REPO_DOCS" ]; then
-            echo "::error::Repository docs directory does not exist: $REPO_DOCS"
-            exit 1
-          fi
-
-          # Get sorted list of markdown files (basenames only) in temp files
-          find "$GENERATED_DOCS" -type f -name "*.md" -exec basename {} \; | sort > /tmp/generated_files.txt
-          find "$REPO_DOCS" -type f -name "*.md" -exec basename {} \; | sort > /tmp/repo_files.txt
-
-          # Count files properly (handle empty case)
-          GENERATED_COUNT=$(wc -l < /tmp/generated_files.txt)
-          REPO_COUNT=$(wc -l < /tmp/repo_files.txt)
-
-          echo "Generated files count: $GENERATED_COUNT"
-          echo "Repository files count: $REPO_COUNT"
-
-          # Check if no files were found
-          if [ "$GENERATED_COUNT" -eq 0 ]; then
-            echo "::error::No markdown files found in generated docs directory"
-            exit 1
-          fi
-
-          if [ "$REPO_COUNT" -eq 0 ]; then
-            echo "::error::No markdown files found in repository docs directory"
-            exit 1
-          fi
-
-          # Use comm to find differences between file lists
-          ONLY_IN_GENERATED=$(comm -23 /tmp/generated_files.txt /tmp/repo_files.txt)
-          ONLY_IN_REPO=$(comm -13 /tmp/generated_files.txt /tmp/repo_files.txt)
-
-          if [ -n "$ONLY_IN_GENERATED" ]; then
-            echo "::error::Files in generated docs but missing in repository:"
-            echo "$ONLY_IN_GENERATED"
-            exit 1
-          fi
-
-          if [ -n "$ONLY_IN_REPO" ]; then
-            echo "::error::Files in repository but missing in generated docs:"
-            echo "$ONLY_IN_REPO"
-            exit 1
-          fi
-
-          # Compare content of each file (both lists are now identical)
-          DIFF_FOUND=false
-          while IFS= read -r file; do
-            if [ ! -f "$GENERATED_DOCS/$file" ] || [ ! -f "$REPO_DOCS/$file" ]; then
-              echo "::error::File not found: $file"
-              DIFF_FOUND=true
-              continue
-            fi
-            if ! diff -q "$GENERATED_DOCS/$file" "$REPO_DOCS/$file" > /dev/null 2>&1; then
-              echo "::error::Content differs for file: $file"
-              echo "--- Diff for $file ---"
-              diff "$GENERATED_DOCS/$file" "$REPO_DOCS/$file" || true
-              echo "--- End of diff ---"
-              DIFF_FOUND=true
-            fi
-          done < /tmp/generated_files.txt
-
-          if [ "$DIFF_FOUND" = true ]; then
-            echo "::error::Documentation content does not match"
-            exit 1
-          fi
-
-          echo "✅ All documentation files match!"
+        run: amber scripts/stdlib-docs-sync.ab
+        env:
+          LATEST_VERSION: ${{ steps.get-version.outputs.version }}
