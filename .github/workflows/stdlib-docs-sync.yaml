@@ -13,12 +13,12 @@ jobs:
       contents: read
     steps:
       - name: Checkout amber repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: amber-lang/amber
 
       - name: Checkout amber-docs repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: amber-docs
 
