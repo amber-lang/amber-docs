@@ -1,6 +1,6 @@
 import { Marked } from '@ts-stack/markdown';
 
-export const DETAILS_BLOCK_RULE = /^\s*begin\[details\]\s+(.*?)\n([\s\S]*?)\n\s*end\[details\]\s*/;
+export const DETAILS_BLOCK_RULE = /^\s*begin\[details\]\s+(.*?)\n([\s\S]*?)\n\s*end\[details\]/;
 
 function dedent(str: string): string {
     const lines = str.split('\n');

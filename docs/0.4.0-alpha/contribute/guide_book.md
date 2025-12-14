@@ -115,7 +115,6 @@ pub struct Example {
     // This particular built-in contains a single expression
     value: Expr,
     // failed: Failed // You need this if you want that is failable
-    // }
 }
 
 // This is an implementation of a trait that creates a parser for this module
