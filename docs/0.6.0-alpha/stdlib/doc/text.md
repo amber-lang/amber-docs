@@ -210,8 +210,7 @@ pub fun replace_regex(source: Text, search: Text, replace_text: Text, extended: 
 ```
 
 Replaces all occurrences of a regex pattern in the content with the provided replace text.
-
-Function uses `sed`
+Function uses `sed` and supports capture groups syntax in extended mode.
 
 ### Usage
 ```ab
@@ -219,6 +218,8 @@ import { replace_regex } from "std/text"
 
 let result = replace_regex("test123", "[0-9]+", "456", true)
 echo result // "test456"
+// Also supports replace regex
+echo replace_regex("Put number 255 in brackets", "([0-9]+)", "(\1)", true); // Put number (255) in brackets
 ```
 
 ## `reversed`
