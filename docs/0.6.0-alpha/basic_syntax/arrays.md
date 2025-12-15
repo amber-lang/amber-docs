@@ -11,6 +11,15 @@ echo 0..=10
 // Outputs: 0 1 2 3 4 5 6 7 8 9 10
 ```
 
+Ranges also support reversed order:
+
+```ab
+echo 6..3
+// Outputs: 6 5 4
+echo 6..=3
+// Outputs: 6 5 4 3
+```
+
 # Arrays
 
 We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
@@ -51,6 +60,18 @@ let cities = capitals + ["Barcelona", "Florence"]
 ```
 
 In order to see more operations on the array data type take a look at the standard library documentation which covers functions such as `join`, `len` or `sum`.
+
+## Destructing arrays
+You can also easily destruct an array into separate variables:
+```ab
+let groceries = ["apple", "banana", "cherry"]
+
+let [fruit1, fruit2, berry] = groceries
+
+echo fruit1 // apple
+echo fruit2 // banana
+echo berry // cherry
+```
 
 ## Nested Arrays
 
