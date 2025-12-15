@@ -46,6 +46,17 @@ let arr = [] // Type is generic
 arr += [1]   // Resolved to [Int]
 ```
 
+# Array destructing
+
+You can now destruct arrays into separate variables:
+
+```ab
+let arr = [1,2,3]
+let [key1, key2, key3] = arr
+
+echo "{key1} {key2} {key3}" // 1 2 3
+```
+
 # Standard library improvements
 
 > WARNING: Brief description of new changes TBD when releasing
