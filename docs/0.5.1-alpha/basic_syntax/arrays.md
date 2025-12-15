@@ -63,6 +63,19 @@ let cities = capitals + ["Barcelona", "Florence"]
 
 In order to see more operations on the array data type take a look at the standard library documentation which covers functions such as `join`, `len` or `sum`.
 
+## Destructing arrays
+You can also easily destruct an array into separate variables:
+```ab
+let groceries = ["apple", "banana", "cherry"]
+
+let [fruit1, fruit2, berry] = groceries
+
+echo fruit1 // apple
+echo fruit2 // banana
+echo berry // cherry
+```
+
+
 ## Nested Arrays
 
 We already learned that Bash does not support nesting arrays. But what makes this limitation? The answer is that under the hood Bash defines arrays that essentially only store structures containing string value. You can learn more about Bash arrays by reading [the official source code](https://git.savannah.gnu.org/cgit/bash.git/tree/array.h).
