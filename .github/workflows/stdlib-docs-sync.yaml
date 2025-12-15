@@ -1,0 +1,86 @@
+name: Synchronize Standard Library Documentation
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+  workflow_dispatch:  # Allows manual dispatch
+
+jobs:
+  stdlib-docs-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: amber-lang/amber
+          path: amber
+
+      - id: amber-builder
+        working-directory: amber
+        run: |
+          cargo build --release
+          if [ $? -ne 0 ]; then
+            echo "Building Amber failed"
+            exit 1
+          fi
+          AMBER_EXECUTABLE="$(realpath ./target/release/amber)"
+          echo "AMBER_EXECUTABLE=$AMBER_EXECUTABLE" >> "$GITHUB_OUTPUT"
+
+      - name: Build Standard Library Documentation
+        id: docs-builder
+        working-directory: amber
+        run: |
+          $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
+        env:
+          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
+          AMBER_SCRIPT: |
+            import { file_glob } from "std/fs"
+            import { env_var_get } from "std/env"
+
+            const amber_executable = trust env_var_get("AMBER_EXECUTABLE")
+            const files = file_glob("src/std/*.ab") failed {
+              echo "::error::Unable to glob files in 'src/std'"
+              exit 1
+            }
+
+            echo "Building docs..."
+            for file in files {
+              silent $ {amber_executable} docs --usage {file} $ exited(code): if {
+                code == 0: echo "Successfully generated for '{file}'"
+                code == 1: echo "::error::Docs gen failed for '{file}'"
+                code == 127: echo "::error::Cannot find compiled artifact '{amber_executable}'"
+                else: echo "::error::Unknown error"
+              }
+            }
+            const docs_path = trust $ realpath src/std/docs $
+            trust $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")}" $
+
+      - uses: actions/checkout@v6
+        with:
+          path: amber-docs
+
+      - name: Locate New Documentation
+        working-directory: amber-docs
+        run: $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
+        env:
+          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
+          DOCS_PATH: ${{ steps.docs-builder.outputs.DOCS_PATH }}
+          AMBER_SCRIPT: |
+            import { env_var_get } from "std/env"
+            import { file_glob } from "std/fs"
+
+            main {
+              const docs_path = trust env_var_get("DOCS_PATH")
+              const latest_version = $ jq -r '.allVersions[-1]' config.json $?
+
+              for file in trust file_glob("{docs_path}/*.md"):
+                $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
+                  echo "::error::Failed copy {file}"
+            }
+
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          path: amber-docs
+          commit-message: &title Synchronize Standard Library Documentation
+          branch: stdlib-docs-sync
+          title: *title
