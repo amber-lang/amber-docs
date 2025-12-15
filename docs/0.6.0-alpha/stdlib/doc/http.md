@@ -1,3 +1,25 @@
+## `fetch`
+
+```ab
+pub fun fetch(url: Text, method: Text = "GET", data: Text = "", headers: [Text] = [""]): Text? 
+```
+
+Makes a HTTP request using available command-line tools or bash's network sockets as failover.
+
+For POST requests with a custom data type, you should include `content-type` header in `headers[]`.
+
+### Usage
+```ab
+import { fetch } from "std/http"
+
+let response = trust fetch("https://example.com")
+
+// POST request example
+let post_request = trust fetch("https://example.com", "POST", "hello world!", [
+"content-type: text/plain"
+])
+```
+
 ## `file_download`
 
 ```ab

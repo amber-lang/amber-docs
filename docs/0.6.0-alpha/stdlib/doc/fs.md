@@ -205,7 +205,7 @@ import { is_mac_os_mktemp } from "std/fs"
 pub fun symlink_create(origin: Text, destination: Text): Null? 
 ```
 
-Creates a symbolic link.
+Creates a symbolic link, if destination exists it will be replaced.
 
 If the file doesn't exist, it fails and prints a message.
 
