@@ -43,7 +43,7 @@ export default async function Page({ location, document }: Props) {
                     <div className={style.title}>
                         {docDesc.title}
                     </div>
-                    <ClientMarkdown content={document.content} />
+                    <ClientMarkdown content={document.content} initialPath={`/${location.fullPath}`} />
                     <ChapterNavigation flatToc={flatToc} index={docDesc.index} />
                 </div>
             </div>

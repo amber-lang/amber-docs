@@ -4,7 +4,7 @@ import { Marked, Renderer } from '@ts-stack/markdown'
 import style from './Markdown.module.css'
 import hljs, { LanguageFn } from 'highlight.js'
 import amber from './amber'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
 import { detailsBlockParser, DETAILS_BLOCK_RULE } from './detailsBlock'
@@ -14,8 +14,8 @@ import path from 'path'
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
 
-const getHrefWithVersion = (href: string, currentUrl: string) => {
-    const params = currentUrl.replace(/^\//, '').split('/')
+const getHrefWithVersion = (href: string, currentPath: string) => {
+    const params = currentPath.replace(/^\//, '').split('/')
     const location = getLocation(params)
     return path.join('/', generateUrl(location.version, href))
 }
@@ -42,98 +42,113 @@ const handleLogos = (text: string): string => {
     return text.replace(/\bLOGO:([a-z]+)\b/g, `<img src="/logos/$1.png" class="${style.logo}" />`)
 }
 
-// You can override the default renderer to customize the output
-class MarkdownRenderer extends Renderer {
-    heading(text: string, level: number, raw: string): string {
-        const id = raw.toLowerCase()
-            // Codes
-            .replace(/`([^`]+)`/g, '$1')
-            // Comments
-            .replaceAll(/\s*<!--.*?-->\s*/g, '')
-            .replace(/[^\w]+/g, '-')
-        return `
-            <div class="${style.container}">
-                <div
-                    onclick="
-                        navigator.clipboard.writeText(window.location.href.split('#')[0] + '#${id}');
-                        this.classList.add('${style.checked}');
-                        setTimeout(() => this.classList.remove('${style.checked}'), 1000);
-                    "
-                    class="${style['side-action']} ${style.link}"
-                ></div>
-                <h${level} id="${id}">${text}</h${level}>
-            </div>
-        `
-    }
+// Create a renderer class factory that accepts the current path
+function createMarkdownRenderer(currentPath: string) {
+    class MarkdownRenderer extends Renderer {
+        heading(text: string, level: number, raw: string): string {
+            const id = raw.toLowerCase()
+                // Codes
+                .replace(/`([^`]+)`/g, '$1')
+                // Comments
+                .replaceAll(/\s*<!--.*?-->\s*/g, '')
+                .replace(/[^\w]+/g, '-')
+            return `
+                <div class="${style.container}">
+                    <div
+                        onclick="
+                            navigator.clipboard.writeText(window.location.href.split('#')[0] + '#${id}');
+                            this.classList.add('${style.checked}');
+                            setTimeout(() => this.classList.remove('${style.checked}'), 1000);
+                        "
+                        class="${style['side-action']} ${style.link}"
+                    ></div>
+                    <h${level} id="${id}">${text}</h${level}>
+                </div>
+            `
+        }
 
-    codespan(text: string): string {
-        return `<code class="${style.inline}">${text}</code>`
-    }
+        codespan(text: string): string {
+            return `<code class="${style.inline}">${text}</code>`
+        }
 
-    blockquote(text: string): string {
-        const fallback = `<blockquote class="${style.quote}">${text}</blockquote>`
-        return handleWarning(text) ?? handleDetails(text) ?? fallback
-    }
+        blockquote(text: string): string {
+            const fallback = `<blockquote class="${style.quote}">${text}</blockquote>`
+            return handleWarning(text) ?? handleDetails(text) ?? fallback
+        }
 
-    table(header: string, body: string): string {
-        body = handleLogos(body)
-        return `
-            <div class="${style['table-wrapper']}">
-                <table>
-                    <thead>${header}</thead>
-                    <tbody>${body}</tbody>
-                </table>
-            </div>
-        `.replace(/\s+/, ' ');
-    }
+        table(header: string, body: string): string {
+            body = handleLogos(body)
+            return `
+                <div class="${style['table-wrapper']}">
+                    <table>
+                        <thead>${header}</thead>
+                        <tbody>${body}</tbody>
+                    </table>
+                </div>
+            `.replace(/\s+/, ' ');
+        }
 
-    code(rawCode: string, lang: string, escaped: boolean) {
-        let code = rawCode.trim()
-        if (this.options.highlight) {
-            const out = this.options.highlight(code, lang)
-            if (out != null && out !== code) {
-                escaped = true
-                code = out
+        code(rawCode: string, lang: string, escaped: boolean) {
+            let code = rawCode.trim()
+            if (this.options.highlight) {
+                const out = this.options.highlight(code, lang)
+                if (out != null && out !== code) {
+                    escaped = true
+                    code = out
+                }
             }
+            const escapedCode = (escaped ? code : this.options.escape?.(code, true))
+            return `
+                <div class="${style.container}">
+                    <div
+                        onclick="
+                            navigator.clipboard.writeText(this.parentElement.children[1].innerText.trim());
+                            this.classList.add('${style.checked}');
+                            setTimeout(() => this.classList.remove('${style.checked}'), 1000);
+                        "
+                        class="${style['side-action']} ${style.copy}"
+                    ></div>
+                    <pre><code class="${style.block}">${escapedCode}</code></pre>
+                </div>
+            `
         }
-        const escapedCode = (escaped ? code : this.options.escape?.(code, true))
-        return `
-            <div class="${style.container}">
-                <div
-                    onclick="
-                        navigator.clipboard.writeText(this.parentElement.children[1].innerText.trim());
-                        this.classList.add('${style.checked}');
-                        setTimeout(() => this.classList.remove('${style.checked}'), 1000);
-                    "
-                    class="${style['side-action']} ${style.copy}"
-                ></div>
-                <pre><code class="${style.block}">${escapedCode}</code></pre>
-            </div>
-        `
-    }
 
-    link(href: string, title: string, text: string): string {
-        const assetRegex = /\/(internal|images)/
-        if (href.startsWith('http') || assetRegex.test(window.location.pathname)) {
-            return `<a href="${href}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+        link(href: string, title: string, text: string): string {
+            const assetRegex = /\/(internal|images)/
+            if (href.startsWith('http') || assetRegex.test(currentPath)) {
+                return `<a href="${href}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+            }
+            return `<a href="${getHrefWithVersion(href, currentPath)}"${title ? ` title="${title}"` : ''}>${text}</a>`;
         }
-        return `<a href="${getHrefWithVersion(href, window.location.pathname)}"${title ? ` title="${title}"` : ''}>${text}</a>`;
     }
+    return new MarkdownRenderer()
 }
 
+// Register block rules once at module level
 Marked.setBlockRule(DETAILS_BLOCK_RULE, detailsBlockParser)
 Marked.setBlockRule(COMPLEX_IMAGE_RULE, complexImageParser)
-Marked.setOptions({
-    renderer: new MarkdownRenderer(),
-    breaks: true,
-    gfm: true,
-    highlight(code, lang) {
-        if (!lang) return code
-        return hljs.highlight(code, { language: lang }).value
-    }
-})
 
-export default function Markdown({ content }: { content: string }) {
+interface Props {
+    content: string
+    currentPath: string
+}
+
+export default function Markdown({ content, currentPath }: Props) {
+    // Create a memoized parsed HTML based on content and path
+    const html = useMemo(() => {
+        // Set options with the path-aware renderer before parsing
+        Marked.setOptions({
+            renderer: createMarkdownRenderer(currentPath),
+            breaks: true,
+            gfm: true,
+            highlight(code: string, lang?: string) {
+                if (!lang) return code
+                return hljs.highlight(code, { language: lang }).value
+            }
+        })
+        return Marked.parse(content)
+    }, [content, currentPath])
+
     useEffect(() => {
         const blocks: HTMLDivElement[] = Array.from(document.querySelectorAll(`.${style.container}`))
         if (matchMedia('(hover: none)').matches) {
@@ -153,6 +168,7 @@ export default function Markdown({ content }: { content: string }) {
     }, [content])
 
     return (
-        <div className={style.markdown} dangerouslySetInnerHTML={{ __html: Marked.parse(content) }} />
+        <div className={style.markdown} dangerouslySetInnerHTML={{ __html: html }} />
     )
 }
+
