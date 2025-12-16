@@ -5,7 +5,7 @@ Union types provide a flexible way to define function parameters that can accept
 
 ```ab
 fun print_value(val: Int | Text | Bool) {
-    echo val
+    echo(val)
 }
 
 print_value(42)       // Valid
@@ -34,7 +34,7 @@ The compiler now surfaces clearer warnings when variables are not used, helping 
 ```ab
 let unused = 1 // Warning: variable 'unused' is not used
 let count = 3  // Warning: variable 'count' is never modified - consider using 'const'
-echo count
+echo(count)
 ```
 
 # Array Type Resolution
@@ -54,7 +54,7 @@ You can now destruct arrays into separate variables:
 let arr = [1,2,3]
 let [key1, key2, key3] = arr
 
-echo "{key1} {key2} {key3}" // 1 2 3
+echo("{key1} {key2} {key3}" // 1 2 3)
 ```
 
 # Standard library improvements

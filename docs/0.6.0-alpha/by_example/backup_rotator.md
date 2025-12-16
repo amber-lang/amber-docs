@@ -14,36 +14,36 @@ fun create_backup(source: Text, backup_dir: Text): Int? {
     let timestamp = date_format_posix(date_now())?
     let backup_name = "backup_{timestamp}.tar.gz"
 
-    echo "Creating backup: {backup_name}"
+    echo("Creating backup: {backup_name}")
     sudo $ tar -czf "{backup_dir}/{backup_name}" "{source}" $?
 
-    echo "Backup created successfully"
+    echo("Backup created successfully")
     return 0
 }
 
 fun rotate_backups(backup_dir: Text, max_backups: Int) {
     let current_count = get_backup_count(backup_dir)?
-    echo "Current backup count: {current_count}"
+    echo("Current backup count: {current_count}")
 
     // Remove old backups while we have too many
     while current_count > max_backups {
-        echo "Removing oldest backup (count: {current_count}/{max_backups})"
+        echo("Removing oldest backup (count: {current_count}/{max_backups})")
 
         // Get the oldest backup file
         let oldest = trust $ ls -1t "{backup_dir}" | tail -n 1 $
 
         sudo $ rm "{backup_dir}/{oldest}" $ succeeded {
-            echo "Removed: {oldest}"
+            echo("Removed: {oldest}")
         }
         current_count = get_backup_count(backup_dir)?
     }
-    echo "Backup rotation complete. Keeping {current_count} backups."
+    echo("Backup rotation complete. Keeping {current_count} backups.")
 }
 
 main(args) {
     if len(args) < 2 {
-        echo "Usage: backup-rotator <source_dir> <backup_dir> [max_backups]"
-        echo "Example: backup-rotator /var/www /backups 5"
+        echo("Usage: backup-rotator <source_dir> <backup_dir> [max_backups]")
+        echo("Example: backup-rotator /var/www /backups 5")
         exit 1
     }
 
@@ -55,15 +55,15 @@ main(args) {
 
     // Validate source directory
     if not dir_exists(source_dir) {
-        echo "Error: Source directory '{source_dir}' does not exist"
+        echo("Error: Source directory '{source_dir}' does not exist")
         exit 1
     }
 
     // Create backup directory if it doesn't exist
     if not dir_exists(backup_dir) {
-        echo "Creating backup directory: {backup_dir}"
+        echo("Creating backup directory: {backup_dir}")
         sudo dir_create(backup_dir) failed {
-            echo "Failed to create backup directory"
+            echo("Failed to create backup directory")
             exit 1
         }
     }

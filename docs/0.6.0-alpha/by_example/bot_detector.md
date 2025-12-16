@@ -9,15 +9,15 @@ import * from "std/text"
 
 main (args) {
     if len(args) < 1 {
-        echo "Path to log file missing."
-        echo "Usage: bot-detector.sh <logfile>"
-        echo "       bot-detector.sh /var/log/nginx/access.log"
+        echo("Path to log file missing.")
+        echo("Usage: bot-detector.sh <logfile>")
+        echo("       bot-detector.sh /var/log/nginx/access.log")
         exit 1
     }
 
     let logfile = args[0]
     $ test -r {logfile} $ failed {
-        echo "File not found or not readable: {logfile}"
+        echo("File not found or not readable: {logfile}")
         exit 1
     }
 
@@ -30,9 +30,9 @@ main (args) {
     let timeframes = ["1 hour ago", "now"]
     for timeframe in timeframes {
         if timeframe == "1 hour ago" {
-            echo "Checking the previous hour..."
+            echo("Checking the previous hour...")
         } else {
-            echo "Checking the current hour..."
+            echo("Checking the current hour...")
         }
 
         let hour_timestamp = $ date "+%d/%b/%Y:%H" -d "{timeframe}" $?
@@ -70,20 +70,20 @@ main (args) {
 
             let ip = parts[1]
             trust $ grep "{ip}" /etc/ipblocklist.txt $ succeeded {
-                echo "IP address {ip} is already blocked."
+                echo("IP address {ip} is already blocked.")
                 continue
             }
             trust $ grep "{ip}" /etc/ipexcludedlist.txt $ succeeded {
-                echo "IP address {ip} is allow-listed and will not be blocked."
+                echo("IP address {ip} is allow-listed and will not be blocked.")
                 continue
             }
-            echo "Blocking IP address: {ip} ({count} requests)"
-            $ echo "{ip}" >> /etc/ipblocklist.txt $?
-            $ echo "\$(date) | IP addess {ip} added to the block list, RPH={count}" >> /var/log/bot-detector.log $?
+            echo("Blocking IP address: {ip} ({count} requests)")
+            $ echo("{ip}" >> /etc/ipblocklist.txt $?)
+            $ echo("\$(date) | IP addess {ip} added to the block list, RPH={count}" >> /var/log/bot-detector.log $?)
         }
     }
     let end = parse_int($ date +%s $?)?
     let duration = end - start
-    echo "Execution time: {duration} seconds"
+    echo("Execution time: {duration} seconds")
 }
 ```

@@ -11,14 +11,14 @@ let path = "/tmp/amber-sc-tests"
 
 if (not dir_exists(path)) {
     dir_create(path) failed {
-        echo "Failed to create directory {path}"
+        echo("Failed to create directory {path}")
         exit 1
     }
 }
 trust $ cp -r "src/tests/stdlib/" {path} $
 let report = "{path}/report.txt"
 file_write(report, "Report for Shellcheck") failed {
-    echo "Failed to write report file"
+    echo("Failed to write report file")
     exit 1
 }
 let output = ""
@@ -28,14 +28,14 @@ let stdlib = split(stdtests, "\n")
 
 for v in stdlib {
     if not text_contains(v, ".txt") and file_exists("src/tests/stdlib/{v}") {
-        echo "Generating Bash script for test {v}"
+        echo("Generating Bash script for test {v}")
         trust $ ./target/debug/amber build "src/tests/stdlib/{v}" "{path}/{v}.sh" $
         
         $ shellcheck "{path}/{v}.sh" $ exited(code) {
             if code != 0 {
-                echo "Shellcheck found something!"
+                echo("Shellcheck found something!")
                 file_append(report, "\n--- Issues in {v} ---\n") failed {
-                    echo "Failed to append to report"
+                    echo("Failed to append to report")
                 }
             }
         }

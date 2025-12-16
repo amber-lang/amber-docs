@@ -13,7 +13,7 @@ name = "Rob"
 And to access the value stored by this variable - just refer to it by name, like so:
 
 ```ab
-echo name // Outputs: "Rob"
+echo(name) // Outputs: "Rob"
 ```
 
 > WARNING: The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.

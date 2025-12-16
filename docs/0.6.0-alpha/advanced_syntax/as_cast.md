@@ -25,7 +25,7 @@ import { parse_int } from "std/text"
 
 let a = "12"
 let b = parse_int(a) failed {
-    echo "Variable `a` is not a number."
+    echo("Variable `a` is not a number.")
 }
 
 echo b + 12

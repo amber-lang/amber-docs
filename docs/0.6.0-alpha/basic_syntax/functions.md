@@ -6,9 +6,9 @@ fun myFunction(arg1, arg2) {
     return result
 }
 
-echo myFunction(2, 3)
+echo(myFunction(2, 3))
 // Outputs: 5
-echo myFunction("Hello", " World")
+echo(myFunction("Hello", " World"))
 // Outputs: Hello World
 ```
 
@@ -32,8 +32,8 @@ fun addition(a: Int, b: Int = 100): Int {
     return a + b
 }
 
-echo addition(10) // Outputs: 110
-echo addition(10, 20) // Outputs: 30
+echo(addition(10)) // Outputs: 110
+echo(addition(10, 20)) // Outputs: 30
 ```
 Notice that arguments with default values must come after the regular arguments.
 
@@ -92,14 +92,14 @@ Now let's see how this code will behave in different scenarios:
 
 ```ab
 let result = trust safeDivision(24, 4)
-echo "{result}, {status}"
+echo("{result}, {status}")
 // Outputs: 6, 0
 ```
 This was a happy ending. Now let's see what happens when we divide by zero:
 
 ```ab
 let result = safeDivision(15, 0) failed(code) {
-    echo "Function failed with code {code}"
+    echo("Function failed with code {code}")
 }
 // Outputs: Function failed with code 1
 ```
@@ -115,7 +115,7 @@ fun push(ref array, value) {
 
 let groceries = ["apples", "bananas"]
 push(groceries, "oranges")
-echo groceries
+echo(groceries)
 // Outputs: apples bananas oranges
 ```
 

@@ -26,7 +26,7 @@ It's also possible to import all functions at once.
 ```ab
 import * from "./arith.ab"
 
-echo sum(1, sub(2, mul(4, 5)))
+echo(sum(1, sub(2, mul(4, 5))))
 ```
 
 ## Public Imports
@@ -51,11 +51,11 @@ if __name__ == '__main__':
 Amber uses a dedicated main scope for this purpose. However, it’s more than just a convenient syntax — it also provides additional functionality. Within the main block, we can use the `?` operator to propagate exit codes directly to the external shell, simplifying error handling.
 
 ```ab
-echo "Running indirectly"
+echo("Running indirectly")
 
 main {
     $ some command $?
-    echo "Running directly"
+    echo("Running directly")
 }
 ```
 
@@ -85,7 +85,7 @@ Main block can provide an array of arguments (that is of type `[Text]`) passed t
 ```ab
 main (args) {
     for i, arg in args {
-        echo "{i}: {arg}"
+        echo("{i}: {arg}")
     }
 }
 ```

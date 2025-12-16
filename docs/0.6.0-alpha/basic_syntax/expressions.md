@@ -31,7 +31,7 @@ There is also a unary operator that negates the value stored in [variable](/basi
 
 ```ab
 let value = 12
-echo -value // Outputs: -12
+echo(-value) // Outputs: -12
 ```
 
 ## Comparison Operations
@@ -71,7 +71,7 @@ The addition operator, along with any arithmetic operator combined with the `=` 
 ```ab
 let age = 18
 age += 5
-echo age // Outputs: 23
+echo(age) // Outputs: 23
 ```
 
 ## Text Interpolation
@@ -79,9 +79,9 @@ echo age // Outputs: 23
 Text interpolation is a form of embedding various values into the text literal that are combined with their textual representations.
 
 ```ab
-echo "State: {false}" // Outputs: "State: 0"
+echo("State: {false}") // Outputs: "State: 0"
 // It's possible to also nest interpolation
-echo "1 {" 2 {"3"} 4"} 5" // Outputs: "1 2 3 4 5"
+echo("1 {" 2 {"3"} 4"} 5") // Outputs: "1 2 3 4 5"
 ```
 
 In the following table we can see how the interpolation behaves for various data types:
@@ -96,7 +96,7 @@ Type  |Description          |Before         |After
 ```ab
 let name = "John"
 let age = 18
-echo "Hi, I'm {name}. I'm {age} years old."
+echo("Hi, I'm {name}. I'm {age} years old.")
 // Outputs: Hi, I'm John. I'm 18 years old
 ```
 ## Lexical Operations

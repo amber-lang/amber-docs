@@ -18,7 +18,7 @@ loop {
     i += 1
     sum += i
 }
-echo sum
+echo(sum)
 // Outputs: 15
 ```
 
@@ -31,7 +31,7 @@ let sum = 0
 for i in 0..5 {
     sum += i
 }
-echo sum
+echo(sum)
 // Outputs: 10
 ```
 
@@ -42,7 +42,7 @@ let files = ["config.json", "file.txt", "audio.mp3"]
 
 for index, file in files {
     $ mv {file} {index}{file} $ failed {
-        echo "Failed to rename {file}"
+        echo("Failed to rename {file}")
     }
 }
 ```
@@ -57,7 +57,7 @@ The `while` loop is used to repeat a block of code as long as a condition is tru
 let number = 1
 
 while number < 100 {
-    echo number
+    echo(number)
     number *= 2
 }
 // Outputs:

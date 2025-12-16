@@ -134,7 +134,7 @@ Here is an example of a function that accepts either an array of Booleans or an 
 ```amber
 fun process_data(data: [Bool] | [Int]) {
     for item in data {
-        echo item
+        echo(item)
     }
 }
 
@@ -147,7 +147,7 @@ You can also combine primitive types like `Int`, `Text`, and `Bool`:
 
 ```amber
 fun print_value(val: Int | Text | Bool) {
-    echo val
+    echo(val)
 }
 
 print_value(42)       // Valid
