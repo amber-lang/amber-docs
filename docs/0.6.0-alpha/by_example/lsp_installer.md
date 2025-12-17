@@ -21,7 +21,7 @@ fun get_download_path(repo, position) {
 fun move_to_bin(download_url, binary) {
     file_download(download_url, binary) failed {
         echo("Download for {binary} at {download_url} failed")
-        exit 1
+        exit(1)
     }
     
     mv binary "/usr/local/bin" failed {
