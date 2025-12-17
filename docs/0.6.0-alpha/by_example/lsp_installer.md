@@ -26,7 +26,7 @@ fun move_to_bin(download_url, binary) {
     
     mv binary "/usr/local/bin" failed {
         echo("Move {binary} to /usr/local/bin failed!")
-        exit 1
+        exit(1)
     }
     
     file_chmod("/usr/local/bin/{binary}", "+x") failed {
