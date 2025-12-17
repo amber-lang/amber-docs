@@ -79,7 +79,7 @@ silent trust {
 }
 symlink_create("/opt/lua-language-server/bin/lua-language-server", "/usr/local/bin/lua-language-server") failed {
     echo("Failed to create symlink for lua-language-server")
-    exit 1
+    exit(1)
 }
 
 cd "/tmp"
