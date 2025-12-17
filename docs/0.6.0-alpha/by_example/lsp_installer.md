@@ -53,7 +53,7 @@ fun download_to_bin(download_url, binary, packed_file) {
     
     file_chmod("/usr/local/bin/{binary}", "+x") failed {
         echo("Failed to make {binary} executable")
-        exit 1
+        exit(1)
     }
 }
 
