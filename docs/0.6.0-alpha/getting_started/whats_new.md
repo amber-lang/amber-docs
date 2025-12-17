@@ -54,7 +54,7 @@ You can now destruct arrays into separate variables:
 let arr = [1,2,3]
 let [key1, key2, key3] = arr
 
-echo("{key1} {key2} {key3}" // 1 2 3)
+echo("{key1} {key2} {key3}") // 1 2 3
 ```
 
 # Standard library improvements
