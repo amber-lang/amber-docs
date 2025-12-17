@@ -12,13 +12,13 @@ main (args) {
         echo("Path to log file missing.")
         echo("Usage: bot-detector.sh <logfile>")
         echo("       bot-detector.sh /var/log/nginx/access.log")
-        exit 1
+        exit(1)
     }
 
     let logfile = args[0]
     $ test -r {logfile} $ failed {
         echo("File not found or not readable: {logfile}")
-        exit 1
+        exit(1)
     }
 
     let start = parse_int($ date +%s $?)?

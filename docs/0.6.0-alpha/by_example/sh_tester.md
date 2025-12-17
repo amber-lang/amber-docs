@@ -12,14 +12,14 @@ let path = "/tmp/amber-sc-tests"
 if (not dir_exists(path)) {
     dir_create(path) failed {
         echo("Failed to create directory {path}")
-        exit 1
+        exit(1)
     }
 }
 trust $ cp -r "src/tests/stdlib/" {path} $
 let report = "{path}/report.txt"
 file_write(report, "Report for Shellcheck") failed {
     echo("Failed to write report file")
-    exit 1
+    exit(1)
 }
 let output = ""
 

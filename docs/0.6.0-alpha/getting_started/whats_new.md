@@ -45,6 +45,8 @@ All builtins like `echo` now have new syntax similar to functions:
 ```ab
 echo("Hello world")
 cd("newdir")
+mv("file.ab", "newdir")
+exit(1)
 ```
 
 # Array Type Resolution
