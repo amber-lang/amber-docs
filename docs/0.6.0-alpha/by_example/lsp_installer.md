@@ -67,7 +67,7 @@ download_to_bin("https://github.com/rust-lang/rust-analyzer/releases/latest/down
 
 echo("Install Lua LSP")
 if not dir_exists("/opt/lua-language-server") {
-    cd "/opt/"
+    cd("/opt/")
     trust $ git clone https://github.com/LuaLS/lua-language-server $
 } else {
     cd "/opt/lua-language-server"
