@@ -11,7 +11,7 @@ import { text_contains } from "std/text"
 
 if not is_root() {
     echo("This script requires root permissions!")
-    exit 1
+    exit(1)
 }
 
 fun get_download_path(repo, position) {
