@@ -31,7 +31,7 @@ fun move_to_bin(download_url, binary) {
     
     file_chmod("/usr/local/bin/{binary}", "+x") failed {
         echo("Failed to make {binary} executable")
-        exit 1
+        exit(1)
     }
 }
 
