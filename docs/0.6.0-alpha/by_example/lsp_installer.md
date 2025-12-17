@@ -38,7 +38,7 @@ fun move_to_bin(download_url, binary) {
 fun download_to_bin(download_url, binary, packed_file) {
     file_download(download_url, packed_file) failed {
         echo("Download for {binary} at {download_url} failed")
-        exit 1
+        exit(1)
     }
     
     trust {
