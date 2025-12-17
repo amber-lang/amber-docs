@@ -35,6 +35,16 @@ The compiler now surfaces clearer warnings when variables are not used, helping 
 let unused = 1 // Warning: variable 'unused' is not used
 let count = 3  // Warning: variable 'count' is never modified - consider using 'const'
 echo(count)
+
+```
+
+# New builtins syntax
+
+All builtins like `echo` now have new syntax similar to functions:
+
+```ab
+echo("Hello world")
+cd("newdir")
 ```
 
 # Array Type Resolution
