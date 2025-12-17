@@ -163,6 +163,14 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
                         )}
                     </div>
                 </Island>
+                <div className={style.spacer}/>
+                <Island label="Resources">
+                    <div className={style.links}>
+                        <a href="https://github.com/amber-lang/awesome-amberlang" target="_blank" rel="noopener noreferrer" className={style.awesomeLink}>
+                            <img src="https://cdn.jsdelivr.net/gh/sindresorhus/awesome@main/media/badge.svg" alt="Awesome" />
+                        </a>
+                    </div>
+                </Island>
             </div>
         </div>
     )

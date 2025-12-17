@@ -158,3 +158,11 @@
 .links a:last-child {
     margin-bottom: 0;
 }
+
+.awesomeLink {
+    display: block;
+}
+
+.awesomeLink img {
+    height: 20px;
+}
