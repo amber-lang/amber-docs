@@ -44,7 +44,7 @@ main(args) {
     if len(args) < 2 {
         echo("Usage: backup-rotator <source_dir> <backup_dir> [max_backups]")
         echo("Example: backup-rotator /var/www /backups 5")
-        exit 1
+        exit(1)
     }
 
     let source_dir = args[0]
@@ -56,7 +56,7 @@ main(args) {
     // Validate source directory
     if not dir_exists(source_dir) {
         echo("Error: Source directory '{source_dir}' does not exist")
-        exit 1
+        exit(1)
     }
 
     // Create backup directory if it doesn't exist
@@ -64,7 +64,7 @@ main(args) {
         echo("Creating backup directory: {backup_dir}")
         sudo dir_create(backup_dir) failed {
             echo("Failed to create backup directory")
-            exit 1
+            exit(1)
         }
     }
 
