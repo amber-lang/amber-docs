@@ -57,7 +57,7 @@ fun download_to_bin(download_url, binary, packed_file) {
     }
 }
 
-cd "/tmp"
+cd("/tmp")
 
 echo("Install Typos LSP")
 download_to_bin(get_download_path("tekumara/typos-lsp", 6), "typos-lsp", "typos.tar.gz")
