@@ -46,7 +46,7 @@ Alternatively, if the file contains a _shebang_ line and has the executable bit 
 
 ```ab
 #!/usr/bin/env amber
-echo "Hello world"
+echo("Hello world")
 ```
 
 ```sh
@@ -60,7 +60,7 @@ Additionally, command line arguments can be passed to the script:
 #!/usr/bin/env amber
 main(args) {
     for arg in args {
-        echo arg
+        echo(arg)
     }
 }
 ```
@@ -77,7 +77,7 @@ If you want to run just a small code snippet, you can do that as well:
 ```sh
 $ amber eval '
 import * from "std/text"
-echo uppercase("Hello world!")
+echo(uppercase("Hello world!"))
 '
 HELLO WORLD!
 ```

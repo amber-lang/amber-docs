@@ -15,7 +15,7 @@ cd "/tmp"
 Transpile to `echo` which prints text to the console, requires a `Text` parameter.
 
 ```ab
-echo "Hello World!"
+echo("Hello World!")
 ```
 
 ## Len
@@ -24,14 +24,14 @@ For a `Text` value, this builtin calculates and returns the length (in ASCII cha
 
 ```ab
 // Returns 37
-echo len("Jackdaws love my big sphinx of quartz")
+echo(len("Jackdaws love my big sphinx of quartz"))
 ```
 
 For an `Array` `[]` value, it calculates and returns the length of the array as a `Num` type.  It is transpiled to `${#ARRAY[@]}`:
 
 ```ab
 // Returns 5
-echo len(["one", "two", "three", "four", "five"])
+echo(len(["one", "two", "three", "four", "five"]))
 ```
 
 ## Lines
@@ -40,11 +40,11 @@ This builtin reads one line at a time from a text file.  It can be used in place
 
 ```ab
 for line in lines("foo.txt") {
-    echo line
+    echo(line)
 }
 
 for index, line in lines("bar.txt") {
-    echo "#{index} {line}"
+    echo("#{index} {line}")
 }
 ```
 
@@ -53,7 +53,7 @@ Alternatively, it can be used as the right hand side of an array assignment.  Th
 ```ab
 let lines = lines("foo.txt")
 lines += lines("bar.txt")
-echo len(lines)
+echo(len(lines))
 ```
 
 > WARNING: While embedded Bash commands like `$ cat foo.txt $` require a `trust` keyword or `failed` block, Amber does not currently support this for the `lines` builtin. If the file does not exist at runtime, the program will terminate midway, **potentially losing data stored only in variables**
@@ -71,7 +71,7 @@ This builtin is `failable`, meaning we can handle errors like this:
 
 ```ab
 mv "/tmp/a" "/tmp/b" failed {
-    echo "Error"
+    echo("Error")
 }
 ```
 

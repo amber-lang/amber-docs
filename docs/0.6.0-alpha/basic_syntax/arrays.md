@@ -5,18 +5,18 @@ Amber gives us the ability to generate an array of numbers `[Num]` of certain ra
 - `a..=b` is inclusive from `a` to `b` including `b`.
 
 ```ab
-echo 0..10
+echo(0..10)
 // Outputs: 0 1 2 3 4 5 6 7 8 9
-echo 0..=10
+echo(0..=10)
 // Outputs: 0 1 2 3 4 5 6 7 8 9 10
 ```
 
 Ranges also support reversed order:
 
 ```ab
-echo 6..3
+echo(6..3)
 // Outputs: 6 5 4
-echo 6..=3
+echo(6..=3)
 // Outputs: 6 5 4 3
 ```
 
@@ -29,23 +29,23 @@ To store or retrieve a value at a particular index of an array, we can use the f
 ```ab
 let groceries = ["apple", "banana", "cherry", "date"]
 groceries[0] = "kiwi"
-echo groceries[1]
+echo(groceries[1])
 // Outputs: banana
 ```
 
 We can also _echo_ an entire array:
 
 ```ab
-echo groceries
+echo(groceries)
 // Outputs: kiwi banana cherry date
 ```
 
 To retrieve a slice between a pair of indices of an array, we can use an exclusive range `a..b` or inclusive range `a..=b` (see above) with the following syntax:
 
 ```ab
-echo groceries[1..3]
+echo(groceries[1..3])
 // Outputs: banana cherry
-echo groceries[1..=2]
+echo(groceries[1..=2])
 // Outputs: banana cherry
 ```
 
@@ -68,9 +68,9 @@ let groceries = ["apple", "banana", "cherry"]
 
 let [fruit1, fruit2, berry] = groceries
 
-echo fruit1 // apple
-echo fruit2 // banana
-echo berry // cherry
+echo(fruit1 // apple)
+echo(fruit2 // banana)
+echo(berry // cherry)
 ```
 
 ## Nested Arrays

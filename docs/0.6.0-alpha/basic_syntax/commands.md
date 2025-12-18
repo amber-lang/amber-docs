@@ -12,14 +12,14 @@ Here is an example use:
 ```ab
 // Command statement
 $ mv file.txt dest.txt $ failed {
-    echo "It seems that the file.txt does not exist"
+    echo("It seems that the file.txt does not exist")
 }
 
 // Command expression
 let result = $ cat file.txt | grep "READY" $ failed {
-    echo "Failed to read the file"
+    echo("Failed to read the file")
 }
-echo result
+echo(result)
 ```
 
 > DETAILS: Command expression result is sent to the variable instead of _standard output_.
@@ -29,7 +29,7 @@ Command can also be interpolated with other expressions and variables
 ```ab
 let file_path = "/path/to/file"
 $ cat {file_path} $ failed {
-    echo "Could not open '{file_path}'"
+    echo("Could not open '{file_path}'")
 }
 ```
 
@@ -39,7 +39,7 @@ The `failed` modifier allows you to write specific logic that runs only when a c
 
 ```ab
 $ cat file.txt $ failed(code) {
-    echo "Exited with code {code}."
+    echo("Exited with code {code}.")
 }
 ```
 
@@ -49,7 +49,7 @@ Just like `failed` allows you to handle command failures, `succeeded` lets you w
 
 ```ab
 $ cat file.txt $ succeeded {
-    echo "File was read successfully"
+    echo("File was read successfully")
 }
 ```
 
@@ -59,7 +59,7 @@ The `exited` modifier allows you to write logic that runs regardless of whether 
 
 ```ab
 $ cat file.txt $ exited(code) {
-    echo "Command finished with exit code {code}"
+    echo("Command finished with exit code {code}")
 }
 ```
 
@@ -71,7 +71,7 @@ The `status` keyword allows you to access the exit code of a command. This is th
 ```ab
 trust $ no-access.txt < "some text" $ // status: 1
 trust $ cat available-for-all.txt $ // status: 0
-echo "The status code is: {status}" // The status code is 0
+echo("The status code is: {status}" // The status code is 0)
 ```
 
 ## Failure Propagation

@@ -10,8 +10,8 @@ import { is_root } from "std/env"
 import { text_contains } from "std/text"
 
 if not is_root() {
-    echo "This script requires root permissions!"
-    exit 1
+    echo("This script requires root permissions!")
+    exit(1)
 }
 
 fun get_download_path(repo, position) {
@@ -20,25 +20,25 @@ fun get_download_path(repo, position) {
 
 fun move_to_bin(download_url, binary) {
     file_download(download_url, binary) failed {
-        echo "Download for {binary} at {download_url} failed"
-        exit 1
+        echo("Download for {binary} at {download_url} failed")
+        exit(1)
     }
     
     mv binary "/usr/local/bin" failed {
-        echo "Move {binary} to /usr/local/bin failed!"
-        exit 1
+        echo("Move {binary} to /usr/local/bin failed!")
+        exit(1)
     }
     
     file_chmod("/usr/local/bin/{binary}", "+x") failed {
-        echo "Failed to make {binary} executable"
-        exit 1
+        echo("Failed to make {binary} executable")
+        exit(1)
     }
 }
 
 fun download_to_bin(download_url, binary, packed_file) {
     file_download(download_url, packed_file) failed {
-        echo "Download for {binary} at {download_url} failed"
-        exit 1
+        echo("Download for {binary} at {download_url} failed")
+        exit(1)
     }
     
     trust {
@@ -52,22 +52,22 @@ fun download_to_bin(download_url, binary, packed_file) {
     }
     
     file_chmod("/usr/local/bin/{binary}", "+x") failed {
-        echo "Failed to make {binary} executable"
-        exit 1
+        echo("Failed to make {binary} executable")
+        exit(1)
     }
 }
 
-cd "/tmp"
+cd("/tmp")
 
-echo "Install Typos LSP"
+echo("Install Typos LSP")
 download_to_bin(get_download_path("tekumara/typos-lsp", 6), "typos-lsp", "typos.tar.gz")
 
-echo "Install Rust LSP"
+echo("Install Rust LSP")
 download_to_bin("https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz", "rust-analyzer", "rust-analyzer-x86_64-unknown-linux-gnu.gz")
 
-echo "Install Lua LSP"
+echo("Install Lua LSP")
 if not dir_exists("/opt/lua-language-server") {
-    cd "/opt/"
+    cd("/opt/")
     trust $ git clone https://github.com/LuaLS/lua-language-server $
 } else {
     cd "/opt/lua-language-server"
@@ -78,8 +78,8 @@ silent trust {
     $ ./make.sh $
 }
 symlink_create("/opt/lua-language-server/bin/lua-language-server", "/usr/local/bin/lua-language-server") failed {
-    echo "Failed to create symlink for lua-language-server"
-    exit 1
+    echo("Failed to create symlink for lua-language-server")
+    exit(1)
 }
 
 cd "/tmp"
@@ -87,9 +87,9 @@ cd "/tmp"
 let npm_lsp = ["vscode-langservers-extracted", "@tailwindcss/language-server", "@olrtg/emmet-language-server", "intelephense", "bash-language-server"]
 let npm_lsp_name = ["CSS, HTML, JSON LSP", "Tailwind LSP", "Emmet LSP", "Intelephense LSP", "Bash LSP"]
 for index, lsp in npm_lsp {
-    echo "Install {npm_lsp_name[index]}"
+    echo("Install {npm_lsp_name[index]}")
     $ npm i -g "{lsp}" $ failed(code) {
-        echo "Error! Exit code: {code}"
+        echo("Error! Exit code: {code}")
     }
 }
 ```

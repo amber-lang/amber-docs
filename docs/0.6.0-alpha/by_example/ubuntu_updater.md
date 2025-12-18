@@ -9,12 +9,12 @@ main {
     // Print output and log it at the same time.
     $ exec > >(tee -a /var/log/autoapt.log) 2>&1 $?
     // Log the current date so that we can check when any failed runs happened.
-    echo date_format_posix(date_now())
+    echo(date_format_posix(date_now()))
 
     // Internet is slow on Austrian trains. Check the Wifi SSID and stop in that
     // case.
     trust $ iwgetid -r | grep -E '(OEBB|WESTlan)' $ succeeded {
-        echo "Skipping updates because of slow Wifi"
+        echo("Skipping updates because of slow Wifi")
         exit 0
     }
 
