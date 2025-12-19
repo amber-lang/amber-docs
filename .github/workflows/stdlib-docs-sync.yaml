@@ -14,29 +14,21 @@ jobs:
           repository: amber-lang/amber
           path: amber
 
-      - id: amber-builder
-        working-directory: amber
-        run: |
-          cargo build --release
-          if [ $? -ne 0 ]; then
-            echo "Building Amber failed"
-            exit 1
-          fi
-          AMBER_EXECUTABLE="$(realpath ./target/release/amber)"
-          echo "AMBER_EXECUTABLE=$AMBER_EXECUTABLE" >> "$GITHUB_OUTPUT"
-
       - name: Build Standard Library Documentation
+        uses: lens0021/amber-script@adccd0aaadbcb8a20c1234a2e17e05b44bfd4cfe # v2.1.0
         id: docs-builder
-        working-directory: amber
-        run: |
-          $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
-        env:
-          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
-          AMBER_SCRIPT: |
-            import { file_glob } from "std/fs"
+        with:
+          amber-version: 0.5.1-alpha
+          script: |
             import { env_var_get } from "std/env"
+            import { file_glob } from "std/fs"
 
-            const amber_executable = trust env_var_get("AMBER_EXECUTABLE")
+            cd "amber"
+            $ cargo build --release $ failed {
+              echo "Building Amber failed"
+              exit 1
+            }
+            const amber_executable = "./target/release/amber"
             const files = file_glob("src/std/*.ab") failed {
               echo "::error::Unable to glob files in 'src/std'"
               exit 1
@@ -59,12 +51,12 @@ jobs:
           path: amber-docs
 
       - name: Locate New Documentation
-        working-directory: amber-docs
-        run: $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
+        uses: lens0021/amber-script@adccd0aaadbcb8a20c1234a2e17e05b44bfd4cfe # v2.1.0
         env:
-          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
           DOCS_PATH: ${{ steps.docs-builder.outputs.DOCS_PATH }}
-          AMBER_SCRIPT: |
+        with:
+          amber-version: 0.5.1-alpha
+          script: |
             import { env_var_get } from "std/env"
             import { file_glob } from "std/fs"
 
@@ -72,11 +64,11 @@ jobs:
               const docs_path = trust env_var_get("DOCS_PATH")
               const latest_version = $ jq -r '.allVersions[-1]' config.json $?
 
+              cd "amber-docs"
               for file in trust file_glob("{docs_path}/*.md"):
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
                   echo "::error::Failed copy {file}"
             }
-
 
       - uses: peter-evans/create-pull-request@v8
         with:
