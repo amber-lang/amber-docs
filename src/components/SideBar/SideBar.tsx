@@ -7,6 +7,7 @@ import style from './SideBar.module.css'
 import { DocDescriptor } from '@/utils/docs'
 import { TocSection } from '@/utils/docsServer'
 import Link from 'next/link'
+import PrefetchLink from '@/components/PrefetchLink'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import useVersion from '@/contexts/VersionContext/useVersion'
 import { generateUrl } from '@/utils/urls'
@@ -138,14 +139,14 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
                     <div className={[style.links, !headers.length && style.toc].join(' ')} ref={tocRef}>
                         {toc.map(({ path, title, docs }) => (
                                 <React.Fragment key={path}>
-                                    <Link href={`/${generateUrl(version, path)}`} key={path}>
+                                    <PrefetchLink href={`/${generateUrl(version, path)}`} key={path} docPath={`${version}/${path}`}>
                                         <Text block>
                                             <div className={style.indent} {...{ indent: "0", path }}>{title}</div>
                                         </Text>
-                                    </Link>
+                                    </PrefetchLink>
                                     {docs && docs.map(({ path, title }, index) => (
                                         <React.Fragment key={path}>
-                                            <Link href={`/${generateUrl(version, path)}`}>
+                                            <PrefetchLink href={`/${generateUrl(version, path)}`} docPath={`${version}/${path}`}>
                                                 <Text block>
                                                     <div
                                                         className={style.indent}
@@ -155,7 +156,7 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
                                                         {title}
                                                     </div>
                                                 </Text>
-                                            </Link>
+                                            </PrefetchLink>
                                         </React.Fragment>
                                     ))}
                                 </React.Fragment>

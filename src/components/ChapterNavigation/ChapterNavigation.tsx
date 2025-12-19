@@ -4,7 +4,7 @@ import React from 'react'
 import style from './ChapterNavigation.module.css'
 
 import { FlatDoc } from '@/utils/docs'
-import Link from 'next/link'
+import PrefetchLink from '@/components/PrefetchLink'
 import { generateUrl } from '@/utils/urls'
 import useVersion from '@/contexts/VersionContext/useVersion'
 
@@ -23,11 +23,11 @@ export default function ChapterNavigation({ index, flatToc }: Props) {
                 {prev && (
                     <>
                         <div className={`${style.reverse} ${style.icon}`}></div>
-                        <Link href={`/${generateUrl(version, prev.path)}`}>
+                        <PrefetchLink href={`/${generateUrl(version, prev.path)}`} docPath={`${version}/${prev.path}`}>
                             <span className={style.text}>
                                 {prev.title}
                             </span>
-                        </Link>
+                        </PrefetchLink>
                     </>
                 )}
             </div>
@@ -37,11 +37,11 @@ export default function ChapterNavigation({ index, flatToc }: Props) {
             <div className={`${style.part} ${style.right}`}>
                 {next && (
                     <>
-                        <Link href={`/${generateUrl(version, next.path)}`}>
+                        <PrefetchLink href={`/${generateUrl(version, next.path)}`} docPath={`${version}/${next.path}`}>
                             <span className={style.text}>
                                 {next.title}
                             </span>
-                        </Link>
+                        </PrefetchLink>
                         <div className={style.icon}></div>
                     </>
                 )}

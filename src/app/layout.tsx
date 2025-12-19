@@ -4,12 +4,13 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import SidebarProvider from '@/contexts/DocumentContext/SidebarProvider'
-import TopLoader from '@/components/TopLoader/TopLoader'
+
 import VersionProvider from '@/contexts/VersionContext/VersionProvider'
 import config from '@/../config.json'
 import ThemeScript from '@/contexts/ThemeContext/ThemeScript'
 import ThemeStyles from '@/contexts/ThemeContext/ThemeStyles'
 import { defaultThemeConfig } from '@/contexts/ThemeContext/config'
+import { DocsCacheProvider } from '@/contexts/DocsCache'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,15 +45,18 @@ export default function RootLayout({
             <body className={inter.className}>
                 <ThemeProvider>
                     <SidebarProvider>
-                        <TopLoader />
-                        <VersionProvider version={config.defaultVersion}>
-                                <main>
-                                    {children}
-                                </main>
-                        </VersionProvider>
+                        <DocsCacheProvider>
+
+                            <VersionProvider version={config.defaultVersion}>
+                                    <main>
+                                        {children}
+                                    </main>
+                            </VersionProvider>
+                        </DocsCacheProvider>
                     </ SidebarProvider>
                 </ThemeProvider>
             </body>
         </html>
     )
 }
+
