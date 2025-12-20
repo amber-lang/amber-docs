@@ -61,17 +61,24 @@ jobs:
           script: |
             cd "amber-docs"
             import { env_var_get } from "std/env"
-            import { file_glob } from "std/fs"
+            import { file_exists, file_glob } from "std/fs"
+
+            const config_filename = "config.json"
+            const docs_path = env_var_get("DOCS_PATH")?
 
             main {
-              const docs_path = env_var_get("DOCS_PATH")?
-              const latest_version = $ jq -r '.allVersions[-1]' config.json $?
-
               const files = file_glob("{docs_path}/*.md")?
               if len(files) == 0 {
                 echo "::error::No file found in {docs_path}/*.md"
                 exit 1
               }
+
+              if not file_exists(config_filename) {
+                echo "::error::{config_filename} not found"
+                exit 1
+              }
+              const latest_version = $ jq -r '.allVersions[-1]' {config_filename} $?
+
               for file in files:
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
                   echo "::warning::Failed copy {file}"
