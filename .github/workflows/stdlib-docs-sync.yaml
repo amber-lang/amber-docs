@@ -45,7 +45,7 @@ jobs:
                 }
               }
               const docs_path = $ realpath src/std/docs $?
-              $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")?}" $?
+              $ echo "docs_path={docs_path}" >> \$GITHUB_OUTPUT $?
               echo "Done"
             }
 
@@ -56,7 +56,7 @@ jobs:
       - name: Locate New Documentation
         uses: lens0021/amber-script-action@dc57beb5ecba232a6d91fed936770629e3224602 # v2.1.4
         env:
-          DOCS_PATH: ${{ steps.docs-builder.outputs.DOCS_PATH }}
+          DOCS_PATH: ${{ steps.docs-builder.outputs.docs_path }}
         with:
           amber-version: 0.5.1-alpha
           script: |
