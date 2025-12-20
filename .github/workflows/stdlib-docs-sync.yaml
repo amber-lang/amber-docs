@@ -15,7 +15,7 @@ jobs:
           path: amber
 
       - name: Build Standard Library Documentation
-        uses: lens0021/amber-script-action@dc57beb5ecba232a6d91fed936770629e3224602 # v2.1.4
+        uses: lens0021/amber-script-action@b58828040020a034953fab1098936dea57a3cbe4 # v2.2.0
         id: docs-builder
         with:
           amber-version: 0.5.1-alpha
@@ -45,7 +45,7 @@ jobs:
                 }
               }
               const docs_path = $ realpath src/std/docs $?
-              $ echo "docs_path={docs_path}" >> {env_var_get("GITHUB_OUTPUT")?} $?
+              $ echo "docs_path={docs_path}" >> {env_var_get("AMBER_SCRIPT_OUTPUT")?} $?
               echo "Done"
             }
 
@@ -54,9 +54,9 @@ jobs:
           path: amber-docs
 
       - name: Locate New Documentation
-        uses: lens0021/amber-script-action@dc57beb5ecba232a6d91fed936770629e3224602 # v2.1.4
+        uses: lens0021/amber-script-action@b58828040020a034953fab1098936dea57a3cbe4 # v2.2.0
         env:
-          DOCS_PATH: ${{ steps.docs-builder.outputs.docs_path }}
+          DOCS_PATH: ${{ fromJSON(steps.docs-builder.outputs.script_outputs).docs_path }}
         with:
           amber-version: 0.5.1-alpha
           script: |
