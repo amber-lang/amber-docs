@@ -20,10 +20,10 @@ jobs:
         with:
           amber-version: 0.5.1-alpha
           script: |
+            cd "amber"
             import { env_var_get } from "std/env"
             import { file_glob } from "std/fs"
 
-            cd "amber"
             $ cargo build --release $ failed {
               echo "Building Amber failed"
               exit 1
@@ -57,6 +57,7 @@ jobs:
         with:
           amber-version: 0.5.1-alpha
           script: |
+            cd "amber-docs"
             import { env_var_get } from "std/env"
             import { file_glob } from "std/fs"
 
@@ -64,7 +65,6 @@ jobs:
               const docs_path = trust env_var_get("DOCS_PATH")
               const latest_version = $ jq -r '.allVersions[-1]' config.json $?
 
-              cd "amber-docs"
               for file in trust file_glob("{docs_path}/*.md"):
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
                   echo "::error::Failed copy {file}"
