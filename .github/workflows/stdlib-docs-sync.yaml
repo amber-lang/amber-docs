@@ -68,8 +68,10 @@ jobs:
               const latest_version = $ jq -r '.allVersions[-1]' config.json $?
 
               for file in file_glob("{docs_path}/*.md")?:
+                echo "Copying {file} to docs/{latest_version}/stdlib/doc..."
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
                   echo "::error::Failed copy {file}"
+              echo "Done"
             }
 
       - uses: peter-evans/create-pull-request@v8
