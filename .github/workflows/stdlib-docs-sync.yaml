@@ -45,7 +45,7 @@ jobs:
                 }
               }
               const docs_path = $ realpath src/std/docs $?
-              $ echo "docs_path={docs_path}" >> \$GITHUB_OUTPUT $?
+              $ echo "docs_path={docs_path}" >> {env_var_get("GITHUB_OUTPUT")?} $?
               echo "Done"
             }
 
