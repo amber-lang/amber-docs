@@ -24,27 +24,29 @@ jobs:
             import { env_var_get } from "std/env"
             import { file_glob } from "std/fs"
 
-            $ cargo build --release $ failed {
-              echo "Building Amber failed"
-              exit 1
-            }
-            const amber_executable = "./target/release/amber"
-            const files = file_glob("src/std/*.ab") failed {
-              echo "::error::Unable to glob files in 'src/std'"
-              exit 1
-            }
-
-            echo "Building docs..."
-            for file in files {
-              silent $ {amber_executable} docs --usage {file} $ exited(code): if {
-                code == 0: echo "Successfully generated for '{file}'"
-                code == 1: echo "::error::Docs gen failed for '{file}'"
-                code == 127: echo "::error::Cannot find compiled artifact '{amber_executable}'"
-                else: echo "::error::Unknown error"
+            main {
+              $ cargo build --release $ failed {
+                echo "Building Amber failed"
+                exit 1
               }
+              const amber_executable = "./target/release/amber"
+              const files = file_glob("src/std/*.ab") failed {
+                echo "::error::Unable to glob files in 'src/std'"
+                exit 1
+              }
+
+              echo "Building docs..."
+              for file in files {
+                silent $ {amber_executable} docs --usage {file} $ exited(code): if {
+                  code == 0: echo "Successfully generated for '{file}'"
+                  code == 1: echo "::error::Docs gen failed for '{file}'"
+                  code == 127: echo "::error::Cannot find compiled artifact '{amber_executable}'"
+                  else: echo "::error::Unknown error"
+                }
+              }
+              const docs_path = $ realpath src/std/docs $?
+              $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")}" $?
             }
-            const docs_path = trust $ realpath src/std/docs $
-            trust $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")}" $
 
       - uses: actions/checkout@v6
         with:
@@ -62,10 +64,10 @@ jobs:
             import { file_glob } from "std/fs"
 
             main {
-              const docs_path = trust env_var_get("DOCS_PATH")
+              const docs_path = env_var_get("DOCS_PATH")?
               const latest_version = $ jq -r '.allVersions[-1]' config.json $?
 
-              for file in trust file_glob("{docs_path}/*.md"):
+              for file in file_glob("{docs_path}/*.md")?:
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
                   echo "::error::Failed copy {file}"
             }
