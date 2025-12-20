@@ -64,7 +64,7 @@ jobs:
             import { file_exists, file_glob } from "std/fs"
 
             const config_filename = "config.json"
-            const docs_path = env_var_get("DOCS_PATH")?
+            const docs_path = trust env_var_get("DOCS_PATH")
 
             main {
               const files = file_glob("{docs_path}/*.md")?
