@@ -140,7 +140,7 @@
     left: 50%;
     width: var(--size-hover);
     position: absolute;
-    overflow: visible;
+    overflow: hidden;
     text-align: center;
     isolation: isolate;
     -webkit-backdrop-filter: blur(20px);
