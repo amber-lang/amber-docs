@@ -1,3 +1,5 @@
+{#silent #trust #unsafe #failed #succeeded #exited}
+
 The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
 Commands (as well as *failable functions*) can sometimes _fail_, so it’s important for whoever uses them to be ready to handle what happens next. There are different ways to deal with failures, each with its own pros and cons:

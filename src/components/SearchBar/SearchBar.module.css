@@ -132,38 +132,44 @@
 /* The options selection menu */
 
 .options {
-    --plane-shadow: color-mix(in srgb, var(--background), transparent 25%);
+    --plane-shadow: color-mix(in srgb, var(--background), transparent 60%);
     --plane-shine: color-mix(in srgb, var(--shine), transparent 25%);
     display: block;
-    transform: translateX(-50%) translateY(-1rem) scale(0.3, 0.9);
+    transform: translateX(-50%) translateY(-1rem) scale(0.3, 0.9) translateZ(0);
     opacity: 0;
     left: 50%;
     width: var(--size-hover);
     position: absolute;
-    overflow: hidden;
+    overflow: visible;
     text-align: center;
-    backdrop-filter: blur(10px);
-    will-change: backdrop-filter;
+    isolation: isolate;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     background: var(--plane-shadow);
     box-shadow: inset var(--plane-shine) 0.2rem 0.2rem 0.5rem;
     border: var(--border) solid 1px;
     border-radius: 0.75rem;
-    z-index: 50;
+    z-index: 200;
     transition: opacity 0.1s ease-in-out, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .options.show {
     display: block;
-    transform: translateX(-50%) translateY(0.5rem) scale(1);
+    transform: translateX(-50%) translateY(0.5rem) scale(1) translateZ(0);
     opacity: 1;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
 
 .option {
     width: var(--size-hover);
-    padding: 0.5rem;
-    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     cursor: pointer;
+    text-align: left;
+    font-size: 0.9rem;
 }
 
 .option.disabled {
@@ -173,6 +179,23 @@
 
 .option:not(.disabled):hover {
     background: color-mix(in srgb, var(--shadow), transparent 55%);
+}
+
+.option.selected {
+    background: color-mix(in srgb, var(--shadow), transparent 55%) !important;
+}
+
+.shortcut {
+    position: absolute;
+    left: 50%;
+    margin-left: calc(var(--size) / 2 - 3.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
 }
 
 @media screen and (max-width: 1000px) {

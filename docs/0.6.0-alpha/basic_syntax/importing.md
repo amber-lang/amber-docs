@@ -1,6 +1,8 @@
+{#import}
+
 In Amber, functions can be imported from other files. To make a function accessible externally, it must be declared as public in the file where it is defined.
 
-## Public Functions
+## Public Functions {#pub}
 
 To declare a function as public we can use a `pub` keyword. Let's keep in mind that `pub` keyword has to be used before the `fun` keyword that declares our function:
 
@@ -39,7 +41,7 @@ pub import * from "my/path/file.ab"
 
 This statement imports all functions defined in file.ab and re-exports them, making them publicly accessible from the current file.
 
-## Main Block
+## Main Block {#main}
 
 In case when we want a specific code to run only when a file is executed directly, Amber offers a clean and powerful solution. Similar to Python’s approach:
 
@@ -78,7 +80,7 @@ import * from "./file.ab"
 ```
 
 
-### Main Block and External Arguments
+### Main Block and External Arguments {#args}
 
 Main block can provide an array of arguments (that is of type `[Text]`) passed to this script.
 

@@ -2,5 +2,5 @@
     background-color: var(--description);
     mask-repeat: no-repeat;
     mask-position: center;
-    mask-size: 1rem;
+    mask-size: contain;
 }

@@ -65,20 +65,20 @@ export default function Navigation({ hideSearch = false }: Props) {
                     {!hideSearch && <SearchBar />}
                 </div>
                 <div className={style.right}>
-                    <Button onClick={toggleSideBar}>
-                        <Icon src='/internal/side-bar.svg' size='2rem' />
+                    <Button onClick={toggleSideBar} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/side-bar.svg' size='1rem' />
                     </Button>
-                    <Button onClick={toggleDarkMode}>
-                        <Icon src='/internal/moon.svg' size='2rem' />
+                    <Button onClick={toggleDarkMode} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/moon.svg' size='1rem' />
                     </Button>
-                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
-                        <Icon src='/internal/gh.svg' size='2rem' />
+                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/gh.svg' size='1rem' />
                     </Button>
-                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')}>
-                        <Icon src='/internal/discord.svg' size='2rem' />
+                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/discord.svg' size='1rem' />
                     </Button>
-                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')}>
-                        <Icon src='/internal/reddit.svg' size='2rem' />
+                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/reddit.svg' size='1rem' />
                     </Button>
                     {/* Uncomment when we are ready */}
                     {/* <Button>

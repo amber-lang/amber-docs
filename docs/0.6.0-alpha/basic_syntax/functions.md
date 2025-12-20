@@ -1,3 +1,5 @@
+{#fun #function}
+
 Functions can help you organize the structure of your code into reusable components. Here is how you can declare such function:
 
 ```ab
@@ -41,7 +43,7 @@ Notice that arguments with default values must come after the regular arguments.
 
 You can apply [Command Modifiers](/basic_syntax/commands) to function calls as well. This way you can suppress any output with `silent` modifier or run _failable_ functions as if they could never fail (although this is unrecommended) with `trust` keyword
 
-## Failing
+## Failing {#fail}
 
 Functions can additionally fail. We call them _failable_ functions. A failable function is a type of function that can fail. To fail a function use a `fail` keyword and follow it with exit code.
 
@@ -76,7 +78,7 @@ fun failable(): Int? {
 
 Note that you cannot force a function to become failable by simply appending the `?` to the return type. The `?` can (and must) only be used in a function declaration, if the function is known to be failable.
 
-## Status Code
+## Status Code {#status}
 
 Status code contains information about latest failing function or a command that was run. Accessing status is as simple as using `status` keyword.
 
@@ -104,7 +106,7 @@ let result = safeDivision(15, 0) failed(code) {
 // Outputs: Function failed with code 1
 ```
 
-## Variable References `ref`
+## Variable References `ref` {#ref}
 
 You have the ability to accept variables passed by reference. To  do this you can use the `ref` keyword.
 

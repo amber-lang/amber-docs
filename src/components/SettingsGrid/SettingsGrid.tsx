@@ -18,23 +18,23 @@ export default function SettingsGrid() {
         <div>
             <div className={style.buttons}>
                 <div className={style.button}>
-                    <Button onClick={toggleTheme}>
-                        <Icon src='/internal/moon.svg' size='2rem'/>
+                    <Button onClick={toggleTheme} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/moon.svg' size='1rem'/>
                     </Button>
                 </div>
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')}>
-                        <Icon src='/internal/gh.svg' size='2rem' />
+                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/gh.svg' size='1rem' />
                     </Button>
                 </div>
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')}>
-                        <Icon src='/internal/discord.svg' size='2rem' />
+                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/discord.svg' size='1rem' />
                     </Button>
                 </div>
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')}>
-                        <Icon src='/internal/reddit.svg' size='2rem' />
+                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')} style={{ padding: '0.5rem' }}>
+                        <Icon src='/internal/reddit.svg' size='1rem' />
                     </Button>
                 </div>
                 {/* Uncomment when we are ready */}

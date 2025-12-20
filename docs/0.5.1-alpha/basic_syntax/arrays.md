@@ -20,7 +20,7 @@ echo 6..=3
 // Outputs: 6 5 4 3
 ```
 
-# Arrays
+# Arrays {#arrays}
 
 We learned about array literals in the first chapter. In this chapter we will learn how to make use of them. Arrays are indexed from zero.
 

@@ -15,6 +15,7 @@ export default function Icon({ src, size, color }: Props) {
                 WebkitMaskImage: `url(${src})`,
                 width: size,
                 height: size,
+                maskSize: size,
                 backgroundColor: color
             }}
             className={style.icon}

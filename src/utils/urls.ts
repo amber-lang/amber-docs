@@ -8,6 +8,16 @@ export function generateUrl(version: string, pathname: string) {
     return path.join(version, pathname)
 }
 
+export function slugify(text: string) {
+    return text.toLowerCase()
+        // Codes
+        .replace(/`([^`]+)`/g, '$1')
+        // Comments
+        .replaceAll(/\s*<!--.*?-->\s*/g, '')
+        .replace(/[^\w]+/g, '-')
+}
+
+
 export interface Location {
     version: string
     slug: string[]

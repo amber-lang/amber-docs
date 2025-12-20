@@ -10,7 +10,7 @@ import Link from 'next/link'
 import PrefetchLink from '@/components/PrefetchLink'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import useVersion from '@/contexts/VersionContext/useVersion'
-import { generateUrl } from '@/utils/urls'
+import { generateUrl, slugify } from '@/utils/urls'
 
 interface Props {
     headers: string[],
@@ -59,13 +59,7 @@ function getHeaders(headers: string[], disableLevels?: number[]): Header[] {
         prevLevel = level
         return {
             level,
-            title: header
-                // Header
-                .replace(/^#+\s/, '')
-                // Comments
-                .replaceAll(/\s*<!--.*?-->\s*/g, '')
-                // Codes
-                .replaceAll(/`([^`]+)`/g, '$1'),
+            title: slugify(header),
             relation,
             distance
         }
