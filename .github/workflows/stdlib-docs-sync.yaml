@@ -15,7 +15,7 @@ jobs:
           path: amber
 
       - name: Build Standard Library Documentation
-        uses: lens0021/amber-script-action@c4899f0c4b4a83120c139125f26d2a93904f770f # v2.1.1
+        uses: lens0021/amber-script-action@09359468c5e81043699eaf70e5e841dea913f56c # v2.1.2
         id: docs-builder
         with:
           amber-version: 0.5.1-alpha
@@ -51,7 +51,7 @@ jobs:
           path: amber-docs
 
       - name: Locate New Documentation
-        uses: lens0021/amber-script-action@c4899f0c4b4a83120c139125f26d2a93904f770f # v2.1.1
+        uses: lens0021/amber-script-action@09359468c5e81043699eaf70e5e841dea913f56c # v2.1.2
         env:
           DOCS_PATH: ${{ steps.docs-builder.outputs.DOCS_PATH }}
         with:
