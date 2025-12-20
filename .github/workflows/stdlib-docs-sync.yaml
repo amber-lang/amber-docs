@@ -67,10 +67,14 @@ jobs:
               const docs_path = env_var_get("DOCS_PATH")?
               const latest_version = $ jq -r '.allVersions[-1]' config.json $?
 
-              for file in file_glob("{docs_path}/*.md")?:
-                echo "Copying {file} to docs/{latest_version}/stdlib/doc..."
+              const files = file_glob("{docs_path}/*.md")?
+              if len(files) == 0 {
+                echo "::error::No file found in {docs_path}/*.md"
+                exit 1
+              }
+              for file in files:
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
-                  echo "::error::Failed copy {file}"
+                  echo "::warning::Failed copy {file}"
               echo "Done"
             }
 
