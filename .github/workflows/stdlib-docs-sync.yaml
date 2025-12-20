@@ -45,7 +45,7 @@ jobs:
                 }
               }
               const docs_path = $ realpath src/std/docs $?
-              $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")}" $?
+              $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")?}" $?
             }
 
       - uses: actions/checkout@v6
