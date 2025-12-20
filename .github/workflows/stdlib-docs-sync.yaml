@@ -26,7 +26,7 @@ jobs:
 
             main {
               $ cargo build --release $ failed {
-                echo "Building Amber failed"
+                echo "::error::Building Amber failed"
                 exit 1
               }
               const amber_executable = "./target/release/amber"
