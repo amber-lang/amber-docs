@@ -10,7 +10,7 @@ import Link from 'next/link'
 import PrefetchLink from '@/components/PrefetchLink'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import useVersion from '@/contexts/VersionContext/useVersion'
-import { generateUrl, slugify } from '@/utils/urls'
+import { generateUrl, slugify, cleanHeading } from '@/utils/urls'
 
 interface Props {
     headers: string[],
@@ -22,6 +22,7 @@ interface Props {
 type Header = {
     level: number,
     title: string,
+    slug: string,
     relation: string,
     distance: number
 }
@@ -59,7 +60,8 @@ function getHeaders(headers: string[], disableLevels?: number[]): Header[] {
         prevLevel = level
         return {
             level,
-            title: slugify(header),
+            title: cleanHeading(header),
+            slug: slugify(header),
             relation,
             distance
         }
@@ -74,8 +76,8 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
     const onPageRef = React.useRef<HTMLDivElement>(null)
     const tocRef = React.useRef<HTMLDivElement>(null)
 
-    const getHeaderLink = (header: string) => {
-        return ['#', header.toLowerCase().replace(/[^\w]+/g, '-')].join('')
+    const getHeaderLink = (slug: string) => {
+        return ['#', slug].join('')
     }
 
     useEffect(() => {
@@ -110,8 +112,8 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
                 {headers.length > 0 && (
                     <Island label="On this page">
                         <div className={[style.links, style.page].join(' ')} ref={onPageRef}>
-                            {formattedHeaders.map(({ level, title, relation, distance }, index) => (
-                                <Link href={getHeaderLink(title)} key={title + index}>
+                            {formattedHeaders.map(({ level, title, slug, relation, distance }, index) => (
+                                <Link href={getHeaderLink(slug)} key={slug + index}>
                                     <Text block>
                                         <div
                                             className={style.indent}

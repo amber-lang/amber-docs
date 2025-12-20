@@ -8,12 +8,18 @@ export function generateUrl(version: string, pathname: string) {
     return path.join(version, pathname)
 }
 
+export function cleanHeading(text: string) {
+    return text
+        .replace(/^#+\s*/, '') // Remove # markers
+        .replace(/`([^`]+)`/g, '$1') // Remove code backticks but keep content
+        .replace(/\{#?[^}]*\}/g, '') // Remove and clean custom anchor tags like {#id}
+        .replace(/\s*<!--.*?-->\s*/g, '') // Remove comments
+        .trim()
+}
+
 export function slugify(text: string) {
-    return text.toLowerCase()
-        // Codes
-        .replace(/`([^`]+)`/g, '$1')
-        // Comments
-        .replaceAll(/\s*<!--.*?-->\s*/g, '')
+    return cleanHeading(text)
+        .toLowerCase()
         .replace(/[^\w]+/g, '-')
 }
 
