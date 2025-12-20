@@ -32,7 +32,7 @@ printf("%s\n", [bold("Important message")])
 ## `echo_colored`
 
 ```ab
-pub fun echo_colored(message: Text, color: Int): Null 
+pub fun echo_colored(message: Text, color: Text | Int): Null 
 ```
 
 Prints a text with a specified color.
@@ -41,8 +41,25 @@ Prints a text with a specified color.
 ```ab
 import { echo_colored } from "std/env"
 
-echo_colored("Red text", 31)
+echo_colored("Red text", "red")
+echo_colored("Blue text", 34)
 ```
+
+### Supported color names
+| Color name | Code |
+| - | - |
+| black | 30 |
+| red | 31 |
+| green | 32 |
+| yellow | 93 |
+| orange | 33 |
+| blue | 34 |
+| purple | 35 |
+| cyan | 36 |
+| gray | 37 |
+| white | 97 |
+
+For all supported color codes, please visit https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
 
 ## `echo_error`
 
@@ -107,10 +124,10 @@ echo_warning("Warning: Disk space low")
 ## `env_const_set`
 
 ```ab
-pub fun env_const_set(name: Text, val: Text): Null? 
+pub fun env_const_set(name: Text, val: Text | Int | Bool): Null? 
 ```
 
-Sets a constant inside the shell session.
+Sets a constant inside the shell session. Note that `true` is saved as int (`1`).
 
 ### Usage
 ```ab
@@ -167,16 +184,18 @@ let value = env_var_load("MY_VAR", ".env.local")
 ## `env_var_set`
 
 ```ab
-pub fun env_var_set(name: Text, val: Text): Null? 
+pub fun env_var_set(name: Text, val: Text | Int | Bool): Null? 
 ```
 
-Sets a variable inside the shell session.
+Sets a variable inside the shell session. Note that `true` is saved as int (`1`).
 
 ### Usage
 ```ab
 import { env_var_set } from "std/env"
 
-env_var_set("DEBUG", "true")
+env_var_set("STATUS","succeeded")
+env_var_set("COUNT", 100)
+env_var_set("DEBUG", true) // saved as int (`1`)
 ```
 
 ## `env_var_test`
@@ -344,7 +363,7 @@ printf("%s\n", [italic("Emphasized text")])
 ## `printf`
 
 ```ab
-pub fun printf(format: Text, args: [Text] = [""]): Null 
+pub fun printf(format: Text, args: [Text] = []): Null 
 ```
 
 `printf` the text following the arguments.
@@ -359,7 +378,7 @@ printf("Hello %s!", ["World"])
 ## `styled`
 
 ```ab
-pub fun styled(message: Text, style: Int, fg: Int, bg: Int): Text 
+pub fun styled(message: Text, style: Int, fg: Int | Text, bg: Int | Text): Text 
 ```
 
 Prepares a text with formatting options for `printf`.
@@ -369,7 +388,24 @@ Prepares a text with formatting options for `printf`.
 import { styled } from "std/env"
 
 printf("%s\n", [styled("Error!", 1, 31, 40)])
+printf("%s\n", [styled("Warning!", 1, "white", "yellow")])
 ```
+
+### Supported color names
+| Color name | Foreground code | Background code |
+| - | - |
+| black | 30 | 40 |
+| red | 31 | 41 |
+| green | 32 | 42 |
+| yellow | 33 | 43 |
+| orange | 93 | 103 |
+| blue | 34 | 44 |
+| purple | 35 | 45 |
+| cyan | 36 | 46 |
+| gray | 37 | 47 |
+| white | 97 | 107 |
+
+For all supported color codes, please visit https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
 
 ## `underlined`
 
