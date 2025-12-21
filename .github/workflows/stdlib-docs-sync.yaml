@@ -14,69 +14,77 @@ jobs:
           repository: amber-lang/amber
           path: amber
 
-      - id: amber-builder
-        working-directory: amber
-        run: |
-          cargo build --release
-          if [ $? -ne 0 ]; then
-            echo "Building Amber failed"
-            exit 1
-          fi
-          AMBER_EXECUTABLE="$(realpath ./target/release/amber)"
-          echo "AMBER_EXECUTABLE=$AMBER_EXECUTABLE" >> "$GITHUB_OUTPUT"
-
       - name: Build Standard Library Documentation
+        uses: lens0021/amber-script-action@b58828040020a034953fab1098936dea57a3cbe4 # v2.2.0
         id: docs-builder
-        working-directory: amber
-        run: |
-          $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
-        env:
-          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
-          AMBER_SCRIPT: |
-            import { file_glob } from "std/fs"
+        with:
+          amber-version: 0.5.1-alpha
+          script: |
+            cd "amber"
             import { env_var_get } from "std/env"
+            import { file_glob } from "std/fs"
 
-            const amber_executable = trust env_var_get("AMBER_EXECUTABLE")
-            const files = file_glob("src/std/*.ab") failed {
-              echo "::error::Unable to glob files in 'src/std'"
-              exit 1
-            }
-
-            echo "Building docs..."
-            for file in files {
-              silent $ {amber_executable} docs --usage {file} $ exited(code): if {
-                code == 0: echo "Successfully generated for '{file}'"
-                code == 1: echo "::error::Docs gen failed for '{file}'"
-                code == 127: echo "::error::Cannot find compiled artifact '{amber_executable}'"
-                else: echo "::error::Unknown error"
+            main {
+              $ cargo build --release $ failed {
+                echo "::error::Building Amber failed"
+                exit 1
               }
+              const amber_executable = "./target/release/amber"
+              const files = file_glob("src/std/*.ab") failed {
+                echo "::error::Unable to glob files in 'src/std'"
+                exit 1
+              }
+
+              echo "Building docs..."
+              for file in files {
+                silent $ {amber_executable} docs --usage {file} $ exited(code): if {
+                  code == 0: echo "Successfully generated for '{file}'"
+                  code == 1: echo "::error::Docs gen failed for '{file}'"
+                  code == 127: echo "::error::Cannot find compiled artifact '{amber_executable}'"
+                  else: echo "::error::Unknown error"
+                }
+              }
+              const docs_path = $ realpath src/std/docs $?
+              $ echo "docs_path={docs_path}" >> {env_var_get("AMBER_SCRIPT_OUTPUT")?} $?
+              echo "Done"
             }
-            const docs_path = trust $ realpath src/std/docs $
-            trust $ echo "DOCS_PATH={docs_path}" >> "{env_var_get("GITHUB_OUTPUT")}" $
 
       - uses: actions/checkout@v6
         with:
           path: amber-docs
 
       - name: Locate New Documentation
-        working-directory: amber-docs
-        run: $AMBER_EXECUTABLE eval "$AMBER_SCRIPT"
+        uses: lens0021/amber-script-action@b58828040020a034953fab1098936dea57a3cbe4 # v2.2.0
         env:
-          AMBER_EXECUTABLE: ${{ steps.amber-builder.outputs.AMBER_EXECUTABLE }}
-          DOCS_PATH: ${{ steps.docs-builder.outputs.DOCS_PATH }}
-          AMBER_SCRIPT: |
+          DOCS_PATH: ${{ fromJSON(steps.docs-builder.outputs.script_outputs).docs_path }}
+        with:
+          amber-version: 0.5.1-alpha
+          script: |
+            cd "amber-docs"
             import { env_var_get } from "std/env"
-            import { file_glob } from "std/fs"
+            import { file_exists, file_glob } from "std/fs"
+
+            const config_filename = "config.json"
+            const docs_path = trust env_var_get("DOCS_PATH")
 
             main {
-              const docs_path = trust env_var_get("DOCS_PATH")
-              const latest_version = $ jq -r '.allVersions[-1]' config.json $?
+              const files = file_glob("{docs_path}/*.md")?
+              if len(files) == 0 {
+                echo "::error::No file found in {docs_path}/*.md"
+                exit 1
+              }
 
-              for file in trust file_glob("{docs_path}/*.md"):
+              if not file_exists(config_filename) {
+                echo "::error::{config_filename} not found"
+                exit 1
+              }
+              const latest_version = $ jq -r '.allVersions[-1]' {config_filename} $?
+
+              for file in files:
                 $ cp {file} docs/{latest_version}/stdlib/doc $ failed:
-                  echo "::error::Failed copy {file}"
+                  echo "::warning::Failed copy {file}"
+              echo "Done"
             }
-
 
       - uses: peter-evans/create-pull-request@v8
         with:
