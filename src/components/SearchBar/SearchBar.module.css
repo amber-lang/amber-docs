@@ -185,11 +185,11 @@
 }
 
 .option:not(.disabled):hover {
-    background: color-mix(in srgb, var(--shadow), transparent 55%);
+    background: color-mix(in srgb, var(--shadow), transparent 75%);
 }
 
 .option.selected {
-    background: color-mix(in srgb, var(--shadow), transparent 55%) !important;
+    background: color-mix(in srgb, var(--shadow), transparent 75%) !important;
 }
 
 .shortcut {
