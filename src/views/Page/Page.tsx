@@ -52,7 +52,7 @@ export default async function Page({ location, document }: Props) {
             <RightSidebar headers={document.headers} docDesc={docDesc} />
             <Sheet>
                 <div className={style.search}>
-                    <SearchBar variant='body' />
+                    <SearchBar variant='body' dockable />
                 </div>
                 <SideBar toc={toc} headers={document.headers} docDesc={docDesc} />
                 <SettingsGrid />

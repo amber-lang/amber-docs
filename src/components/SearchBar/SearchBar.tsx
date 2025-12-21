@@ -13,7 +13,8 @@ type Variant = 'body' | 'title'
 
 interface Props {
     variant?: Variant,
-    placeholder?: string
+    placeholder?: string,
+    dockable?: boolean
 }
 
 function useSearchResult(version: string, query: string) {
@@ -21,12 +22,13 @@ function useSearchResult(version: string, query: string) {
     return { result: data?.results.slice(0, 5) ?? [], isLoading: !error && !data, error }
 }
 
-export default function SearchBar({ variant = 'body', placeholder = 'Search documentation' }: Props) {
+export default function SearchBar({ variant = 'body', placeholder = 'Search documentation', dockable = false }: Props) {
     const { version } = useVersion()
     const [query, setQuery] = useState('')
     const [isInputFocused, setIsInputFocused] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState(-1)
-    const [dropdownPos, setDropdownPos] = useState<{ left: number, top: number, width: number } | null>(null)
+    const [dropdownPos, setDropdownPos] = useState<{ left: number, top?: number, bottom?: number, width: number, isFlipped: boolean } | null>(null)
+    const [isDocked, setIsDocked] = useState(false)
     const inputRef = useRef<HTMLInputElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
     const debounceQuery = useDebounceCallback((val) => {
@@ -78,25 +80,76 @@ export default function SearchBar({ variant = 'body', placeholder = 'Search docu
         return () => window.removeEventListener('keydown', handleGlobalKeyDown)
     }, [])
 
-    // Update dropdown position when focused
+    // Update dropdown position and docked state
     useEffect(() => {
         if (isInputFocused && containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect()
-            setDropdownPos({
-                left: rect.left + rect.width / 2,
-                top: rect.bottom + 8,
-                width: 400
-            })
+            const updatePos = () => {
+                if (!containerRef.current) return
+                const rect = containerRef.current.getBoundingClientRect()
+                const isMobile = window.innerWidth <= 1000
+                const vh = window.innerHeight
+                const vvh = window.visualViewport?.height || vh
+                
+                const isKeyboardOpen = isMobile && (vvh < vh * 0.9)
+                const docked = isMobile && dockable && isInputFocused
+                setIsDocked(docked)
+                
+                if (docked || isKeyboardOpen) {
+                    const bottomOffset = vh - vvh
+                    setDropdownPos({
+                        left: docked ? window.innerWidth / 2 : rect.left + rect.width / 2,
+                        bottom: (docked ? bottomOffset + 60 : (vh - rect.top)) + 8,
+                        width: Math.min(400, window.innerWidth - 40),
+                        isFlipped: true
+                    })
+                } else {
+                    setDropdownPos({
+                        left: rect.left + rect.width / 2,
+                        top: rect.bottom + 8,
+                        width: isMobile ? Math.min(400, window.innerWidth - 40) : 400,
+                        isFlipped: false
+                    })
+                }
+            }
+
+            updatePos()
+            window.visualViewport?.addEventListener('resize', updatePos)
+            window.addEventListener('resize', updatePos)
+            return () => {
+                window.visualViewport?.removeEventListener('resize', updatePos)
+                window.removeEventListener('resize', updatePos)
+            }
+        } else {
+            setIsDocked(false)
         }
-    }, [isInputFocused])
+    }, [isInputFocused, dockable])
+
+    // Use global listeners for docked state
+    useEffect(() => {
+        if (isDocked) {
+            const handleScroll = () => {
+                inputRef.current?.blur()
+            }
+            // Delay adding the scroll listener to avoid triggering it on initial layout shift (keyboard opening)
+            const timer = setTimeout(() => {
+                window.addEventListener('scroll', handleScroll, { passive: true })
+            }, 500)
+            
+            return () => {
+                clearTimeout(timer)
+                window.removeEventListener('scroll', handleScroll)
+            }
+        }
+    }, [isDocked])
 
     const dropdown = (
         <div 
-            className={[style.options, showResults && style.show].join(' ')}
+            className={[style.options, showResults && style.show, dropdownPos?.isFlipped && style.flip].filter(Boolean).join(' ')}
             style={dropdownPos ? {
                 position: 'fixed',
                 left: dropdownPos.left,
-                top: dropdownPos.top,
+                top: dropdownPos.top ?? 'auto',
+                bottom: dropdownPos.bottom ?? 'auto',
                 width: dropdownPos.width,
                 transform: 'translateX(-50%) translateZ(0)'
             } : undefined}
@@ -126,8 +179,17 @@ export default function SearchBar({ variant = 'body', placeholder = 'Search docu
         </div>
     )
 
+    const vvh = typeof window !== 'undefined' ? (window.visualViewport?.height || window.innerHeight) : 0
+    const vh = typeof window !== 'undefined' ? window.innerHeight : 0
+
     return (
-        <div ref={containerRef} className={[style[variant], style.base].join('\n')}>
+        <div 
+            ref={containerRef} 
+            className={[style[variant], !isDocked && style.base, isDocked && style.docked].filter(Boolean).join(' ')}
+            style={isDocked ? {
+                bottom: vh - vvh
+            } : undefined}
+        >
             <input
                 ref={inputRef}
                 type="text"
@@ -146,6 +208,10 @@ export default function SearchBar({ variant = 'body', placeholder = 'Search docu
                 </div>
             )}
             {typeof window !== 'undefined' ? createPortal(dropdown, document.body) : dropdown}
+            {isDocked && typeof window !== 'undefined' && createPortal(
+                <div className={style.backdrop} onClick={() => inputRef.current?.blur()} />,
+                document.body
+            )}
         </div>
     )
 }
