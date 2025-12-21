@@ -10,84 +10,31 @@ import Link from 'next/link'
 import PrefetchLink from '@/components/PrefetchLink'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
 import useVersion from '@/contexts/VersionContext/useVersion'
-import { generateUrl, slugify, cleanHeading } from '@/utils/urls'
+import { generateUrl, slugify } from '@/utils/urls'
+
+import OnThisPage from '@/components/OnThisPage/OnThisPage'
 
 interface Props {
-    headers: string[],
-    docDesc?: DocDescriptor,
-    toc: TocSection[],
+    headers: string[]
+    docDesc?: DocDescriptor
+    toc?: TocSection[]
     isFixed?: boolean
-}
-
-type Header = {
-    level: number,
-    title: string,
-    slug: string,
-    relation: string,
-    distance: number
-}
-
-function getHeaderLevel(header: string): number {
-    const matches = header.match(/^#+\s/)
-    return matches![0].length - 1
-}
-
-function getRelation(level: number, prevLevel: number): string {
-    switch (level - prevLevel) {
-        case 1:
-            return 'child'
-        case 0:
-            return 'sibling'
-        default:
-            return 'detached'
-    }
-}
-
-function getHeaders(headers: string[], disableLevels?: number[]): Header[] {
-    let distances = [0, 0, 0]
-    let prevLevel = NaN
-    const filterHeaders = (header: string) => (
-        header.startsWith('#') && !disableLevels?.includes(getHeaderLevel(header))
-    )
-    return headers.filter(filterHeaders).map(header => {
-        const level = Math.min(getHeaderLevel(header), 3) - 1
-        const relation = getRelation(level, prevLevel)
-        const distance = distances[level]
-        for (const i of distances.keys()) {
-            if (i < level) distances[i]++
-            else if (i >= level) distances[i] = 0
-        }
-        prevLevel = level
-        return {
-            level,
-            title: cleanHeading(header),
-            slug: slugify(header),
-            relation,
-            distance
-        }
-    })
 }
 
 export default function SideBar({ headers, docDesc, toc = [], isFixed = false }: Props) {
     const { version } = useVersion()
     const { isOpen } = useSidebar()
-    const titleHeader = docDesc?.title ? `# ${docDesc.title}` : ""
-    const formattedHeaders = getHeaders([titleHeader, ...headers], docDesc?.disableLevels)
-    const onPageRef = React.useRef<HTMLDivElement>(null)
     const tocRef = React.useRef<HTMLDivElement>(null)
 
-    const getHeaderLink = (slug: string) => {
-        return ['#', slug].join('')
-    }
-
     useEffect(() => {
-        if (onPageRef.current && tocRef.current && isFixed) {
+        if (tocRef.current && isFixed) {
             const tocHeight = tocRef.current.clientHeight
 
             const setSize = () => {
-                if (!tocRef.current || !onPageRef.current) return
-                const height = onPageRef.current.clientHeight
-                tocRef.current.style.height = `calc(100vh - ${height + 250}px)`
+                if (!tocRef.current) return
+                // Calculate "table of content" height based on "on this page" height
+                const otpReserved = headers.length > 0 ? 'var(--otp-reserved-height, 0px)' : '0px';
+                tocRef.current.style.height = `calc(100svh - 200px - ${otpReserved})`
                 if (tocHeight < tocRef.current.clientHeight) {
                     tocRef.current.style.height = `${tocHeight}px`
                 }
@@ -109,28 +56,10 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
     return (
         <div className={`${isFixed && style.fixed} ${isOpen && style.open}`}>
             <div className={`${style.container}`}>
-                {headers.length > 0 && (
-                    <Island label="On this page">
-                        <div className={[style.links, style.page].join(' ')} ref={onPageRef}>
-                            {formattedHeaders.map(({ level, title, slug, relation, distance }, index) => (
-                                <Link href={getHeaderLink(slug)} key={slug + index}>
-                                    <Text block>
-                                        <div
-                                            className={style.indent}
-                                            style={{ '--distance': distance.toString()} as any}
-                                            {...{ indent: level, relation }}
-                                        >
-                                            <div className={style.text}>
-                                                {title}
-                                            </div>
-                                        </div>
-                                    </Text>
-                                </Link>
-                            ))}
-                        </div>
-                    </Island>
-                )}
-                <div className={style.spacer}/>
+                <div className={style.onThisPageWrapper}>
+                    <OnThisPage headers={headers} docDesc={docDesc} />
+                </div>
+                {headers.length > 0 && <div className={style.spacer}/>}
                 <Island label="Table of contents">
                     <div className={[style.links, !headers.length && style.toc].join(' ')} ref={tocRef}>
                         {toc.map(({ path, title, docs }) => (
@@ -164,3 +93,4 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
         </div>
     )
 }
+
