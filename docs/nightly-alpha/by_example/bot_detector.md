@@ -78,7 +78,7 @@ main (args) {
                 continue
             }
             echo("Blocking IP address: {ip} ({count} requests)")
-            $ echo"{ip}" >> /etc/ipblocklist.txt $?
+            $ echo "{ip}" >> /etc/ipblocklist.txt $?
             $ echo "\$(date) | IP addess {ip} added to the block list, RPH={count}" >> /var/log/bot-detector.log $?
         }
     }

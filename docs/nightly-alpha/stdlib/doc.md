@@ -27,7 +27,7 @@ if silent download("https://github.com/amber-lang/amber/archive/refs/heads/maste
     for v in stdlib {
         if (contains(v, ".ab") and file_exist("/tmp/amber-git/amber-master/src/std/{v}")) {
             trust $ amber --docs "/tmp/amber-git/amber-master/src/std/{v}" "./docs/stdlib/doc" $
-            echo "\n"
+            echo("\n")
         }
     }
 }

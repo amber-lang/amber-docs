@@ -2,7 +2,7 @@ Welcome to the documentation of Amber the programming language! 🎉
 
 Here is a minimal hello world example:
 ```ab
-echo "Hello world!"
+echo("Hello world!")
 ```
 
 ## What is Amber?
