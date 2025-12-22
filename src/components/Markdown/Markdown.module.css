@@ -317,3 +317,9 @@ html[mode="light"] .markdown .light-dark img:last-child {
 .markdown h6 {
     scroll-margin-top: 10rem;
 }
+
+.mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}

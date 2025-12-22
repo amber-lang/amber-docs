@@ -71,7 +71,7 @@ a {
   color: var(--code-keyword);
 }
 
-.hljs-number {
+.hljs-number, .hljs-literal {
   color: var(--code-number);
 }
 
@@ -87,19 +87,19 @@ a {
   color: var(--code-interp);
 }
 
-.hljs-meta {
+.hljs-meta, .hljs-attr {
   color: var(--code-meta);
 }
 
-.hljs-operator {
+.hljs-operator, .hljs-symbol {
   color: var(--code-operator);
 }
 
-.hljs-variable {
+.hljs-variable, .hljs-params {
   color: var(--code-variable);
 }
 
-.hljs-function {
+.hljs-function, .hljs-title.function_ {
   color: var(--code-function);
 }
 
@@ -107,7 +107,7 @@ a {
   color: var(--code-comment);
 }
 
-.hljs-type {
+.hljs-type, .hljs-built_in, .hljs-class, .hljs-title.class_ {
   color: var(--code-type);
 }
 

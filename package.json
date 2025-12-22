@@ -24,6 +24,7 @@
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.7",
     "highlight.js": "^11.10.0",
+    "mermaid": "^10.9.5",
     "next": "^16.0.7",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
