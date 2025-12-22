@@ -230,7 +230,7 @@ This method is called after parsing but before translation. It allows the module
 
 ### Translation
 
-The next step is translating the AST into an Intermediate Representation (Fragments) which is structurally closer to the target language (Bash). This is handled by the `TranslateModule` trait located in [src/translate/module.rs](https://github.com/amber-lang/amber/blob/master/src/translate/module.rs).
+The next step is translating the AST into an Intermediate Representation (Fragments) which is structurally closer to the target language (Bash). This is handled by the `TranslateModule` trait located in [src/translate/module.rs](https://github.com/amber-lang/amber/blob/main/src/translate/module.rs).
 
 ```rs
 pub trait TranslateModule {
