@@ -53,6 +53,7 @@ export default function Navigation({ hideSearch = false }: Props) {
                             onChange={(value: Object) => router.push(`/${value.toString()}`)}
                             options={versions.toReversed()}
                             getLabel={(option: Object) => (option.toString()).replace(/-(alpha|beta)/, "")}
+                            width="6rem"
                         />
                     </div>
                     {version.includes("alpha") && (

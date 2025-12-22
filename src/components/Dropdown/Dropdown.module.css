@@ -56,7 +56,8 @@
     .list {
         visibility: hidden;
         position: absolute;
-        width: calc(100% + 1.25rem);
+        min-width: calc(100% + 1.25rem);
+        width: max-content;
         transform: scaleY(0);
         transform-origin: top center;
         opacity: 0;
@@ -94,7 +95,8 @@
         left: 0;
         opacity: 1;
         display: inline-block;
-        width: calc(100% + 1.25rem);
+        min-width: calc(100% + 1.25rem);
+        width: max-content;
         transform: scaleY(1);
         border-radius: 0 0 0.5rem 0.5rem;
         border: 1px solid color-mix(in srgb, var(--background) 60%, var(--text));

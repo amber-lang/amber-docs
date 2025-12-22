@@ -45,6 +45,7 @@ export default function Dropdown({
         <div
             className={[styles.container, styles[style], isOpen && styles.open, (options.length <= 1) && styles.single].filter(Boolean).join(' ')}
             ref={dropdownRef}
+            style={isOpen && width ? { width } : undefined}
             {...(isOpen ? { open: true } : null)}
         >
             <div
