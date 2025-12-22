@@ -1,4 +1,20 @@
-# Compiler Information
+The Amber compiler follows a standard compilation pipeline to transform Amber source code into Bash scripts.
+
+```mermaid
+flowchart LR
+    Lexer --> Parser
+    Parser --> TypeCheck[Type Checker]
+    TypeCheck --> Translator
+    Translator --> Optimizer
+    Optimizer --> Renderer
+```
+
+1.  **Lexer**: Transforms source code text into a stream of tokens (Keywords, Operators, Identifiers, etc.).
+2.  **Parser**: Consumes tokens to build an Abstract Syntax Tree (AST), representing the code structure.
+3.  **Type Checker**: Traverses the AST to validate types, ensure safety, and infer missing type information.
+4.  **Translator**: Converts the typed AST into an intermediate representation called `FragmentKind` (Lower IR).
+5.  **Optimizer**: Performs optimizations on the intermediate representation.
+6.  **Renderer**: Converts the final IR into the target Bash string.
 
 Here you will find out how the compiler is structured, how the parser works and how to write new syntax modules. Let's begin!
 
@@ -88,14 +104,14 @@ Statement (`Statement`) is a structure that can represent any `SyntaxModule` tha
 
 ```rs
 struct Statement {
-    value: Option<StatementType>
+    value: Option<StmtType>
 }
 ```
 
-Here we can see that the `value` field accepts `StatementType` enum that is declared above and represents a syntax module.
+Here we can see that the `value` field accepts `StmtType` enum that is declared above and represents a syntax module.
 
 ```rs
-enum StatementType {
+enum StmtType {
     Expr(Expr),
     VariableInit(VariableInit),
     VariableSet(VariableSet),
@@ -104,22 +120,20 @@ enum StatementType {
 }
 ```
 
-Statement is built of a macro `handle_types!` that can be located in [src/modules/mod.rs](https://github.com/amber-lang/amber/blob/master/src/modules/mod.rs). The syntax modules provided to the macro are parsed sequentially in the order from top to bottom. This means that the parser will first try to match `Import` and then `FunctionDeclaration`. The expression  (`Expr` located in [src/modules/expression/expr.rs](https://github.com/amber-lang/amber/blob/master/src/modules/expression/expr.rs)) is passed as the final parameter to the `handle_types!` macro so that it's parsed at the very end.
+Statement is built of a macro `parse_statement!` that can be located in [src/modules/statement/stmt.rs](https://github.com/amber-lang/amber/blob/master/src/modules/statement/stmt.rs). The syntax modules provided to the macro are parsed sequentially in the order from top to bottom. This means that the parser will first try to match `Import` and then `FunctionDeclaration`. The expression  (`Expr` located in [src/modules/expression/expr.rs](https://github.com/amber-lang/amber/blob/master/src/modules/expression/expr.rs)) is passed as the final parameter to the `parse_statement!` macro so that it's parsed at the very end.
 
 ```rs
-handle_types!(StatementType, [
+parse_statement!([
     Import,
     FunctionDeclaration,
     // ...
     Expr
-]);
+], ...);
 ```
 
-This macro generates a couple of methods for the implementation of Stmt. This macro generates the following functions:
-- `fn get_modules(&self) -> Vec<StatementType>` - returns a vector of statements that can later be matched by `parse_match`
-- `fn parse_match(&mut self, meta: &mut ParserMetadata, module: StatementType) -> SyntaxResult` - parses and runs `get` method specified later in `Statement` to retrieve the `SyntaxResult`.
-- `fn translate_match(&self, meta: &mut TranslateMetadata, module: &StatementType) -> String` - calls `translate` method on each of the syntax modules to translate them into Bash code.
-- `fn document_match(&self, meta: &ParserMetadata, module: &StatementType) -> String` - calls `document` method on each of the syntax modules to retrieve a documentation string.'
+This macro iterates through the provided syntax modules and attempts to parse them one by one. If a module successfully parses the code, the loop breaks and the result is returned.
+
+The `StatementDispatch` derive macro is used on the `StmtType` enum to automatically generate dispatch methods for traits like `TranslateModule`, `TypeCheckModule`, etc. preventing the need to verify matches manually.
 
 #### Expr
 
@@ -127,12 +141,16 @@ Expression (`Expr` located in [src/modules/expression/expr.rs](https://github.co
 
 ```rs
 struct Expr {
+    // The value of the expression
     value: Option<ExprType>,
-    kind: Type
+    // The type of the expression
+    kind: Type,
+    // The position of the expression
+    position: Option<PositionInfo>
 }
 ```
 
-Analogically to `Statement`, expression also is a wrapper for syntax modules that are of expression type. Instead of `StatementType` enum `ExprType` is declared.
+Analogically to `Statement`, expression also is a wrapper for syntax modules that are of expression type. Instead of `StmtType` enum `ExprType` is declared.
 
 ```rs
 enum ExprType {
@@ -152,10 +170,12 @@ Since certain expressions require different approaches to parsing, there is a di
 - `TypeOp` - a binary expression that is represented as expression followed by operator and then a type. Example of such operator is a cast operator: `12 as Bool`.
 - `Literal` - a Literal that doesn't have any directional precedence. Literal is the final group of expression precedence.
 
-The hierarchy of the groups is represented within the `parse_expr!` macro (defined in [src/modules/expression/macros.rs](https://github.com/amber-lang/amber/blob/master/src/modules/expression/macros.rs)). It returns an Expr` that has been parsed. Here is an example usage of this macro:
+The hierarchy of the groups is represented within the `parse_expression!` macro (defined in [src/modules/expression/macros.rs](https://github.com/amber-lang/amber/blob/master/src/modules/expression/macros.rs)). It returns an Expr` that has been parsed.
+
+begin[details] How exactly does parsing expressions work?
 
 ```rs
-let result = parse_expr!(meta, [
+let result = parse_expression!(meta, [
     ternary @ TernOp => [ Ternary ],
     range @ BinOp => [ Range ],
     addition @ BinOp => [ Add, Sub ],
@@ -193,3 +213,61 @@ let result = {
 ```
 
 The main objective of `parse_expr_group!` is to implement given function's body with appropriate parsing mechanism. If it's a `BinOp` that parses from left to right, then first we parse left expression by calling the lower order group, then we parse the operator, and then the right expression. You can read more on how parsing groups works in the macros file.
+
+end[details]
+
+### Type Checking
+
+After the parsing phase is completed, the Compiler performs a Type Check that validates types of variables and expressions. This logic is contained within the `TypeCheckModule` trait located in [src/modules/typecheck.rs](https://github.com/amber-lang/amber/blob/master/src/modules/typecheck.rs).
+
+```rs
+pub trait TypeCheckModule {
+    fn typecheck(&mut self, meta: &mut ParserMetadata) -> SyntaxResult;
+}
+```
+
+This method is called after parsing but before translation. It allows the module to infer types, check for type mismatches, and mutate the module state (e.g. storing the inferred type) using the `ParserMetadata`.
+
+### Translation
+
+The next step is translating the AST into an Intermediate Representation (Fragments) which is structurally closer to the target language (Bash). This is handled by the `TranslateModule` trait located in [src/translate/module.rs](https://github.com/amber-lang/amber/blob/main/src/translate/module.rs).
+
+```rs
+pub trait TranslateModule {
+    fn translate(&self, meta: &mut TranslateMetadata) -> FragmentKind;
+}
+```
+
+This method takes `TranslateMetadata` and transforms the module into a `FragmentKind`.
+
+### FragmentKind
+
+`FragmentKind` is a crucial enum that represents a piece of generated code. It serves as an intermediate representation that abstracts over different types of Bash constructs before they are rendered into the final string. It is defined in [src/translate/fragments/fragment.rs](https://github.com/amber-lang/amber/blob/main/src/translate/fragments/fragment.rs).
+
+```rs
+pub enum FragmentKind {
+    Raw(RawFragment),
+    VarExpr(VarExprFragment),
+    VarStmt(VarStmtFragment),
+    Block(BlockFragment),
+    Interpolable(InterpolableFragment),
+    List(ListFragment),
+    Subprocess(SubprocessFragment),
+    Arithmetic(ArithmeticFragment),
+    Comment(CommentFragment),
+    Log(LogFragment),
+    #[default] Empty
+}
+```
+
+Its purpose is to provide structured generation of Bash code. For example:
+- `VarExpr` handles variable access (like `$VAR`).
+- `Subprocess` handles `$(...)` command substitutions.
+- `Block` handles sequences of statements (like `{ ... }`).
+- `Arithmetic` handles `(( ... ))` arithmetic contexts.
+
+`FragmentKind` implements `FragmentRenderable` trait which allows it to be converted to a string. This is the final stage of compilation where Lower IR is rendered into actual Bash code:
+
+```rs
+fn to_string(self, meta: &mut TranslateMetadata) -> String;
+```

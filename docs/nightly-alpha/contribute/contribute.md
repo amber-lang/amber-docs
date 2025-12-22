@@ -36,33 +36,43 @@ cd amber
 cargo build
 ```
 
-In order to build the installer scripts run:
+In order to execute amber code, use the following command:
 
 ```bash
-amber build.ab build.sh
+# `cargo run` - cargo command
+# `run <file.ab>` - amber command
+cargo run run <file.ab>
+```
+
+To compile amber code into a bash code, use the following command:
+
+```bash
+# `cargo run` - cargo command
+# `build <input.ab> <output.sh>` - amber command
+cargo run build <input.ab> <output.sh>
 ```
 
 Debugging Amber:
 ```bash
-// Shows the AST
-AMBER_DEBUG_PARSER=true cargo run <file.ab>
-// Shows the time it took to compile each phase
-AMBER_DEBUG_TIME=true cargo run <file.ab>
-
-// Flamegraph is a profiling tool that is used to visualize the time each function took to execute
+# Displays Amber's AST trace of trying to parse code
+AMBER_DEBUG_PARSER=true cargo run -- run <file.ab>
+# Shows the time it took to compile each phase
+AMBER_DEBUG_TIME=true cargo run -- run <file.ab>
+# Flamegraph is a profiling tool that is used to visualize the time each function took to execute
 sudo cargo flamegraph -- <file.ab> <file.sh>
 ```
 
 #### Running Tests
 
-Tests modules can be found in [`src/tests`](https://github.com/amber-lang/amber/tree/master/src/tests) where every single module contains multiple testing functions. The exception is for [`stdlib.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs) and [`validity.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/validity.rs). They keep all the test scenarios in directories `stdlib/` and `validity/` for easier readability and better code organization.
+Tests modules can be found in [`src/tests`](https://github.com/amber-lang/amber/tree/main/src/tests). Modules like [`erroring.rs`](https://github.com/amber-lang/amber/blob/main/src/tests/erroring.rs), [`stdlib.rs`](https://github.com/amber-lang/amber/blob/main/src/tests/stdlib.rs) and [`validity.rs`](https://github.com/amber-lang/amber/blob/main/src/tests/validity.rs) load test scenarios from directories `src/tests/erroring/`, `src/tests/stdlib/` and `src/tests/validity/` respectively.
 
 To run ALL tests, run `cargo test`.
 
-If you want to run only tests from a specific module, let's say from [`stdlib.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/stdlib.rs), you can do that by adding the module name to the command: `cargo test stdlib` or `cargo test tests::stdlib::test_stdlib_src_tests_stdlib_extract_ab` to run a single test.
+If you want to run only tests from a specific module, let's say from [`stdlib.rs`](https://github.com/amber-lang/amber/blob/main/src/tests/stdlib.rs), you can do that by adding the module name to the command: `cargo test stdlib`.
 
-And if there is a specific function, like `function_with_wrong_typed_return()` in [`errors.rs`](https://github.com/amber-lang/amber/blob/master/src/tests/errors.rs), you should add the full path to it: `cargo test errors::function_with_wrong_typed_return`
+To run a single test case, for example `function_with_wrong_typed_return.ab` in `erroring`, you can filter by the test name:
+`cargo test function_with_wrong_typed_return`
 
 #### Github Actions
 
-We are using `cargo-dist` to build the binaries for all the platforms. The binaries are then uploaded to the release page once a new release a tag is created.
+We use GitHub Actions to run tests and build binaries. When a new release tag is created, artifacts are built for Linux, macOS, and Windows (x86_64 and aarch64) and uploaded to the release page. We also generate installers and Debian packages.

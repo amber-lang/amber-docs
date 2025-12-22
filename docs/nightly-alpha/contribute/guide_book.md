@@ -1,16 +1,21 @@
-1. [CLI Interface](contribute/guide_book#1-cli-interface)
-2. [Compiler](contribute/guide_book#2-compiler)
-   1. [Parser & tokenizer](contribute/guide_book#2-1-parser-tokenizer)
-   2. [Translator](contribute/guide_book#2-2-translator)
-   3. [Builtins](contribute/guide_book#2-3-creating-builtins)
-3. [Standard Library](contribute/guide_book#3-standard-library)
-4. [Tests](contribute/guide_book#4-tests)
+In this guidebook we will learn how the compiler works and how to contribute to it by adding new features or fixing bugs. We will cover the CLI interface, the compiler architecture, how to create builtins, the standard library and tests.
 
-## 1. CLI Interface
+# CLI Interface
 
-All CLI interface is in [`main.rs`](src/main.rs). [`clap`](https://crates.io/crates/clap) handles argument parsing.
+The entire CLI interface is defined in [`main.rs`](src/main.rs), using [`clap`](https://crates.io/crates/clap) for argument parsing. The `main` function initializes the `AmberCompiler` struct (defined in [`src/compiler.rs`](src/compiler.rs)), which serves as the main driver for the compilation process.
 
-## 2. Compiler
+Available subcommands include:
+*   `Run`: Compiles and executes an Amber script immediately.
+*   `Build`: Compiles an Amber script to a Bash script.
+*   `Eval`: Executes a snippet of Amber code passed as a string.
+*   `Check`: parses and type-checks the code without generating output.
+*   `Docs`: parsing the code and generating documentation for it.
+*   `Test`: Runs tests defined in the Amber project.
+*   `Completion`: Generates shell completion scripts.
+
+When a command is executed, `main.rs` configures the `AmberCompiler` with the appropriate options and calls its methods (e.g., `compile()`, `execute()`, `generate_docs()`) to perform the requested task.
+
+## Compiler
 
 Compiler consists of:
 - `src/compiler.rs` - Main entry point for the compiler
@@ -19,13 +24,16 @@ Compiler consists of:
 - `src/modules` - Syntax modules that parse Amber syntax and also handle the translation process
 - `src/translate` - Contains a definition of `TranslateModule` trait that is used to translate modules the previously mentioned `modules`
 
-`AmberCompiler` struct by itself is just a bootstrapper for all the syntax modules.
+`AmberCompiler` struct by itself is just a bootstrapper for all the syntax modules. Here we will learn some practical facts about compiler. For a more in-depth guide, visit [our compiler guide](/contribute/compiler).
 
-### 2.1. Parser & Tokenizer
+## Parser & Tokenizer
 
 Thanks to [`heraclitus`](https://github.com/amber-lang/Heraclitus), we can use simple abstractions to go through tokens.
 
-Please open any syntax module code file, and find a line that says: `impl SyntaxModule<ParserMetadata> for MODULE_NAME_HERE`
+Please open any syntax module code file, and find a line that says: 
+```rs
+impl SyntaxModule<ParserMetadata> for MODULE_NAME_HERE
+```
 
 It will have a `parse()` function, where all the magic happens. You can either dig into the code yourself or look at the example below to understand how it works.
 
@@ -49,7 +57,28 @@ fn parse(meta: &mut ParserMetadata) -> SyntaxResult {
 
 end[details]
 
-### 2.2. Translator
+## Parsing Logic & Failures
+
+The parsing process in Heraclitus revolves around the `SyntaxResult` type, which is an alias for `Result<(), Failure>`. The `Failure` type is critical for control flow and offers two distinct error modes:
+
+*   **Quiet Error**: which means "This is not the syntax validation you are looking for."
+    *   Returned when a syntax module doesn't match the current code (e.g., looking for a `let` keyword but finding `if`).
+    *   The compiler catches this error and backtracks to try the next available syntax module.
+*   **Loud Error**: which means "This IS the correct module, but the code is wrong."
+    *   Returned when the compiler is certain it's parsing the correct construct but encounters invalid syntax (e.g., missing semicolon after variable declaration).
+    *   This error halts the entire compilation process and reports a failure to the user.
+
+## Heraclitus Functions
+
+Heraclitus provides a set of helper functions and macros to streamline parsing and error reporting:
+
+*   `token(meta, "keyword")`: Attempts to consume a specific text token. Returns a **Quiet** error if the token doesn't match.
+*   `token_by(meta, pattern)`: Matches a token based on a boolean predicate function. Returns a **Quiet** error failure.
+*   `syntax(meta, &mut submodule)`: Recursively parses a nested syntax module. It propagates whatever error the submodule returns (Quiet or Loud).
+*   `error!(meta, tok, ...)`: A macro that halts compilation with a **Loud** error at the position of provided token.
+*   `error_pos!(meta, pos => ...)`: A macro that halts compilation with a **Loud** error at a *specific* position which can be more complex than single token, allowing for detailed error messages with context.
+
+## Translator
 
 Same as parser open a syntax module, and find a line that says `impl TranslateModule for MODULE_NAME_HERE` and that should contain a `translate` function.
 
@@ -70,9 +99,24 @@ fn translate() -> String {
 
 end[details]
 
-Basically, the `translate()` method should return a `String` for the compiler to construct a compiled file from all of them. If it translates to nothing, you should output an empty string, like `String::new()`
+Basically, the `translate()` method should return a `FragmentKind` which represents a piece of the compiled shell script.
 
-### 2.3. Creating Builtins
+## Fragments
+
+Amber compiles to shell script fragments. The `FragmentKind` enum encapsulates these different types of output. You can find available fragment modules in `src/translate/fragments/`. Common ones include:
+
+*   `RawFragment` (`raw`): Represents a raw string of shell code (e.g., `echo "hello"`).
+*   `BlockFragment` (`block`): Represents a block of code, often used for bodies of functions or loops.
+*   `ListFragment` (`list`): A list of fragments properly joined together.
+*   `SubprocessFragment` (`subprocess`): For command substitutions `$(...)`.
+*   `VarExprFragment` / `VarStmtFragment`: For handling variable usage and definition.
+
+To construct these fragments easily, Amber provides helper macros:
+
+*   `raw_fragment!("echo {}", value)`: Creates a `RawFragment` with formatted text.
+*   `fragments!(a, b, c)`: joins multiple fragments into a `ListFragment`.
+
+# Creating Builtins
 
 In this guide we will see how to create a basic built-in function that in Amber syntax presents like:
 
@@ -94,88 +138,92 @@ Create a `src/modules/builtin/builtin.rs` file with the following content:
 
 
 ```rs
-// This is the prelude that imports all necessary stuff of Heraclitus framework for parsing the syntax
+// Import the core Heraclitus framework traits and types required for defining syntax modules
 use heraclitus_compiler::prelude::*;
-// Expression module that can parse expressions
+// Import the Expression module to parse arguments as expressions
 use crate::modules::expression::expr::Expr;
-// Expression module to define if the builtin is failable
-// use crate::modules::condition::failed::Failed;
-// Translate module is not included in Heraclitus prelude as it's leaving the backend up to developer
+// Import the TranslateModule trait to define how this syntax translates to shell code
 use crate::translate::module::TranslateModule;
-// Metadata is the object that is carried when iterating over syntax tree.
-// - `ParserMetadata` - it carries the necessary information about the current parsing context such as variables and functions that were declared up to this point, warning messages aggregated up to this point, information whether this syntax is declared in a loop, function, main block, unsafe scope etc.
-// `TranslateMetadata` - it carries the necessary information for translation such as wether we are in a silent scope, in an eval context or what indentation should be used.
+// Import metadata structures:
+// - `ParserMetadata`: Tracks parsing state (declared variables, functions, warnings, current scope).
+// - `TranslateMetadata`: Tracks translation state (indentation level, silent/eval modes).
 use crate::utils::{ParserMetadata, TranslateMetadata};
-// Documentation module tells compiler what markdown content should it generate for this syntax module. This is irrelevent to our simple module so we will just return empty string.
+// Import DocumentationModule (required trait, even if unused for internal builtins)
 use crate::docs::module::DocumentationModule;
-// This is a macro that simplifies using `RawFragment` which is a very commonly used fragment in Amber
+// Import the `raw_fragment` macro for easy construction of shell script fragments
 use crate::raw_fragment;
 
-// This is a declaration of your built-in. Set the name accordingly.
+// This struct represents the parsed state of our builtin.
+// It holds the data extracted during parsing.
 #[derive(Debug, Clone)]
 pub struct Example {
-    // This particular built-in contains a single expression
+    // We expect this builtin to take one argument, which is an expression.
     value: Expr,
-    // failed: Failed // You need this if you want that is failable
 }
 
-// This is an implementation of a trait that creates a parser for this module
-impl SyntaxModule<ParserMetadata> for Echo {
-    // Here you can define the name of this built-in that will displayed when debugging the parser
+// Implement the SyntaxModule trait to define how to parse this construct.
+impl SyntaxModule<ParserMetadata> for Example {
+    // Defines the name used for this module in compiler debug logs and traces.
     syntax_name!("Example");
 
-    // This function should always contain the default state of this syntax module
+    // Returns a default instance of the struct.
     fn new() -> Self {
-        Echo {
+        Example {
             value: Expr::new()
-            // failed: Failed::new() // You need this if you want that is failable
         }
     }
 
-    // This is a function that will parse this syntax module "Built-in". It returns SyntaxResult which is a `Result<(), Failure>` where the `Failure` is an Heraclitus primitive that returns an error. It can be either:
-    // - `Quiet` - which means that this is not the right syntax module to parse
-    // - `Loud` - which means that this is the correct syntax module but there is some critical error in the code that halts the entire compilation process
+    // The core parsing logic.
+    // Returns `SyntaxResult`, which is `Result<(), Failure>`.
+    // See "2.1.1. Parsing Logic & Failures" for details on Quiet vs Loud errors.
     fn parse(&mut self, meta: &mut ParserMetadata) -> SyntaxResult {
-        // `token` parses a token `builtin` which is basically a command name for our built-in.
-        // If we add `?` in the end of the heraclitus provided function - this function will return a quiet error.
-        // Set the name accordingly.
+        // 1. Match the keyword "example".
+        // `token(...)` attempts to consume the specific token. If it fails, it returns a `Quiet` error.
+        // The `?` operator propagates this error, allowing the compiler to try other modules.
         token(meta, "example")?;
-        // `syntax` parses the `Expr` expression syntax module
+
+        // 2. Parse the argument.
+        // Once we've matched the keyword "example", we are committed to this syntax.
+        // `syntax(...)` will return either a `Loud` or `Quiet` error from the submodule.
         syntax(meta, &mut self.value)?;
-        // syntax(meta, &mut self.failed)?; // You need this if you want that is failable
-        // This terminates parsing process with success exit code
         Ok(())
     }
 }
 
-// Here we check if types match
+// Implement TypeCheckModule to validate types before translation.
 impl TypeCheckModule for Example {
-    // Here we define the valid typecheck function. The String returns the current line.
-    fn typecheck(&self, meta: &mut TranslateMetadata) -> SyntaxResult {
-        // Here we run the typecheck function on inner value to let it resolve its type
-        let value = self.value.typecheck(meta);
-        // We return a loud error if the type is not Text
-        if value.get_type() != Type::Text {
+    fn typecheck(&mut self, meta: &mut ParserMetadata) -> SyntaxResult {
+        // 1. Recursively typecheck the argument expression first.
+        self.value.typecheck(meta)?;
+        
+        // 2. Validate that the argument is of the expected type (Text).
+        if self.value.get_type() != Type::Text {
             let pos = self.value.get_position();
-            error!(meta, pos, "Expected 'Text' type, got {}", value.get_type());
+            // `error_pos!` creates a formatted `Loud` error message pointing to the specific
+            // location in the user's code.
+            return error_pos!(meta, pos => {
+                message: "Builtin function `example` can only be used with values of type Text"
+            });
         }
         Ok(())
     }
 }
 
-// Here we implement the translator for the syntax module. Here we return valid Bash or sh code. Set the name accordingly.
+// Implement TranslateModule to convert the AST into the target shell script.
 impl TranslateModule for Example {
-    // Here we define the valid translate function. The String returns the current line.
-    fn translate(&self, meta: &mut TranslateMetadata) -> String {
-        // Here we run the translate function on the syntax module `Expr`
+    fn translate(&self, meta: &mut TranslateMetadata) -> FragmentKind {
+        // 1. Translate the argument expression into a shell string.
         let value = self.value.translate(meta);
-        // Here we return the Bash code in a form of a `RawFragment`
+        
+        // 2. Construct the final shell command.
+        // `raw_fragment!` creates a code fragment that is inserted directly into the output script.
         raw_fragment!("echo {}", value)
     }
 }
 
-// Here we implement what should documentation generation render (in markdown format) when encounters this syntax module. Since this is just a simple built-in that does not need to be documented, we simply return an empty String.
-impl DocumentationModule for Expr {
+// Implement DocumentationModule.
+// For internal builtins not exposed in standard docs, we return an empty string.
+impl DocumentationModule for Example {
     fn document(&self, _meta: &ParserMetadata) -> String {
         String::new()
     }
@@ -194,36 +242,54 @@ pub mod builtin;
 Now we have to integrate this syntax module with either statement `Stmt` or expression `Expr`. Since this is a statement module, we'll add it to the list of statement syntax modules. Let's modify `src/modules/statement/stmt.rs`:
 
 ```rs
-// Let's import it first
+// 1. Import your new module
 use crate::modules::builtin::builtin::Example;
 
-// Let's add it to the statement type enum
-pub enum StatementType {
+// 2. Add it to the StmtType enum
+// This allows the AST (Abstract Syntax Tree) to hold your new construct.
+pub enum StmtType {
     // ...
     Example(Example)
 }
 
-// Now, let's add it to the list of statement syntax modules, arranged in the order of parsing precedence:
-impl Statement {
-    handle_types!(StatementType, [
-        // ...
-        Example,
-        // ...
-    }
-
+// 3. Register it in the parsing loop
+impl SyntaxModule<ParserMetadata> for Statement {
     // ...
+    fn parse(&mut self, meta: &mut ParserMetadata) -> SyntaxResult {
+        // `parse_statement!` iterates through the provided modules in order.
+        // The order determines precedence (though keywords usually disambiguate).
+        parse_statement!([
+            // ...
+            Example,
+            // ...
+        ], |module, cons| {
+            // ...
+        })
+    }
 }
 ```
 
 end[details]
 
-Don't forget to add a test in the [https://github.com/amber-lang/amber/tree/master/src/tests/validity](`validity`) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
+Don't forget to add a test in the [`validity`](https://github.com/amber-lang/amber/tree/master/src/tests/validity) folder and to add the new builtin to the list of the [reserved keywords](https://github.com/amber-lang/amber/blob/master/src/modules/variable/mod.rs#L16).
 
-## 3. Standard Library
+# Standard Library
 
-The Amber Standard Library (stdlib) provides a robust set of pre-defined functions and utilities designed to streamline development. It serves as a foundational toolkit, offering solutions for common tasks such as data manipulation, mathematical operations, string handling, and more. The `stdlib` is written in Amber and is located in the `src/std` directory. Each function in the `stdlib` must be covered by a test in `src/tests/stdlib`.
+The Amber Standard Library (stdlib) is a collection of essential modules written in Amber itself, located in the `src/std` directory. It provides foundational capabilities that are available to every Amber program.
 
-## 4. Tests
+Modules include:
+*   **Text** (`text.ab`): String manipulation functions (splitting, joining, trimming).
+*   **Math** (`math.ab`): Mathematical constants and functions.
+*   **Array** (`array.ab`): Utilities for handling arrays and lists.
+*   **FS** (`fs.ab`): File system operations (reading, writing, checking existence).
+*   **Env** (`env.ab`): Environment variable access and manipulation.
+*   **Date** (`date.ab`): Date and time utilities.
+*   **Http** (`http.ab`): Basic HTTP request capabilities.
+and more...
+
+Every function in the standard library is rigorously tested. You can find these tests in `src/tests/stdlib/`. When adding new standard library features, you must add corresponding tests to ensure correctness and prevent regressions.
+
+# Tests
 
 Amber uses `cargo test` for testing:
 - `validity` - the validity of the compiler output (`src/tests/validity/`)
@@ -247,7 +313,7 @@ fn prints_hi() {
     let code = "
         echo \"hi!\"
     ";
-    test_amber!(code, "hi!");
+    test_amber(code, "hi!", TestOutcomeTarget::Success);
 }
 ```
 

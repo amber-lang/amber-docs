@@ -35,7 +35,7 @@ const codeTheme = {
         codeString: '#98c379',
         codeCommand: '#30af95',
         codeInterp: '#c678dd',
-        codeMeta: '#222',
+        codeMeta: '#888888',
         codeOperator: '#6fb4c0',
         codeVariable: '#d17277',
         codeFunction: '#589fff',
