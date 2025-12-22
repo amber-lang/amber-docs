@@ -1,15 +1,16 @@
 import React from 'react'
-import style from './Button.module.css'
+import styles from './Button.module.css'
 
 interface Props {
     children: React.ReactNode,
-    onClick?: () => void
+    onClick?: () => void,
+    style?: React.CSSProperties
 }
 
 
-export default function Button({ children, onClick }: Props) {
+export default function Button({ children, onClick, style }: Props) {
     return (
-        <button className={style.button} onClick={onClick}>
+        <button className={styles.button} onClick={onClick} style={style}>
                 {children}
         </button>
     )

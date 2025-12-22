@@ -79,7 +79,7 @@ if drink == "water" {
 
 The if-chain offers a cleaner, more concise, and readable way to handle multiple conditions.
 
-## Ternary Expression
+## Ternary Expression {#then}
 
 Ternary expressions are ideal for quickly assigning values based on simple conditions. They provide a compact and efficient alternative to traditional conditional statements. Here’s an example:
 

@@ -1,0 +1,30 @@
+.aside {
+    width: 0;
+    margin: 0;
+    transition: width 300ms, margin 300ms;
+    position: relative;
+    z-index: 10;
+}
+
+.aside.open {
+    width: 300px;
+    margin-right: 2rem;
+}
+
+.container {
+    position: fixed;
+    width: 300px;
+    top: 116px;
+    transform: translate(150%, 0);
+    transition: transform 300ms;
+}
+
+.open .container {
+    transform: translate(0, 0);
+}
+
+@media screen and (max-width: 1560px) {
+    .aside {
+        display: none;
+    }
+}

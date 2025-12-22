@@ -13,6 +13,8 @@ export interface Document {
     content: string
     headers: string[]
     path: string
+    keywords?: string[]
+    headerKeywords?: Map<string, string[]>
 }
 
 const getHeaders = (content: string) => {
@@ -24,16 +26,58 @@ const getHeaders = (content: string) => {
 }
 
 const cachedDocs = new Map<string, Document>()
+const keywordSplitRegex = /[\s,]+/
+
+export function extractKeywords(content: string) {
+    const headerKeywords = new Map<string, string[]>()
+    let fileKeywords: string[] = []
+    let processedContent = content
+
+    // File level keywords at the very top (start of string)
+    const fileLevelKeywordsRegex = /^\s*\{#([^{}]+)\}\s*/
+    const fileMatch = processedContent.match(fileLevelKeywordsRegex)
+    if (fileMatch) {
+         fileKeywords = fileMatch[1].split(keywordSplitRegex).map(k => k.trim().replace(/^#/, '')).filter(k => k.length > 0)
+         processedContent = processedContent.replace(fileLevelKeywordsRegex, '')
+    }
+
+    // Header level keywords
+    // Match line: # Title {#keywords}
+    const headerRegex = /^(#+\s+.*?)\s*\{#([^{}]+)\}\s*$/gm
+    processedContent = processedContent.replace(headerRegex, (_match, titlePart, tagContent) => {
+        const kws = tagContent.split(keywordSplitRegex).map((k: string) => k.trim().replace(/^#/, '')).filter((k: string) => k.length > 0)
+        headerKeywords.set(titlePart.trim(), kws)
+        fileKeywords.push(...kws) 
+        return titlePart
+    })
+
+    // Index all headers (even those without keywords) for search
+    const allHeaders = getHeaders(processedContent)
+    allHeaders.forEach(h => {
+        const trimmed = h.trim()
+        if (!headerKeywords.has(trimmed)) {
+            headerKeywords.set(trimmed, [])
+        }
+    })
+
+    return {
+        content: processedContent,
+        keywords: fileKeywords,
+        headerKeywords
+    }
+}
 
 export async function getDocument(path: string): Promise<Document | null> {
     if (cachedDocs.has(path) && process.env.NODE_ENV === 'production') {
         return cachedDocs.get(path)!
     }
 
-    const content = await readFile(path)
-    if (!content) return null
+    const rawContent = await readFile(path)
+    if (!rawContent) return null
+    
+    const { content, keywords, headerKeywords } = extractKeywords(rawContent)
     const headers = getHeaders(content)
-    const document = { content, headers, path }
+    const document = { content, headers, path, keywords, headerKeywords }
 
     cachedDocs.set(path, document)
     return document

@@ -1,32 +1,21 @@
-.container {
-    width: 300px;
-    margin: 0 auto;
-    transition: transform 300ms;
+.links.page {
+    max-height: var(--on-this-page-max-height, none);
+    overflow-y: auto;
 }
 
-.fixed {
-    width: 0;
-    margin: 0 2rem;
-    transition: width 300ms;
-    position: relative;
-    z-index: 10;
+.links.fullHeight {
+    max-height: calc(100vh - 216px);
+    overflow-y: auto;
 }
 
-.fixed .container {
-    position: fixed;
-    transform: translate(-150%, 0);
+.links a {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
 }
 
-.fixed.open .container {
-    transform: translate(0, 0);
-}
-
-.fixed.open {
-    width: 300px;
-}
-
-.spacer {
-    height: 1rem;
+.links a:last-child {
+    margin-bottom: 0;
 }
 
 .indent {
@@ -40,12 +29,12 @@
     white-space: nowrap;
 }
 
-.indent[indent="0"] {
+.indent[data-indent="0"] {
     color: var(--text);
     font-weight: 500;
 }
 
-.indent[relation="child"]:not([indent="0"])::before {
+.indent[data-relation="child"]:not([data-indent="0"])::before {
     content: "";
     display: block;
     width: 1px;
@@ -56,7 +45,7 @@
     top: calc(2px - 5px);
 }
 
-.indent[relation="child"]:not([indent="0"])::after {
+.indent[data-relation="child"]:not([data-indent="0"])::after {
     content: "";
     display: block;
     width: 8px;
@@ -69,7 +58,7 @@
     top: 2px;
 }
 
-.indent[relation="sibling"]:not([indent="0"])::before {
+.indent[data-relation="sibling"]:not([data-indent="0"])::before {
     content: "";
     display: block;
     width: 1px;
@@ -80,7 +69,7 @@
     top: calc(-1rem - 3px);
 }
 
-.indent[relation="sibling"]:not([indent="0"])::after {
+.indent[data-relation="sibling"]:not([data-indent="0"])::after {
     content: "";
     display: block;
     width: 10px;
@@ -93,7 +82,7 @@
     top: -2px;
 }
 
-.indent[relation="detached"]:not([indent="0"])::before {
+.indent[data-relation="detached"]:not([data-indent="0"])::before {
     content: "";
     display: block;
     width: 1px;
@@ -104,7 +93,7 @@
     top: calc(calc(-20px * var(--distance)) - 1rem - 3px - calc(8px * var(--distance)));
 }
 
-.indent[relation="detached"]:not([indent="0"])::after {
+.indent[data-relation="detached"]:not([data-indent="0"])::after {
     content: "";
     display: block;
     width: 10px;
@@ -127,55 +116,12 @@
     }
 }
 
-.indent[indent="1"] {
+.indent[data-indent="1"] {
     margin-left: 1rem;
 }
 
-.indent[indent="2"] {
+.indent[data-indent="2"] {
     margin-left: 2rem;
 }
 
-.fixed .links.page {
-    max-height: calc(40vh - 100px);
-    overflow-y: auto;
-}
-
-.fixed .links:not(.page) {
-    overflow-y: auto;
-}
-
-.fixed .links.toc:not(.page) {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-}
-
-.links a {
-    display: block;
-    margin-bottom: 0.5rem;
-    text-decoration: none;
-}
-
-.links a:last-child {
-    margin-bottom: 0;
-}
-
-@media screen and (min-width: 1560px) {
-    .onThisPageWrapper {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 1560px) {
-    .container {
-        --on-this-page-max-height: max(30svh, 7rem);
-        --otp-reserved-height: 30svh; /* Simplified for subtraction in JS if needed, or CSS calc */
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .container {
-        --on-this-page-max-height: none;
-        --otp-reserved-height: 0px;
-    }
-}
 

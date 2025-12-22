@@ -8,7 +8,7 @@ import { useEffect, useMemo } from 'react'
 import setSwipeToCopy from './swipeToCopy'
 import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
 import { detailsBlockParser, DETAILS_BLOCK_RULE } from './detailsBlock'
-import { generateUrl, getLocation } from '@/utils/urls'
+import { generateUrl, getLocation, slugify } from '@/utils/urls'
 import path from 'path'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
@@ -46,12 +46,7 @@ const handleLogos = (text: string): string => {
 function createMarkdownRenderer(currentPath: string) {
     class MarkdownRenderer extends Renderer {
         heading(text: string, level: number, raw: string): string {
-            const id = raw.toLowerCase()
-                // Codes
-                .replace(/`([^`]+)`/g, '$1')
-                // Comments
-                .replaceAll(/\s*<!--.*?-->\s*/g, '')
-                .replace(/[^\w]+/g, '-')
+            const id = slugify(raw)
             return `
                 <div class="${style.container}">
                     <div

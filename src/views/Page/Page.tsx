@@ -14,6 +14,8 @@ import InfoCard from '@/components/InfoCard/InfoCard'
 import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
 import ClientMarkdown from '@/components/Markdown/ClientMarkdown'
 
+import RightSidebar from '@/components/RightSidebar/RightSidebar'
+
 interface Props {
     location: Location,
     document: Document
@@ -47,9 +49,10 @@ export default async function Page({ location, document }: Props) {
                     <ChapterNavigation flatToc={flatToc} index={docDesc.index} />
                 </div>
             </div>
+            <RightSidebar headers={document.headers} docDesc={docDesc} />
             <Sheet>
                 <div className={style.search}>
-                    <SearchBar variant='body' />
+                    <SearchBar variant='body' dockable />
                 </div>
                 <SideBar toc={toc} headers={document.headers} docDesc={docDesc} />
                 <SettingsGrid />

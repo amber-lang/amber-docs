@@ -8,7 +8,7 @@ Amber supports six data types:
 - `Null` - The _nothing_ data type.
 - `[]` - The array data type.
 
-## Text
+## Text {#text}
 
 `Text` data type is the most basic data type in Amber. It's just a string of characters and is also stored as a string of characters under the hood.
 
@@ -35,7 +35,7 @@ Just like in other programming languages, characters in `Text` literals can be e
 
 Any other escape sequence not listed above will be treated as a literal escape sequence, similar to how Bash handles them. For instance, escaping `\c` will result in the literal `\c` being output.
 
-## Integer
+## Integer {#int}
 
 Under the hood its value is stored as a string of characters - the same way as it's done in Bash. However when performing operations the values are treated as 64-bit signed integers.
 
@@ -47,7 +47,7 @@ Under the hood its value is stored as a string of characters - the same way as i
 
 This data type is the most performant way to compute integers. Later we will discover how `Num` data type can let us compute numbers using floating point arithmetic.
 
-## Number
+## Number {#num}
 
 Similarly to `Int` its value is stored as a string of characters. The difference is that Amber applies standard commands to do operations on numbers that support _floating point_ values so that you can simply write operator sign instead.
 
@@ -66,7 +66,7 @@ variable = 24
 
 We will learn more about variables in the upcoming chapters.
 
-## Boolean
+## Boolean {#bool}
 
 Boolean values are translated to `0` or `1` numerical values. These values can be easily [cast](/advanced_syntax/as_cast) to numbers `Num`.
 
@@ -76,7 +76,7 @@ true
 false
 ```
 
-## Null
+## Null {#null}
 
 ```ab
 // `Null` data type
@@ -85,7 +85,7 @@ null
 
 The most common use of this data type is to indicate that a function does not return a value. Currently, there is no practical real-world scenario where using a null literal is necessary, as it serves no functional purpose at this time.
 
-## Array
+## Array {#array}
 
 Arrays in Amber and Bash are dynamically allocated. When creating an array literal it is important to specify of which data type the array should be made. Type signature of arrays can be represented with `[T]` where `T` is the value type that this array holds. Example: an array of type `Num` is `[Num]` (in C like languages it would be `Num[]`).
 
