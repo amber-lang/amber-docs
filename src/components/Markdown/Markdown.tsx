@@ -10,6 +10,8 @@ import complexImageParser, { COMPLEX_IMAGE_RULE } from './complexImage'
 import { detailsBlockParser, DETAILS_BLOCK_RULE } from './detailsBlock'
 import { generateUrl, getLocation } from '@/utils/urls'
 import path from 'path'
+import mermaid from 'mermaid'
+import useTheme from '@/contexts/ThemeContext/useTheme'
 
 hljs.registerLanguage('amber', amber as LanguageFn)
 hljs.registerAliases(['ab'], { languageName: 'amber' })
@@ -90,6 +92,11 @@ function createMarkdownRenderer(currentPath: string) {
 
         code(rawCode: string, lang: string, escaped: boolean) {
             let code = rawCode.trim()
+
+            if (lang === 'mermaid') {
+                return `<div class="mermaid ${style.mermaid}">${code}</div>`
+            }
+
             if (this.options.highlight) {
                 const out = this.options.highlight(code, lang)
                 if (out != null && out !== code) {
@@ -134,6 +141,8 @@ interface Props {
 }
 
 export default function Markdown({ content, currentPath }: Props) {
+    const { mode, theme } = useTheme()
+
     // Create a memoized parsed HTML based on content and path
     const html = useMemo(() => {
         // Set options with the path-aware renderer before parsing
@@ -165,10 +174,30 @@ export default function Markdown({ content, currentPath }: Props) {
                 }, 0)
             }
         }
-    }, [content])
+
+        // Initialize mermaid
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: theme[mode].codeBackground,
+                primaryTextColor: theme[mode].text,
+                primaryBorderColor: theme[mode].border,
+                lineColor: theme[mode].text,
+                secondaryColor: theme[mode].background,
+                tertiaryColor: theme[mode].background,
+            }
+        })
+        mermaid.run({
+            nodes: document.querySelectorAll('.mermaid'),
+            suppressErrors: true
+        }).catch((error) => {
+            console.error(error)
+        })
+    }, [content, html, mode, theme]) // Re-run when mode changes (key={mode} below handles the DOM reset)
 
     return (
-        <div className={style.markdown} dangerouslySetInnerHTML={{ __html: html }} />
+        <div key={mode} className={style.markdown} dangerouslySetInnerHTML={{ __html: html }} />
     )
 }
 
