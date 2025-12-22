@@ -31,7 +31,7 @@ export interface Location {
 }
 
 export function getLocation (slug: string[]): Location {
-    const versionRegex = /^\d+\.\d+\.\d+(?:-(?:alpha|beta))?$/
+    const versionRegex = /^(?:\d+\.\d+\.\d+(?:-(?:alpha|beta))?|nightly(?:-alpha)?)$/
     if (versionRegex.test(slug[0])) {
         return {
             version: slug[0],

@@ -16,7 +16,7 @@ let response = trust fetch("https://example.com")
 
 // POST request example
 let post_request = trust fetch("https://example.com", "POST", "hello world!", [
-"content-type: text/plain"
+    "content-type: text/plain"
 ])
 ```
 

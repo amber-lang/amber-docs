@@ -211,7 +211,7 @@ Checks if a variable inside the shell session exists.
 import { env_var_test } from "std/env"
 
 if env_var_test("PATH") {
-echo "PATH exists"
+    echo "PATH exists"
 }
 ```
 
@@ -258,7 +258,7 @@ Checks if the command has failed.
 import { has_failed } from "std/env"
 
 if has_failed("test -f config.txt") {
-echo "File doesn't exist"
+    echo "File doesn't exist"
 }
 ```
 
@@ -277,7 +277,7 @@ Creates a confirm prompt (Yes/No), and returns true if the choice is Yes.
 import { input_confirm } from "std/env"
 
 if input_confirm("Continue?", false) {
-echo "Continuing..."
+    echo "Continuing..."
 }
 ```
 
@@ -324,7 +324,7 @@ Checks if a command exists.
 import { is_command } from "std/env"
 
 if is_command("git") {
-echo "Git is installed"
+    echo "Git is installed"
 }
 ```
 
@@ -341,7 +341,7 @@ Checks if the script is running with a user with root permission.
 import { is_root } from "std/env"
 
 if is_root() {
-echo "Running as root"
+    echo "Running as root"
 }
 ```
 

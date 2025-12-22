@@ -51,7 +51,7 @@ Checks if text ends with a value.
 import { ends_with } from "std/text"
 
 if ends_with("hello world", "world") {
-echo "Ends with world!"
+    echo "Ends with world!"
 }
 ```
 
@@ -118,7 +118,7 @@ Function uses `sed`
 import { match_regex } from "std/text"
 
 if match_regex("test123", "[0-9]+", true) {
-echo "Contains numbers!"
+    echo "Contains numbers!"
 }
 ```
 
@@ -135,7 +135,7 @@ Checks if an array value (with regular expression) is in the text.
 import { match_regex_any } from "std/text"
 
 if match_regex_any("test123", ["[a-z]+", "[0-9]+"]) {
-echo "Matches at least one pattern!"
+    echo "Matches at least one pattern!"
 }
 ```
 
@@ -357,7 +357,7 @@ Checks if text starts with a value.
 import { starts_with } from "std/text"
 
 if starts_with("hello world", "hello") {
-echo "Starts with hello!"
+    echo "Starts with hello!"
 }
 ```
 
@@ -374,7 +374,7 @@ Checks if some text contains a value.
 import { text_contains } from "std/text"
 
 if text_contains("hello world", "world") {
-echo "Found!"
+    echo "Found!"
 }
 ```
 
@@ -391,7 +391,7 @@ Checks if all the arrays values are in the string
 import { text_contains_all } from "std/text"
 
 if text_contains_all("hello world", ["hello", "world"]) {
-echo "All found!"
+    echo "All found!"
 }
 ```
 
@@ -408,7 +408,7 @@ Checks if an array value is in the text.
 import { text_contains_any } from "std/text"
 
 if text_contains_any("hello world", ["foo", "world", "bar"]) {
-echo "Found at least one!"
+    echo "Found at least one!"
 }
 ```
 
