@@ -242,7 +242,7 @@ This method takes `TranslateMetadata` and transforms the module into a `Fragment
 
 ### FragmentKind
 
-`FragmentKind` is a crucial enum that represents a piece of generated code. It serves as an intermediate representation that abstracts over different types of Bash constructs before they are rendered into the final string. It is defined in [src/translate/fragments/fragment.rs](https://github.com/amber-lang/amber/blob/master/src/translate/fragments/fragment.rs).
+`FragmentKind` is a crucial enum that represents a piece of generated code. It serves as an intermediate representation that abstracts over different types of Bash constructs before they are rendered into the final string. It is defined in [src/translate/fragments/fragment.rs](https://github.com/amber-lang/amber/blob/main/src/translate/fragments/fragment.rs).
 
 ```rs
 pub enum FragmentKind {
