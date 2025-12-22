@@ -89,7 +89,7 @@ Casting `Text` to any values including `Bool` and `Int`, now issues an "absurd c
 echo "true" as Bool then 1 else 0 // OK
 
 // After
-echo "true" as Bool then 1 else 0 // Warning: Absurd cast
+echo("true" as Bool then 1 else 0) // Warning: Absurd cast
 ```
 
 # Escaping Changes
@@ -105,7 +105,7 @@ echo "\$var" // Output: 45
 
 // After
 let var = 45
-echo "\$var" // Output: \$var
+echo("\$var") // Output: \$var
 ```
 
 ## Command String Escaping Changes <!-- #772 -->
@@ -178,9 +178,9 @@ if dir_create("my_directory") {
 // After
 dir_create("my_directory") exited(code) {
     if code == 0:
-        echo "Directory created successfully."
+        echo("Directory created successfully.")
     else:
-        echo "Failed to create directory."
+        echo("Failed to create directory.")
 }
 ```
 

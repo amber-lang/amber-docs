@@ -28,6 +28,6 @@ let b = parse_int(a) failed {
     echo("Variable `a` is not a number.")
 }
 
-echo b + 12
+echo(b + 12)
 // Outputs: 24
 ```
