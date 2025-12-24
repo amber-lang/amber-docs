@@ -56,7 +56,7 @@ Format includes the following patterns:
 import { date_format_posix } from "std/date"
 
 let date = date_now() // Example value: 1678887000
-echo date_format_posix(date) // Outputs: 2023-03-15 14:30:00
+echo(date_format_posix(date)) // Outputs: 2023-03-15 14:30:00
 ```
 
 ## `date_from_posix`
@@ -74,7 +74,7 @@ For more info about format type "man date" on your shell or go to <https://www.g
 import { date_from_posix } from "std/date"
 
 let date = "2023-03-15 14:30:00"
-echo date_from_posix(date) // Output: 1678887000
+echo(date_from_posix(date)) // Output: 1678887000
 ```
 
 ## `date_now`
