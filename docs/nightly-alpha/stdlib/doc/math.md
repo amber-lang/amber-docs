@@ -11,7 +11,7 @@ Returns the absolute value of a number
 import { math_abs } from "std/math"
 
 let absolute = math_abs(-42)
-echo absolute // 42
+echo(absolute) // 42
 ```
 
 ## `math_ceil`
@@ -27,7 +27,7 @@ Returns the smallest integer greater than or equal to a number
 import { math_ceil } from "std/math"
 
 let ceiled = math_ceil(3.1)
-echo ceiled // 4
+echo(ceiled) // 4
 ```
 
 ## `math_floor`
@@ -43,7 +43,7 @@ Returns the largest integer less than or equal to a number
 import { math_floor } from "std/math"
 
 let floored = math_floor(3.9)
-echo floored // 3
+echo(floored) // 3
 ```
 
 ## `math_round`
@@ -59,7 +59,7 @@ Returns a number, rounded to the nearest integer
 import { math_round } from "std/math"
 
 let rounded = math_round(3.7)
-echo rounded // 4
+echo(rounded) // 4
 ```
 
 ## `math_sum`
@@ -75,6 +75,6 @@ Sums an array's contents
 import { math_sum } from "std/math"
 
 let total = math_sum([1, 2, 3, 4, 5])
-echo total // 15
+echo(total) // 15
 ```
 

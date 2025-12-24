@@ -26,7 +26,7 @@ Checks if a directory exists.
 import { dir_exists } from "std/fs"
 
 if dir_exists("/tmp/mydir") {
-    echo "Directory exists"
+    echo("Directory exists")
 }
 ```
 
@@ -105,7 +105,7 @@ Checks if a file exists.
 import { file_exists } from "std/fs"
 
 if file_exists("config.txt") {
-    echo "File exists"
+    echo("File exists")
 }
 ```
 

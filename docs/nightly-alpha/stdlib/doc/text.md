@@ -16,8 +16,8 @@ Capitalize the first letter of the given `text`.
 ```ab
 import { capitalized } from "std/text"
 
-let cap = capitalized("hello")
-echo cap // "Hello"
+const cap = capitalized("hello")
+echo(cap) // "Hello"
 ```
 
 ## `char_at`
@@ -34,8 +34,56 @@ If `index` is negative, the substring starts from the end of `text` based on the
 ```ab
 import { char_at } from "std/text"
 
-let ch = char_at("hello", 1)
-echo ch // "e"
+const ch = char_at("hello", 1)
+echo(ch) // "e"
+```
+
+## `count_chars`
+
+```ab
+pub fun count_chars(text: Text): Int 
+```
+
+Counts the number of characters in the given text.
+
+### Usage
+```ab
+import { count_chars } from "std/text"
+
+const count = count_chars("hello")
+echo(count) // 5
+```
+
+## `count_lines`
+
+```ab
+pub fun count_lines(text: Text): Int 
+```
+
+Counts the number of lines in the given text.
+
+### Usage
+```ab
+import { count_lines } from "std/text"
+
+const count = count_lines("one\ntwo\nthree")
+echo(count) // 3
+```
+
+## `count_words`
+
+```ab
+pub fun count_words(text: Text): Int 
+```
+
+Counts the number of words in the given text.
+
+### Usage
+```ab
+import { count_words } from "std/text"
+
+const count = count_words("hello world foo")
+echo(count) // 3
 ```
 
 ## `ends_with`
@@ -51,7 +99,7 @@ Checks if text ends with a value.
 import { ends_with } from "std/text"
 
 if ends_with("hello world", "world") {
-    echo "Ends with world!"
+    echo("Ends with world!")
 }
 ```
 
@@ -67,8 +115,8 @@ Merges text using the delimiter specified.
 ```ab
 import { join } from "std/text"
 
-let joined = join(["a", "b", "c"], ",")
-echo joined // "a,b,c"
+const joined = join(["a", "b", "c"], ",")
+echo(joined) // "a,b,c"
 ```
 
 ## `lowercase`
@@ -83,8 +131,8 @@ Makes the text input lowercase using `tr`.
 ```ab
 import { lowercase } from "std/text"
 
-let lower = lowercase("HELLO")
-echo lower // "hello"
+const lower = lowercase("HELLO")
+echo(lower) // "hello"
 ```
 
 ## `lpad`
@@ -99,8 +147,8 @@ Pads `text` with the specified `pad` character on left until it reaches the desi
 ```ab
 import { lpad } from "std/text"
 
-let padded = lpad("42", "0", 5)
-echo padded // "00042"
+const padded = lpad("42", "0", 5)
+echo(padded) // "00042"
 ```
 
 ## `match_regex`
@@ -118,7 +166,7 @@ Function uses `sed`
 import { match_regex } from "std/text"
 
 if match_regex("test123", "[0-9]+", true) {
-    echo "Contains numbers!"
+    echo("Contains numbers!")
 }
 ```
 
@@ -135,7 +183,7 @@ Checks if an array value (with regular expression) is in the text.
 import { match_regex_any } from "std/text"
 
 if match_regex_any("test123", ["[a-z]+", "[0-9]+"]) {
-    echo "Matches at least one pattern!"
+    echo("Matches at least one pattern!")
 }
 ```
 
@@ -151,8 +199,8 @@ Attempts to parse a given text into an `Int` number.
 ```ab
 import { parse_int } from "std/text"
 
-let num = parse_int("42")?
-echo num // 42
+const num = parse_int("42")?
+echo(num) // 42
 ```
 
 ## `parse_num`
@@ -167,8 +215,8 @@ Attempts to parse a given text into a `Num` number.
 ```ab
 import { parse_num } from "std/text"
 
-let num = parse_num("3.14")?
-echo num // 3.14
+const num = parse_num("3.14")?
+echo(num) // 3.14
 ```
 
 ## `replace`
@@ -183,8 +231,8 @@ Replaces all occurrences of a pattern in the content with the provided replace t
 ```ab
 import { replace } from "std/text"
 
-let result = replace("Hello world", "world", "universe")
-echo result // "Hello universe"
+const result = replace("Hello world", "world", "universe")
+echo(result) // "Hello universe"
 ```
 
 ## `replace_one`
@@ -199,8 +247,8 @@ Replaces the first occurrence of a pattern in the content with the provided repl
 ```ab
 import { replace_one } from "std/text"
 
-let result = replace_one("foo foo foo", "foo", "bar")
-echo result // "bar foo foo"
+const result = replace_one("foo foo foo", "foo", "bar")
+echo(result) // "bar foo foo"
 ```
 
 ## `replace_regex`
@@ -216,10 +264,10 @@ Function uses `sed` and supports capture groups syntax in extended mode.
 ```ab
 import { replace_regex } from "std/text"
 
-let result = replace_regex("test123", "[0-9]+", "456", true)
-echo result // "test456"
+const result = replace_regex("test123", "[0-9]+", "456", true)
+echo(result) // "test456"
 // Also supports replace regex
-echo replace_regex("Put number 255 in brackets", "([0-9]+)", "(\1)", true); // Put number (255) in brackets
+echo(replace_regex("Put number 255 in brackets", "([0-9]+)", "(\1)", true)); // Put number (255) in brackets
 ```
 
 ## `reversed`
@@ -234,8 +282,8 @@ Reverses text using `rev`.
 ```ab
 import { reversed } from "std/text"
 
-let reversed_text = reversed("hello")
-echo reversed_text // "olleh"
+const reversed_text = reversed("hello")
+echo(reversed_text) // "olleh"
 ```
 
 ## `rpad`
@@ -250,8 +298,8 @@ Pads `text` with the specified `pad` character on the right until it reaches the
 ```ab
 import { rpad } from "std/text"
 
-let padded = rpad("42", "0", 5)
-echo padded // "42000"
+const padded = rpad("42", "0", 5)
+echo(padded) // "42000"
 ```
 
 ## `sed_version`
@@ -276,8 +324,30 @@ If `length` is negative, an empty string is returned.
 ```ab
 import { slice } from "std/text"
 
-let sub = slice("hello world", 6, 5)
-echo sub // "world"
+const sub = slice("hello world", 6, 5)
+echo(sub) // "world"
+```
+
+## `sort_lines`
+
+```ab
+pub fun sort_lines(text: Text, desc: Bool = false, numeric: Bool = false): Text 
+```
+
+Sorts lines of text in ascending, descending or numerial order.
+
+### Usage
+```ab
+import { sort_lines } from "std/text"
+
+let sorted = sort_lines("banana\napple\ncherry")
+echo(sorted) // "apple\nbanana\ncherry"
+
+sorted = sort_lines("banana\napple\ncherry", true) // Sorts lines of text in descending order
+echo(sorted) // "cherry\nbanana\napple"
+
+sorted = sort_lines("10\n2\n1", false, true) // Sorts lines of text numerically
+echo(sorted) // "1\n2\n10"
 ```
 
 ## `split`
@@ -292,8 +362,8 @@ Splits the input `text` into an array of substrings using the specified `delimit
 ```ab
 import { split } from "std/text"
 
-let parts = split("a,b,c", ",")
-echo parts[0] // "a"
+const parts = split("a,b,c", ",")
+echo(parts[0]) // "a"
 ```
 
 ## `split_chars`
@@ -308,8 +378,8 @@ Splits a text into an array of individual characters.
 ```ab
 import { split_chars } from "std/text"
 
-let chars = split_chars("hello")
-echo chars[0] // "h"
+const chars = split_chars("hello")
+echo(chars[0]) // "h"
 ```
 
 ## `split_lines`
@@ -324,8 +394,8 @@ Splits a `text` into an array of substrings based on newline characters.
 ```ab
 import { split_lines } from "std/text"
 
-let lines = split_lines("line1\nline2\nline3")
-echo lines[0] // "line1"
+const lines = split_lines("line1\nline2\nline3")
+echo(lines[0]) // "line1"
 ```
 
 ## `split_words`
@@ -340,8 +410,8 @@ Splits a `text` into an array of substrings based on space character.
 ```ab
 import { split_words } from "std/text"
 
-let words = split_words("hello world example")
-echo words[1] // "world"
+const words = split_words("hello world example")
+echo(words[1]) // "world"
 ```
 
 ## `starts_with`
@@ -357,7 +427,7 @@ Checks if text starts with a value.
 import { starts_with } from "std/text"
 
 if starts_with("hello world", "hello") {
-    echo "Starts with hello!"
+    echo("Starts with hello!")
 }
 ```
 
@@ -374,7 +444,7 @@ Checks if some text contains a value.
 import { text_contains } from "std/text"
 
 if text_contains("hello world", "world") {
-    echo "Found!"
+    echo("Found!")
 }
 ```
 
@@ -391,7 +461,7 @@ Checks if all the arrays values are in the string
 import { text_contains_all } from "std/text"
 
 if text_contains_all("hello world", ["hello", "world"]) {
-    echo "All found!"
+    echo("All found!")
 }
 ```
 
@@ -408,7 +478,7 @@ Checks if an array value is in the text.
 import { text_contains_any } from "std/text"
 
 if text_contains_any("hello world", ["foo", "world", "bar"]) {
-    echo "Found at least one!"
+    echo("Found at least one!")
 }
 ```
 
@@ -424,8 +494,8 @@ Trims the spaces from the text input.
 ```ab
 import { trim } from "std/text"
 
-let trimmed = trim("   hello   ")
-echo trimmed // "hello"
+const trimmed = trim("   hello   ")
+echo(trimmed) // "hello"
 ```
 
 ## `trim_left`
@@ -440,8 +510,8 @@ Trims the spaces at top of the text using `sed`.
 ```ab
 import { trim_left } from "std/text"
 
-let trimmed = trim_left("   hello")
-echo trimmed // "hello"
+const trimmed = trim_left("   hello")
+echo(trimmed) // "hello"
 ```
 
 ## `trim_right`
@@ -456,8 +526,27 @@ Trims the spaces at end of the text using `sed`.
 ```ab
 import { trim_right } from "std/text"
 
-let trimmed = trim_right("hello   ")
-echo trimmed // "hello"
+const trimmed = trim_right("hello   ")
+echo(trimmed) // "hello"
+```
+
+## `uniq_lines`
+
+```ab
+pub fun uniq_lines(text: Text, remove_all: Bool = false): Text 
+```
+
+Removes duplicate lines from text.
+
+### Usage
+```ab
+import { uniq_lines } from "std/text"
+
+let result = uniq_lines("foo\nfoo\nbar\nbar\nbaz")
+echo(result) // "foo\nbar\nbaz"
+
+let result = uniq_lines("foo\nbar\nfoo\nbaz\nbar", true) /// Removes all duplicate lines from text (not just consecutive)
+echo(result) // "foo\nbar\nbaz"
 ```
 
 ## `uppercase`
@@ -472,8 +561,8 @@ Makes the text input uppercase using `tr`.
 ```ab
 import { uppercase } from "std/text"
 
-let upper = uppercase("hello")
-echo upper // "HELLO"
+const upper = uppercase("hello")
+echo(upper) // "HELLO"
 ```
 
 ## `zfill`
@@ -488,7 +577,7 @@ Pads `text` with zeros on the left until it reaches the desired `length`.
 ```ab
 import { zfill } from "std/text"
 
-let padded = zfill("42", 5)
-echo padded // "00042"
+const padded = zfill("42", 5)
+echo(padded) // "00042"
 ```
 
