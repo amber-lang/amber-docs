@@ -545,7 +545,7 @@ import { uniq_lines } from "std/text"
 let result = uniq_lines("foo\nfoo\nbar\nbar\nbaz")
 echo(result) // "foo\nbar\nbaz"
 
-let result = uniq_lines("foo\nbar\nfoo\nbaz\nbar", true) /// Removes all duplicate lines from text (not just consecutive)
+let result = uniq_lines("foo\nbar\nfoo\nbaz\nbar", true) // Removes all duplicate lines from text (not just consecutive)
 echo(result) // "foo\nbar\nbaz"
 ```
 
