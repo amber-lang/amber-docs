@@ -169,3 +169,41 @@ echo(element) // Outputs 1
 echo(array) // Outputs [2, 3]
 ```
 
+## `sort`
+
+```ab
+pub fun sort(ref array: [], desc: Bool = false, version_sort: Bool = false): Null 
+```
+
+Sort the array in-place.
+Pass `desc` value `true` for descending order.
+Pass `version_sort` value `true` for version sort,
+this only applies to text arrays.
+
+### Usage
+```ab
+import { sort } from "std/array"
+
+let array = ["15","-3","foo","bar"]
+sort(array)
+echo(array) // Outputs ["-3", "15", "bar", "foo"]
+```
+
+## `sorted`
+
+```ab
+pub fun sorted(array: [], desc: Bool = false, version_sort: Bool = false): [] 
+```
+
+Return the sorted array, leaving the original array unchanged.
+Pass `desc` value `true` for descending order.
+Pass `version_sort` value `true` for version sort,
+this only applies to text arrays.
+
+### Usage
+```ab
+import { sorted } from "std/array"
+
+echo(sorted([-3,15,7,2], true)) // Outputs [-3, 2, 7, 15]
+```
+
