@@ -486,6 +486,40 @@ import { printf } from "std/env"
 printf("Hello %s!", ["World"])
 ```
 
+## `shopt_disable`
+
+```ab
+pub fun shopt_disable(optname: Text, set_opt: Bool = false): Null? 
+```
+
+Disables shopt or set option.
+
+### Usage
+```ab
+import { shopt_disable } from "std/env"
+
+shopt_disable("dotglob")? // Hides files starting with "." during filename expansion
+shopt_disable("noglob", true)? // Enables filename expansion (globbing)
+```
+For all available options, see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+
+## `shopt_enable`
+
+```ab
+pub fun shopt_enable(optname: Text, set_opt: Bool = false): Null? 
+```
+
+Enables shopt or set option.
+
+### Usage
+```ab
+import { shopt_enable } from "std/env"
+
+shopt_enable("globstar")? // Enables star (*) expansion for filenames
+shopt_enable("noglob", true)? // Disables filename expansion (globbing). Note that this option doesn't properly work in a limited environment, e.g. GitHub Actions
+```
+For all available options, see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+
 ## `styled`
 
 ```ab
