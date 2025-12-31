@@ -92,6 +92,23 @@ import { file_chown } from "std/fs"
 file_chown("/var/www/html", "www-data")
 ```
 
+## `file_compress`
+
+```ab
+pub fun file_compress(files: [Text], target: Text): Null? 
+```
+
+Compress file(s) or directories into an archive
+Supports: bz2, gz, xz, bz2, deb, rar, rpm, tar(gz/xz/bz), zip(war/jar), 7z
+Note: Not all supported methods support multiple files/directories
+### Usage
+```ab
+import { file_compress } from "std/fs"
+
+file_compress(["main.ab", "src"], "amber.tar.gz")?
+file_compress(["amber"], "amber.gz")
+```
+
 ## `file_exists`
 
 ```ab
