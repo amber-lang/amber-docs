@@ -106,7 +106,7 @@ Note: Not all supported methods support multiple files/directories
 import { file_compress } from "std/fs"
 
 file_compress(["main.ab", "src"], "amber.tar.gz")?
-file_compress(["amber"], "amber.gz")
+file_compress(["amber"], "amber.gz")?
 ```
 
 ## `file_exists`
