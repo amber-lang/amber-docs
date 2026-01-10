@@ -1,0 +1,84 @@
+.container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-top: 6rem;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.docTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.docContent {
+    margin-bottom: 2rem;
+}
+
+.separator {
+    height: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.errorMessage {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+}
+
+.backButton {
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.backButton:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        padding: 1rem;
+        padding-top: 5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .docTitle {
+        font-size: 1.25rem;
+    }
+}

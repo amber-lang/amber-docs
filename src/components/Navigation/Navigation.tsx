@@ -12,6 +12,7 @@ import Image from 'next/image'
 import Dropdown from '../Dropdown/Dropdown'
 import config from "@/../config.json"
 import useVersion from '@/contexts/VersionContext/useVersion'
+import { generateUrl } from '@/utils/urls'
 
 interface Props {
     hideSearch?: boolean
@@ -32,9 +33,15 @@ export default function Navigation({ hideSearch = false }: Props) {
         setThemeMode(mode === 'light' ? 'dark' : 'light')
     }
 
+    const navigateToFullPage = () => {
+        router.push(`/${generateUrl(version, 'full-page')}`)
+    }
+
     const versions = process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
         ? config.visibleVersions
         : config.allVersions
+
+    const isFullPage = pathname?.includes('/full-page')
 
     return <>
             <div className={style.nav}>
@@ -66,6 +73,11 @@ export default function Navigation({ hideSearch = false }: Props) {
                     {!hideSearch && <SearchBar />}
                 </div>
                 <div className={style.right}>
+                    {!isFullPage && (
+                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }} title="View full documentation">
+                            <span className={style.fullPageIcon}>📄</span>
+                        </Button>
+                    )}
                     <Button onClick={toggleSideBar} style={{ padding: '0.5rem' }}>
                         <Icon src='/internal/side-bar.svg' size='1rem' />
                     </Button>
