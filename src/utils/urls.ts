@@ -45,3 +45,45 @@ export function getLocation (slug: string[]): Location {
         fullPath: [config.defaultVersion, ...slug].join('/')
     }
 }
+
+export function getLocationWithFullPage(slug: string[]): { location: Location; isFullPage: boolean } {
+    const versionRegex = /^(?:\d+\.\d+\.\d+(?:-(?:alpha|beta))?|nightly(?:-alpha)?)$/
+    const fullPageSlug = 'full-page'
+    
+    // Check if first segment is a version
+    if (versionRegex.test(slug[0])) {
+        const isFullPage = slug[1] === fullPageSlug
+        if (isFullPage) {
+            return {
+                location: {
+                    version: slug[0],
+                    slug: [],
+                    fullPath: slug[0]
+                },
+                isFullPage: true
+            }
+        }
+        return {
+            location: getLocation(slug),
+            isFullPage: false
+        }
+    }
+    
+    // No version prefix - check if first segment is full-page
+    const isFullPage = slug[0] === fullPageSlug
+    if (isFullPage) {
+        return {
+            location: {
+                version: config.defaultVersion,
+                slug: [],
+                fullPath: config.defaultVersion
+            },
+            isFullPage: true
+        }
+    }
+    
+    return {
+        location: getLocation(slug),
+        isFullPage: false
+    }
+}

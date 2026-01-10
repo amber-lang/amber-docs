@@ -13,6 +13,7 @@ import { getTableOfContents } from '@/utils/docsServer'
 import InfoCard from '@/components/InfoCard/InfoCard'
 import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
 import ClientMarkdown from '@/components/Markdown/ClientMarkdown'
+import SectionTracker from '@/components/SectionTracker/SectionTracker'
 
 import RightSidebar from '@/components/RightSidebar/RightSidebar'
 
@@ -28,6 +29,7 @@ export default async function Page({ location, document }: Props) {
 
     return (
         <NavigationLayout>
+            <SectionTracker path={location.slug.join('/')} />
             <div className='left'>
                 <SideBar toc={toc} headers={document.headers} docDesc={docDesc} isFixed />
             </div>
