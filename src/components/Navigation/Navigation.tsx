@@ -74,7 +74,7 @@ export default function Navigation({ hideSearch = false }: Props) {
                 </div>
                 <div className={style.right}>
                     {!isFullPage && (
-                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }} title="View full documentation">
+                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
                             <span className={style.fullPageIcon}>📄</span>
                         </Button>
                     )}
