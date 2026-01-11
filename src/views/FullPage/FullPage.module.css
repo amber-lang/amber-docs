@@ -87,4 +87,16 @@
         padding: 1rem;
         padding-top: 0rem;
     }
+
+    .sectionTitle {
+        font-size: 1.75rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .docTitle {
+        font-size: 1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
 }

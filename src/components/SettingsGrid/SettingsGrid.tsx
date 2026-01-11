@@ -35,13 +35,6 @@ export default function SettingsGrid() {
                         </Button>
                     </Tooltip>
                 </div>
-                {!isFullPage && (
-                    <Tooltip content="Full page view">
-                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
-                            <Icon src='/internal/scroll.svg' size='1rem' />
-                        </Button>
-                    </Tooltip>
-                )}
                 <div className={style.button}>
                     <Tooltip content="GitHub">
                         <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
@@ -63,6 +56,15 @@ export default function SettingsGrid() {
                         </Button>
                     </Tooltip>
                 </div>
+                {!isFullPage && (
+                    <div className={style.button}>
+                        <Tooltip content="Full page view">
+                            <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
+                                <Icon src='/internal/scroll.svg' size='1rem' />
+                            </Button>
+                        </Tooltip>
+                    </div>
+                )}
             </div>
         </div>
     )
