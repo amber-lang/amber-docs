@@ -112,7 +112,7 @@ export default function FullPage() {
         return (
             <NavigationLayout>
                 <div className={style.loading}>
-                    Loading documentation...
+                    <div className={style.loadingLogo} />
                 </div>
             </NavigationLayout>
         )

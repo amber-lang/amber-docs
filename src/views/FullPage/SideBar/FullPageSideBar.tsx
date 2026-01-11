@@ -42,7 +42,7 @@ export default function FullPageSideBar({ docs, isFixed = false }: Props) {
     return (
         <div className={`${isFixed && style.fixed} ${isOpen && style.open}`}>
             <div className={style.container}>
-                <Island label="Documentation">
+                <Island label="Table of contents">
                     <div className={style.links} ref={tocRef}>
                         {sectionOrder.map((section) => (
                             <React.Fragment key={section}>

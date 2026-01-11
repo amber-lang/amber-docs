@@ -26,12 +26,33 @@
 }
 
 .loading {
+    position: fixed;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    font-size: 1.25rem;
-    color: var(--text-secondary);
+}
+
+.loadingLogo {
+    width: 4rem;
+    height: 4rem;
+    animation: pulse 1.5s ease-in-out infinite;
+    mask-image: url('/internal/amber.svg');
+    -webkit-mask-image: url('/internal/amber.svg');
+    mask-size: 4rem;
+    -webkit-mask-size: 4rem;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    background-color: var(--description);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .error {
