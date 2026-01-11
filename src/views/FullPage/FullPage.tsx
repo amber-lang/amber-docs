@@ -6,7 +6,8 @@ import Markdown from '@/components/Markdown/Markdown'
 import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
 import useVersion from '@/contexts/VersionContext/useVersion'
 import Link from 'next/link'
-import SideBar from '@/components/SideBar/SideBar'
+import FullPageSideBar from './SideBar/FullPageSideBar'
+import FullPageRightSidebar from './RightSidebar/FullPageRightSidebar'
 import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
 import Sheet from '@/components/Sheet/Sheet'
 import SearchBar from '@/components/SearchBar/SearchBar'
@@ -143,30 +144,37 @@ export default function FullPage() {
 
     return (
         <NavigationLayout>
-            <div className={style.container}>
-                {sectionOrder.map((section) => (
-                    <div key={section}>
-                        <h1 className={style.sectionTitle}>{section}</h1>
-                        {sections[section].map((doc, index) => (
-                            <div
-                                key={doc.path}
-                                ref={(el) => setDocRef(doc.path, el)}
-                                data-doc-path={doc.path}
-                                className={style.docContent}
-                            >
-                                {doc.title !== section && (
-                                    <h1 className={style.docTitle}>{doc.title}</h1>
-                                )}
-                                <Markdown content={doc.content} currentPath={`/${version}/${doc.path}`} />
-                            </div>
-                        ))}
-                    </div>
-                ))}
+            <div className='left'>
+                <FullPageSideBar docs={docs} isFixed />
             </div>
+            <div className='right'>
+                <div className={style.container}>
+                    {sectionOrder.map((section) => (
+                        <div key={section}>
+                            <h1 className={style.sectionTitle}>{section}</h1>
+                            {sections[section].map((doc) => (
+                                <div
+                                    key={doc.path}
+                                    ref={(el) => setDocRef(doc.path, el)}
+                                    data-doc-path={doc.path}
+                                    className={style.docContent}
+                                >
+                                    {doc.title !== section && (
+                                        <h1 className={style.docTitle}>{doc.title}</h1>
+                                    )}
+                                    <Markdown content={doc.content} currentPath={`/${version}/${doc.path}`} />
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <FullPageRightSidebar docs={docs} />
             <Sheet>
                 <div className={style.search}>
                     <SearchBar variant='body' dockable />
                 </div>
+                <FullPageSideBar docs={docs} />
                 <SettingsGrid />
             </Sheet>
         </NavigationLayout>

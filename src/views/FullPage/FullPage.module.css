@@ -8,19 +8,17 @@
 .sectionTitle {
     font-size: 2.5rem;
     font-weight: bold;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--border);
 }
 
 .docTitle {
     font-size: 2rem;
     font-weight: 600;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
+    margin-top: 4.5rem;
+    margin-bottom: 1.5rem;
     color: var(--text);
-    border-bottom: 2px solid var(--border);
 }
 
 .docContent {
@@ -67,13 +65,5 @@
     .container {
         padding: 1rem;
         padding-top: 0rem;
-    }
-
-    .sectionTitle {
-        font-size: 1.5rem;
-    }
-
-    .docTitle {
-        font-size: 1.25rem;
     }
 }
