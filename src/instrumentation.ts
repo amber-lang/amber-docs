@@ -7,5 +7,3 @@ export async function register() {
         await preloadAllDocs()
     }
 }
-
-
