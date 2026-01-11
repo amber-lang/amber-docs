@@ -2,6 +2,7 @@
 
 import Icon from '../Icon/Icon'
 import Button from '../Button/Button'
+import Tooltip from '../Tooltip'
 import style from './SettingsGrid.module.css'
 import { useTheme } from '@/contexts/ThemeContext'
 import {useRouter, usePathname} from 'next/navigation'
@@ -28,38 +29,40 @@ export default function SettingsGrid() {
         <div>
             <div className={style.buttons}>
                 <div className={style.button}>
-                    <Button onClick={toggleTheme} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/moon.svg' size='1rem'/>
-                    </Button>
+                    <Tooltip content={mode === 'light' ? 'Dark mode' : 'Light mode'}>
+                        <Button onClick={toggleTheme} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/moon.svg' size='1rem'/>
+                        </Button>
+                    </Tooltip>
                 </div>
                 {!isFullPage && (
-                    <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/scroll.svg' size='1rem' />
-                    </Button>
+                    <Tooltip content="Full page view">
+                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/scroll.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
                 )}
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/gh.svg' size='1rem' />
-                    </Button>
+                    <Tooltip content="GitHub">
+                        <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/gh.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
                 </div>
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/discord.svg' size='1rem' />
-                    </Button>
+                    <Tooltip content="Discord">
+                        <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/discord.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
                 </div>
                 <div className={style.button}>
-                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/reddit.svg' size='1rem' />
-                    </Button>
+                    <Tooltip content="Reddit">
+                        <Button onClick={() => router.push('https://reddit.com/r/amberlang')} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/reddit.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
                 </div>
-                {/* Uncomment when we are ready */}
-                {/* <div className={style.button}>
-                    <Button>
-                        <a href="https://marble.software/">
-                            <Icon src='/internal/marble.svg' size='2rem'/>
-                        </a>
-                    </Button>
-                </div> */}
             </div>
         </div>
     )

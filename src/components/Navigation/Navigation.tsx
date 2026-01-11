@@ -2,6 +2,7 @@
 
 import Icon from '@/components/Icon/Icon'
 import Button from '@/components/Button/Button'
+import Tooltip from '@/components/Tooltip'
 import Link from 'next/link'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import { usePathname, useRouter } from 'next/navigation'
@@ -73,32 +74,38 @@ export default function Navigation({ hideSearch = false }: Props) {
                     {!hideSearch && <SearchBar />}
                 </div>
                 <div className={style.right}>
-                    <Button onClick={toggleSideBar} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/side-bar.svg' size='1rem' />
-                    </Button>
-                    <Button onClick={toggleDarkMode} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/moon.svg' size='1rem' />
-                    </Button>
-                    {!isFullPage && (
-                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
-                            <Icon src='/internal/scroll.svg' size='1rem' />
+                    <Tooltip content={isOpen ? 'Hide sidebar' : 'Show sidebar'}>
+                        <Button onClick={toggleSideBar} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/side-bar.svg' size='1rem' />
                         </Button>
+                    </Tooltip>
+                    <Tooltip content={mode === 'light' ? 'Dark mode' : 'Light mode'}>
+                        <Button onClick={toggleDarkMode} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/moon.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
+                    {!isFullPage && (
+                        <Tooltip content="Full page view">
+                            <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
+                                <Icon src='/internal/scroll.svg' size='1rem' />
+                            </Button>
+                        </Tooltip>
                     )}
-                    <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/gh.svg' size='1rem' />
-                    </Button>
-                    <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/discord.svg' size='1rem' />
-                    </Button>
-                    <Button onClick={() => router.push('https://reddit.com/r/amberlang')} style={{ padding: '0.5rem' }}>
-                        <Icon src='/internal/reddit.svg' size='1rem' />
-                    </Button>
-                    {/* Uncomment when we are ready */}
-                    {/* <Button>
-                        <a href="https://marble.software/">
-                            <Icon src='/internal/marble.svg' size='2rem' />
-                        </a>
-                    </Button> */}
+                    <Tooltip content="GitHub">
+                        <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/gh.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
+                    <Tooltip content="Discord">
+                        <Button onClick={() => router.push('https://discord.gg/cjHjxbsDvZ')} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/discord.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
+                    <Tooltip content="Reddit">
+                        <Button onClick={() => router.push('https://reddit.com/r/amberlang')} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/reddit.svg' size='1rem' />
+                        </Button>
+                    </Tooltip>
                 </div>
             </div>
             </>
