@@ -2,9 +2,8 @@ import NotFound from '../not-found'
 import { getDocument } from '@/utils/files'
 import Main from '@/views/Main/Main'
 import Page from '@/views/Page/Page'
-import FullPage from '@/views/FullPage/FullPage'
 import VersionProvider from '@/contexts/VersionContext/VersionProvider'
-import { getLocation, getLocationWithFullPage } from '@/utils/urls'
+import { getLocation } from '@/utils/urls'
 
 interface Props {
   params: Promise<{
@@ -14,16 +13,7 @@ interface Props {
 
 export default async function Post({ params }: Props) {
     const { slug } = await params
-    const { location, isFullPage } = getLocationWithFullPage(slug)
-    
-    // Handle full-page view
-    if (isFullPage) {
-        return (
-            <VersionProvider version={location.version}>
-                <FullPage />
-            </VersionProvider>
-        )
-    }
+    const location = getLocation(slug)
     
     if (location.slug.length == 0) return (
         <VersionProvider version={location.version}>

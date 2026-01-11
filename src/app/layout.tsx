@@ -46,7 +46,6 @@ export default function RootLayout({
                 <ThemeProvider>
                     <SidebarProvider>
                         <DocsCacheProvider>
-
                             <VersionProvider version={config.defaultVersion}>
                                     <main>
                                         {children}

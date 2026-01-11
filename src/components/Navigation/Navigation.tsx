@@ -73,17 +73,17 @@ export default function Navigation({ hideSearch = false }: Props) {
                     {!hideSearch && <SearchBar />}
                 </div>
                 <div className={style.right}>
-                    {!isFullPage && (
-                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
-                            <span className={style.fullPageIcon}>📄</span>
-                        </Button>
-                    )}
                     <Button onClick={toggleSideBar} style={{ padding: '0.5rem' }}>
                         <Icon src='/internal/side-bar.svg' size='1rem' />
                     </Button>
                     <Button onClick={toggleDarkMode} style={{ padding: '0.5rem' }}>
                         <Icon src='/internal/moon.svg' size='1rem' />
                     </Button>
+                    {!isFullPage && (
+                        <Button onClick={navigateToFullPage} style={{ padding: '0.5rem' }}>
+                            <Icon src='/internal/scroll.svg' size='1rem' />
+                        </Button>
+                    )}
                     <Button onClick={() => router.push('https://github.com/amber-lang/amber')} style={{ padding: '0.5rem' }}>
                         <Icon src='/internal/gh.svg' size='1rem' />
                     </Button>

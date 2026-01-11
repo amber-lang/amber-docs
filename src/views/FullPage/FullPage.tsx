@@ -1,12 +1,15 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { useRouter } from 'next/navigation'
 import style from './FullPage.module.css'
 import Markdown from '@/components/Markdown/Markdown'
 import NavigationLayout from '@/layouts/NavigationLayout/NavigationLayout'
 import useVersion from '@/contexts/VersionContext/useVersion'
 import Link from 'next/link'
+import SideBar from '@/components/SideBar/SideBar'
+import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
+import Sheet from '@/components/Sheet/Sheet'
+import SearchBar from '@/components/SearchBar/SearchBar'
 
 interface DocContent {
     path: string
@@ -152,17 +155,20 @@ export default function FullPage() {
                                 className={style.docContent}
                             >
                                 {doc.title !== section && (
-                                    <h2 className={style.docTitle}>{doc.title}</h2>
+                                    <h1 className={style.docTitle}>{doc.title}</h1>
                                 )}
                                 <Markdown content={doc.content} currentPath={`/${version}/${doc.path}`} />
-                                {index < sections[section].length - 1 && (
-                                    <div className={style.separator} />
-                                )}
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
+            <Sheet>
+                <div className={style.search}>
+                    <SearchBar variant='body' dockable />
+                </div>
+                <SettingsGrid />
+            </Sheet>
         </NavigationLayout>
     )
 }
