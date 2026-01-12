@@ -20,6 +20,7 @@ interface DocContent {
 }
 
 const LAST_SECTION_KEY = 'amber-docs-last-section'
+export const SCROLL_OFFSET = 110
 
 export default function FullPage() {
     const { version } = useVersion()
@@ -91,7 +92,8 @@ export default function FullPage() {
             setTimeout(() => {
                 const element = docRefs.current.get(lastSection)
                 if (element) {
-                    element.scrollIntoView({ behavior: 'auto', block: 'start' })
+                    const elementTop = element.getBoundingClientRect().top + window.scrollY
+                    window.scrollTo({ top: Math.max(elementTop - SCROLL_OFFSET, 0), behavior: 'auto' })
                 }
                 setHasScrolled(true)
             }, 100)
@@ -150,7 +152,7 @@ export default function FullPage() {
             <div className='right'>
                 <div className={style.container}>
                     {sectionOrder.map((section) => (
-                        <div key={section}>
+                        <div key={section} data-section={section}>
                             <h1 className={style.sectionTitle}>{section}</h1>
                             {sections[section].map((doc) => (
                                 <div

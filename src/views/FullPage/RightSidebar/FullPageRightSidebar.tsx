@@ -19,7 +19,7 @@ interface Props {
 
 export default function FullPageRightSidebar({ docs, currentDocPath }: Props) {
     const { isOpen } = useSidebar()
-    const [activeDocPath, setActiveDocPath] = useState<string | null>(currentDocPath ?? null)
+    const [activeDoc, setActiveDoc] = useState<DocContent | null>(null)
 
     // Track which document is currently visible
     useEffect(() => {
@@ -29,7 +29,10 @@ export default function FullPageRightSidebar({ docs, currentDocPath }: Props) {
                     if (entry.isIntersecting) {
                         const path = entry.target.getAttribute('data-doc-path')
                         if (path) {
-                            setActiveDocPath(path)
+                            const doc = docs.find(d => d.path === path)
+                            if (doc) {
+                                setActiveDoc(doc)
+                            }
                         }
                         break
                     }
@@ -48,9 +51,6 @@ export default function FullPageRightSidebar({ docs, currentDocPath }: Props) {
 
         return () => observer.disconnect()
     }, [docs])
-
-    // Find current section
-    const activeDoc = docs.find(d => d.path === activeDocPath)
 
     return (
         <div className={`${style.aside} ${isOpen ? style.open : ''}`}>

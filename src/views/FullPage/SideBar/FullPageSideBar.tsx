@@ -5,6 +5,7 @@ import { Island } from '@/components/Island'
 import { Text } from '@/components/Text'
 import style from './FullPageSideBar.module.css'
 import useSidebar from '@/contexts/DocumentContext/useSidebar'
+import { SCROLL_OFFSET } from '../FullPage'
 
 interface DocContent {
     path: string
@@ -35,7 +36,16 @@ export default function FullPageSideBar({ docs, isFixed = false }: Props) {
     const scrollToDoc = (path: string) => {
         const element = document.querySelector(`[data-doc-path="${path}"]`)
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            const elementTop = element.getBoundingClientRect().top + window.scrollY
+            window.scrollTo({ top: Math.max(elementTop - SCROLL_OFFSET, 0), behavior: 'auto' })
+        }
+    }
+
+    const scrollToSection = (section: string) => {
+        const element = document.querySelector(`[data-section="${section}"]`)
+        if (element) {
+            const elementTop = element.getBoundingClientRect().top + window.scrollY
+            window.scrollTo({ top: Math.max(elementTop - SCROLL_OFFSET, 0), behavior: 'auto' })
         }
     }
 
@@ -47,7 +57,7 @@ export default function FullPageSideBar({ docs, isFixed = false }: Props) {
                         {sectionOrder.map((section) => (
                             <React.Fragment key={section}>
                                 <button
-                                    onClick={() => scrollToDoc(sections[section][0].path)}
+                                    onClick={() => scrollToSection(section)}
                                     className={style.sectionButton}
                                 >
                                     <Text block>
