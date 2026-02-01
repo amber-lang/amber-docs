@@ -30,17 +30,6 @@ if dir_exists("/tmp/mydir") {
 }
 ```
 
-## `escape_non_glob_chars`
-
-```ab
-fun escape_non_glob_chars(path: Text): Text 
-```
-
-Escapes all characters in the passed-in glob except "*", "?" and "/",
-to prevent injection attacks.
-```ab
-import { escape_non_glob_chars } from "std/fs"
-```
 ## `file_append`
 
 ```ab
@@ -146,7 +135,7 @@ file_extract("archive.tar.gz", "/tmp/extracted")
 ## `file_glob`
 
 ```ab
-pub fun file_glob(path: Text): [Text]? 
+pub fun file_glob(path: Text): [Text] 
 ```
 
 Finds all files or directories matching a file glob.
@@ -161,7 +150,7 @@ let files = file_glob("*.txt")
 ## `file_glob_all`
 
 ```ab
-pub fun file_glob_all(paths: [Text]): [Text]? 
+pub fun file_glob_all(paths: [Text]): [Text] 
 ```
 
 Finds all files or directories matching multiple file globs. When
