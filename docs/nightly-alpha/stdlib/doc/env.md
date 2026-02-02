@@ -363,7 +363,7 @@ printf("%s\n", [italic("Emphasized text")])
 ## `kill`
 
 ```ab
-pub fun kill(pid: Int, signal: Text = "TERM"): Null? 
+pub fun kill(process_id: Int, signal: Text = "TERM"): Null? 
 ```
 
 Sends a signal to a process by PID.
