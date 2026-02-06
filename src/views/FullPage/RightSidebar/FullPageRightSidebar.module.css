@@ -1,0 +1,82 @@
+.aside {
+    width: 0;
+    margin: 0;
+    transition: width 300ms, margin 300ms;
+    position: relative;
+    z-index: 10;
+}
+
+.aside.open {
+    width: 300px;
+    margin-right: 2rem;
+}
+
+.container {
+    position: fixed;
+    width: 300px;
+    top: 116px;
+    transform: translate(150%, 0);
+    transition: transform 300ms;
+}
+
+.open .container {
+    transform: translate(0, 0);
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sectionButton {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font: inherit;
+    border-radius: 0.5rem;
+    color: var(--description);
+    transition: background 200ms, color 200ms;
+}
+
+.sectionButton:hover {
+    background: var(--hover);
+    color: var(--text);
+}
+
+.sectionButton.active {
+    background: var(--active);
+    color: var(--text);
+    font-weight: 500;
+}
+
+.currentDoc {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--island);
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+.currentLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--description);
+    margin-bottom: 0.5rem;
+}
+
+.currentTitle {
+    color: var(--text);
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1560px) {
+    .aside {
+        display: none;
+    }
+}

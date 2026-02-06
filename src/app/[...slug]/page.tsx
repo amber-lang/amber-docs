@@ -14,6 +14,7 @@ interface Props {
 export default async function Post({ params }: Props) {
     const { slug } = await params
     const location = getLocation(slug)
+    
     if (location.slug.length == 0) return (
         <VersionProvider version={location.version}>
             <Main location={location} />

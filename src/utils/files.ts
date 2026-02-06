@@ -67,18 +67,19 @@ export function extractKeywords(content: string) {
     }
 }
 
-export async function getDocument(path: string): Promise<Document | null> {
-    if (cachedDocs.has(path) && process.env.NODE_ENV === 'production') {
-        return cachedDocs.get(path)!
+export async function getDocument(docPath: string): Promise<Document | null> {
+    if (cachedDocs.has(docPath) && process.env.NODE_ENV === 'production') {
+        return cachedDocs.get(docPath)!
     }
 
-    const rawContent = await readFile(path)
+    const rawContent = await readFile(docPath)
     if (!rawContent) return null
     
     const { content, keywords, headerKeywords } = extractKeywords(rawContent)
     const headers = getHeaders(content)
-    const document = { content, headers, path, keywords, headerKeywords }
+    const document = { content, headers, path: docPath, keywords, headerKeywords }
 
-    cachedDocs.set(path, document)
+    cachedDocs.set(docPath, document)
     return document
 }
+
