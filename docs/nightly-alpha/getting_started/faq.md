@@ -70,7 +70,7 @@ It depends on your needs:
 | You need maximum portability (only Bash required) | You need external dependencies (pip packages) |
 | Your scripts should run on any Unix-like system | You control the strict deployment environment |
 | You want type safety in shell scripting | You need complex data structures or pip dependencies |
-| You prefer Bash-native features | You need WebAssembly or GUI support |
+| You prefer Bash-native features | You need complex APIs or specific integration with other technologies |
 
 Many users use Amber for system administration and DevOps tasks where portability matters, and Python for application development where ecosystem matters more.
 
