@@ -72,6 +72,23 @@ $ ./args.ab 1 2 3
 3
 ```
 
+### Preventing Execution with Bash
+
+If you write an Amber script with a shebang pointing to `amber`, there is a risk that someone might accidentally execute it with `bash` instead. To prevent this, you can add a check at the top of your script using the following technique:
+
+```ab
+// 2> /dev/null; exit 1
+
+// Your Amber code here
+echo("Hello world")
+```
+
+This line is valid in both Amber and Bash:
+- In **Amber**, `//` starts a comment, so the line is ignored
+- In **Bash**, `//` is treated as a comment (ignored), `2> /dev/null` suppresses errors, and `exit 1` terminates the script with an error code
+
+For more information about running Amber scripts, see [Running Amber Code](#running-amber-code).
+
 If you want to run just a small code snippet, you can do that as well:
 
 ```sh
