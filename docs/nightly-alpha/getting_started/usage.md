@@ -206,3 +206,45 @@ The optimizer is still being improved. If you encounter any issues with optimiza
 ```sh
 AMBER_NO_OPTIMIZE=1 amber ...
 ```
+
+### Custom Header and Footer
+
+Amber allows you to customize the header and footer of compiled scripts using environment variables:
+
+**AMBER_HEADER**: Path to a custom header file that replaces the default header. The header can use template variables:
+- `{{ version }}` - Amber compiler version
+
+**AMBER_FOOTER**: Path to a custom footer file that appends to the end of the script. The footer can use:
+- `{{ version }}` - Amber compiler version
+
+**Example custom header (`custom_header.sh`):**
+```bash
+#!/usr/bin/env bash
+# Custom header for production scripts
+# Project: {{ version }}
+# Generated on: $(date)
+```
+
+**Example custom footer (`custom_footer.sh`):**
+```bash
+# Custom footer
+# End of generated script
+```
+
+**Usage:**
+```sh
+# Using custom header
+AMBER_HEADER=./custom_header.sh amber build input.ab output.sh
+
+# Using both header and footer
+AMBER_HEADER=./custom_header.sh AMBER_FOOTER=./custom_footer.sh amber build input.ab output.sh
+```
+
+**Default header:**
+```bash
+#!/usr/bin/env bash
+# Written in [Amber](https://amber-lang.com/)
+# version: {{ version }}
+```
+
+Note: Custom headers and footers are useful for adding project-specific metadata, license information, or runtime checks to your compiled scripts.
