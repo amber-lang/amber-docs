@@ -168,6 +168,11 @@
                 {
                     "path": "by_example/lsp_installer",
                     "title": "LSP Installer"
+                },
+                {
+                    "path": "by_example/awesome_amber",
+                    "title": "Awesome Amber",
+                    "url": "https://github.com/amber-lang/awesome-amberlang"
                 }
             ]
         }
