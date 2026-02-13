@@ -130,11 +130,18 @@ Here is a list of plugins that support syntax highlighting for Amber language.
 
 ### Postprocessors
 
-By default, Amber runs postprocessor `bshchk` (if installed) on the compiled Bash script.  This functionality can be disabled with a `--no-proc` option:
+Amber supports postprocessors that can optionally run after compilation to enhance your scripts. These tools are not included with Amber but will be executed automatically if they are installed on your system.
 
-```sh
-$ amber build --no-proc=bshchk input.ab output.sh
-```
+#### bshchk
+
+[bshchk](https://github.com/b1ek/bshchk) is a runtime Bash dependency checker. It analyzes your compiled Bash script to ensure all external commands used are available at runtime, preventing runtime failures due to unavailable dependencies.
+
+**Features:**
+- Detects missing external commands before script execution
+- Prevents runtime failures due to unavailable dependencies
+- Supports inline directives for fine-grained control
+
+For installation instructions and usage details, please refer to the [bshchk README](https://github.com/b1ek/bshchk#readme).
 
 ### Minification
 
