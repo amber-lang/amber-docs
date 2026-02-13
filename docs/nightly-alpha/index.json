@@ -188,6 +188,10 @@
                     "url": "https://github.com/amber-lang/awesome-amberlang"
                 }
             ]
+        },
+        {
+            "path": "press/press",
+            "title": "Press"
         }
     ]
 }
