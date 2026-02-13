@@ -36,3 +36,7 @@ Amber's compiled Bash scripts are actively tested across a range of environments
 | **Bash (Linux) GNU**  | 3.2 - 5.3     | Under Testing | All versions within this range are tested using [tianon/docker-bash](https://github.com/tianon/docker-bash). |
 | **Bash (macOS)**  | 3.2           | Under Testing | Verified through GitHub Actions `macos-latest` environments.       |
 | **Bash (Linux) Busy Box**           | Latest           | Under Testing | Busy box environment. As of right now latest is 5.3 |
+
+---
+
+If you're wondering who Amber is for or why to use it instead of other languages, check the [FAQ](getting_started/faq).
