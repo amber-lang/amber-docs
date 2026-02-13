@@ -23,12 +23,12 @@ Pure Bash scripts lack static type checking, modular imports, and modern languag
 
 ## How does Amber compare to other languages?
 
-| Feature | Amber | Bash | Python | Rust |
-|---|---|---|---|---|
-| Compiles to Bash | ✅ | ✅ | ❌ | ❌ |
-| Static typing | ✅ | ❌ | ✅ | ✅ |
-| Native shell integration | ✅ | ✅ | ❌ | ❌ |
-| Learning curve | Low | Moderate | Moderate | High |
+| Feature | Amber | Bash | Python | 
+|---|---|---|---|
+| Compiles to Bash | ✅ | ✅ | ❌ | 
+| Static typing | ✅ | ❌ | ✅ |
+| Native shell integration | ✅ | ✅ | ❌ |
+| Learning curve | Low | Moderate | Moderate |
 
 Amber fills a niche between lightweight shell scripting and full‑featured high‑level languages.
 
@@ -51,10 +51,6 @@ The compiled code is highly portable and will run on any system with the target 
 ## Can Amber compile to other shells like Zsh or POSIX sh?
 
 Yes, this is actively being developed. Amber currently targets Bash as its primary shell, but we're working on mechanisms to allow targeting different shells. For now, you can use Amber's built-in features that have equivalents in POSIX shell, and we're working on a target configuration that will let you specify the target shell.
-
-## Is Amber written in Rust?
-
-Yes! Amber's compiler is written in Rust and targets Bash. We're currently at version 0.5.1 and always looking for contributors, especially Rust developers. If you're interested in helping, check out our [contributing guide](contribute/contribute) or reach out on Discord.
 
 ## Why not just use an LLM to write scripts?
 
