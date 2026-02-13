@@ -72,7 +72,7 @@ It depends on your needs:
 | Consider Amber if... | Consider Python if... |
 |---------------------|----------------------|
 | You need maximum portability (only Bash required) | You need external dependencies (pip packages) |
-| Your scripts must run on any Unix-like system | You control the deployment environment |
+| Your scripts should run on any Unix-like system | You control the strict deployment environment |
 | You want type safety in shell scripting | You need complex data structures or AI integration |
 | You prefer Bash-native features | You need WebAssembly or GUI support |
 
