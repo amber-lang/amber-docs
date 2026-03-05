@@ -14,3 +14,7 @@ Amber has attracted attention from various media outlets and community platforms
 ## Conference talks
 
 - [FOSDEM 2026 – Amber: Bash Transpiler (talk slides)](https://fosdem.org/2026/schedule/event/GGLZS9-amber-lang-bash-transpiler/) – Presentation at FOSDEM with slide deck hosted at https://mte90.tech/Talk-Amber/.
+
+## Interviews
+
+- [ClueCon Weekly with Daniele Scasciafratte: A Modern Way to Write Bash w/ Amber Lang](https://www.youtube.com/watch?v=oGQg3FdSpXc)
