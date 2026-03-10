@@ -72,6 +72,23 @@ $ ./args.ab 1 2 3
 3
 ```
 
+### Preventing Execution with Bash
+
+If you write an Amber script with a shebang pointing to `amber`, there is a risk that someone might accidentally execute it with `bash` instead. To prevent this, you can add a check at the top of your script using the following technique:
+
+```ab
+// 2> /dev/null; exit 1
+
+// Your Amber code here
+echo("Hello world")
+```
+
+This line is valid in both Amber and Bash:
+- In **Amber**, `//` starts a comment, so the line is ignored
+- In **Bash**, `//` is treated as a comment (ignored), `2> /dev/null` suppresses errors, and `exit 1` terminates the script with an error code
+
+For more information about running Amber scripts, see [Running Amber Code](#running-amber-code).
+
 If you want to run just a small code snippet, you can do that as well:
 
 ```sh
@@ -119,6 +136,7 @@ Here is a list of plugins that support syntax highlighting for Amber language.
 | Icon | Name | Location |
 |---|:----:|:-----:|
 | LOGO:hx | **Helix Editor** | [Native Support](https://docs.helix-editor.com/lang-support.html) |
+| LOGO:kate | **Kate/KWrite** | [GitHub](https://github.com/amber-lang/amber-kate) |
 | LOGO:nova | **Nova** | [Nova extensions](https://extensions.panic.com/extensions/besya/besya.amber/) |
 | LOGO:vim | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
 | LOGO:vsc | **VS Code** | [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=Ph0enixKM.amber-language) or [Our extension repository](https://github.com/amber-lang/amber-vsc) |
@@ -129,11 +147,18 @@ Here is a list of plugins that support syntax highlighting for Amber language.
 
 ### Postprocessors
 
-By default, Amber runs postprocessor `bshchk` (if installed) on the compiled Bash script.  This functionality can be disabled with a `--no-proc` option:
+Amber supports postprocessors that can optionally run after compilation to enhance your scripts. These tools are not included with Amber but will be executed automatically if they are installed on your system.
 
-```sh
-$ amber build --no-proc=bshchk input.ab output.sh
-```
+#### bshchk
+
+[bshchk](https://github.com/b1ek/bshchk) is a runtime Bash dependency checker. It analyzes your compiled Bash script to ensure all external commands used are available at runtime, preventing runtime failures due to unavailable dependencies.
+
+**Features:**
+- Detects missing external commands before script execution
+- Prevents runtime failures due to unavailable dependencies
+- Supports inline directives for fine-grained control
+
+For installation instructions and usage details, please refer to the [bshchk README](https://github.com/b1ek/bshchk#readme).
 
 ### Minification
 
@@ -181,3 +206,45 @@ The optimizer is still being improved. If you encounter any issues with optimiza
 ```sh
 AMBER_NO_OPTIMIZE=1 amber ...
 ```
+
+### Custom Header and Footer
+
+Amber allows you to customize the header and footer of compiled scripts using environment variables:
+
+**AMBER_HEADER**: Path to a custom header file that replaces the default header. The header can use template variables:
+- `{{ version }}` - Amber compiler version
+
+**AMBER_FOOTER**: Path to a custom footer file that appends to the end of the script. The footer can use:
+- `{{ version }}` - Amber compiler version
+
+**Example custom header (`custom_header.sh`):**
+```bash
+#!/usr/bin/env bash
+# Custom header for production scripts
+# Project: {{ version }}
+# Generated on: $(date)
+```
+
+**Example custom footer (`custom_footer.sh`):**
+```bash
+# Custom footer
+# End of generated script
+```
+
+**Usage:**
+```sh
+# Using custom header
+AMBER_HEADER=./custom_header.sh amber build input.ab output.sh
+
+# Using both header and footer
+AMBER_HEADER=./custom_header.sh AMBER_FOOTER=./custom_footer.sh amber build input.ab output.sh
+```
+
+**Default header:**
+```bash
+#!/usr/bin/env bash
+# Written in [Amber](https://amber-lang.com/)
+# version: {{ version }}
+```
+
+Note: Custom headers and footers are useful for adding project-specific metadata, license information, or runtime checks to your compiled scripts.

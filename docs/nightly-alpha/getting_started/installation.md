@@ -145,7 +145,10 @@ sudo mkdir /opt /usr/local/bin
 Amber is currently an alpha-stage project, and to implement some features, we have chosen to integrate external tools.  
 If these tools are available on your system, they will be executed at the end of the Bash compilation process.
 
-* [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker
+* [bshchk](https://github.com/b1ek/bshchk): A runtime Bash dependency checker. Install it separately on your system to enable automatic checking of external command dependencies in your compiled scripts. See the [bshchk repository](https://github.com/b1ek/bshchk) for installation instructions.
+
+> [!TIP]
+> bshchk is not included with Amber. For more information about using it, including inline directives and disabling it when needed, see the [Postprocessors section in the Usage guide](getting_started/usage#postprocessors).
 
 ## Uninstallation
 

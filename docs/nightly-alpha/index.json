@@ -13,6 +13,10 @@
                     "title": "Usage"
                 },
                 {
+                    "path": "getting_started/faq",
+                    "title": "FAQ"
+                },
+                {
                     "path": "getting_started/testing",
                     "title": "Testing"
                 },
@@ -177,8 +181,17 @@
                 {
                     "path": "by_example/lsp_installer",
                     "title": "LSP Installer"
+                },
+                {
+                    "path": "by_example/awesome_amber",
+                    "title": "Awesome Amber",
+                    "url": "https://github.com/amber-lang/awesome-amberlang"
                 }
             ]
+        },
+        {
+            "path": "press/press",
+            "title": "Press"
         }
     ]
 }
