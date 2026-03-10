@@ -34,7 +34,10 @@ Amber fills a niche between lightweight shell scripting and full‑featured high
 
 ## Is Amber production‑ready?
 
-Amber is under active development. The **nightly** provides the latest features and improvements, but may contain breaking changes. For production workloads, we recommend using the latest stable release (e.g., `0.5.x`) rather than the nightly build.
+Amber is under active development. The **nightly** provides the latest features and improvements, but may contain breaking changes.  
+For production workloads, we recommend using the latest stable release (e.g., `0.5.x`) rather than the nightly build.
+
+In the the project it is production ready because it is already used in this context because the Bash code generated is tested and confirmed that works, the language is evolving with the tooling set.
 
 ## Can I use Amber for system scripts?
 
