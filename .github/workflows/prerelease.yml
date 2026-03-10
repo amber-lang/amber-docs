@@ -23,7 +23,7 @@ jobs:
           ref: staging
       - id: get-commits-step
         run: |
-          LATEST_TAG="$(git tag | tail --lines=1)"
+          LATEST_TAG="$(git tag --sort=version:refname | grep -v nightly | tail --lines=1)"
           echo latest tag is $LATEST_TAG
           SUBJECTS="$(git log "$LATEST_TAG..staging" --oneline --format=%s)"
           echo "--- Subjects ---"
