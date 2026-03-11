@@ -11,6 +11,7 @@ import FullPageRightSidebar from './RightSidebar/FullPageRightSidebar'
 import SettingsGrid from '@/components/SettingsGrid/SettingsGrid'
 import Sheet from '@/components/Sheet/Sheet'
 import SearchBar from '@/components/SearchBar/SearchBar'
+import useLocalStorage from '@/hooks/useLocalStorage'
 
 interface DocContent {
     path: string
@@ -24,6 +25,7 @@ export const SCROLL_OFFSET = 110
 
 export default function FullPage() {
     const { version } = useVersion()
+    const { getItem, setItem } = useLocalStorage()
     const [docs, setDocs] = useState<DocContent[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
@@ -59,7 +61,7 @@ export default function FullPage() {
                     if (entry.isIntersecting) {
                         const path = entry.target.getAttribute('data-doc-path')
                         if (path) {
-                            localStorage.setItem(LAST_SECTION_KEY, path)
+                            setItem(LAST_SECTION_KEY, path)
                         }
                         break
                     }
@@ -79,13 +81,13 @@ export default function FullPage() {
         return () => {
             observerRef.current?.disconnect()
         }
-    }, [docs])
+    }, [docs, setItem])
 
     // Scroll to last section once docs are loaded
     useEffect(() => {
         if (docs.length === 0 || hasScrolled) return
 
-        const lastSection = localStorage.getItem(LAST_SECTION_KEY)
+        const lastSection = getItem(LAST_SECTION_KEY)
         
         if (lastSection) {
             // Small delay to ensure DOM is ready
@@ -100,7 +102,7 @@ export default function FullPage() {
         } else {
             setHasScrolled(true)
         }
-    }, [docs, hasScrolled])
+    }, [docs, hasScrolled, getItem])
 
     const setDocRef = useCallback((path: string, el: HTMLDivElement | null) => {
         if (el) {
