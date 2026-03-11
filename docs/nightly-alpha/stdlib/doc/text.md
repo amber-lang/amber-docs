@@ -101,13 +101,13 @@ import { cpad } from "std/text"
 let padded: Text
 
 padded = cpad("42", "0", 5)
-echo padded // "04200"
+echo(padded) // "04200"
 
 padded = cpad("42", "0", 6)
-echo padded // "004200"
+echo(padded) // "004200"
 
 padded = cpad("42", "0", 1)
-echo padded // "42"
+echo(padded) // "42"
 ```
 
 ## `ends_with`
