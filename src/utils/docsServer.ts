@@ -4,7 +4,16 @@ import fs from 'fs/promises'
 import config from '@/../config.json'
 import path from 'path'
 
-export type TocSection = { path: string, title: string, docs: TocSection[], disableLevels?: number[] }
+export type TocDoc = {
+    path: string
+    title: string
+    disableLevels?: number[]
+    url?: string
+}
+
+export type TocSection = TocDoc & {
+    docs?: TocDoc[]
+}
 let cachedToc: Map<string, TocSection[]> = new Map()
 
 export async function getTableOfContents(version: string = config.defaultVersion): Promise<TocSection[]> {

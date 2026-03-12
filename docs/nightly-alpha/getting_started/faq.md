@@ -1,5 +1,3 @@
-# FAQ
-
 ## Who is Amber for?
 
 Amber is aimed at developers who need the power of a modern programming language while staying within the ubiquitous Bash environment. It is especially useful for:
