@@ -1,19 +1,3 @@
-## `bash_version`
-
-```ab
-pub fun bash_version(): [Int] 
-```
-
-Returns current bash version with major, minor and patch components.
-
-### Usage
-```ab
-import { bash_version } from "std/env"
-
-const version = bash_version()
-echo("Bash {version[0]}.{version[1]}.{version[2]}")
-```
-
 ## `bold`
 
 ```ab
@@ -486,6 +470,24 @@ import { printf } from "std/env"
 printf("Hello %s!", ["World"])
 ```
 
+## `shell_version`
+
+```ab
+pub fun shell_version(): [Int] 
+```
+
+Returns current shell version with major, minor and patch components.
+Works in both Bash, Zsh and Ksh.
+
+### Usage
+```ab
+import { shell_version } from "std/env"
+
+const version = shell_version()
+echo(version[0]) // Major version (e.g., 5)
+echo(version[1]) // Minor version (e.g., 9)
+```
+
 ## `shopt_disable`
 
 ```ab
@@ -501,7 +503,11 @@ import { shopt_disable } from "std/env"
 shopt_disable("dotglob")? // Hides files starting with "." during filename expansion
 shopt_disable("noglob", true)? // Enables filename expansion (globbing)
 ```
-For all available options, see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+For all available options, see:
+- [bash options](https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html)
+- [zsh options](https://zsh.sourceforge.io/Doc/Release/Options.html)
+- [ksh options](https://www.mkssoftware.com/docs/man1/set.1.asp)
+NOTE: set_opt argument is only for bash target, otherwise it's ignored
 
 ## `shopt_enable`
 
@@ -518,7 +524,11 @@ import { shopt_enable } from "std/env"
 shopt_enable("globstar")? // Enables star (*) expansion for filenames
 shopt_enable("noglob", true)? // Disables filename expansion (globbing). Note that this option doesn't properly work in a limited environment, e.g. GitHub Actions
 ```
-For all available options, see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+For all available options, see:
+- [bash options](https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html)
+- [zsh options](https://zsh.sourceforge.io/Doc/Release/Options.html)
+- [ksh options](https://www.mkssoftware.com/docs/man1/set.1.asp)
+NOTE: set_opt argument is only for bash target, otherwise it's ignored
 
 ## `styled`
 
