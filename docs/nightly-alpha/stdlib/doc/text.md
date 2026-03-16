@@ -1,9 +1,3 @@
-## `bash_version`
-
-```ab
-fun bash_version(): [Int] 
-```
-
 ## `capitalized`
 
 ```ab
@@ -330,6 +324,12 @@ echo(padded) // "42000"
 
 ```ab
 fun sed_version(): Int 
+```
+
+## `shell_version`
+
+```ab
+fun shell_version(): [Int] 
 ```
 
 ## `slice`
