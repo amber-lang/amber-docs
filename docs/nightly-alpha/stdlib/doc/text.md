@@ -326,12 +326,6 @@ echo(padded) // "42000"
 fun sed_version(): Int 
 ```
 
-## `shell_version`
-
-```ab
-fun shell_version(): [Int] 
-```
-
 ## `slice`
 
 ```ab
