@@ -470,24 +470,6 @@ import { printf } from "std/env"
 printf("Hello %s!", ["World"])
 ```
 
-## `shell_version`
-
-```ab
-pub fun shell_version(): [Int] 
-```
-
-Returns current shell version with major, minor and patch components.
-Works in both Bash, Zsh and Ksh.
-
-### Usage
-```ab
-import { shell_version } from "std/env"
-
-const version = shell_version()
-echo(version[0]) // Major version (e.g., 5)
-echo(version[1]) // Minor version (e.g., 9)
-```
-
 ## `shopt_disable`
 
 ```ab
