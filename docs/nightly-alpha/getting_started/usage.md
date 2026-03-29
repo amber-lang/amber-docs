@@ -116,6 +116,19 @@ Furthermore, Amber adds a _shebang_ at the top of the compiled script. This enab
 $ ./output.sh
 ```
 
+### Compiling for different targets
+
+Since 0.6.0, Amber adds support for multiple shell targets:
+
+```sh
+amber build script.ab --target bash # default (bash 4.3+)
+amber build script.ab --target bash-3.2
+amber build script.ab --target zsh
+amber build script.ab --target ksh
+```
+
+For more information, visit [Cross-shell support](advanced_syntax/cross_shell) guide.
+
 ## Testing
 
 Amber comes with a built-in test runner. You can define named test blocks in your code and execute them using the `amber test` command.

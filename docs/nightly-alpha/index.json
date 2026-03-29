@@ -89,6 +89,10 @@
                     "title": "Type Condition"
                 },
                 {
+                    "path": "advanced_syntax/cross_shell",
+                    "title": "Cross-shell support"
+                },
+                {
                     "path": "advanced_syntax/compiler_flags",
                     "title": "Compiler Flags"
                 }
