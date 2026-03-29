@@ -4,7 +4,7 @@ The Amber CLI can be used as a runtime or as a compiler.
 
 The Amber CLI syntax uses subcommands, like the Git CLI:
 
-*This output is generated from the 0.5.2-alpha version.*
+*This output is generated from the 0.6.0-alpha version.*
 ```
 Usage: amber [OPTIONS] [INPUT] [ARGS]... [COMMAND]
 
@@ -27,6 +27,7 @@ Options:
                            Available postprocessors: 'bshchk'
                            To select multiple, pass multiple times with different values
                            Argument also supports a wildcard match, like "*" or "b*chk"
+      --target <TARGET>    Code generation target shell
   -h, --help               Print help
   -V, --version            Print version
 ```
@@ -114,6 +115,19 @@ Furthermore, Amber adds a _shebang_ at the top of the compiled script. This enab
 ```sh
 $ ./output.sh
 ```
+
+### Compiling for different targets
+
+Since 0.6.0, Amber adds support for multiple shell targets:
+
+```sh
+amber build script.ab --target bash # default (bash 4.3+)
+amber build script.ab --target bash-3.2
+amber build script.ab --target zsh
+amber build script.ab --target ksh
+```
+
+For more information, visit [Cross-shell support](advanced_syntax/cross_shell) guide.
 
 ## Testing
 
