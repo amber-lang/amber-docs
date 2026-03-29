@@ -7,7 +7,7 @@ echo("Hello world!")
 
 ## What is Amber?
 
-Amber is a programming language compiled into Bash Script. It was designed with a modern syntax, safety features, type safety and practical functionalities that Bash could not offer. The subsequent section will demonstrate how Amber embodies these characteristics.
+Amber is a programming language compiled into Shell Script. It was designed with a modern syntax, safety features, type safety and practical functionalities that normal shells could not offer. The subsequent section will demonstrate how Amber embodies these characteristics.
 
 ### Modern Syntax
 
@@ -15,7 +15,7 @@ Amber is designed based on the ECMA script syntax. The goal was to create a synt
 
 ### Safety Features
 
-When Bash command fails - it carries on with the code execution as if nothing has happened. This could lead to some serious problems and side effects that are irreversible.
+When shell command fails - it carries on with the code execution as if nothing has happened. This could lead to some serious problems and side effects that are irreversible.
 
 We dislike this behavior. This is why Amber will not compile if edge cases aren't handled - whether that involves displaying an error message to the user or failing silently.
 
@@ -29,13 +29,15 @@ Amber supports things that are essential to developer like floating point arithm
 
 ### Supported Environments
 
-Amber's compiled Bash scripts are actively tested across a range of environments.
+Amber's compiled shell scripts are actively tested across a range of environments.
 
 | Environment       | Version Range | Status               | Notes                                                              |
 |-------------------|---------------|----------------------|--------------------------------------------------------------------|
-| **Bash (Linux) GNU**  | 3.2 - 5.3     | Under Testing | All versions within this range are tested using [tianon/docker-bash](https://github.com/tianon/docker-bash). |
-| **Bash (macOS)**  | 3.2           | Under Testing | Verified through GitHub Actions `macos-latest` environments.       |
-| **Bash (Linux) Busy Box**           | Latest           | Under Testing | Busy box environment. As of right now latest is 5.3 |
+| **Bash (Linux) GNU**      | 3.2 - 5.3 | Under Testing    | All versions within this range are tested using [tianon/docker-bash](https://github.com/tianon/docker-bash). |
+| **Bash (macOS)**          | 3.2       | Under Testing     | Verified through GitHub Actions `macos-latest` environments.       |
+| **Bash (Linux) Busy Box** | Latest    | Under Testing     | Busy box environment. As of right now latest is 5.3 |
+| **ZSH (Linux and macOS)** | 5.8 - 5.9 | Under Testing     | Verified through GitHub Actions environment. |
+| **KSH93 (Linux)**         | 1.0.10    | Not Under Testing | The functionality is only tested locally and individually. |
 
 ---
 
