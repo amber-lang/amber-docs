@@ -4,9 +4,9 @@ Since 0.6.0, Amber has introduced support for multiple shell targets:
 - bash 4.3+
 - bash 3.2+
 
-This gives developers the abilitiy to write one usable code for multiple shells without the need to consider all the differences between them all. 
+This gives developers the ability to write one usable code for multiple shells without the need to consider all the differences between them all. 
 
-While the syntax side is generated for specific target automatically, each shell has its own behaviour for the same commands, which still need to be processed invididually.
+While the syntax side is generated for specific target automatically, each shell has its own behaviour for the same commands, which still need to be processed individually.
 
 To implement code logic for individual shells, we have included `shellname()` and `shellversion()` builtins:
 
