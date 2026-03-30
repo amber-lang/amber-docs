@@ -133,7 +133,7 @@ $ amber build --target zsh script.ab output.zsh
 $ amber build --target ksh script.ab output.ksh
 ```
 
-**Bash 3.2 as the default target** — By default, Amber now generates scripts compatible with Bash 3.2. This is significant because macOS still ships with Bash 3.2 (due to licensing reasons), meaning scripts compiled with Amber work out of the box on macOS, Linux, and older systems without requiring a Bash upgrade. The generated code avoids features introduced in Bash 4+, such as associative arrays or certain parameter expansions.
+**Bash 4.3 as the default target** — By default, Amber now generates scripts compatible with Bash 4.3. This is a significant change for future features like objects and custom structures and other useful features coming with bash 4+. We still keep support for bash 3.2 in a form of shell target `bash-3.2` to keep support for legacy OS X systems which only came with bash 3.2. Note that the bash 3.2 target will avoid future features like objects due to lack of functionality in older bash versions.
 
 **Zsh support** — Scripts can be compiled to run under Zsh, which is the default shell on macOS. This enables better integration with Zsh-specific environments.
 
