@@ -127,7 +127,7 @@ disown(1234)  // Disown a specific PID
 Amber now supports generating scripts for multiple shell targets. This is controlled via the `--target` flag during compilation:
 
 ```sh
-$ amber build script.ab output.sh              # Default: Bash 3.2
+$ amber build script.ab output.sh              # Default: Bash 4.3
 $ amber build --target bash script.ab output.sh
 $ amber build --target zsh script.ab output.zsh
 $ amber build --target ksh script.ab output.ksh
