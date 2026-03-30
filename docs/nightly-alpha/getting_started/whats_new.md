@@ -145,7 +145,7 @@ The Amber standard library has been optimized for better performance in the gene
 
 # Math improvements
 
-Mathematical operations in Amber-generated Bash code no longer depend on `bc` or `sed`. Range computations and arithmetic are now handled using native Bash arithmetic, improving performance and reducing external dependencies. This means Amber scripts run faster and require fewer tools installed on the target system.
+Integer arithmetic operations in Amber-generated Bash code now use native Bash arithmetic, eliminating `bc` and `sed` dependencies for whole number calculations. Floating-point arithmetic and certain text operations still depend on `bc` and `sed`, respectively.
 
 # Standard library improvements
 
