@@ -45,7 +45,6 @@ Creates empty files or updates the modification timestamp of existing files. Acc
 
 ```ab
 touch("newfile.txt")
-touch("/tmp/a.txt", "/tmp/b.txt")
 ```
 
 ### `rm` — Remove files or directories
