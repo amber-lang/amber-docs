@@ -53,7 +53,7 @@ Removes files or directories from the filesystem. This is a failable builtin —
 
 ```ab
 rm("oldfile.txt")
-rm("-r", "/tmp/olddir")  // Recursive removal
+rm("/tmp/olddir", "-r")  // Recursive removal
 ```
 
 ### `sleep` — Pause execution
@@ -100,7 +100,7 @@ Copies files or directories from one location to another. This is a failable bui
 
 ```ab
 cp("source.txt", "backup.txt")
-cp("-r", "src_dir", "dest_dir")  // Recursive copy
+cp("src_dir", "dest_dir", "-r")  // Recursive copy
 ```
 
 ### `pid` — Get process ID
@@ -118,7 +118,6 @@ Removes a job from the shell's active job table, allowing the script to continue
 
 ```ab
 disown()      // Disown the most recent background job
-disown(1234)  // Disown a specific PID
 ```
 
 # Shell targets: Bash 3.2, Zsh, and Ksh
@@ -126,10 +125,10 @@ disown(1234)  // Disown a specific PID
 Amber now supports generating scripts for multiple shell targets. This is controlled via the `--target` flag during compilation:
 
 ```sh
-$ amber build script.ab output.sh              # Default: Bash 4.3
-$ amber build --target bash script.ab output.sh
-$ amber build --target zsh script.ab output.zsh
-$ amber build --target ksh script.ab output.ksh
+amber build script.ab output.sh              # Default: Bash 4.3
+amber build --target bash script.ab output.sh
+amber build --target zsh script.ab output.zsh
+amber build --target ksh script.ab output.ksh
 ```
 
 **Bash 4.3 as the default target** — By default, Amber now generates scripts compatible with Bash 4.3. This is a significant change for future features like objects and custom structures and other useful features coming with bash 4+. We still keep support for bash 3.2 in a form of shell target `bash-3.2` to keep support for legacy OS X systems which only came with bash 3.2. Note that the bash 3.2 target will avoid future features like objects due to lack of functionality in older bash versions.
