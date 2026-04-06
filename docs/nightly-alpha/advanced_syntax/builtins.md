@@ -86,7 +86,7 @@ Copy files or directories from location to another. This builtin is failable.
 
 ```
 cp("source.txt", "backup.txt")
-cp("-r", "src_dir", "dest_dir")  // Recursive copy
+cp("src_dir", "dest_dir", "-r")  // Recursive copy
 ```
 
 ## Mv
@@ -112,7 +112,7 @@ Removes files or directories from the filesystem. This is a failable builtin —
 
 ```ab
 rm("oldfile.txt")
-rm("-r", "/tmp/olddir")  // Recursive removal
+rm("/tmp/olddir", "-r")  // Recursive removal
 ```
 
 ## Touch
@@ -126,16 +126,21 @@ touch("/tmp/a.txt", "/tmp/b.txt")
 
 ## Nameof
 
-For more advanced commands, we might need the name of the variable in the compiled script. The `nameof` keyword provides this functionality.
+For more advanced commands, we might need the name of the variable or the function in the compiled script. The `nameof` keyword provides this functionality.
 
 For example, this allows us to perform operations like:
 
 ```ab
+fun my_function() {
+    echo("Hello world")
+}
 let variable = null
 
 trust $ {nameof variable}=12 $
 // Which is the same as declaring (but it is more readable in this way)
 let variable = 12
+// Call a function directly
+trust $ {nameof my_function} $
 ```
 
 ## Sleep
