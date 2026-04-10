@@ -123,6 +123,24 @@ echo(groceries)
 
 The behavior of this keyword is pretty similar to `&` in other C-like programming languages.
 
+## Recursive Functions
+
+Amber supports recursive function calls, allowing a function to call itself. This is useful for algorithms like factorial, Fibonacci, or tree traversal.
+
+```ab
+fun factorial(n: Int): Int {
+    if n <= 1 {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+echo(factorial(5))
+// Outputs: 120
+```
+
+For recursive functions to work properly, you must specify the return type explicitly.
+
 ## Reserved Prefix
 
 The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.
