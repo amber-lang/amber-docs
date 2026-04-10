@@ -41,7 +41,7 @@ Amber has gained many new builtins for common shell operations. These builtins g
 
 ### `touch` — Create or update files
 
-Creates empty files or updates the modification timestamp of existing files. Accepts one or more file paths.
+Creates an empty file or updates the modification timestamp of an existing file. Accepts a single file path.
 
 ```ab
 touch("newfile.txt")
@@ -52,8 +52,8 @@ touch("newfile.txt")
 Removes files or directories from the filesystem. This is a failable builtin — use `failed` blocks or `trust` to handle errors.
 
 ```ab
-rm("oldfile.txt")
-rm("/tmp/olddir", "-r")  // Recursive removal
+rm("oldfile.txt")?
+rm("/tmp/olddir", true)?  // Recursive removal
 ```
 
 ### `sleep` — Pause execution
@@ -72,9 +72,9 @@ Returns an array of filenames in the specified directory. Accepts optional `all`
 ```ab
 let files = trust ls("/tmp")
 
-let all_files = trust ls("/tmp", true, false)         // Include hidden files
-let recursive = trust ls("/tmp", false, true)         // List recursively
-let everything = trust ls("/tmp", true, true)         // Both
+let all_files = trust ls("/tmp", true, false)?         // Include hidden files
+let recursive = trust ls("/tmp", false, true)?         // List recursively
+let everything = trust ls("/tmp", true, true)?         // Both
 ```
 
 ### `pwd` — Print working directory
@@ -99,8 +99,8 @@ clear()
 Copies files or directories from one location to another. This is a failable builtin.
 
 ```ab
-cp("source.txt", "backup.txt")
-cp("src_dir", "dest_dir", "-r")  // Recursive copy
+cp("source.txt", "backup.txt")?
+cp("src_dir", "dest_dir", true)?  // Recursive copy
 ```
 
 ### `pid` — Get process ID
@@ -114,7 +114,7 @@ echo("Last process: {last_pid}")
 
 ### `disown` — Remove background jobs
 
-Removes a job from the shell's active job table, allowing the script to continue without waiting for it. Can optionally accept a specific PID.
+Removes a job from the shell's active job table, allowing the script to continue without waiting for it. Takes no arguments.
 
 ```ab
 disown()      // Disown the most recent background job
