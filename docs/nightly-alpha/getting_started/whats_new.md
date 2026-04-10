@@ -17,6 +17,90 @@ echo(factorial(5)) // Outputs: 120
 
 You can also name your tests for better readability and filter them by name or filename using CLI arguments. Read more in the [Testing Guide](testing).
 
+# Union Types
+
+Amber now supports union types, allowing variables and function parameters to accept multiple types. This enables more flexible APIs while maintaining type safety.
+
+```ab
+fun describe(value: Int | Bool | Text) {
+    // value can be an Int, Bool, or Text
+    echo("Got: {value}")
+}
+
+describe(42)        // Works with Int
+describe(true)      // Works with Bool
+describe("hello")   // Works with Text
+```
+
+Union types also work with arrays:
+
+```ab
+let mixed: [Int | Text] = [1, "two", 3, "four"]
+```
+
+# Array Destructuring
+
+You can now destructure arrays directly into variables, making it easier to work with multiple values.
+
+```ab
+let values = [1, 2, 3]
+
+let [first, second, third] = values
+echo(first)   // Outputs: 1
+echo(second)  // Outputs: 2
+
+// Reassigning to existing variables
+[first, second] = [10, 20]
+```
+
+# Comments in More Places
+
+Comments are now accepted in more places where you naturally write them, improving code readability:
+
+- **Inside array literals**
+  ```ab
+  let config = [
+      "value1",   // First option
+      "value2",   // Second option
+      // "value3", // Disabled option
+  ]
+  ```
+
+- **Inside import lists**
+  ```ab
+  import {
+      func1,      // Core function
+      func2,      // Helper function
+  } from "utils.ab"
+  ```
+
+- **Between function parameters**
+  ```ab
+  fun complex(
+      a: Int,     // First parameter
+      b: Text,    // Second parameter
+  ): Text { ... }
+  ```
+
+- **Between function arguments**
+  ```ab
+  some_func(
+      arg1,      // First argument
+      arg2,      // Second argument
+  )
+  ```
+
+- **Inside `if` chains**
+  ```ab
+  if condition1 {
+      // Branch 1
+  } else if condition2 {
+      // Branch 2
+  } else {
+      // Default branch
+  }
+  ```
+
 # Public Variables
 
 Variables can now be exported from a module using the `pub` keyword, making them importable in other files — just like functions. This enables sharing configuration values, constants, and other data across multiple Amber files without duplicating definitions.
@@ -120,6 +204,45 @@ Removes a job from the shell's active job table, allowing the script to continue
 disown()      // Disown the most recent background job
 ```
 
+### `lock` — File locking
+
+Creates an exclusive lock on a file, useful for coordinating access between processes.
+
+```ab
+lock("/tmp/myapp.lock")?  // Returns when lock is acquired
+// Critical section here
+```
+
+### `await` — Wait for background processes
+
+Waits for background processes to complete, optionally with a timeout.
+
+```ab
+// Start a background process
+some_long_task()
+
+// Wait for it to finish
+await()?
+```
+
+### `shellname` — Get shell name
+
+Returns the name of the current shell as a `Text` value.
+
+```ab
+let current_shell = shellname()
+echo("Running in: {current_shell}")  // Outputs: bash, zsh, or ksh
+```
+
+### `shellversion` — Get shell version
+
+Returns the version of the current shell as a `Text` value.
+
+```ab
+let version = shellversion()
+echo("Shell version: {version}")
+```
+
 # Shell targets: Bash 3.2, Zsh, and Ksh
 
 Amber now supports generating scripts for multiple shell targets. This is controlled via the `--target` flag during compilation:
@@ -219,9 +342,126 @@ echo(cpad("42", "0", 5))   // Outputs: "04200"
 echo(cpad("Title", " ", 20)) // Outputs: "       Title        "
 ```
 
+## File globbing
+
+New [`file_glob`](stdlib/doc/fs) and [`file_glob_all`](stdlib/doc/fs) functions match files using shell glob patterns.
+
+```ab
+import { file_glob, file_glob_all } from "std/fs"
+
+let ab_files = file_glob("*.ab")?
+let all_files = file_glob_all("**/*.ab")?  // Recursive
+```
+
+## Environment variable management
+
+New functions for setting environment variables at runtime.
+
+```ab
+import { env_const_set, env_var_set } from "std/env"
+
+env_const_set("MY_VAR", "value")?
+env_var_set("PATH", "/usr/bin:/bin")?
+```
+
+## System information
+
+The [`uname_*`](stdlib/doc/env) functions provide system information similar to the `uname` command.
+
+```ab
+import { uname_machine, uname_system, uname_release } from "std/env"
+
+echo(uname_system())   // e.g., "Linux"
+echo(uname_machine())  // e.g., "x86_64"
+```
+
+## Process management
+
+New functions for managing system processes.
+
+```ab
+import { pgrep, pkill, kill } from "std/env"
+
+// Find processes by name
+let pids = pgrep("nginx")?
+
+// Kill processes by name
+pkill("nginx")?
+
+// Send signal to specific PID
+kill(1234, "TERM")?
+```
+
+## Output formatting
+
+New functions for formatted and colored terminal output.
+
+```ab
+import { printf, styled, echo_colored } from "std/text"
+
+// Formatted output
+printf("Name: %s, Age: %d\n", ["Alice", 30])?
+
+// Styled text with ANSI codes
+styled("Bold text", "\033[1m")?
+
+// Colored output
+echo_colored("Error!", "red")
+echo_colored("Success!", "green")
+```
+
+## Text analysis
+
+New functions for analyzing text content.
+
+```ab
+import { count_lines, count_words, count_chars } from "std/text"
+
+let text = "Hello world\nWelcome to Amber"
+
+echo(count_lines(text))    // Outputs: 2
+echo(count_words(text))    // Outputs: 5
+echo(count_chars(text))    // Outputs: 28
+```
+
+## Text manipulation
+
+Additional utilities for working with text lines.
+
+```ab
+import { sort_lines, uniq_lines } from "std/text"
+
+let lines = ["zebra", "apple", "banana"]
+
+// Sort lines alphabetically
+let sorted = sort_lines(lines)?
+
+// Remove duplicate lines
+let unique = uniq_lines(sorted)?
+```
+
 # Packaging
 
 Amber is now available as **Debian** (`.deb`) and **RPM** packages, making installation easier on most Linux distributions. This is the first step toward providing official package repositories, so you can install and update Amber through your system's package manager.
+
+# Better error messages
+
+Amber now provides clearer, more helpful error messages when things go wrong:
+
+- **Array index out of bounds** — Runtime errors now include the source location and invalid index
+- **Same-scope redeclaration** — Declaring the same variable name twice in the same scope is now caught with a clear error
+- **Typo suggestions** — When you mistype a command or variable, Amber suggests similar names
+- **External command errors** — Better handling when external commands don't exist
+
+# Automatic shebang detection
+
+Generated scripts now emit the correct shebang line for the selected target shell:
+
+```bash
+#!/usr/bin/env bash    # For bash targets
+#!/usr/bin/env zsh     # For zsh targets
+#!/usr/bin/env ksh     # For ksh targets
+```
 
 # Internal improvements
 
