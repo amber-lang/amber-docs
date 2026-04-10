@@ -39,3 +39,33 @@ Constant is a type of variable that cannot be modified.
 const sunrise = "east"
 sunrise = "west" // ERROR: Cannot reassign constant 'sunrise'
 ```
+
+## Public Variables
+
+Amber supports exporting variables to the compiled shell script, making them available to external scripts or the shell environment.
+
+### Public Constants
+
+Use `pub const` to export a constant value:
+
+```ab
+pub const VERSION = "1.0"
+pub const APP_NAME = "MyApp"
+```
+
+These variables will be accessible in the compiled script and can be sourced by other scripts.
+
+### Public Mutable Variables
+
+Use `pub let` with `#[allow_public_mutable]` attribute to export mutable variables:
+
+```ab
+#[allow_public_mutable]
+pub let counter = 0
+
+fun increment() {
+    counter += 1
+}
+```
+
+> NOTE: Mutable public exports require explicit opt-in via the `#[allow_public_mutable]` attribute for safety reasons.
