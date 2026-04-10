@@ -172,3 +172,54 @@ disown()      // Disown the most recent background job
 disown(1234)  // Disown a specific PID
 ```
 
+## Shellname
+
+Returns the name of the target shell at runtime. Useful for shell-specific code paths.
+
+```ab
+if shellname() == "bash" {
+    echo("Running in Bash")
+}
+```
+
+## Shellversion
+
+Returns the version of the target shell as an array of numbers.
+
+```ab
+if shellversion() > [3, 2, 0] {
+    echo("Bash version greater than 3.2.0")
+}
+```
+
+## Lock
+
+Creates a lock file to prevent concurrent execution. This is useful for scripts that should not run multiple times simultaneously.
+
+```ab
+lock("/tmp/myscript.lock") failed {
+    echo("Script is already running")
+    exit(1)
+}
+// Your script logic here
+```
+
+## Clear
+
+Clears the terminal screen.
+
+```ab
+clear()
+```
+
+## Await
+
+Waits for a specific background job to complete. Returns the exit status of the job.
+
+```ab
+let job = $ long_running_command &
+await(job) failed {
+    echo("Command failed")
+}
+```
+
