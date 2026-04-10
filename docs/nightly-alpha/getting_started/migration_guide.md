@@ -21,3 +21,30 @@ If you have previously used workarounds to export your variables, you can now re
 pub const VERSION = "1.0"
 pub const WORKING_DIR = "."
 ```
+
+For mutable public variables, you now need to explicitly opt-in with the `#[allow_public_mutable]` attribute:
+
+```ab
+#[allow_public_mutable]
+pub let counter = 0
+```
+
+# Stricter failure handling
+
+The compiler now has stricter rules around failure handling:
+
+- Failable return types must use `?`
+- Infallible functions must not use `?`
+- Invalid combinations of `trust` and `?` are now diagnosed clearly
+
+```ab
+// Now an error - infallible function cannot use ?
+fun myFunc(): Int {
+    return something()?  // Error
+}
+
+// Correct usage
+fun myFunc(): Int? {
+    return something()?  // Valid - returns Int?
+}
+```
