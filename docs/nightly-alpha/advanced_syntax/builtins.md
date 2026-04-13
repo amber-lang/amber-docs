@@ -112,7 +112,7 @@ Removes files or directories from the filesystem. This is a failable builtin —
 
 ```ab
 rm("oldfile.txt")
-rm("/tmp/olddir", "-r")  // Recursive removal
+rm("/tmp/olddir", true)  // Recursive removal
 ```
 
 ## Touch
