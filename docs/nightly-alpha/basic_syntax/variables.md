@@ -58,3 +58,7 @@ fun increment() {
 ```
 
 > NOTE: Mutable public exports require explicit opt-in via the `#[allow_public_mutable]` attribute for safety reasons.
+
+### Variable redeclaration
+
+Variables cannot be redeclared with another type or as a function within the same scope. This will result in a compiler error.
