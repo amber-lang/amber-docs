@@ -86,7 +86,7 @@ Copy files or directories from location to another. This builtin is failable.
 
 ```
 cp("source.txt", "backup.txt")
-cp("src_dir", "dest_dir", "-r")  // Recursive copy
+cp("src_dir", "dest_dir", true)  // Recursive copy
 ```
 
 ## Mv
