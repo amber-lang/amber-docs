@@ -117,11 +117,10 @@ rm("/tmp/olddir", true)  // Recursive removal
 
 ## Touch
 
-Creates empty files or updates the modification timestamp of existing files. Accepts one or more file paths.
+Creates empty files or updates the modification timestamp of an existing file.
 
 ```ab
 touch("newfile.txt")
-touch("/tmp/a.txt", "/tmp/b.txt")
 ```
 
 ## Nameof
@@ -165,11 +164,10 @@ echo("Last process: {last_pid}")
 
 ## Disown
 
-Removes background jobs using shell's job control. Can optionally accept a specific PID.
+Removes background jobs using shell's job control.
 
 ```ab
 disown()      // Disown the most recent background job
-disown(1234)  // Disown a specific PID
 ```
 
 ## Shellname
@@ -194,10 +192,10 @@ if shellversion() > [3, 2, 0] {
 
 ## Lock
 
-Creates a lock file to prevent concurrent execution. This is useful for scripts that should not run multiple times simultaneously.
+Creates a lock file to prevent concurrent execution. This is useful for scripts that should not run multiple times simultaneously. Can be only used in the `main` or `test` block.
 
 ```ab
-lock("/tmp/myscript.lock") failed {
+lock() failed {
     echo("Script is already running")
     exit(1)
 }
@@ -217,8 +215,8 @@ clear()
 Waits for a specific background job to complete. Returns the exit status of the job.
 
 ```ab
-let job = $ long_running_command &
-await(job) failed {
+let job = $ long_running_command & $
+await(pid()) failed {
     echo("Command failed")
 }
 ```

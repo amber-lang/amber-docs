@@ -1,6 +1,6 @@
 Since 0.6.0, Amber has introduced support for multiple shell targets:
 - zsh 5.8+ (only tested on 5.8 and above)
-- ksh 93u+m (only tested on 1.0.10)
+- ksh 93u+m (only tested on 1.0.10); ksh is currently not being actively tested, some functions may not work properly
 - bash 4.3+
 - bash 3.2+
 

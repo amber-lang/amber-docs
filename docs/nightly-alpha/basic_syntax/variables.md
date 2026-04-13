@@ -20,17 +20,6 @@ echo(name) // Outputs: "Rob"
 
 > WARNING: The Amber compiler reserves all identifiers starting with double underscore `__` in addition to keywords like `let`, `if`, etc.
 
-## Overshadowing
-
-Variable declarations in Amber can be overshadowed, allowing the redeclaration of an existing variable with a different data type within a specific scope if necessary. Here’s an example:
-
-```ab
-// `result` is a `Num`
-let result = 123
-// `result` is a `Text`
-let result = "Hello my friend"
-```
-
 # Constant {#const}
 
 Constant is a type of variable that cannot be modified.

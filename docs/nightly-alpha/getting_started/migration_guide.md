@@ -1,5 +1,4 @@
-This guide provides a step-by-step walkthrough for migrating code from 0.5.0-alpha to 0.6.0-alpha. The current version introduces breaking changes.
-1. **Language Features**: Changes and updates to the core language syntax and semantics.
+This guide provides a step-by-step walkthrough for migrating code from 0.5.0-alpha to 0.6.0-alpha. The current version introduces breaking changes related to the core language syntax and semantics.
 
 Follow along to ensure a smooth transition to the new version. Let’s get started!
 
@@ -47,4 +46,13 @@ fun myFunc(): Int {
 fun myFunc(): Int? {
     return something()?  // Valid - returns Int?
 }
+```
+
+# Removed variable overshadowing
+
+Redecleration of the variable of function with the same name will now result in an error:
+
+```ab
+    let var = "test"
+    let var = 12 // Error
 ```
