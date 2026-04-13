@@ -1,4 +1,4 @@
-This guide provides a step-by-step walkthrough for migrating code from 0.5.0-alpha to 0.6.0-alpha. The current version introduces a single breaking change.
+This guide provides a step-by-step walkthrough for migrating code from 0.5.0-alpha to 0.6.0-alpha. The current version introduces breaking changes.
 1. **Language Features**: Changes and updates to the core language syntax and semantics.
 
 Follow along to ensure a smooth transition to the new version. Let’s get started!
