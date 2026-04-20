@@ -125,7 +125,7 @@ Amber has gained many new builtins for common shell operations. These builtins g
 
 ### `touch` — Create or update files
 
-Creates an empty file or updates the modification timestamp of an existing file. Accepts a single file path.
+Creates an empty file or updates the modification timestamp of an existing file. Accepts a single file path. Now exits on failure.
 
 ```ab
 touch("newfile.txt")
@@ -142,7 +142,7 @@ rm("/tmp/olddir", true)?  // Recursive removal
 
 ### `sleep` — Pause execution
 
-Pauses script execution for the specified number of seconds. Supports decimal values for sub-second delays.
+Pauses script execution for the specified number of seconds. Supports decimal values for sub-second delays. Now exits on failure.
 
 ```ab
 sleep(5)   // Wait 5 seconds
@@ -198,10 +198,11 @@ echo("Last process: {last_pid}")
 
 ### `disown` — Remove background jobs
 
-Removes a job from the shell's active job table, allowing the script to continue without waiting for it. Takes no arguments.
+Removes a job from the shell's active job table, allowing the script to continue without waiting for it. Now accepts optional job expressions to disown specific background jobs.
 
 ```ab
-disown()      // Disown the most recent background job
+disown()                // Disown the most recent background job
+disown(job_expr)        // Disown specific job
 ```
 
 ### `lock` — File locking
@@ -215,7 +216,7 @@ lock("/tmp/myapp.lock")?  // Returns when lock is acquired
 
 ### `await` — Wait for background processes
 
-Waits for background processes to complete, optionally with a timeout.
+Waits for background processes to complete, optionally with a timeout. Now exits on failure.
 
 ```ab
 // Start a background process
@@ -227,7 +228,7 @@ await()?
 
 ### `shellname` — Get shell name
 
-Returns the name of the current shell as a `Text` value.
+Returns the name of the current shell as a `Text` value. Now also supports optional parentheses syntax.
 
 ```ab
 let current_shell = shellname()
@@ -236,11 +237,11 @@ echo("Running in: {current_shell}")  // Outputs: bash, zsh, or ksh
 
 ### `shellversion` — Get shell version
 
-Returns the version of the current shell as a `Text` value.
+Returns the version of the current shell as a `Text` value. Now also supports optional parentheses syntax and includes improved KSH detection.
 
 ```ab
 let version = shellversion()
-echo("Shell version: {version}")
+echo("Shell version: {version}")  // e.g., "5.2.0"
 ```
 
 # Shell targets: Bash 3.2, Zsh, and Ksh
