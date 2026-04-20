@@ -146,5 +146,3 @@ suppress $ my_command $
 ```
 
 This is different from `silent` which suppresses both stdout and stderr.
-silent $ very loud command $
-```
