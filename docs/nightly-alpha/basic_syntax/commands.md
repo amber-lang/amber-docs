@@ -1,4 +1,4 @@
-{#silent #trust #unsafe #failed #succeeded #exited}
+{#silent #suppress #trust #unsafe #failed #succeeded #exited}
 
 The only way to access the bash shell is through Amber's commands. Commands can be used in the form of a statement or an expression.
 
@@ -134,5 +134,17 @@ This will be treated the same way Bash treats statements. If it fails, then carr
 You can easily silent given command. Here is an example usage:
 
 ```ab
+silent $ very loud command $
+```
+
+## Suppressing Stderr
+
+The `suppress` modifier suppresses only stderr output while allowing stdout to be captured. This is useful when you want to capture the command's output but don't want to see error messages:
+
+```ab
+suppress $ my_command $
+```
+
+This is different from `silent` which suppresses both stdout and stderr.
 silent $ very loud command $
 ```
