@@ -26,16 +26,24 @@ Transpile to `printf` or `echo` which prints text to the console, requires a par
 echo("Hello World!")
 ```
 
+## Exit
+
+Terminate the script. Takes an `Int` parameter representing the exit code. This builtin is **not failable**.
+
+```ab
+exit(1)
+```
+
 ## Len
 
-For a `Text` value, this builtin calculates and returns the length (in ASCII characters) as a `Num` type.  It is transpiled to `${#TEXT}`:
+For a `Text` value, this builtin calculates and returns the length (in ASCII characters) as an `Int` type.  It is transpiled to `${#TEXT}`:
 
 ```ab
 // Returns 37
 echo(len("Jackdaws love my big sphinx of quartz"))
 ```
 
-For an `Array` `[]` value, it calculates and returns the length of the array as a `Num` type.  It is transpiled to `${#ARRAY[@]}`:
+For an `Array` `[]` value, it calculates and returns the length of the array as an `Int` type.  It is transpiled to `${#ARRAY[@]}`:
 
 ```ab
 // Returns 5
@@ -110,42 +118,48 @@ trust await(1234)
 
 ## Cp
 
-Copy files or directories. Takes two `Text` parameters.
+Copy files or directories. Takes two `Text` parameters for source and destination, and an optional `Bool` parameter for `force`.
 
 Because copying files can fail, this builtin is **failable**.
 
 ```ab
 trust cp("src.txt", "dst.txt")
+trust cp("src.txt", "dst.txt", true)
 ```
 
 ## Ls
 
-List directory contents. Returns an array of `Text`.
+List directory contents. Takes an optional `Text` parameter for the path, and optionally two `Bool` parameters for `all` (show hidden files) and `recursive` (TODO). Returns an array of `Text`. Note that `ls` cannot be used with the `silent` modifier, as it will break the listing of directory contents. If you want to suppress error messages, use `suppress` modifier.
 
 Because reading directories can fail, this builtin is **failable**.
 
 ```ab
 let files = trust ls("dir")
+let all_files = trust ls("dir", true)
+let all_files_recursive = trust ls("dir", true, true)
 ```
 
 ## Rm
 
-Remove files or directories. Takes a `Text` parameter.
+Remove files or directories. Takes a `Text` parameter for the path, and optionally two `Bool` parameters for `recursive` and `force`.
 
 Because removing files can fail, this builtin is **failable**.
 
 ```ab
 trust rm("file.txt")
+trust rm("dir", true, true)
 ```
 
 ## Sleep
 
 Delay for a specified amount of time. Takes a `Num` or `Int` parameter representing sleep duration.
 
-This builtin is **not failable**.
+Sleep duration must be greater or equal to 0.
+
+Because sleeping can fail, this builtin is **failable**.
 
 ```ab
-sleep(5)
+trust sleep(5)
 ```
 
 ## Touch
@@ -160,7 +174,9 @@ trust touch("newfile.txt")
 
 ## Lock
 
-Acquire a file lock. Useful for preventing concurrent executions.
+Acquire a file lock. Takes a `Text` parameter. Useful for preventing concurrent executions.
+
+Because acquiring a lock can fail, this builtin is **failable**.
 
 ```ab
 trust lock("my_script.lock")
@@ -184,7 +200,7 @@ let current_dir = pwd()
 
 ## Pid
 
-Returns the current process ID.
+Returns the process ID (PID) of the most recently started background job - type `Int`.
 
 ```ab
 let process_id = pid()
@@ -192,10 +208,12 @@ let process_id = pid()
 
 ## Disown
 
-Disown a process.
+Disown a job. Takes an optional `Int` or `[Int]` parameter with process IDs.
 
 ```ab
+disown() // Disowns latest job
 disown(process_id)
+disown([process_id1, process_id2])
 ```
 
 ## Shellname
