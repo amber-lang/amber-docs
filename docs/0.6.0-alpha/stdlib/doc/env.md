@@ -51,7 +51,7 @@ For all supported color codes, please visit https://en.wikipedia.org/wiki/ANSI_e
 pub fun echo_error(message: Text, exit_code: Int = 1): Null 
 ```
 
-Prints a text as a error and exits if the status code is greater than 0.
+Prints a text as an error and exits if the status code is greater than 0.
 
 ### Usage
 ```ab
@@ -66,7 +66,7 @@ echo_error("Fatal error occurred", 1)
 pub fun echo_info(message: Text): Null 
 ```
 
-Prints a text as a info message.
+Prints a text as an info message.
 
 ### Usage
 ```ab
@@ -96,7 +96,7 @@ echo_success("Operation completed successfully")
 pub fun echo_warning(message: Text): Null 
 ```
 
-Prints a text as a warning message.
+Prints a text as a warning.
 
 ### Usage
 ```ab
