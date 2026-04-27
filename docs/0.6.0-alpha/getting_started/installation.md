@@ -65,11 +65,11 @@ bin update
 
 - **System-wide**
 ```bash
-bash <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/install.sh")
+bash <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.6.0-alpha/install.sh")
 ```
 - **Local-user**
 ```bash
-bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.5.1-alpha/install.sh") --user
+bash -- <(curl -sL "https://github.com/amber-lang/amber/releases/download/0.6.0-alpha/install.sh") --user
 ```
 
 - **Available versions with package managers**

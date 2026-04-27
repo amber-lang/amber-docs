@@ -530,7 +530,7 @@ printf("%s\n", [styled("Warning!", 1, "white", "yellow")])
 
 ### Supported color names
 | Color name | Foreground code | Background code |
-| - | - |
+| - | - | - |
 | black | 30 | 40 |
 | red | 31 | 41 |
 | green | 32 | 42 |
