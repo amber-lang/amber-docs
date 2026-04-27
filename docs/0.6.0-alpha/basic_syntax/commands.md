@@ -68,12 +68,12 @@ $ cat file.txt $ exited(code) {
 
 ## Status
 
-The `status` keyword allows you to access the exit code of a command. This is the old school and Bash way of handling failures. Its trait is that it holds the exit code of only the previous command or *failable function* call.
+The `status()` function allows you to access the exit code of a command. This is the old school and Bash way of handling failures. It returns the exit code of only the previous command or *failable function* call.
 
 ```ab
 trust $ no-access.txt < "some text" $ // status: 1
 trust $ cat available-for-all.txt $ // status: 0
-echo("The status code is: {status}" // The status code is 0)
+echo("The status code is: {status()}") // The status code is 0
 ```
 
 ## Failure Propagation
@@ -87,7 +87,7 @@ $ test -d /path/to/file $?
 // Which is the same as
 
 $ test -d /path/to/file $ failed {
-    fail status
+    fail status()
 }
 ```
 

@@ -86,7 +86,7 @@ fun failing(name) {
 }
 ```
 
-Notice that using `?` operator is automatically failing with the `status` code of the failing operation.
+Notice that using `?` operator is automatically failing with the `status()` code of the failing operation.
 
 If you specify the return type of a failable function, you must also append the `?` to the type name.
 
@@ -106,7 +106,7 @@ Combinations of using `trust` and `?` that are considered invalid (such as tryin
 
 ## Status Code {#status}
 
-Status code contains information about latest failing function or a command that was run. Accessing status is as simple as using `status` keyword.
+Status code contains information about latest failing function or a command that was run. Accessing status is as simple as calling `status()` function.
 
 ```ab
 fun safeDivision(a: Num, b: Num): Num {
@@ -120,7 +120,7 @@ Now let's see how this code will behave in different scenarios:
 
 ```ab
 let result = trust safeDivision(24, 4)
-echo("{result}, {status}")
+echo("{result}, {status()}")
 // Outputs: 6, 0
 ```
 This was a happy ending. Now let's see what happens when we divide by zero:
