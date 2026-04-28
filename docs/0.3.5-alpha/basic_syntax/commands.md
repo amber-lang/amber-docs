@@ -64,6 +64,7 @@ To learn more about fail keyword, please read the article covering [failures](/b
 
 Command modifier is a keyword that alters the behavior of a command. Here are some examples:
 - `silent` - prevents command from displaying the result to the standard output.
+- `suppress` - prevents command from displaying errors to the standard error output.
 - `unsafe` - disables Amber's mechanism that requires user to handle failures.
 
 You can learn more details about each command modifier in the forthcoming chapters.
@@ -102,4 +103,12 @@ You can easily silent given command. Here is an example usage:
 
 ```ab
 silent $ very loud command $
+```
+
+## Suppressing Errors
+
+You can suppress the standard error output of a command by using the `suppress` modifier. This is useful when you expect a command to produce errors that you don't want displayed.
+
+```ab
+suppress $ very loud error command $
 ```
