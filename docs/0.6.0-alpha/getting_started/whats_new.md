@@ -37,7 +37,7 @@ Added control-flow-aware validation for ternary expressions and related typing, 
 
 ```ab
 // The compiler correctly types this based on condition logic
-let candy = count > 1 then "candies" else "candy"
+let result = value is Num then 42 else "Hello World"
 ```
 
 # Union Types
@@ -109,38 +109,38 @@ echo(items[5])
 
 # New builtins and syntax reform
 
-All builtins like `echo` have moved toward function-call syntax with parentheses:
+All builtins like `echo` have moved toward function-call syntax with parentheses, older no-parentheses builtin calls are still supported in relevant cases, but now emit deprecation warnings:
 
 ```ab
 echo("Hello world")
 cd("newdir")
 mv("file.ab", "newdir")
 exit(1)
-```
 
-Older no-parentheses builtin calls are still supported in relevant cases, but now emit deprecation warnings.
+echo "Hello world" // Works, but produces a warning
+```
 
 Amber has gained many new builtins for common shell operations. These builtins generate valid, shellcheck-compatible Bash code and integrate with Amber's error handling system.
 
-## `touch` — Create or update files
-Creates an empty file or updates the modification timestamp of an existing file. Accepts a single file path. This is a failable builtin — use failed blocks or trust to handle
+## `touch` - Create or update files
+Creates an empty file or updates the modification timestamp of an existing file. Accepts a single file path. This is a failable builtin - use failed blocks or trust to handle
 ```ab
 touch("newfile.txt")?
 ```
 
-## `rm` — Remove files or directories
-Removes files or directories from the filesystem. This is a failable builtin — use failed blocks or trust to handle errors.
+## `rm` - Remove files or directories
+Removes files or directories from the filesystem. This is a failable builtin - use failed blocks or trust to handle errors.
 ```ab
 rm("oldfile.txt")?
 rm("/tmp/olddir", true)?  // Recursive removal
 ```
-## `sleep` — Pause execution
-Pauses script execution for the specified number of seconds. Supports decimal values for sub-second delays. Sleep value needs to be equal or greater than 0. This is a failable builtin — use failed blocks or trust to handle 
+## `sleep` - Pause execution
+Pauses script execution for the specified number of seconds. Supports decimal values for sub-second delays. Sleep value needs to be equal or greater than 0. This is a failable builtin - use failed blocks or trust to handle 
 ```ab
 sleep(5)   // Wait 5 seconds
 sleep(0.5) // Wait half a second
 ```
-## `ls` — List directory contents
+## `ls` - List directory contents
 Returns an array of filenames in the specified directory. Accepts optional all and recursive boolean parameters. This is a failable expression that returns `[Text]`.
 ```ab
 let files = trust ls("/tmp")
@@ -149,32 +149,32 @@ let with_hidden_files = trust ls("/tmp", true, false)
 let with_files_in_subdir = trust ls("/tmp", false, true)
 let every_file = trust ls("/tmp", true, true)
 ```
-## `pwd` — Print working directory
+## `pwd` - Print working directory
 Returns the current working directory as a `Text` value.
 ```ab
 const dir = pwd()
 echo("Current directory: {dir}")
 ```
-## `clear` — Clear the terminal
+## `clear` - Clear the terminal
 Clears the terminal screen. Takes no parameters.
 ```ab
 clear()
 ```
-## `cp` — Copy files or directories
+## `cp` - Copy files or directories
 Copies files or directories from one location to another. This is a failable builtin.
 ```ab
 cp("source.txt", "backup.txt")?
 cp("src_dir", "dest_dir", true)?  // Recursive copy
 ```
 
-## `pid` — Get process ID
+## `pid` - Get process ID
 Returns the PID (Process ID) of the last background job. Useful for process management.
 ```ab
 let last_pid = pid()
 echo("Last process: {last_pid}")
 ```
 
-## `disown` — Remove background jobs
+## `disown` - Remove background jobs
 Removes a job from the shell's active job table, allowing the script to continue without waiting for it. Accepts optional job pids to disown specific background jobs.
 ```ab
 // Disown the most recent background job
@@ -184,21 +184,21 @@ disown(pid)
 disown([pid1, pid2])
 ```
 
-## `lock` — File locking
+## `lock` - File locking
 Creates an exclusive lock on a file, useful for coordinating access between processes.
 ```ab
 // Returns when lock is acquired
 lock("/tmp/myapp.lock")?
 // ...
 ```
-## `await` — Wait for background processes
+## `await` - Wait for background processes
 Waits for background processes to complete. It takes as an argument a pid or an array of pids. Requires failure handler.
 ```ab
 trust $ sleep 2 & $
 await(pid())?
 ```
 
-## `shellname` — Get shell name
+## `shellname` - Get shell name
 Returns the name of the current shell as a Text value.
 
 ```ab
@@ -206,7 +206,7 @@ let current_shell = shellname()
 echo("Running in: {current_shell}")  // Outputs: bash, zsh, or ksh
 ```
 
-## `shellversion` — Get shell version
+## `shellversion` - Get shell version
 Returns the version of the current shell as a `[Int]` value.
 
 ```ab
@@ -280,6 +280,7 @@ Comments are now accepted in more places where you naturally write them, improvi
         // Default branch
     }
     ```
+
 # Standard library improvements
 
 This release includes numerous improvements to the Standard Library such as `cpad`, `file_compress`, `shopt_enable`/`shopt_disable`, and array sorting functions (`sort()`, `sorted()`).
@@ -345,10 +346,10 @@ The Amber codebase now has more tests and code coverage reporting via Codecov. T
 ## CI improvements
 The continuous integration pipeline has been improved with:
 
-* Nightly builds — automated builds published every night for early testing
-* Shellcheck validation — all generated Bash code is validated against shellcheck
-* Fixed action versions — GitHub Actions use pinned versions for reproducibility
-* rustfmt — Rust code is automatically formatted
+* Nightly builds - automated builds published every night for early testing
+* Shellcheck validation - all generated Bash code is validated against shellcheck
+* Fixed action versions - GitHub Actions use pinned versions for reproducibility
+* rustfmt - Rust code is automatically formatted
 
 ## Removed shfmt
 The shfmt tool has been removed as a processing tool in the Amber build pipeline, simplifying the build process and reducing external dependencies.
@@ -362,7 +363,7 @@ More Amber scripts are now used internally in the project (see scripts/), demons
 ## License change
 Amber has switched its license from GPLv3 to LGPL (GNU Lesser General Public License). Here's what this means in practice:
 
-* GPLv3 required that any project distributing Amber-compiled code would also need to be licensed under GPLv3 — a "viral" copyleft license that applies to derivative works.
+* GPLv3 required that any project distributing Amber-compiled code would also need to be licensed under GPLv3 - a "viral" copyleft license that applies to derivative works.
 * LGPL is more permissive: you can freely use Amber and its compiled scripts in proprietary or closed-source projects. The LGPL only applies to modifications of Amber itself, not to the scripts you write and compile with it.
 
 This change makes Amber suitable for a wider range of use cases, including commercial and enterprise environments where GPL licensing may be a concern.

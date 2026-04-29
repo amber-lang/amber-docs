@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # code to execute
 ```
 
-Amber uses a dedicated main scope for this purpose. However, it’s more than just a convenient syntax — it also provides additional functionality. Within the main block, we can use the `?` operator to propagate exit codes directly to the external shell, simplifying error handling.
+Amber uses a dedicated main scope for this purpose. However, it’s more than just a convenient syntax - it also provides additional functionality. Within the main block, we can use the `?` operator to propagate exit codes directly to the external shell, simplifying error handling.
 
 ```ab
 echo("Running indirectly")
