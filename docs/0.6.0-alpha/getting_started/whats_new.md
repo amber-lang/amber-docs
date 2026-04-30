@@ -65,7 +65,7 @@ test "can multiply numbers" {
 }
 ```
 
-You can also name your tests for better readability and filter them by name or filename using CLI arguments. Read more in the [Testing Guide](testing).
+You can also name your tests for better readability and filter them by name or filename using CLI arguments. Read more in the [Testing Guide](getting_started/testing).
 
 # Improved variable diagnostics
 
