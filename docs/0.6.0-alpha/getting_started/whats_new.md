@@ -214,6 +214,13 @@ let version = shellversion()
 echo("Shell version: {version}")  // e.g., "5 2 0"
 ```
 
+## `suppress` - turns off stderr
+Does not display stderr for given command
+
+```ab
+suppress $ command that might error $?
+```
+
 # Array Type Resolution
 
 Amber now supports type inference for empty arrays `[]`. You can initialize an empty array without specifying its type immediately. The type will be resolved later based on how the array is used, such as in assignments, binary operations, or function calls.
