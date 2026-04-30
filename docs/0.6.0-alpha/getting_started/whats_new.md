@@ -214,7 +214,7 @@ let version = shellversion()
 echo("Shell version: {version}")  // e.g., "5 2 0"
 ```
 
-## `suppress` - turns off stderr
+## `suppress` - Turn off stderr
 Does not display stderr for given command
 
 ```ab
