@@ -80,13 +80,13 @@ If you write an Amber script with a shebang pointing to `amber`, there is a risk
 ```ab
 // 2> /dev/null; exit 1
 
-// Your Amber code here
+# Your Amber code here
 echo("Hello world")
 ```
 
 This line is valid in both Amber and Bash:
 - In **Amber**, `//` starts a comment, so the line is ignored
-- In **Bash**, `//` is treated as a comment (ignored), `2> /dev/null` suppresses errors, and `exit 1` terminates the script with an error code
+- In **Bash**, `//` is treated as a directory that not exists, `2> /dev/null` suppresses errors, and `exit 1` terminates the script with an error code
 
 If you want to run just a small code snippet, you can do that as well:
 
