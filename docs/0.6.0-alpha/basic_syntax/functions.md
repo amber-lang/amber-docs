@@ -51,7 +51,7 @@ fun factorial(n: Int): Int {
 echo("{factorial(4)}") // Outputs: 24
 ```
 
-On the condition that you specify an argument's type, you can also specify its default value — it will be used if none other is provided when the function is called:
+On the condition that you specify an argument's type, you can also specify its default value - it will be used if none other is provided when the function is called:
 
 ```ab
 fun addition(a: Int, b: Int = 100): Int {

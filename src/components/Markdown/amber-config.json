@@ -40,6 +40,19 @@
         "trust",
         "unsafe",
         "while",
-        "example"
+        "example",
+        "shellversion",
+        "shellname",
+        "Await",
+        "cp",
+        "ls",
+        "rm",
+        "sleep",
+        "touch",
+        "lock",
+        "clear",
+        "pwd",
+        "pid",
+        "disown"
     ]
 }

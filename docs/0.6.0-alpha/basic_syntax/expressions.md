@@ -45,7 +45,7 @@ true != false
 "equal" == "equal"
 ```
 
-`Int` and `Num` values are compared using standard arithmetic rules. In contrast, `Text`, `[Text]`, and `[Int]` are compared lexically — that is, element by element (or character by character), based on Unicode (or ASCII) values, much like string comparison in most programming languages.
+`Int` and `Num` values are compared using standard arithmetic rules. In contrast, `Text`, `[Text]`, and `[Int]` are compared lexically - that is, element by element (or character by character), based on Unicode (or ASCII) values, much like string comparison in most programming languages.
 
 ```ab
 42 > 24
