@@ -62,26 +62,48 @@ export default function SideBar({ headers, docDesc, toc = [], isFixed = false }:
                 {headers.length > 0 && <div className={style.spacer}/>}
                 <Island label="Table of contents">
                     <div className={[style.links, !headers.length && style.toc].join(' ')} ref={tocRef}>
-                        {toc.map(({ path, title, docs }) => (
+                        {toc.map(({ path, title, docs, url }) => (
                                 <React.Fragment key={path}>
-                                    <PrefetchLink href={`/${generateUrl(version, path)}`} key={path} docPath={`${version}/${path}`}>
-                                        <Text block>
-                                            <div className={style.indent} {...{ indent: "0", path }}>{title}</div>
-                                        </Text>
-                                    </PrefetchLink>
-                                    {docs && docs.map(({ path, title }, index) => (
+                                    {url ? (
+                                        <a href={url} target="_blank" rel="noopener noreferrer">
+                                            <Text block>
+                                                <div className={style.indent} {...{ indent: "0", path }}>{title}</div>
+                                            </Text>
+                                        </a>
+                                    ) : (
+                                        <PrefetchLink href={`/${generateUrl(version, path)}`} key={path} docPath={`${version}/${path}`}>
+                                            <Text block>
+                                                <div className={style.indent} {...{ indent: "0", path }}>{title}</div>
+                                            </Text>
+                                        </PrefetchLink>
+                                    )}
+                                    {docs && docs.map(({ path, title, url: docUrl }, index) => (
                                         <React.Fragment key={path}>
-                                            <PrefetchLink href={`/${generateUrl(version, path)}`} docPath={`${version}/${path}`}>
-                                                <Text block>
-                                                    <div
-                                                        className={style.indent}
-                                                        style={{ '--distance': '0' } as any}
-                                                        {...{ indent: 1, path, relation: index === 0 ? 'child' : 'sibling' }}
-                                                    >
-                                                        {title}
-                                                    </div>
-                                                </Text>
-                                            </PrefetchLink>
+                                            {docUrl ? (
+                                                <a href={docUrl} target="_blank" rel="noopener noreferrer" key={path}>
+                                                    <Text block>
+                                                        <div
+                                                            className={style.indent}
+                                                            style={{ '--distance': '0' } as any}
+                                                            {...{ indent: 1, path, relation: index === 0 ? 'child' : 'sibling' }}
+                                                        >
+                                                            {title}
+                                                        </div>
+                                                    </Text>
+                                                </a>
+                                            ) : (
+                                                <PrefetchLink href={`/${generateUrl(version, path)}`} docPath={`${version}/${path}`}>
+                                                    <Text block>
+                                                        <div
+                                                            className={style.indent}
+                                                            style={{ '--distance': '0' } as any}
+                                                            {...{ indent: 1, path, relation: index === 0 ? 'child' : 'sibling' }}
+                                                        >
+                                                            {title}
+                                                        </div>
+                                                    </Text>
+                                                </PrefetchLink>
+                                            )}
                                         </React.Fragment>
                                     ))}
                                 </React.Fragment>

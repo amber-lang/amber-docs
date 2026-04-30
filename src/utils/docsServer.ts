@@ -4,8 +4,8 @@ import fs from 'fs/promises'
 import config from '@/../config.json'
 import path from 'path'
 
-export type TocSection = { path: string, title: string, docs: TocSection[], disableLevels?: number[] }
-type TocSectionInput = { path: string, title: string, docs?: TocSectionInput[], disableLevels?: number[] }
+export type TocSection = { path: string, title: string, docs: TocSection[], disableLevels?: number[], url?: string }
+type TocSectionInput = { path: string, title: string, docs?: TocSectionInput[], disableLevels?: number[], url?: string }
 let cachedToc: Map<string, TocSection[]> = new Map()
 
 function normalizeToc(sections: TocSectionInput[] = []): TocSection[] {
@@ -13,6 +13,7 @@ function normalizeToc(sections: TocSectionInput[] = []): TocSection[] {
         path: section.path,
         title: section.title,
         disableLevels: section.disableLevels,
+        url: section.url,
         docs: normalizeToc(section.docs ?? [])
     }))
 }
