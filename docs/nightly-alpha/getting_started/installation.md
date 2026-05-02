@@ -25,6 +25,14 @@ Make sure that the operating system meets the following prerequisites
 
 > DETAILS: You should always update the system before you install a package in a rolling release distro, such as **Arch** and **Tumbleweed.**  Always reboot after an update of the kernel, init system, and similar software as well. 
 
+## Installation with Homebrew
+
+Running this snippet will install latest stable version.
+
+```sh
+brew install amber-lang/amber/amber-lang
+```
+
 ## Installation via `bin`, the binary package manager
 
 **Install bin itself**:
