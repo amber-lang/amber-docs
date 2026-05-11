@@ -1,6 +1,6 @@
 # Union Types {#union_types}
 
-Union types provide a flexible way to define variables, function parameters, and return types that can accept values of multiple distinct types. This powerful feature allows you to write more flexible and expressive code while maintaining type safety.
+Union types provide a flexible way to define variables, function parameters, and return types that can accept values of multiple distinct types. 
 
 ## Basic Syntax
 

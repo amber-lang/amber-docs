@@ -1,6 +1,6 @@
 # Type System {#type_system}
 
-Amber combines static type safety with powerful type inference, creating a flexible system that generates efficient, type-specific code at compile time. Understanding how Amber's type system works helps you write more performant and maintainable code.
+Amber combines static type safety with powerful type inference, creating a flexible system that generates efficient, type-specific code at compile time. 
 
 ## Type Inference
 

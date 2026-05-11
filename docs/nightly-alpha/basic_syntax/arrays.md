@@ -59,6 +59,12 @@ capitals += ["Warsaw"]
 let cities = capitals + ["Barcelona", "Florence"]
 ```
 
+Amber also supports automatic type resolution for empty arrays. You can initialize an empty array `[]` without explicitly typing it, and the compiler will figure out the type from later usages:
+```ab
+let items = [] // Currently a generic empty array
+items += [1]   // Type is resolved to [Int]
+```
+
 In order to see more operations on the array data type take a look at the standard library documentation which covers functions such as `join`, `len` or `sum`.
 
 ## Destructing arrays
