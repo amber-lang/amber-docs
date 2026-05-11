@@ -49,8 +49,9 @@ Status code contains information about latest failing function or a command that
 
 ```ab
 fun safeDivision(a: Num, b: Num): Num {
-    if b == 0:
+    if b == 0 {
         fail 1
+    }
     return a / b
 }
 ```

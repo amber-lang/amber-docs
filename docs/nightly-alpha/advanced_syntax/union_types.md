@@ -116,7 +116,7 @@ fun filter_integers(items: [Int | Text]): [Int] {
     var result: [Int] = []
     for item in items {
         if type(item) == "Int" {
-            result.push(item as Int)
+            result += [item as Int]
         }
     }
     return result
@@ -157,4 +157,4 @@ fun calculate(value: Numeric) {
 
 ---
 
-For more information on related topics, see [Type System](/advanced_syntax/type_system), [Data Types](/reference/data_types), and [Functions](/reference/functions).
+For more information on related topics, see [Type System](/advanced_syntax/type_system), [Data Types](/basic_syntax/data_types), and [Functions](/basic_syntax/functions).
