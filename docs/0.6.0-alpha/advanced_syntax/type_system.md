@@ -181,7 +181,7 @@ Use the `type()` function to check the runtime type of a value:
 fun describe(value: Int | Text) {
     if value is Int {
         echo("Got an integer")
-    else
+    } else {
         echo("Got text")
     }
 }
