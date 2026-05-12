@@ -2,6 +2,10 @@
 
 Amber combines static type safety with powerful type inference, creating a flexible system that generates efficient, type-specific code at compile time. 
 
+## Union Types
+
+Union types allow a single variable to hold values of multiple types. This is covered in detail in the [Union Types](/advanced_syntax/union_types) documentation.
+
 ## Type Inference
 
 Amber automatically infers types from usage, eliminating the need for explicit type annotations in many cases. The compiler analyzes how values are used throughout your code to determine their types.
@@ -12,7 +16,7 @@ When you assign a value to a variable, Amber infers the type from the right-hand
 
 ```ab
 let message = "Hello"           // Inferred as Text
-let count = 42                   // Inferred as Int
+let count = 42                  // Inferred as Int
 let price = 19.99               // Inferred as Num
 let flags = true                // Inferred as Bool
 ```
@@ -30,7 +34,7 @@ let combined = text + y // Text (Text + Int → Text)
 
 ### Empty Arrays
 
-Empty arrays require type hints because the compiler cannot infer the element type:
+An empty array creates a Generic array which later resolves to the type of the first key:
 
 ```ab
 let empty_ints: [Int] = []    // Type annotation required
@@ -41,7 +45,7 @@ However, once you populate an array, type inference works normally:
 
 ```ab
 var items = [1, 2, 3]         // Inferred as [Int]
-items.push(4)                 // Still [Int]
+items + = [4]                 // Still [Int]
 ```
 
 ### Function Parameter Inference
@@ -133,7 +137,7 @@ Amber supports function overloading—multiple functions with the same name but 
 
 ### Automatic Overloading
 
-When you define functions with different type signatures, Amber creates separate variants:
+When you define functions with different type signatures, Amber alert about a redeclaration error:
 
 ```ab
 fun format(value: Int): Text {
@@ -144,8 +148,7 @@ fun format(value: Text): Text {
     return "\"" + value + "\""
 }
 
-echo(format(42))           // Calls format_Int -> "Number: 42"
-echo(format("hello"))     // Calls format_Text -> "\"hello\""
+WRONG!
 ```
 
 ### Overloading and Type Inference
@@ -179,9 +182,9 @@ Use the `type()` function to check the runtime type of a value:
 
 ```ab
 fun describe(value: Int | Text) {
-    if type(value) == "Int" {
+    if value is Int {
         echo("Got an integer")
-    else
+    } else {
         echo("Got text")
     }
 }
@@ -193,10 +196,10 @@ After narrowing, use the `as` operator to cast to the narrowed type:
 
 ```ab
 fun process(value: Int | Text) {
-    if type(value) == "Int" {
+    if value is Int {
         let num = value as Int
         echo("Doubled: {num * 2}")
-    else
+    } else {
         let txt = value as Text
         echo("Uppercase: {txt}")
     }
@@ -211,38 +214,15 @@ For more complex scenarios, use `match` with type checking:
 
 ```ab
 fun analyze(value: Int | Text | Bool) {
-    match type(value) {
-        "Int" -> echo("Integer: {value}")
-        "Text" -> echo("Text length: {len(value)}")
-        "Bool" -> echo("Boolean: {value}")
+    if (value is Int) {
+        echo("Integer: {value}")
+    } else if (value is Text) {
+        echo("Text length: {len(value)}")
+    } else if (value is Bool) {
+        echo("Boolean: {value}")
     }
 }
 ```
-
-### Narrowing in Conditionals
-
-Type information is preserved through conditional branches:
-
-```ab
-fun handle(input: Int | Text | Null) {
-    if input == Null {
-        echo("No value")
-    else
-        // input is now Int | Text in this branch
-        if type(input) == "Int" {
-            // input is Int here
-            echo("Integer: {input}")
-        else
-            // input is Text here
-            echo("Text: {input}")
-        }
-    }
-}
-```
-
-## Union Types
-
-Union types allow a single variable to hold values of multiple types. This is covered in detail in the [Union Types](/advanced_syntax/union_types) documentation.
 
 ### Quick Example
 

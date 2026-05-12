@@ -1,6 +1,6 @@
 # Union Types {#union_types}
 
-Union types provide a flexible way to define variables, function parameters, and return types that can accept values of multiple distinct types. 
+Union types provide a flexible way to define function parameters and return types that can accept values of multiple distinct types. 
 
 ## Basic Syntax
 
@@ -11,8 +11,6 @@ let value: Int | Text = "Hello"
 let number: Int | Num = 42
 let mixed: Bool | Int | Text = true
 ```
-
-When declaring a union type, you can combine any valid Amber types including primitives, collections, and custom types.
 
 ## Function Parameters
 
@@ -40,25 +38,6 @@ describe("hello", 3.14)     // Valid
 describe("test", false)      // Valid
 ```
 
-## Type Narrowing
-
-When working with union types, you'll often need to determine which type you're dealing with. Amber provides type narrowing through pattern matching and type checks:
-
-```ab
-fun process(value: Int | Text) {
-    if type(value) == "Int" {
-        let num = value as Int
-        echo("Integer doubled: {num * 2}")
-    else
-        let text = value as Text
-        echo("Text length: {len(text)}")
-    }
-}
-
-process(5)        // Outputs: Integer doubled: 10
-process("hello")  // Outputs: Text length: 5
-```
-
 You can also use match expressions for more complex type narrowing:
 
 ```ab
@@ -80,7 +59,7 @@ fun parse_input(input: Text): Int | Text {
     if input == "" {
         return "Empty input"
     }
-    return parse(input) ?? 0
+    return 0
 }
 
 let result = parse_input("42")
@@ -134,26 +113,6 @@ let mapping: {Text: Int | Bool} = {
     "count": 42
 }
 ```
-
-## Best Practices
-
-1. **Keep union types focused** - Prefer specific, small unions over generic ones. Too many types in a union can make code harder to reason about.
-
-2. **Use type narrowing early** - When you receive a union type value, narrow it to the specific type as early as possible in your function.
-
-3. **Document behavior** - When a function accepts union types, document what happens for each possible type.
-
-4. **Prefer dedicated types over unions** - If you find yourself using the same union frequently, consider creating a dedicated type alias:
-
-```ab
-type Numeric = Int | Num
-
-fun calculate(value: Numeric) {
-    // ...
-}
-```
-
-5. **Be careful with mutability** - When using union types with mutable variables, ensure type safety is maintained throughout the code.
 
 ---
 
