@@ -196,7 +196,7 @@ fun process(value: Int | Text) {
     if value is Int {
         let num = value as Int
         echo("Doubled: {num * 2}")
-    else
+    } else {
         let txt = value as Text
         echo("Uppercase: {txt}")
     }
