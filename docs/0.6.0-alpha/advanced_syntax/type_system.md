@@ -179,7 +179,7 @@ Use the `type()` function to check the runtime type of a value:
 
 ```ab
 fun describe(value: Int | Text) {
-    if type(value) == "Int" {
+    if value is Int {
         echo("Got an integer")
     else
         echo("Got text")
