@@ -90,7 +90,7 @@ The `?` operator is used for automatic error propagation. When a failable functi
 
 ```ab
 fun processFile(filename): Int? {
-    let content = trust readFile(filename)?  // Fails if readFile fails
+    let content = readFile(filename)?  // Fails if readFile fails
     let result = parseContent(content)?      // Fails if parseContent fails
     return result
 }
