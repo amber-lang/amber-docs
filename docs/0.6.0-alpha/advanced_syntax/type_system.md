@@ -193,7 +193,7 @@ After narrowing, use the `as` operator to cast to the narrowed type:
 
 ```ab
 fun process(value: Int | Text) {
-    if type(value) == "Int" {
+    if value is Int {
         let num = value as Int
         echo("Doubled: {num * 2}")
     else
