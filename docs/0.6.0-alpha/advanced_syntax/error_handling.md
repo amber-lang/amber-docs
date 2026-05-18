@@ -2,7 +2,7 @@
 
 Amber provides several mechanisms for handling errors: failable functions, status codes, and error handling blocks.
 
-## Failing Functions
+## Failable Functions
 
 Functions that include unhandled _failable_ statements - such as `fail` statements or `$ $?` error propagation - are also marked as _failable_. This allows errors to propagate naturally through the call stack, enabling centralized and consistent error handling.
 
