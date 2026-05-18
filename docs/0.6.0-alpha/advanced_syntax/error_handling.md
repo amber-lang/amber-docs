@@ -1,6 +1,6 @@
 # Error Handling {#error_handling}
 
-Amber provides several mechanisms for handling errors: failing functions, failable functions, status codes, and error handling blocks.
+Amber provides several mechanisms for handling errors: failable functions, status codes, and error handling blocks.
 
 ## Failing Functions
 
