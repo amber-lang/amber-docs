@@ -4,7 +4,7 @@ Amber provides several mechanisms for handling errors: failable functions, statu
 
 ## Failing Functions
 
-Functions can additionally fail. We call them _failable_ functions. A failable function is a type of function that can fail. To fail a function use a `fail` keyword and follow it with exit code.
+Functions that include unhandled _failable_ statements - such as `fail` statements or `$ $?` error propagation - are also marked as _failable_. This allows errors to propagate naturally through the call stack, enabling centralized and consistent error handling.
 
 ```ab
 fun failing() {
