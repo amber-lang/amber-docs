@@ -29,3 +29,18 @@ let actual = [1, 2, 3]
 assert_eq(expected, actual)
 ```
 
+## `refute`
+
+```ab
+pub fun refute(condition: Bool) 
+```
+
+Asserts that a boolean condition is false. Fails the test with exit code `1` if true.
+### Usage
+```ab
+import { refute } from "std/test"
+
+let user_age = 17
+refute(user_age >= 18)
+```
+
