@@ -48,7 +48,7 @@ Combinations of using `trust` and `?` that are considered invalid (such as tryin
 Status code contains information about latest failing function or a command that was run. Accessing status is as simple as calling `status()` function.
 
 ```ab
-fun safeDivision(a: Num, b: Num): Num {
+fun safeDivision(a: Num, b: Num): Num? {
     if b == 0 {
         fail 1
     }
@@ -101,8 +101,7 @@ fun processFile(filename): Int? {
 1. **Use `trust` when you're confident a failable operation will succeed**
 2. **Use `?` for automatic error propagation in failable functions**
 3. **Use `failed(code)` blocks when you want to handle specific failures gracefully**
-4. **Always check `status()` after operations to understand what happened**
-5. **Mark functions as failable (`Type?`) only when they can actually fail**
+4. **Mark functions as failable (`Type?`) only when they can actually fail**
 
 ---
 
