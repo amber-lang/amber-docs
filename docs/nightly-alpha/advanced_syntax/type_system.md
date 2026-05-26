@@ -34,7 +34,7 @@ let combined = text + y // Text (Text + Int → Text)
 
 ### Empty Arrays
 
-An empty array creates a Generic array which later resolves to the type of the first key:
+An empty array creates a Generic array which later resolves to the type of the first element:
 
 ```ab
 let empty_ints: [Int] = []    // Type annotation required
@@ -45,7 +45,7 @@ However, once you populate an array, type inference works normally:
 
 ```ab
 var items = [1, 2, 3]         // Inferred as [Int]
-items + = [4]                 // Still [Int]
+items += [4]                 // Still [Int]
 ```
 
 ### Function Parameter Inference
@@ -137,7 +137,7 @@ Amber supports function overloading—multiple functions with the same name but 
 
 ### Automatic Overloading
 
-When you define functions with different type signatures, Amber alert about a redeclaration error:
+When you define functions with different type signatures, Amber alerts about a redeclaration error:
 
 ```ab
 fun format(value: Int): Text {
@@ -178,7 +178,7 @@ Type narrowing is the process of refining a variable's type within a specific co
 
 ### Type Checking
 
-Use the `type()` function to check the runtime type of a value:
+Use `is` keyword to check the runtime type of a value:
 
 ```ab
 fun describe(value: Int | Text) {
@@ -206,34 +206,26 @@ fun process(value: Int | Text) {
 }
 ```
 
-The `as` operator is only safe after confirming the type with `type()` or in a branch where the type has been verified.
+The `as` operator is only safe when dealing with specific type combinations where it's allowed, e.g. cast Int as Text or Bool as Int, otherwise the compiler will show a warning.
+
+For unsupported type conversions, check [absurd cast](/advanced_syntax/as_cast#absurd-cast)
 
 ### Match Expressions for Narrowing
 
-For more complex scenarios, use `match` with type checking:
+For more complex scenarios, use if-chain with type checking:
 
 ```ab
 fun analyze(value: Int | Text | Bool) {
-    if (value is Int) {
-        echo("Integer: {value}")
-    } else if (value is Text) {
-        echo("Text length: {len(value)}")
-    } else if (value is Bool) {
-        echo("Boolean: {value}")
-    }
-}
-```
-
-### Quick Example
-
-```ab
-let value: Int | Text = "hello"
-
-fun process(value: Int | Text) {
-    // Type narrowing required for specific operations
-    if type(value) == "Int" {
-        let num = value as Int
-        echo(num * 2)
+    if {
+        value is Int {
+            echo("Integer: {value}")
+        }
+        value is Text {
+            echo("Text length: {len(value)}")
+        } 
+        value is Bool {
+            echo("Boolean: {value}")
+        }
     }
 }
 ```

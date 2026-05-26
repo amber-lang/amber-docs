@@ -34,7 +34,7 @@ let combined = text + y // Text (Text + Int → Text)
 
 ### Empty Arrays
 
-An empty array creates a Generic array which later resolves to the type of the first key:
+An empty array creates a Generic array which later resolves to the type of the first element:
 
 ```ab
 let empty_ints: [Int] = []    // Type annotation required
@@ -45,7 +45,7 @@ However, once you populate an array, type inference works normally:
 
 ```ab
 var items = [1, 2, 3]         // Inferred as [Int]
-items + = [4]                 // Still [Int]
+items += [4]                 // Still [Int]
 ```
 
 ### Function Parameter Inference
@@ -137,7 +137,7 @@ Amber supports function overloading—multiple functions with the same name but 
 
 ### Automatic Overloading
 
-When you define functions with different type signatures, Amber alert about a redeclaration error:
+When you define functions with different type signatures, Amber alerts about a redeclaration error:
 
 ```ab
 fun format(value: Int): Text {

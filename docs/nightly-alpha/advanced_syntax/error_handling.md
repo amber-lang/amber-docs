@@ -1,10 +1,10 @@
 # Error Handling {#error_handling}
 
-Amber provides several mechanisms for handling errors: failing functions, failable functions, status codes, and error handling blocks.
+Amber provides several mechanisms for handling errors: failable functions, status codes, and error handling blocks.
 
-## Failing Functions
+## Failable Functions
 
-Functions can additionally fail. We call them _failable_ functions. A failable function is a type of function that can fail. To fail a function use a `fail` keyword and follow it with exit code.
+Functions that include unhandled _failable_ statements - such as `fail` statements or `$ $?` error propagation - are also marked as _failable_. This allows errors to propagate naturally through the call stack, enabling centralized and consistent error handling.
 
 ```ab
 fun failing() {
@@ -48,7 +48,7 @@ Combinations of using `trust` and `?` that are considered invalid (such as tryin
 Status code contains information about latest failing function or a command that was run. Accessing status is as simple as calling `status()` function.
 
 ```ab
-fun safeDivision(a: Num, b: Num): Num {
+fun safeDivision(a: Num, b: Num): Num? {
     if b == 0 {
         fail 1
     }
@@ -90,7 +90,7 @@ The `?` operator is used for automatic error propagation. When a failable functi
 
 ```ab
 fun processFile(filename): Int? {
-    let content = trust readFile(filename)?  // Fails if readFile fails
+    let content = readFile(filename)?        // Fails if readFile fails
     let result = parseContent(content)?      // Fails if parseContent fails
     return result
 }
@@ -101,8 +101,7 @@ fun processFile(filename): Int? {
 1. **Use `trust` when you're confident a failable operation will succeed**
 2. **Use `?` for automatic error propagation in failable functions**
 3. **Use `failed(code)` blocks when you want to handle specific failures gracefully**
-4. **Always check `status()` after operations to understand what happened**
-5. **Mark functions as failable (`Type?`) only when they can actually fail**
+4. **Mark functions as failable (`Type?`) only when they can actually fail**
 
 ---
 

@@ -2,16 +2,6 @@
 
 Union types provide a flexible way to define function parameters and return types that can accept values of multiple distinct types. 
 
-## Basic Syntax
-
-Union types are defined using the `|` operator to combine multiple types. The syntax is straightforward:
-
-```ab
-let value: Int | Text = "Hello"
-let number: Int | Num = 42
-let mixed: Bool | Int | Text = true
-```
-
 ## Function Parameters
 
 One of the most common use cases for union types is defining flexible function parameters. This allows functions to accept different types without resorting to dynamic typing:
@@ -42,10 +32,10 @@ You can also use match expressions for more complex type narrowing:
 
 ```ab
 fun analyze(data: Int | Text | Bool) {
-    match type(data) {
-        "Int" -> echo("Got an integer")
-        "Text" -> echo("Got text: {data}")
-        "Bool" -> echo("Got a boolean")
+    if {
+        data is Int: echo("Got an integer")
+        data is Text: echo("Got text: {data}")
+        data is Bool: echo("Got a boolean")
     }
 }
 ```
@@ -65,53 +55,22 @@ fun parse_input(input: Text): Int | Text {
 let result = parse_input("42")
 ```
 
-For failable functions, you can combine union types with the optional marker:
-
-```ab
-fun find_user(id: Int): User | Text? {
-    let users = [
-        {id: 1, name: "Alice"},
-        {id: 2, name: "Bob"}
-    ]
-    
-    for user in users {
-        if user.id == id {
-            return user
-        }
-    }
-    
-    return "User not found"
-}
-```
-
 ## Arrays
 
-Union types work seamlessly with arrays, allowing you to create collections of mixed but specific types:
+Union types work seamlessly with arrays, allowing you to pass different types of arrays:
 
 ```ab
-let mixed: [Int | Text] = [1, "two", 3, "four"]
 
-fun filter_integers(items: [Int | Text]): [Int] {
-    var result: [Int] = []
-    for item in items {
-        if type(item) == "Int" {
-            result += [item as Int]
-        }
+fun array_type(items: [Int] | [Text]): Text {
+    if items is [Int] {
+        return "Int array: {items}"
+    } else {
+        return "Text array: {items}"
     }
-    return result
 }
 
-let numbers = filter_integers([1, "hello", 2, "world", 3])
-// Returns: [1, 2, 3]
-```
-
-You can also use union types with other collection types:
-
-```ab
-let mapping: {Text: Int | Bool} = {
-    "active": true,
-    "count": 42
-}
+echo(array_type([1, 2, 3]))
+// Returns: Int array: 1 2 3
 ```
 
 ---
