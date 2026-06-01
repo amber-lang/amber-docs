@@ -45,7 +45,7 @@ Combinations of using `trust` and `?` that are considered invalid (such as tryin
 
 ## Status Code
 
-Status code contains information about latest failing function or a command that was run. Accessing status is as simple as calling `status()` function.
+You can access status code of the latest command by calling builtin `status()` function.
 
 ```ab
 fun safeDivision(a: Num, b: Num): Num? {
