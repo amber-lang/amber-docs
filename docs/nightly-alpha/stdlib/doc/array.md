@@ -150,6 +150,21 @@ array_remove_at(array, 1)
 echo(array) // Outputs [1, 3]
 ```
 
+## `array_reversed`
+
+```ab
+pub fun array_reversed(array: []): [] 
+```
+
+Return the reversed array
+
+### Usage
+```ab
+import { array_reversed } from "std/array"
+
+echo(array_reversed(["15", "-3", "foo", "bar"])) // Outputs ["bar", "foo", "-3", "15"]
+```
+
 ## `array_shift`
 
 ```ab
