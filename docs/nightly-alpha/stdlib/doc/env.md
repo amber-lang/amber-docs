@@ -123,16 +123,16 @@ env_const_set("API_KEY", "secret123")
 ## `env_file_load`
 
 ```ab
-pub fun env_file_load(file: Text = ".env"): Null 
+pub fun env_file_load(file: Text = ".env"): Null? 
 ```
 
-Loads the env file in the environment, using `xargs`.
+Loads the env file in the environment
 
 ### Usage
 ```ab
 import { env_file_load } from "std/env"
 
-env_file_load(".env")
+env_file_load(".env")?
 ```
 
 ## `env_var_get`
@@ -153,10 +153,10 @@ const debug = env_var_get("DEBUG")
 ## `env_var_load`
 
 ```ab
-pub fun env_var_load(var: Text, file: Text = ".env"): Text 
+pub fun env_var_load(var: Text, file: Text = ".env"): Text? 
 ```
 
-Retrieves the value of an environment variable, optionally sourcing it from a file if not already set.
+Retrieves the value of an environment variable from the file.
 
 ### Usage
 ```ab

@@ -500,6 +500,23 @@ if text_contains_any("hello world", ["foo", "world", "bar"]) {
 }
 ```
 
+## `text_find`
+
+```ab
+pub fun text_find(text: Text, value: Text): Int 
+```
+
+Returns index of the first value found in the specified text.
+
+If the value is not found, the function returns -1.
+
+### Usage
+```ab
+import { text_find } from "std/text"
+
+text_find("abba", "b") // Outputs 1
+```
+
 ## `trim`
 
 ```ab
