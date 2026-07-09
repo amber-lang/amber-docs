@@ -164,6 +164,9 @@ import { file_glob_all } from "std/fs"
 let files = file_glob_all(["*.txt", "*.md"])
 ```
 
+Uses newline-only shell splitting so spaces survive glob expansion, keeps
+existing paths and symlinks, and restores IFS after expanding each glob.
+
 ## `file_read`
 
 ```ab
