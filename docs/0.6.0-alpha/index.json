@@ -89,6 +89,18 @@
                     "title": "Type Condition"
                 },
                 {
+                    "path": "advanced_syntax/union_types",
+                    "title": "Union Types"
+                },
+                {
+                    "path": "advanced_syntax/type_system",
+                    "title": "Type System"
+                },
+                {
+                    "path": "advanced_syntax/error_handling",
+                    "title": "Error Handling"
+                },
+                {
                     "path": "advanced_syntax/compiler_flags",
                     "title": "Compiler Flags"
                 }

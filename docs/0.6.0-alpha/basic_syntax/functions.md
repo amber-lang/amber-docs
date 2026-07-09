@@ -67,70 +67,7 @@ Notice that arguments with default values must come after the regular arguments.
 
 You can apply [Command Modifiers](/basic_syntax/commands) to function calls as well. This way you can suppress any output with `silent` modifier or run _failable_ functions as if they could never fail (although this is unrecommended) with `trust` keyword
 
-## Failing {#fail}
-
-Functions can additionally fail. We call them _failable_ functions. A failable function is a type of function that can fail. To fail a function use a `fail` keyword and follow it with exit code.
-
-```ab
-fun failing() {
-    fail 1
-}
-```
-
-Here is another example of a failing function:
-
-```ab
-fun failing(name) {
-    $ command $?
-    parse(name)?
-}
-```
-
-Notice that using `?` operator is automatically failing with the `status()` code of the failing operation.
-
-If you specify the return type of a failable function, you must also append the `?` to the type name.
-
-```ab
-fun failable(): Int? {
-    if 0 > 5 {
-        fail 1
-    }
-
-    return 1
-}
-```
-
-Note that you cannot force a function to become failable by simply appending the `?` to the return type. The `?` can (and must) only be used in a function declaration, if the function is actually failable.
-Conversely, if a function might fail (e.g. it calls another failable function or uses the `fail` keyword), it **must** have the `?` specifier if you annotate its return type.
-Combinations of using `trust` and `?` that are considered invalid (such as trying to use a `trust`ed failing result and propagating it with `?` where not applicable) will be correctly diagnosed by the compiler.
-
-## Status Code {#status}
-
-Status code contains information about latest failing function or a command that was run. Accessing status is as simple as calling `status()` function.
-
-```ab
-fun safeDivision(a: Num, b: Num): Num {
-    if b == 0:
-        fail 1
-    return a / b
-}
-```
-
-Now let's see how this code will behave in different scenarios:
-
-```ab
-let result = trust safeDivision(24, 4)
-echo("{result}, {status()}")
-// Outputs: 6, 0
-```
-This was a happy ending. Now let's see what happens when we divide by zero:
-
-```ab
-let result = safeDivision(15, 0) failed(code) {
-    echo("Function failed with code {code}")
-}
-// Outputs: Function failed with code 1
-```
+For more information on failable functions, status codes, and error handling blocks, see [Error Handling](/advanced_syntax/error_handling).
 
 ## Variable References `ref` {#ref}
 
