@@ -37,7 +37,7 @@ let combined = text + y // Text (Text + Int → Text)
 An empty array creates a Generic array which later resolves to the type of the first element:
 
 ```ab
-let empty_ints: [Int] = []    // Type annotation required
+let empty_ints = [Int]  // Type annotation required
 let empty_text: [Text] = []   // Type annotation required
 ```
 
