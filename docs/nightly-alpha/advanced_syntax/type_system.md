@@ -38,7 +38,7 @@ An empty array creates a Generic array which later resolves to the type of the f
 
 ```ab
 let empty_ints = [Int]    // Type annotation required
-let empty_text: [Text] = []   // Type annotation required
+let empty_text = [Text]   // Type annotation required
 ```
 
 However, once you populate an array, type inference works normally:
