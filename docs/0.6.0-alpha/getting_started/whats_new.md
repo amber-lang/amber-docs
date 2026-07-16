@@ -37,7 +37,7 @@ Added control-flow-aware validation for ternary expressions and related typing, 
 
 ```ab
 // The compiler correctly types this based on condition logic
-let result = value is Num then 42 else "Hello World"
+let result = value is Num then "42" else "Hello World"
 ```
 
 # Union Types
