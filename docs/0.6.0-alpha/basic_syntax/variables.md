@@ -49,7 +49,7 @@ By default, public variables must be constants to prevent shared mutable global 
 pub let config_value = "default"
 ```
 
-These variables can then be imported and used in other modules. (See the [Importing](importing) section for more details.)
+These variables can then be imported and used in other modules. (See the [Importing](basic_syntax/importing) section for more details).
 
 # Constant {#const}
 
