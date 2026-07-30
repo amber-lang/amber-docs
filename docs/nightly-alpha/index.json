@@ -85,10 +85,6 @@
                     "title": "Builtins"
                 },
                 {
-                    "path": "advanced_syntax/type_condition",
-                    "title": "Type Condition"
-                },
-                {
                     "path": "advanced_syntax/union_types",
                     "title": "Union Types"
                 },
