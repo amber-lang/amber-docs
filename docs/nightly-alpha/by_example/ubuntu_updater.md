@@ -15,7 +15,7 @@ main {
     // case.
     trust $ iwgetid -r | grep -E '(OEBB|WESTlan)' $ succeeded {
         echo("Skipping updates because of slow Wifi")
-        exit 0
+        exit(0)
     }
 
     $ export DEBIAN_FRONTEND=noninteractive $?
