@@ -1,7 +1,7 @@
 This script demonstrates an automated backup rotation system that keeps only the most recent backups while deleting older ones.
 
 ```ab
-import { dir_exists, dir_create, file_exists } from "std/fs"
+import { dir_exists, dir_create } from "std/fs"
 import { parse_int, trim } from "std/text"
 import { date_now, date_format_posix } from "std/date"
 
