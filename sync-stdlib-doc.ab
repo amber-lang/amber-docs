@@ -1,12 +1,227 @@
 #!/usr/bin/env amber
-import { file_download } from "std/http"
-import { file_extract, file_glob } from "std/fs"
+// 2> /dev/null; exit 1
 
-trust $ rm -fr /tmp/amber-git $
-if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/main.zip", "/tmp/amber-git.zip") {
-    trust file_extract("/tmp/amber-git.zip", "/tmp/amber-git")
-    for file in trust file_glob("/tmp/amber-git/amber-main/src/std/*.ab") {
-        echo "Parsing {file}"
-        trust $ amber docs --usage "{file}" "./docs/stdlib/doc/" $
+import { is_command } from "std/env"
+import { dir_exists, file_exists, file_extract, file_glob } from "std/fs"
+import { file_download } from "std/http"
+import { join, replace_regex, trim } from "std/text"
+
+const REPO_BRANCH = "main"
+const ARCHIVE_FORMAT = "zip"
+
+const REPO_ARCHIVE_URL = "https://github.com/amber-lang/amber/archive/refs/heads/{REPO_BRANCH}.{ARCHIVE_FORMAT}"
+const TMP_DIR = "/tmp/amber-git"
+const TMP_ZIP = "/tmp/amber-git.{ARCHIVE_FORMAT}"
+
+const DOCS_DIR = "./docs"
+const STDLIB_DOC_DIR = "stdlib/doc/"
+const DOCS_DYNAMIC_STDLIB_DOC_DIR = "{DOCS_DIR}/[version]/{STDLIB_DOC_DIR}"
+
+const REPO_ROOT_DIR = "{TMP_DIR}/amber-{REPO_BRANCH}"
+const EXPECTED_SRC_DIR = "{REPO_ROOT_DIR}/src/std"
+const SRC_PATTERN = "{EXPECTED_SRC_DIR}/*.ab"
+const TMP_CARGO_FILE = "{REPO_ROOT_DIR}/Cargo.toml"
+
+const NO_AMBER_VERSION = "unknown"
+
+fun verify_dir_exists(path_dir: Text): Bool {
+    return dir_exists(path_dir)
+}
+
+fun execute_rm(path: Text, recursive: Bool, force: Bool) {
+    rm(path, recursive, force) failed (rm_error) {
+        echo("❌ Error: Deletion of '{path}' failed ({rm_error}).")
     }
+}
+
+fun safe_remove_dir(path_dir: Text) {
+    if verify_dir_exists(path_dir) {
+        echo("🗑️  Deleting directory: '{path_dir}'.")
+
+        execute_rm(path_dir, true, true)
+    }
+}
+
+fun safe_move_dir(source_dir: Text, target_dir: Text): Bool {
+    silent mv(source_dir, target_dir) failed {
+        echo("❌ Error: It's not possible to move the files.")
+
+        return false
+    }
+
+    return true
+}
+
+fun safe_remove_file(path_file: Text) {
+    if file_exists(path_file) {
+        echo("🗑️  Deleting file: '{path_file}'.")
+
+        execute_rm(path_file, false, true)
+    }
+}
+
+fun build_output_path(version: Text): Text {
+    return replace_regex("{DOCS_DYNAMIC_STDLIB_DOC_DIR}", "\[version]", version)
+}
+
+fun extract_amber_version(): Text {
+    if not file_exists(TMP_CARGO_FILE) {
+        echo("❌ Error: The file 'Cargo.toml' does not exist in the path '{TMP_CARGO_FILE}'.")
+
+        return NO_AMBER_VERSION
+    }
+
+    const amber_version = trust $ sed -n 's/^version = "\(.*\)"/\1/p' "{TMP_CARGO_FILE}" | head -n 1 $
+
+    if amber_version == "" {
+        echo("❌ Error: It was not possible to extract a valid version from the 'Cargo.toml' file.")
+
+        return NO_AMBER_VERSION
+    }
+
+    echo("📦 Detected version of Amber's source code: {amber_version}")
+
+    return amber_version
+}
+
+fun check_system_dependencies(): Bool {
+    echo("🔍 Checking system dependencies...")
+
+    const required_commands = ["amber", "head", "sed", "unzip"]
+
+    for command in required_commands {
+        if not is_command(command) {
+            echo("❌ Error: The command '{command}' is not installed or is not available in the PATH.")
+
+            return false
+        }
+    }
+
+    echo("✅ All dependencies are satisfied.")
+
+    return true
+}
+
+fun cleanup_environment() {
+    echo("🧹 Initiating environmental cleanup...")
+
+    safe_remove_dir(TMP_DIR)
+    safe_remove_file(TMP_ZIP)
+}
+
+fun fetch_source_code(): Bool {
+    echo("⬇️  Downloading source code from {REPO_ARCHIVE_URL}...")
+
+    silent file_download(REPO_ARCHIVE_URL, TMP_ZIP) failed (file_download_error) {
+        echo("❌ Error: Downloading the file: {file_download_error}")
+
+        return false
+    }
+
+    echo("⚙️  Extracting files...")
+
+    silent file_extract(TMP_ZIP, TMP_DIR) failed (file_extract_error) {
+        echo("❌ Error: Extracting ZIP file: {file_extract_error}")
+
+        return false
+    }
+
+    return true
+}
+
+fun generate_stdlib_documentation(output_dir: Text): Bool {
+    if not verify_dir_exists(EXPECTED_SRC_DIR) {
+        echo("❌ Error: The source directory '{EXPECTED_SRC_DIR}' does not exist.")
+
+        return false
+    }
+
+    const files = file_glob(SRC_PATTERN)
+
+    if len(files) == 0 {
+        echo("⚠️  Warning: Correct structure, but no .ab files were found to process.")
+
+        return false
+    }
+
+    echo("Starting the parsing of {len(files)} files towards '{output_dir}'...")
+
+    let all_files_processed = true
+
+    for file in files {
+        $ amber docs --usage "{file}" "{output_dir}" $ failed {
+            echo("❌ Error: The 'amber docs' command failed for file: {file}.")
+
+            all_files_processed = false
+        }
+    }
+
+    if all_files_processed: echo("✨ Documentation successfully generated!")
+
+    return all_files_processed
+}
+
+fun synchronize_stdlib_documentation(output_dir: Text): Bool {
+    const prefix_dir = join(["/", output_dir], "")
+    const source_dir = join([EXPECTED_SRC_DIR, prefix_dir], "")
+    const target_dir = join([pwd(), prefix_dir], "")
+
+    if verify_dir_exists(target_dir) {
+        safe_remove_dir(target_dir)
+    }
+
+    echo("🔄 Moving (synchronizing) the files.")
+
+    return safe_move_dir(source_dir, target_dir)
+}
+
+fun shows_process_result(process_result: Bool) {
+    if process_result: echo("✅ The entire process was successfully executed from start to finish!")
+    else: echo("❌ The process ended with errors. Please review the previous messages.")
+}
+
+main {
+    let all_success = false
+
+    if not check_system_dependencies() {
+        shows_process_result(all_success)
+
+        exit(1)
+    }
+
+    cleanup_environment()
+
+    if fetch_source_code() {
+        const amber_version = extract_amber_version()
+
+        if amber_version == NO_AMBER_VERSION {
+            cleanup_environment()
+
+            shows_process_result(all_success)
+
+            exit(2)
+        }
+
+        const dynamic_output_dir = build_output_path(amber_version)
+
+        if not verify_dir_exists(dynamic_output_dir) {
+            echo("❌ Error: The directory '{dynamic_output_dir}' does not exist in the path '{pwd()}'.")
+
+            cleanup_environment()
+
+            shows_process_result(all_success)
+
+            exit(3)
+        }
+
+        all_success = generate_stdlib_documentation(dynamic_output_dir)
+
+        if all_success {
+            all_success = synchronize_stdlib_documentation(dynamic_output_dir)
+        }
+    }
+
+    cleanup_environment()
+
+    shows_process_result(all_success)
 }
