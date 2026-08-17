@@ -118,6 +118,7 @@ Here is a list of plugins that support syntax highlighting for Amber language.
 
 | Icon | Name | Location |
 |---|:----:|:-----:|
+| LOGO:emacs | **Emacs** | [Amber mode extension](https://codeberg.org/GeorgGD/amber-mode) |
 | LOGO:hx | **Helix Editor** | [Native Support](https://docs.helix-editor.com/lang-support.html) |
 | LOGO:nova | **Nova** | [Nova extensions](https://extensions.panic.com/extensions/besya/besya.amber/) |
 | LOGO:vim | **Vim** | [Our extension repository](https://github.com/amber-lang/amber-vim) |
