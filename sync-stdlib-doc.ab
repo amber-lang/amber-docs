@@ -121,6 +121,16 @@ fun check_system_dependencies(): Bool {
     return true
 }
 
+fun file_extract_fallback(tmp_zip: Text, tmp_dir: Text): Bool {
+    silent $ unzip -q "{tmp_zip}" -d "{tmp_dir}" $ failed (file_extract_error) {
+        echo("❌ Error: Extracting ZIP file: {file_extract_error}")
+
+        return false
+    }
+
+    return true
+}
+
 fun fetch_source_code(): Bool {
     echo("⬇️  Downloading source code from {REPO_ARCHIVE_URL}...")
 
@@ -133,6 +143,11 @@ fun fetch_source_code(): Bool {
     echo("⚙️  Extracting files...")
 
     silent file_extract(TMP_ZIP, TMP_DIR) failed (file_extract_error) {
+        if file_extract_error == 3 {
+            // 3 (magic number) = Error: Unsupported file type (Amber)
+            return file_extract_fallback(TMP_ZIP, TMP_DIR)
+        }
+
         echo("❌ Error: Extracting ZIP file: {file_extract_error}")
 
         return false
