@@ -175,18 +175,19 @@ fun synchronize_stdlib_documentation(output_dir: Text): Bool {
     return safe_move_dir(source_dir, target_dir)
 }
 
-fun shows_process_result(process_result: Bool) {
-    if process_result: echo("✅ The entire process was successfully executed from start to finish!")
-    else: echo("❌ The process ended with errors. Please review the previous messages.")
+fun shows_process_result(exit_code: Int = 0) {
+    if exit_code == 0: echo("✅ The entire process was successfully executed from start to finish!")
+    else: {
+        echo("❌ The process ended with errors. Please review the previous messages.")
+        exit(exit_code)
+    }
 }
 
 main {
     let all_success = false
 
     if not check_system_dependencies() {
-        shows_process_result(all_success)
-
-        exit(1)
+        shows_process_result(1)
     }
 
     cleanup_environment()
@@ -197,9 +198,7 @@ main {
         if amber_version == NO_AMBER_VERSION {
             cleanup_environment()
 
-            shows_process_result(all_success)
-
-            exit(2)
+            shows_process_result(2)
         }
 
         const dynamic_output_dir = build_output_path(amber_version)
@@ -209,9 +208,7 @@ main {
 
             cleanup_environment()
 
-            shows_process_result(all_success)
-
-            exit(3)
+            shows_process_result(3)
         }
 
         all_success = generate_stdlib_documentation(dynamic_output_dir)
@@ -223,5 +220,6 @@ main {
 
     cleanup_environment()
 
-    shows_process_result(all_success)
+    if all_success: shows_process_result()
+    else: shows_process_result(4)
 }
