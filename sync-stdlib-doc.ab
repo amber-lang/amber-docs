@@ -28,18 +28,24 @@ fun verify_dir_exists(path_dir: Text): Bool {
     return dir_exists(path_dir)
 }
 
-fun execute_rm(path: Text, recursive: Bool, force: Bool) {
+fun execute_rm(path: Text, recursive: Bool, force: Bool): Bool {
     rm(path, recursive, force) failed (rm_error) {
         echo("❌ Error: Deletion of '{path}' failed ({rm_error}).")
+
+        return false
     }
+
+    return true
 }
 
 fun safe_remove_dir(path_dir: Text) {
     if verify_dir_exists(path_dir) {
         echo("🗑️  Deleting directory: '{path_dir}'.")
 
-        execute_rm(path_dir, true, true)
+        return execute_rm(path_dir, true, true)
     }
+
+    return true
 }
 
 fun safe_move_dir(source_dir: Text, target_dir: Text): Bool {
@@ -56,8 +62,10 @@ fun safe_remove_file(path_file: Text) {
     if file_exists(path_file) {
         echo("🗑️  Deleting file: '{path_file}'.")
 
-        execute_rm(path_file, false, true)
+        return execute_rm(path_file, false, true)
     }
+
+    return true
 }
 
 fun build_output_path(version: Text): Text {
@@ -105,8 +113,9 @@ fun check_system_dependencies(): Bool {
 fun cleanup_environment() {
     echo("🧹 Initiating environmental cleanup...")
 
-    safe_remove_dir(TMP_DIR)
-    safe_remove_file(TMP_ZIP)
+    if not safe_remove_dir(TMP_DIR): shows_process_result(1)
+
+    if not safe_remove_file(TMP_ZIP): shows_process_result(2)
 }
 
 fun fetch_source_code(): Bool {
@@ -167,7 +176,9 @@ fun synchronize_stdlib_documentation(output_dir: Text): Bool {
     const target_dir = join([pwd(), prefix_dir], "")
 
     if verify_dir_exists(target_dir) {
-        safe_remove_dir(target_dir)
+        if not safe_remove_dir(target_dir) {
+            return false
+        }
     }
 
     echo("🔄 Moving (synchronizing) the files.")
@@ -178,7 +189,7 @@ fun synchronize_stdlib_documentation(output_dir: Text): Bool {
 fun shows_process_result(exit_code: Int = 0) {
     if exit_code == 0: echo("✅ The entire process was successfully executed from start to finish!")
     else: {
-        echo("❌ The process ended with errors. Please review the previous messages.")
+        echo("❌ The process ended with errors. Please review the previous messages. (exit_code: {exit_code})")
         exit(exit_code)
     }
 }
@@ -187,7 +198,7 @@ main {
     let all_success = false
 
     if not check_system_dependencies() {
-        shows_process_result(1)
+        shows_process_result(3)
     }
 
     cleanup_environment()
@@ -198,7 +209,7 @@ main {
         if amber_version == NO_AMBER_VERSION {
             cleanup_environment()
 
-            shows_process_result(2)
+            shows_process_result(4)
         }
 
         const dynamic_output_dir = build_output_path(amber_version)
@@ -208,7 +219,7 @@ main {
 
             cleanup_environment()
 
-            shows_process_result(3)
+            shows_process_result(5)
         }
 
         all_success = generate_stdlib_documentation(dynamic_output_dir)
@@ -221,5 +232,5 @@ main {
     cleanup_environment()
 
     if all_success: shows_process_result()
-    else: shows_process_result(4)
+    else: shows_process_result(6)
 }
