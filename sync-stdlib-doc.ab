@@ -2,7 +2,7 @@
 // 2> /dev/null; exit 1
 
 import { is_command } from "std/env"
-import { dir_exists, file_exists, file_extract, file_glob } from "std/fs"
+import { dir_exists, file_exists, file_extract, file_glob, temp_dir_create } from "std/fs"
 import { file_download } from "std/http"
 import { join, replace_regex, trim } from "std/text"
 
@@ -10,8 +10,8 @@ const REPO_BRANCH = "main"
 const ARCHIVE_FORMAT = "zip"
 
 const REPO_ARCHIVE_URL = "https://github.com/amber-lang/amber/archive/refs/heads/{REPO_BRANCH}.{ARCHIVE_FORMAT}"
-const TMP_DIR = "/tmp/amber-git"
-const TMP_ZIP = "/tmp/amber-git.{ARCHIVE_FORMAT}"
+const TMP_DIR = trust temp_dir_create("amber-git-for-documentation-XXXXXX", true, true)
+const TMP_ZIP = "{TMP_DIR}/amber-git.{ARCHIVE_FORMAT}"
 
 const DOCS_DIR = "./docs"
 const STDLIB_DOC_DIR = "stdlib/doc/"
@@ -110,14 +110,6 @@ fun check_system_dependencies(): Bool {
     return true
 }
 
-fun cleanup_environment() {
-    echo("🧹 Initiating environmental cleanup...")
-
-    if not safe_remove_dir(TMP_DIR): shows_process_result(1)
-
-    if not safe_remove_file(TMP_ZIP): shows_process_result(2)
-}
-
 fun fetch_source_code(): Bool {
     echo("⬇️  Downloading source code from {REPO_ARCHIVE_URL}...")
 
@@ -201,14 +193,10 @@ main {
         shows_process_result(3)
     }
 
-    cleanup_environment()
-
     if fetch_source_code() {
         const amber_version = extract_amber_version()
 
         if amber_version == NO_AMBER_VERSION {
-            cleanup_environment()
-
             shows_process_result(4)
         }
 
@@ -216,8 +204,6 @@ main {
 
         if not verify_dir_exists(dynamic_output_dir) {
             echo("❌ Error: The directory '{dynamic_output_dir}' does not exist in the path '{pwd()}'.")
-
-            cleanup_environment()
 
             shows_process_result(5)
         }
@@ -228,8 +214,6 @@ main {
             all_success = synchronize_stdlib_documentation(dynamic_output_dir)
         }
     }
-
-    cleanup_environment()
 
     if all_success: shows_process_result()
     else: shows_process_result(6)
