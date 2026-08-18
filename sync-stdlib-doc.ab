@@ -191,7 +191,7 @@ fun synchronize_stdlib_documentation(output_dir: Text): Bool {
 
 fun shows_process_result(exit_code: Int = 0) {
     if exit_code == 0: echo("✅ The entire process was successfully executed from start to finish!")
-    else: {
+    else {
         echo("❌ The process ended with errors. Please review the previous messages. (exit_code: {exit_code})")
         exit(exit_code)
     }
