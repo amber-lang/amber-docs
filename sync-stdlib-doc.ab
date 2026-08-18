@@ -4,7 +4,7 @@
 import { is_command } from "std/env"
 import { dir_exists, file_exists, file_extract, file_glob, temp_dir_create } from "std/fs"
 import { file_download } from "std/http"
-import { join, replace_regex, trim } from "std/text"
+import { join, match_regex, replace_regex, trim } from "std/text"
 
 const REPO_BRANCH = "main"
 const ARCHIVE_FORMAT = "zip"
@@ -22,6 +22,7 @@ const EXPECTED_SRC_DIR = "{REPO_ROOT_DIR}/src/std"
 const SRC_PATTERN = "{EXPECTED_SRC_DIR}/*.ab"
 const TMP_CARGO_FILE = "{REPO_ROOT_DIR}/Cargo.toml"
 
+const REGEX_AMBER_VERSION = "^[a-zA-Z0-9.-]+$"
 const NO_AMBER_VERSION = "unknown"
 
 fun verify_dir_exists(path_dir: Text): Bool {
@@ -72,6 +73,10 @@ fun build_output_path(version: Text): Text {
     return replace_regex("{DOCS_DYNAMIC_STDLIB_DOC_DIR}", "\[version]", version)
 }
 
+fun is_safe_amber_version(version: Text): Bool {
+    return match_regex(version, REGEX_AMBER_VERSION, true)
+}
+
 fun extract_amber_version(): Text {
     if not file_exists(TMP_CARGO_FILE) {
         echo("❌ Error: The file 'Cargo.toml' does not exist in the path '{TMP_CARGO_FILE}'.")
@@ -83,6 +88,12 @@ fun extract_amber_version(): Text {
 
     if amber_version == "" {
         echo("❌ Error: It was not possible to extract a valid version from the 'Cargo.toml' file.")
+
+        return NO_AMBER_VERSION
+    }
+
+    if not is_safe_amber_version(amber_version) {
+        echo("❌ Error: Unsafe version detected.")
 
         return NO_AMBER_VERSION
     }
