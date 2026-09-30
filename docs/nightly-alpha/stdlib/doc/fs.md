@@ -241,3 +241,14 @@ import { temp_dir_create } from "std/fs"
 let temp = temp_dir_create("myapp.XXXXXX", true, false)
 ```
 
+## `temp_dirs_cleanup`
+
+```ab
+fun temp_dirs_cleanup(): Null 
+```
+
+Remove every directory registered by `temp_dir_create` for auto deletion.
+Runs from the EXIT trap, so each directory is removed independently.
+```ab
+import { temp_dirs_cleanup } from "std/fs"
+```
