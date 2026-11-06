@@ -14,9 +14,12 @@ On macOS, you should have everything preinstalled (curl, bash, awk).
 
 ### Linux
 Make sure that the operating system meets the following prerequisites
+- Install the basic calculator:
+  - On Debian and Ubuntu: `sudo apt install bc` 
+  - On Arch: `sudo pacman -Syu bc`
+  - On Fedora: `sudo dnf install bc`
+  - On OpenSUSE: `sudo zypper install bc`
 
-- `awk`
-  While most distributions have GNU awk preinstalled, non-GNU awk should work too
 - `curl` and `bash` (or your target shell) are both installed by default in most cases. 
   In the very rare case that they happen to be not available yet, download them as well.
 
@@ -141,7 +144,7 @@ For it to work, you may need to run the following code that pulls all the prereq
 These count for Debian and Ubuntu-based images.
 
 ```sh
-sudo apt install curl
+sudo apt install curl bc
 sudo mkdir /opt /usr/local/bin
 ```
 
