@@ -21,7 +21,7 @@ trust $ rm -fr /tmp/amber-git $
 silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") succeeded {
     trust $ unzip "/tmp/amber-git.zip" -d /tmp/amber-git $
 
-    let std = trust $ /usr/bin/ls "/tmp/amber-git/amber-master/src/std/" $
+    let std = trust ls("/tmp/amber-git/amber-master/src/std/")
     let stdlib = split(std, "\n")
 
     for v in stdlib {
