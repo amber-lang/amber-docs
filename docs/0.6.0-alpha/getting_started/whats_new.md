@@ -3,7 +3,7 @@ Amber 0.6.0 brings exciting new features, improved developer experience, multi-s
 # Multi-shell support (Zsh, Ksh, Bash 3.2)
 Amber now supports compiling not just to modern Bash, but also directly to Zsh, Ksh, and Bash 3.2 via the new `--target` argument! Now you can deploy Amber scripts in a broader range of UNIX environments.
 ```sh
-amber my_script.ab --target zsh
+amber run my_script.ab --target zsh
 ```
 Amber generated scripts now emit the correct shebang for the selected target. Range-related generated code no longer depends on external `bc`/`sed` in the same way, greatly improving portability, especially on macOS (where Bash 3.2 is default). You can also now use the new `shellname()` and `shellversion()` builtins for runtime shell introspection.
 

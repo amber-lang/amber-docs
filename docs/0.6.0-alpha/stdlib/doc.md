@@ -13,20 +13,20 @@ Just like the Amber's compiled Bash output, all standard library functions are b
 Below is an example of how to use the standard library to generate documentation (using the [script](https://github.com/amber-lang/amber-docs/sync-stdlib-doc.ab) provided on the Amber Documentation repository):
 
 ```ab
-import { download } from "std/http"
+import { file_download } from "std/http"
 import { split, contains } from "std/text"
-import { file_exist } from "std/fs"
+import { file_exists } from "std/fs"
 
 trust $ rm -fr /tmp/amber-git $
-if silent download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
+if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
     trust $ unzip "/tmp/amber-git.zip" -d /tmp/amber-git $
 
     let std = trust $ /usr/bin/ls "/tmp/amber-git/amber-master/src/std/" $
     let stdlib = split(std, "\n")
 
     for v in stdlib {
-        if (contains(v, ".ab") and file_exist("/tmp/amber-git/amber-master/src/std/{v}")) {
-            trust $ amber --docs "/tmp/amber-git/amber-master/src/std/{v}" "./docs/stdlib/doc" $
+        if (contains(v, ".ab") and file_exists("/tmp/amber-git/amber-master/src/std/{v}")) {
+            trust $ amber docs "/tmp/amber-git/amber-master/src/std/{v}" "./docs/stdlib/doc" $
             echo("\n")
         }
     }
@@ -48,5 +48,5 @@ However, only the functions that are used in the script will be included in the 
 If you prefer a verbose import, you can specify a single function:
 
 ```ab
-import { download } from "std/http"
+import { file_download } from "std/http"
 ```

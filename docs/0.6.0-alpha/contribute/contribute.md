@@ -18,7 +18,7 @@ Before a PR is opened, it usually has an issue about it first, where we discuss 
 
 It is recommended that you see how features were already implemented. A good example is [#130](https://github.com/amber-lang/Amber/issues/130)
 
-To create a PR, you should fork the repo, create a branch, do your work in there, and open a PR. It will then be reviewed and pushed into master.
+To create a PR, you should fork the repo, create a branch, do your work in there, and open a PR. It will then be reviewed and merged into staging.
 
 The maintainers will check who it is the best reviewer, we suggest to open a ticket reporting the issue before starting to do the PR so we can discuss the implementation.
 

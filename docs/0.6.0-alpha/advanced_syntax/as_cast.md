@@ -18,7 +18,7 @@ let a = "12"
 let b = a as Int
 ```
 
-We can clearly see that this could lead to some big bugs. For example one could pass `"abc"` instead of `"12"` in a string which is not a valid value for `Int` type. To convert a string to an integer, it's better to use `parse_int()` function from the [standard library]().
+We can clearly see that this could lead to some big bugs. For example one could pass `"abc"` instead of `"12"` in a string which is not a valid value for `Int` type. To convert a string to an integer, it's better to use `parse_int()` function from the [standard library](/stdlib/doc).
 
 ```ab
 import { parse_int } from "std/text"

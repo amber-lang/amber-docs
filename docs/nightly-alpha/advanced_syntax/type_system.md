@@ -44,7 +44,7 @@ let empty_text = [Text]   // Type annotation required
 However, once you populate an array, type inference works normally:
 
 ```ab
-var items = [1, 2, 3]         // Inferred as [Int]
+let items = [1, 2, 3]         // Inferred as [Int]
 items += [4]                 // Still [Int]
 ```
 
@@ -131,13 +131,9 @@ fun greet(name: Text): Text {
 
 Explicit declarations are useful when you want to ensure a specific type is used or when the type cannot be inferred from usage.
 
-## Overloading
+## Function Overloading
 
-Amber supports function overloading—multiple functions with the same name but different type signatures. Each overloaded version becomes a separate compiled variant.
-
-### Automatic Overloading
-
-When you define functions with different type signatures, Amber alerts about a redeclaration error:
+Amber does **not** support function overloading. Defining two functions with the same name in the same scope produces a redeclaration error, even if their parameter types differ:
 
 ```ab
 fun format(value: Int): Text {
@@ -147,30 +143,10 @@ fun format(value: Int): Text {
 fun format(value: Text): Text {
     return "\"" + value + "\""
 }
-
-WRONG!
+// Error: redeclaration of 'format'
 ```
 
-### Overloading and Type Inference
-
-The compiler selects the appropriate variant based on argument types:
-
-```ab
-fun combine(a, b) {
-    return a + b
-}
-
-// Type inference determines which variant to call
-let num = combine(1, 2)           // combine_Int_Int
-let txt = combine("a", "b")      // combine_Text_Text
-let mixed = combine(1, "x")      // combine_Int_Text
-```
-
-### Best Practices for Overloading
-
-1. **Use distinct signatures** - Ensure overloaded functions have unambiguously different parameter types
-2. **Document behavior** - When overloaded functions behave differently, document the variations
-3. **Prefer explicit types** - For complex scenarios, use explicit type annotations to make intent clear
+For handling multiple types with a single function, use [monomorphization](#how-monomorphization-works) (generic parameters without type annotations) or [union types](/advanced_syntax/union_types).
 
 ## Type Narrowing
 
@@ -210,7 +186,7 @@ The `as` operator is only safe when dealing with specific type combinations wher
 
 For unsupported type conversions, check [absurd cast](/advanced_syntax/as_cast#absurd-cast)
 
-### Match Expressions for Narrowing
+### If-Chains for Narrowing
 
 For more complex scenarios, use if-chain with type checking:
 

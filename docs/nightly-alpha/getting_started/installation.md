@@ -1,4 +1,4 @@
-## Installation
+# Installation
 
 ### Support for architectures
 
@@ -9,10 +9,10 @@ The Amber compiler currently works on:
 
 ### Preparation for installation
 
-## macOS
+### macOS
 On macOS, you should have everything preinstalled (curl, bash, bc).
 
-## Linux
+### Linux
 Make sure that the operating system meets the following prerequisites
 - Install the basic calculator:
   - On Debian and Ubuntu: `sudo apt install bc` 
