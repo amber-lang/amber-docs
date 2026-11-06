@@ -14,7 +14,7 @@ Below is an example of how to use the standard library to generate documentation
 
 ```ab
 import { file_download } from "std/http"
-import { split, contains } from "std/text"
+import { split, text_contains } from "std/text"
 import { file_exists } from "std/fs"
 
 trust $ rm -fr /tmp/amber-git $
@@ -25,7 +25,7 @@ silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/mas
     let stdlib = split(std, "\n")
 
     for v in stdlib {
-        if (contains(v, ".ab") and file_exists("/tmp/amber-git/amber-master/src/std/{v}")) {
+        if (text_contains(v, ".ab") and file_exists("/tmp/amber-git/amber-master/src/std/{v}")) {
             trust $ amber docs "/tmp/amber-git/amber-master/src/std/{v}" "./docs/stdlib/doc" $
             echo("\n")
         }
