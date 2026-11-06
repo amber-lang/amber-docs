@@ -10,17 +10,14 @@ The Amber compiler currently works on:
 ### Preparation for installation
 
 ### macOS
-On macOS, you should have everything preinstalled (curl, bash, bc).
+On macOS, you should have everything preinstalled (curl, bash, awk).
 
 ### Linux
 Make sure that the operating system meets the following prerequisites
-- Install the basic calculator:
-  - On Debian and Ubuntu: `sudo apt install bc` 
-  - On Arch: `sudo pacman -Syu bc`
-  - On Fedora: `sudo dnf install bc`
-  - On OpenSUSE: `sudo zypper install bc`
-  
-- `curl` and `bash` are both installed by default in most cases. 
+
+- `awk`
+  While most distributions have GNU awk preinstalled, non-GNU awk should work too
+- `curl` and `bash` (or your target shell) are both installed by default in most cases. 
   In the very rare case that they happen to be not available yet, download them as well.
 
 > DETAILS: You should always update the system before you install a package in a rolling release distro, such as **Arch** and **Tumbleweed.**  Always reboot after an update of the kernel, init system, and similar software as well. 
@@ -144,7 +141,7 @@ For it to work, you may need to run the following code that pulls all the prereq
 These count for Debian and Ubuntu-based images.
 
 ```sh
-sudo apt install curl bc
+sudo apt install curl
 sudo mkdir /opt /usr/local/bin
 ```
 
