@@ -28,7 +28,7 @@ describe("hello", 3.14)     // Valid
 describe("test", false)      // Valid
 ```
 
-You can also use match expressions for more complex type narrowing:
+You can also use if-chains for more complex type narrowing:
 
 ```ab
 fun analyze(data: Int | Text | Bool) {

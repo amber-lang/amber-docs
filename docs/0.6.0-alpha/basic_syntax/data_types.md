@@ -125,7 +125,7 @@ In edge cases, where type inference is not possible or explicit typing is prefer
 
 ## Union Types
 
-Union types provide a flexible way to define function parameters that can accept values of multiple distinct types. This feature enhances code reusability and polymorphism by allowing a single function to handle different data types safely. Currently, union types are exclusively supported for function parameters. To define a union type, separate the accepted types with a vertical bar (`|`).
+Union types provide a flexible way to define function parameters that can accept values of multiple distinct types. This feature enhances code reusability and polymorphism by allowing a single function to handle different data types safely. Union types are supported for both function parameters and return types. To define a union type, separate the accepted types with a vertical bar (`|`).
 
 ### Examples
 

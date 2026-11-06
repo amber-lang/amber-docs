@@ -129,7 +129,7 @@ trust cp("src.txt", "dst.txt", true)
 
 ## Ls
 
-List directory contents. Takes an optional `Text` parameter for the path, and optionally two `Bool` parameters for `all` (show hidden files) and `recursive` (TODO). Returns an array of `Text`. Note that `ls` cannot be used with the `silent` modifier, as it will break the listing of directory contents. If you want to suppress error messages, use `suppress` modifier.
+List directory contents. Takes an optional `Text` parameter for the path, and optionally two `Bool` parameters for `all` (show hidden files) and `recursive` (list directories recursively). Returns an array of `Text`. Note that `ls` cannot be used with the `silent` modifier, as it will break the listing of directory contents. If you want to suppress error messages, use `suppress` modifier.
 
 Because reading directories can fail, this builtin is **failable**.
 
@@ -226,7 +226,7 @@ echo(shellname())
 
 ## Shellversion
 
-Returns the version of the shell currently executing the compiled code as a `Text`.
+Returns the version of the shell currently executing the compiled code as a `[Int]`.
 
 ```ab
 echo(shellversion())

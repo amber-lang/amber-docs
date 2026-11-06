@@ -1,4 +1,4 @@
-
+# Testing
 Test blocks are dedicated scopes for writing tests. They are executed only when running the `amber test` command and are ignored during normal compilation. Test blocks can be optionally named using a string literal. This improves readability and allows for targetted execution.
 
 ## Syntax
@@ -18,7 +18,7 @@ test {
 }
 ```
 
-# CLI Test Filtering
+## CLI Test Filtering
 
 The `amber test` command is designed to verify the correctness of your code by executing test blocks. By default, it recursively finds and runs all tests in the current directory. You can narrow down which tests to run by providing filter arguments.
 

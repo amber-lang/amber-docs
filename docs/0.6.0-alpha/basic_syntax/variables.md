@@ -1,5 +1,7 @@
 {#let}
 
+# Variables
+
 Variables are the way to store values we discussed earlier. In order to create a variable you can use a `let` keyword. Here is an example:
 
 ```ab
@@ -51,7 +53,7 @@ pub let config_value = "default"
 
 These variables can then be imported and used in other modules. (See the [Importing](basic_syntax/importing) section for more details).
 
-# Constant {#const}
+## Constant {#const}
 
 Constant is a type of variable that cannot be modified.
 

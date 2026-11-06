@@ -5,21 +5,21 @@
 Amber is aimed at developers who need the power of a modern programming language while staying within the ubiquitous Bash environment. It is especially useful for:
 - System administrators automating complex tasks.
 - DevOps engineers writing portable scripts.
-- Developers who want type‑safety and richer abstractions without abandoning the shell.
+- Developers who want type-safety and richer abstractions without abandoning the shell.
 
 ## Why not Python?
 
 Python excels at many domains, but it requires a separate runtime and often incurs additional deployment overhead. Amber compiles directly to shell code, so you can:
 - Leverage existing shell tooling and pipelines.
 - Deploy a single script without installing a language interpreter.
-- Benefit from shell‑native features (process substitution, job control) while enjoying high‑level syntax and safety.
+- Benefit from shell-native features (process substitution, job control) while enjoying high-level syntax and safety.
 
 ## Why not write Bash directly?
 
 Pure shell scripts lack static type checking, modular imports, and modern language constructs. Amber provides:
 - A type system that catches errors early.
 - Structured imports and modules for better code organization.
-- Built‑in helpers (e.g., safe string interpolation, automatic error handling) that reduce boilerplate.
+- Built-in helpers (e.g., safe string interpolation, automatic error handling) that reduce boilerplate.
 
 ## How does Amber compare to other languages?
 
@@ -30,18 +30,16 @@ Pure shell scripts lack static type checking, modular imports, and modern langua
 | Native shell integration | ✅ | ✅ | ❌ |
 | Learning curve | Low | Moderate | Moderate |
 
-Amber fills a niche between lightweight shell scripting and full‑featured high‑level languages.
+Amber fills a niche between lightweight shell scripting and full-featured high-level languages.
 
-## Is Amber production‑ready?
+## Is Amber production-ready?
 
 Amber is under active development. The **nightly** provides the latest features and improvements, but may contain breaking changes.  
 For production workloads, we recommend using the latest stable release (e.g., `0.5.x`) rather than the nightly build.
 
-In the the project it is production ready because it is already used in this context because the shell code generated is tested and confirmed that works, the language is evolving with the tooling set.
-
 ## Can I use Amber for system scripts?
 
-Yes. Amber is designed for exactly that purpose. It can replace many typical Bash one‑liners and larger maintenance scripts, offering better readability, safety, and testability while still running on any POSIX‑compatible system.
+Yes. Amber is designed for exactly that purpose. It can replace many typical Bash one-liners and larger maintenance scripts, offering better readability, safety, and testability while still running on any POSIX-compatible system.
 
 ## What shells does Amber support?
 
@@ -49,7 +47,7 @@ Amber currently targets **Bash** (versions 3.2 through 5.3), **Zsh**, and **ksh*
 - Linux (Bash 3.2-5.3, Zsh, Ksh)
 - macOS (Bash 3.2, Zsh)
 
-You can specify the execution environment for your compiled script by using the `--target` CLI option, for example `amber script.ab --target zsh`.
+You can specify the execution environment for your compiled script by using the `--target` CLI option, for example `amber run script.ab --target zsh`.
 
 ## Can Amber compile to other shells like POSIX sh?
 
@@ -84,7 +82,7 @@ Absolutely! Amber shines in CI/CD because:
 - Type safety catches errors before they reach production
 - Scripts compile to clean, readable shell scripts
 - *Bshchk* validation ensures dependencies exist
-- The compiler itself can be installed via various methods (bin, brew, pip, etc.)
+- The compiler itself can be installed via various methods (bin, brew, etc.)
 
 We even use Amber to generate parts of our own documentation!
 
