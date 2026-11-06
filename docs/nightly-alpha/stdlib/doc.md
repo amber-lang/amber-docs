@@ -18,7 +18,7 @@ import { split, contains } from "std/text"
 import { file_exists } from "std/fs"
 
 trust $ rm -fr /tmp/amber-git $
-if silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") {
+silent file_download("https://github.com/amber-lang/amber/archive/refs/heads/master.zip", "/tmp/amber-git.zip") succeeded {
     trust $ unzip "/tmp/amber-git.zip" -d /tmp/amber-git $
 
     let std = trust $ /usr/bin/ls "/tmp/amber-git/amber-master/src/std/" $

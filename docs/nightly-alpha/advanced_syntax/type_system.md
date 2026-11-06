@@ -146,7 +146,7 @@ fun format(value: Text): Text {
 // Error: redeclaration of 'format'
 ```
 
-For handling multiple types with a single function, use [monomorphization](#how-monomorphization-works) (generic parameters without type annotations) or [union types](/advanced_syntax/union_types).
+For handling multiple types with a single function, use [monomorphization](/advanced_syntax/type_system#how-monomorphization-works) (generic parameters without type annotations) or [union types](/advanced_syntax/union_types).
 
 ## Type Narrowing
 

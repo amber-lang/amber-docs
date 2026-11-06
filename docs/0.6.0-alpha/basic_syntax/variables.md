@@ -1,6 +1,6 @@
-# Variables
-
 {#let}
+
+# Variables
 
 Variables are the way to store values we discussed earlier. In order to create a variable you can use a `let` keyword. Here is an example:
 
